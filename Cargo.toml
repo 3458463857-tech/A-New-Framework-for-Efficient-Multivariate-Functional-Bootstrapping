@@ -1,0 +1,8 @@
+[package]
+name = "multivariate-fbs-artifact"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+tfhe = { version = "=0.8.7", features = ["shortint", "x86_64-unix"] }

@@ -1,0 +1,87 @@
+multivariate-fbs-artifact v0.1.0 (/mnt/c/Users/Wu/Documents/Codex/2026-08-03/wo/直接上传github即可/tfhe_rs)
+└── tfhe v0.8.7
+    ├── aligned-vec v0.5.0
+    │   └── serde v1.0.229
+    │       ├── serde_core v1.0.229
+    │       └── serde_derive v1.0.229 (proc-macro)
+    │           ├── proc-macro2 v1.0.107
+    │           │   └── unicode-ident v1.0.24
+    │           ├── quote v1.0.47
+    │           │   └── proc-macro2 v1.0.107 (*)
+    │           └── syn v3.0.3
+    │               ├── proc-macro2 v1.0.107 (*)
+    │               ├── quote v1.0.47 (*)
+    │               └── unicode-ident v1.0.24
+    ├── bincode v1.3.3
+    │   └── serde v1.0.229 (*)
+    ├── bytemuck v1.25.2
+    ├── concrete-csprng v0.4.1
+    │   ├── aes v0.8.4
+    │   │   ├── cfg-if v1.0.4
+    │   │   ├── cipher v0.4.4
+    │   │   │   ├── crypto-common v0.1.7
+    │   │   │   │   ├── generic-array v0.14.7
+    │   │   │   │   │   └── typenum v1.20.1
+    │   │   │   │   │   [build-dependencies]
+    │   │   │   │   │   └── version_check v0.9.5
+    │   │   │   │   └── typenum v1.20.1
+    │   │   │   └── inout v0.1.4
+    │   │   │       └── generic-array v0.14.7 (*)
+    │   │   └── cpufeatures v0.2.17
+    │   └── rayon v1.12.0
+    │       ├── either v1.17.0
+    │       └── rayon-core v1.13.0
+    │           ├── crossbeam-deque v0.8.7
+    │           │   ├── crossbeam-epoch v0.9.20
+    │           │   │   └── crossbeam-utils v0.8.22
+    │           │   └── crossbeam-utils v0.8.22
+    │           └── crossbeam-utils v0.8.22
+    ├── concrete-fft v0.5.1
+    │   ├── aligned-vec v0.5.0 (*)
+    │   ├── bytemuck v1.25.2
+    │   ├── dyn-stack v0.10.0
+    │   │   ├── bytemuck v1.25.2
+    │   │   └── reborrow v0.5.5
+    │   ├── num-complex v0.4.6
+    │   │   ├── bytemuck v1.25.2
+    │   │   ├── num-traits v0.2.19
+    │   │   │   [build-dependencies]
+    │   │   │   └── autocfg v1.5.1
+    │   │   └── serde v1.0.229 (*)
+    │   ├── pulp v0.18.22
+    │   │   ├── bytemuck v1.25.2
+    │   │   ├── libm v0.2.16
+    │   │   ├── num-complex v0.4.6 (*)
+    │   │   └── reborrow v0.5.5
+    │   └── serde v1.0.229 (*)
+    ├── concrete-ntt v0.2.0
+    │   ├── aligned-vec v0.5.0 (*)
+    │   └── pulp v0.18.22 (*)
+    ├── dyn-stack v0.10.0 (*)
+    ├── itertools v0.11.0
+    │   └── either v1.17.0
+    ├── paste v1.0.15 (proc-macro)
+    ├── pulp v0.18.22 (*)
+    ├── rand_core v0.6.4
+    │   └── getrandom v0.2.17
+    │       ├── cfg-if v1.0.4
+    │       └── libc v0.2.189
+    ├── rayon v1.12.0 (*)
+    ├── serde v1.0.229 (*)
+    ├── sha3 v0.10.9
+    │   ├── digest v0.10.7
+    │   │   ├── block-buffer v0.10.4
+    │   │   │   └── generic-array v0.14.7 (*)
+    │   │   └── crypto-common v0.1.7 (*)
+    │   └── keccak v0.1.6
+    └── tfhe-versionable v0.3.2
+        ├── aligned-vec v0.5.0 (*)
+        ├── num-complex v0.4.6 (*)
+        ├── serde v1.0.229 (*)
+        └── tfhe-versionable-derive v0.3.2 (proc-macro)
+            ├── proc-macro2 v1.0.107 (*)
+            ├── quote v1.0.47 (*)
+            └── syn v2.0.119
+                ├── proc-macro2 v1.0.107 (*)
+                ├── quote v1.0.47 (*)
+                └── unicode-ident v1.0.24

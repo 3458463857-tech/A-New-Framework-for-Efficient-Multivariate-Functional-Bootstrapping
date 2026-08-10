@@ -1,0 +1,236 @@
+% Complete English Section 5 fragment; no preamble is included.
+\IfFileExists{section5/experiment_values.tex}{%
+  \input{section5/experiment_values.tex}%
+}{%
+  \input{experiment_values.tex}%
+}
+
+\section{Experiments}
+
+The algorithms and reproduction materials are prepared for open-source release
+at
+\url{https://github.com/3458463857-tech/A-New-Framework-for-Efficient-Multivariate-Functional-Bootstrapping.git}.
+The current release includes the Section~4 compression code, the verified
+Table~11 benchmark and raw records, and the auxiliary applicable-function
+catalogue. In particular, the English \texttt{applicable\_functions.pdf}, its
+\TeX{} source, the intermediate-route comparison program, and the corresponding
+CSV/JSON outputs are released at the same address. The implementation for
+Section~3 is not included in this release and will be open-sourced in a later
+update.
+
+\paragraph{Experimental environment.}
+All experiments were performed on the same desktop machine, equipped with an
+Intel(R) Core(TM) i7-14700 processor with 20 cores and 28 threads, a reported
+base frequency of $2.10$~GHz, and 24~GB RAM. The host operating system was
+Microsoft Windows~11 Home Chinese Edition 64-bit, version 10.0.26200. The final
+Table~11 rerun (record \texttt{\ExperimentRunId}) was executed in
+\ExperimentRunnerOS{} under WSL2, with kernel \ExperimentKernel. Its reference
+programs used \ExperimentPython, while the online benchmark used
+\ExperimentRust, \ExperimentCargo, and TFHE-rs~\ExperimentTFHErs. The division
+experiments reported in Table~\ref{tab:div_time} were obtained earlier on the
+same Windows~11 desktop. Unless otherwise stated, reported times are arithmetic
+means of online homomorphic computation.
+
+For the final Table~11 run, we performed five untimed warm-up evaluations and
+then \ExperimentRepetitions{} timed evaluations on independently sampled valid
+inputs. The timed region contains only online homomorphic evaluation: key
+generation, LUT generation, input encryption, and output decryption are
+excluded. Every result ciphertext is decrypted after the timer stops and
+compared with the cleartext function value. The complete environment record,
+dependency tree, representation-generation trace, and per-repetition outputs
+are included in
+\texttt{experiment\_records/run\_\ExperimentRunId}.
+
+\subsection{Bootstrapping Implementation of Non-negative Division with Remainder}
+
+Consider non-negative integer division with remainder
+\[
+g(m,d)=\lfloor m/d\rfloor,
+\]
+with domain $[t]\times([t]\setminus\{0\})$. Our method decomposes this
+bivariate LUT into two univariate logarithmic functional bootstrappings, one
+homomorphic subtraction, and one outer exponential functional bootstrapping.
+According to the complexity analysis in Section~3.1.1, under theoretically
+optimal parameters, the total equivalent cost is
+\[
+\left(
+2+2\left\lceil\frac{\lfloor A\rfloor+2}{t}\right\rceil
+\right)\times\Z[\zeta_q]\text{-BR},
+\qquad
+A=\frac{2\ln(t-1)}{\ln(1+\frac{1}{t-1})}.
+\]
+
+Table~\ref{tab:div_record} compares the number of lookup-table records among
+our method,~\cite{BBR26}, and~\cite{OKC21}. For~\cite{BBR26}, we use the same
+estimation method as in Section~4: choose $\lambda+2a$ as small as possible
+subject to
+\[
+1.05\cdot t^\ell<(a+1)(\ell+\lambda),
+\]
+and let each PBS lookup table have size equal to the smallest prime $p$ greater
+than $t$. Thus the record count is $(\lambda+2a)p$. For~\cite{OKC21}, their
+Section~4.4 states that $N\tau$ torus values must be stored for the
+division-by-constant test vectors; using their experimental parameter $N=1024$
+and $\tau=t+1$, this gives $1024(t+1)$ records. For our method, the theoretically
+optimal scale gives $t'=\lfloor A\rfloor+1$; two size-$t$ inner tables and the
+size-$P=2t'+1$ outer plaintext interval therefore contain
+\[
+2t+P=2t+2\lfloor A\rfloor+3
+\]
+records. Our method reduces the record count in all three parameter settings.
+
+\begin{table}[!tbp]
+  \centering
+  \small
+  \caption{Lookup-table compression for division with remainder.}
+  \label{tab:div_record}
+  \begin{tabular}{c|c|c|c|c}
+    \hline
+    $\ell$ & $t$
+    & \makecell{LUT size of\\\cite{BBR26}}
+    & \makecell{LUT size of\\\cite{OKC21}}
+    & \makecell{LUT size of\\our method} \\
+    \hline
+    $2$ & $16$ & $731$   & $17408$ & $201$ \\
+    $2$ & $32$ & $3293$  & $33792$ & $499$ \\
+    $2$ & $64$ & $12194$ & $66560$ & $1183$ \\
+    \hline
+  \end{tabular}
+\end{table}
+
+Table~\ref{tab:div_time} reports the measured online times of our implementation
+and the model-based figures for~\cite{BBR26} and~\cite{OKC21}.
+
+\begin{table}[!tbp]
+  \centering
+  \small
+  \caption{Online computation times and model projections for division with
+  remainder.}
+  \label{tab:div_time}
+  \begin{tabular}{c|c|c|c|c}
+    \hline
+    $\ell$ & $t$
+    & \makecell{Model projection for\\\cite{BBR26} (ms)}
+    & \makecell{Linear estimate for\\\cite{OKC21} (ms)}
+    & \makecell{Our measured\\online time (ms)} \\
+    \hline
+    $2$ & $16$ & $79.2$   & $930.00$  & $267.02$ \\
+    $2$ & $32$ & $356.8$  & $1860.00$ & $305.17$ \\
+    $2$ & $64$ & $1321.3$ & $3720.00$ & $381.46$ \\
+    \hline
+  \end{tabular}
+\end{table}
+
+For~\cite{OKC21}, the original paper reports $0.93$~s for 4-bit division,
+corresponding to $t=16$, and its Algorithm~10 enumerates all possible divisors,
+so the cost scales linearly with $t$. Hence we use $930$~ms for $t=16$ and
+linearly estimate $1860$~ms and $3720$~ms for $t=32$ and $t=64$, respectively.
+
+For~\cite{BBR26}, the projection is reproducible from its Appendix Table~4 and
+our optimistic dimension-bound PBS counts. These target counts minimize
+$\lambda+2a$ under the stated inequality; they are not call counts of a
+decomposition produced by the randomized search. At $t=16$, their 8-to-8-bit
+experiment with chunk size $s=16$ takes $105$~ms for $57$ PBS calls, giving the
+calibration $c_{17}=105/57=1.842$~ms per call for embedding modulus $p=17$. A
+one-output division LUT requires $43$ calls, hence $43c_{17}=79.2$~ms. Because
+no timings for $p=37$ or $p=67$ are reported, we use the explicit linear scaling
+rule
+\[
+c_p=c_{17}\frac{p}{17},
+\]
+and multiply it by the computed call counts $89$ and $182$. This gives
+$356.8$~ms and $1321.3$~ms. The rule captures the stated dependence on LUT
+modulus and bootstrapping count, but not architecture, cache,
+parameter-selection, or parallelization effects.
+
+The prior-work columns in Table~\ref{tab:div_time} are therefore cross-platform
+model calculations rather than controlled same-machine benchmarks. They are
+included to make the estimation method explicit; a same-platform execution of
+all implementations would be required for a definitive end-to-end speedup
+comparison.
+
+\subsection{Bootstrapping Results for General Multivariate Functions}
+
+This subsection evaluates the general multivariate-function decomposition from
+Section~4. Before cryptographic timing, the released Section~4 program
+regenerates the four representations and exhaustively checks that equal
+intermediate sums never correspond to different function values.
+
+The Hamming-weight interval uses the identity representation $p_i=(0,1)$ and
+therefore needs only the outer PBS after homomorphic addition. The two
+symbol-set functions use, respectively, $p_i=(0,1,0,1)$ and
+$p_i=(1,0,1,0)$. In each six-variable case, three inputs are packed as
+$z=x_i+t x_{i+1}+t^2x_{i+2}$, and one inner LUT maps $z$ directly to
+$p_i(x_i)+p_{i+1}(x_{i+1})+p_{i+2}(x_{i+2})$. Thus two packed inner PBS calls
+are followed by one outer PBS. For the lower-median function, the deterministic
+simulated-annealing search uses seed $20260810$ and returns the symmetric rows
+$p_i=(7,0,5)$ with span $42$; the same three-variable packing again gives two
+inner PBS calls and one outer PBS. The four representations are exhaustively
+checked over $1024$, $4096$, $4096$, and $729$ inputs, respectively.
+
+Table~\ref{tab:multi_time_record} reports the final output-checked online times
+using the TFHE-rs parameter set
+\texttt{PARAM\_\allowbreak MESSAGE\_6\_\allowbreak CARRY\_0\_\allowbreak
+KS\_\allowbreak PBS}, whose plaintext space is
+$[64]$. It accommodates the ten-input Hamming sum, each packed value
+($t^3\leq64$), and every representation sum. Except for the identity case, the
+timed computation contains
+\[
+\operatorname{PBS}(P_1),\operatorname{PBS}(P_2),
+\qquad
+P_1(z_1)+P_2(z_2)\ \text{by homomorphic addition},
+\qquad
+\operatorname{PBS}(q).
+\]
+
+For~\cite{BBR26}, the projected running times use the same transparent,
+optimistic calibration principle. We divide the nearest matching total time in
+its Appendix Table~4 by the corresponding $\gamma=1.05$ call count in its
+Table~2, then multiply by the lower-bound-style one-output call count obtained
+by minimizing under the dimension inequality. For $(t,\ell)=(2,10)$ this is
+$(477/238)\cdot81=162.3$~ms; for $(4,6)$ it is
+$(847/392)\cdot178=384.6$~ms; and for $(3,6)$ we use the nearest $p=5$, 10-bit
+calibration, $(311/174)\cdot71=126.9$~ms. These are cross-platform model
+projections, not measured baselines.
+
+\begin{table}[!tbp]
+  \centering
+  \small
+  \caption{Output-checked online computation times for general multivariate
+  functions.}
+  \label{tab:multi_time_record}
+  \begin{tabular}{c|c|c|c}
+    \hline
+    \makecell{Function}
+    & \makecell{Parameters}
+    & \makecell{Model projection for\\\cite{BBR26} (ms)}
+    & \makecell{Our measured\\online time (ms)} \\
+    \hline
+    \makecell{Hamming-weight\\interval function}
+    & \makecell{$t=2$, $\ell=10$\\$[a,b]=[4,6]$}
+    & $162.3$
+    & $\TableElevenHamming$ \\
+    \hline
+    \makecell{General symbol-set\\interval function}
+    & \makecell{$t=4$, $\ell=6$\\$A=\{1,3\}$, $[a,b]=[2,4]$}
+    & $384.6$
+    & $\TableElevenSymbolInterval$ \\
+    \hline
+    \makecell{General symbol-set\\threshold function}
+    & \makecell{$t=4$, $\ell=6$\\$A=\{0,2\}$, $\tau=3$}
+    & $384.6$
+    & $\TableElevenSymbolThreshold$ \\
+    \hline
+    \makecell{Lower-median\\function}
+    & \makecell{$t=3$, $\ell=6$}
+    & $126.9$
+    & $\TableElevenMedian$ \\
+    \hline
+  \end{tabular}
+\end{table}
+
+The measured and projected columns were produced on different platforms and
+should not be read as a controlled speed comparison. The released Table~11
+records establish that the four decompositions execute correctly with PBS-call
+counts $1,3,3,3$ and provide every output-checked timed repetition used for the
+reported means.
