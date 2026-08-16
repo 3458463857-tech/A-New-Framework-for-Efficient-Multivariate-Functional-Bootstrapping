@@ -1,0 +1,10 @@
+[package]
+name = "section3-algorithm1-reproduction"
+version = "0.1.0"
+edition = "2021"
+publish = false
+default-run = "section3-algorithm1-reproduction"
+
+[dependencies]
+rayon = "=1.12.0"
+tfhe = { version = "=0.8.7", features = ["integer", "x86_64", "pbs-stats"] }
