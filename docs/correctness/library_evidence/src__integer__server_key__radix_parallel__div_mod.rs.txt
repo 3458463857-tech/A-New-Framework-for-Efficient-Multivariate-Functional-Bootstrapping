@@ -1,0 +1,519 @@
+TFHE-rs 0.8.7: src/integer/server_key/radix_parallel/div_mod.rs
+Whole-source SHA256: 8e2444f1728c1b6ad175defdd1a1428d6f12fdfc8ae78b9d3c991144469ae3a7
+
+
+--- Lines 80-490 ---
+80:                     &remainder_plus_divisor,
+81:                     &remainder,
+82:                     |x| x == 2,
+83:                     true,
+84:                 )
+85:             },
+86:         );
+87: 
+88:         (quotient, remainder)
+89:     }
+90: 
+91:     fn unsigned_unchecked_div_rem_parallelized(
+92:         &self,
+93:         numerator: &RadixCiphertext,
+94:         divisor: &RadixCiphertext,
+95:     ) -> (RadixCiphertext, RadixCiphertext) {
+96:         assert_eq!(
+97:             numerator.blocks.len(),
+98:             divisor.blocks.len(),
+99:             "numerator and divisor must have same number of blocks"
+100:         );
+101:         // Pseudocode of the school-book / long-division algorithm:
+102:         //
+103:         //
+104:         // div(N/D):
+105:         // Q := 0                  -- Initialize quotient and remainder to zero
+106:         // R := 0
+107:         // for i := n − 1 .. 0 do  -- Where n is number of bits in N
+108:         //   R := R << 1           -- Left-shift R by 1 bit
+109:         //   R(0) := N(i)          -- Set the least-significant bit of R equal to bit i of the
+110:         //                         -- numerator
+111:         //   if R ≥ D then
+112:         //     R := R − D
+113:         //     Q(i) := 1
+114:         //   end
+115:         // end
+116:         assert_eq!(
+117:             numerator.blocks.len(),
+118:             divisor.blocks.len(),
+119:             "numerator and divisor must have same number of blocks \
+120:             numerator: {} blocks, divisor: {} blocks",
+121:             numerator.blocks.len(),
+122:             divisor.blocks.len(),
+123:         );
+124:         assert!(
+125:             self.key.message_modulus.0.is_power_of_two(),
+126:             "The message modulus ({}) needs to be a power of two",
+127:             self.key.message_modulus.0
+128:         );
+129:         assert!(
+130:             numerator.block_carries_are_empty(),
+131:             "The numerator must have its carries empty"
+132:         );
+133:         assert!(
+134:             divisor.block_carries_are_empty(),
+135:             "The numerator must have its carries empty"
+136:         );
+137:         assert!(numerator
+138:             .blocks()
+139:             .iter()
+140:             .all(|block| block.message_modulus == self.key.message_modulus
+141:                 && block.carry_modulus == self.key.carry_modulus));
+142:         assert!(divisor
+143:             .blocks()
+144:             .iter()
+145:             .all(|block| block.message_modulus == self.key.message_modulus
+146:                 && block.carry_modulus == self.key.carry_modulus));
+147: 
+148:         let num_blocks = numerator.blocks.len();
+149:         let num_bits_in_message = self.key.message_modulus.0.ilog2() as u64;
+150:         let total_bits = num_bits_in_message * num_blocks as u64;
+151: 
+152:         let mut quotient: RadixCiphertext = self.create_trivial_zero_radix(num_blocks);
+153:         let mut remainder1: RadixCiphertext = self.create_trivial_zero_radix(num_blocks);
+154:         let mut remainder2: RadixCiphertext = self.create_trivial_zero_radix(num_blocks);
+155: 
+156:         let mut numerator_block_stack = numerator.blocks.clone();
+157: 
+158:         // The overflow flag is computed by combining 2 separate values,
+159:         // this vec will contain the lut that merges these two flags.
+160:         //
+161:         // Normally only one lut should be needed, and that lut would output a block
+162:         // encrypting 0 or 1.
+163:         // However, since the resulting block would then be left shifted and added to
+164:         // another existing noisy block, we create many LUTs that shift the boolean value
+165:         // to the correct position, to reduce noise growth
+166:         let merge_overflow_flags_luts = (0..num_bits_in_message)
+167:             .map(|bit_position_in_block| {
+168:                 self.key.generate_lookup_table_bivariate(|x, y| {
+169:                     u64::from(x == 0 && y == 0) << bit_position_in_block
+170:                 })
+171:             })
+172:             .collect::<Vec<_>>();
+173: 
+174:         for i in (0..total_bits as usize).rev() {
+175:             let block_of_bit = i / num_bits_in_message as usize;
+176:             let pos_in_block = i % num_bits_in_message as usize;
+177: 
+178:             // i goes from [total_bits - 1 to 0]
+179:             // msb_bit_set goes from [0 to total_bits - 1]
+180:             let msb_bit_set = total_bits as usize - 1 - i;
+181: 
+182:             let last_non_trivial_block = msb_bit_set / num_bits_in_message as usize;
+183:             // Index to the first block of the remainder that is fully trivial 0
+184:             // and all blocks after it are also trivial zeros
+185:             // This number is in range 1..=num_bocks -1
+186:             let first_trivial_block = last_non_trivial_block + 1;
+187: 
+188:             // All blocks starting from the first_trivial_block are known to be trivial
+189:             // So we can avoid work.
+190:             // Note that, these are always non-empty (i.e. there is always at least one non trivial
+191:             // block)
+192:             let mut interesting_remainder1 =
+193:                 RadixCiphertext::from(remainder1.blocks[..=last_non_trivial_block].to_vec());
+194:             let mut interesting_remainder2 =
+195:                 RadixCiphertext::from(remainder2.blocks[..=last_non_trivial_block].to_vec());
+196:             let mut interesting_divisor =
+197:                 RadixCiphertext::from(divisor.blocks[..=last_non_trivial_block].to_vec());
+198:             let mut divisor_ms_blocks = RadixCiphertext::from(
+199:                 divisor.blocks[((msb_bit_set + 1) / num_bits_in_message as usize)..].to_vec(),
+200:             );
+201: 
+202:             // We split the divisor at a block position, when in reality the split should be at a
+203:             // bit position meaning that potentially (depending on msb_bit_set) the
+204:             // split versions share some bits they should not. So we do one PBS on the
+205:             // last block of the interesting_divisor, and first block of divisor_ms_blocks
+206:             // to trim out bits which should not be there
+207: 
+208:             let mut trim_last_interesting_divisor_bits = || {
+209:                 if ((msb_bit_set + 1) % num_bits_in_message as usize) == 0 {
+210:                     return;
+211:                 }
+212:                 // The last block of the interesting part of the remainder
+213:                 // can contain bits which we should not account for
+214:                 // we have to zero them out.
+215: 
+216:                 // Where the msb is set in the block
+217:                 let pos_in_block = msb_bit_set as u64 % num_bits_in_message;
+218: 
+219:                 // e.g 2 bits in message:
+220:                 // if pos_in_block is 0, then we want to keep only first bit (right shift mask
+221:                 // by 1) if pos_in_block is 1, then we want to keep the two
+222:                 // bits (right shift mask by 0)
+223:                 let shift_amount = num_bits_in_message - (pos_in_block + 1);
+224:                 // Create mask of 1s on the message part, 0s in the carries
+225:                 let full_message_mask = self.key.message_modulus.0 as u64 - 1;
+226:                 // Shift the mask so that we will only keep bits we should
+227:                 let shifted_mask = full_message_mask >> shift_amount;
+228: 
+229:                 let masking_lut = self.key.generate_lookup_table(|x| x & shifted_mask);
+230:                 self.key.apply_lookup_table_assign(
+231:                     interesting_divisor.blocks.last_mut().unwrap(),
+232:                     &masking_lut,
+233:                 );
+234:             };
+235: 
+236:             let mut trim_first_divisor_ms_bits = || {
+237:                 if divisor_ms_blocks.blocks.is_empty()
+238:                     || ((msb_bit_set + 1) % num_bits_in_message as usize) == 0
+239:                 {
+240:                     return;
+241:                 }
+242:                 // As above, we need to zero out some bits, but here it's in the
+243:                 // first block of most significant blocks of the divisor.
+244:                 // The block has the same value as the last block of interesting_divisor.
+245:                 // Here we will zero out the bits that the trim_last_interesting_divisor_bits
+246:                 // above wanted to keep.
+247: 
+248:                 // Where the msb is set in the block
+249:                 let pos_in_block = msb_bit_set as u64 % num_bits_in_message;
+250: 
+251:                 // e.g 2 bits in message:
+252:                 // if pos_in_block is 0, then we want to discard the first bit (left shift mask
+253:                 // by 1) if pos_in_block is 1, then we want to discard the
+254:                 // two bits (left shift mask by 2) let shift_amount =
+255:                 // num_bits_in_message - pos_in_block as u64;
+256:                 let shift_amount = pos_in_block + 1;
+257:                 let full_message_mask = self.key.message_modulus.0 as u64 - 1;
+258:                 let shifted_mask = full_message_mask << shift_amount;
+259:                 // Keep the mask within the range of message bits, so that
+260:                 // the estimated degree of the output is < msg_modulus
+261:                 let shifted_mask = shifted_mask & full_message_mask;
+262: 
+263:                 let masking_lut = self.key.generate_lookup_table(|x| x & shifted_mask);
+264:                 self.key.apply_lookup_table_assign(
+265:                     divisor_ms_blocks.blocks.first_mut().unwrap(),
+266:                     &masking_lut,
+267:                 );
+268:             };
+269: 
+270:             // This does
+271:             //  R := R << 1; R(0) := N(i)
+272:             //
+273:             // We could to that by left shifting, R by one, then unchecked_add the correct numerator
+274:             // bit.
+275:             //
+276:             // However, to keep the remainder clean (noise wise), what we do is that we put the
+277:             // remainder block from which we need to extract the bit, as the LSB of the
+278:             // Remainder, so that left shifting will pull the bit we need.
+279:             let mut left_shift_interesting_remainder1 = || {
+280:                 let numerator_block = numerator_block_stack
+281:                     .pop()
+282:                     .expect("internal error: empty numerator block stack in div");
+283:                 // prepend block and then shift
+284:                 interesting_remainder1.blocks.insert(0, numerator_block);
+285:                 self.unchecked_scalar_left_shift_assign_parallelized(
+286:                     &mut interesting_remainder1,
+287:                     1,
+288:                 );
+289: 
+290:                 // Extract the block we prepended, and see if it should be dropped
+291:                 // or added back for processing
+292:                 interesting_remainder1.blocks.rotate_left(1);
+293:                 // This unwrap is unreachable, as we are removing the block we added earlier
+294:                 let numerator_block = interesting_remainder1.blocks.pop().unwrap();
+295:                 if pos_in_block != 0 {
+296:                     // We have not yet extracted all the bits from this numerator
+297:                     // so, we put it back on the front so that it gets taken next iteration
+298:                     numerator_block_stack.push(numerator_block);
+299:                 }
+300:             };
+301: 
+302:             let mut left_shift_interesting_remainder2 = || {
+303:                 self.unchecked_scalar_left_shift_assign_parallelized(
+304:                     &mut interesting_remainder2,
+305:                     1,
+306:                 );
+307:             };
+308: 
+309:             let tasks: [&mut (dyn FnMut() + Send + Sync); 4] = [
+310:                 &mut trim_last_interesting_divisor_bits,
+311:                 &mut trim_first_divisor_ms_bits,
+312:                 &mut left_shift_interesting_remainder1,
+313:                 &mut left_shift_interesting_remainder2,
+314:             ];
+315:             tasks.into_par_iter().for_each(|task| task());
+316: 
+317:             // if interesting_remainder1 != 0 -> interesting_remainder2 == 0
+318:             // if interesting_remainder1 == 0 -> interesting_remainder2 != 0
+319:             // In practice interesting_remainder1 contains the numerator bit,
+320:             // but in that position, interesting_remainder2 always has a 0
+321:             let mut merged_interesting_remainder = interesting_remainder1;
+322:             self.unchecked_add_assign(&mut merged_interesting_remainder, &interesting_remainder2);
+323: 
+324:             let do_overflowing_sub = || {
+325:                 self.unchecked_unsigned_overflowing_sub_parallelized(
+326:                     &merged_interesting_remainder,
+327:                     &interesting_divisor,
+328:                 )
+329:             };
+330: 
+331:             let check_divisor_upper_blocks = || {
+332:                 // Do a comparison (==) with 0 for trivial blocks
+333:                 let trivial_blocks = &divisor_ms_blocks.blocks;
+334:                 if trivial_blocks.is_empty() {
+335:                     self.key.create_trivial(0)
+336:                 } else {
+337:                     // We could call unchecked_scalar_ne_parallelized
+338:                     // But we are in the special case where scalar == 0
+339:                     // So we can skip some stuff
+340:                     let tmp = self
+341:                         .compare_blocks_with_zero(trivial_blocks, ZeroComparisonType::Difference);
+342:                     self.is_at_least_one_comparisons_block_true(tmp)
+343:                 }
+344:             };
+345: 
+346:             // Creates a cleaned version (noise wise) of the merged remainder
+347:             // so that it can be safely used in bivariate PBSes
+348:             let create_clean_version_of_merged_remainder = || {
+349:                 RadixCiphertext::from_blocks(
+350:                     merged_interesting_remainder
+351:                         .blocks
+352:                         .par_iter()
+353:                         .map(|b| self.key.message_extract(b))
+354:                         .collect(),
+355:                 )
+356:             };
+357: 
+358:             // Use nested join as its easier when we need to return values
+359:             let (
+360:                 (mut new_remainder, subtraction_overflowed),
+361:                 (at_least_one_upper_block_is_non_zero, mut cleaned_merged_interesting_remainder),
+362:             ) = rayon::join(do_overflowing_sub, || {
+363:                 let (r1, r2) = rayon::join(
+364:                     check_divisor_upper_blocks,
+365:                     create_clean_version_of_merged_remainder,
+366:                 );
+367: 
+368:                 (r1, r2)
+369:             });
+370:             // explicit drop, so that we do not use it by mistake
+371:             drop(merged_interesting_remainder);
+372: 
+373:             let overflow_sum = self.key.unchecked_add(
+374:                 subtraction_overflowed.as_ref(),
+375:                 &at_least_one_upper_block_is_non_zero,
+376:             );
+377:             // Give name to closures to improve readability
+378:             let overflow_happened = |overflow_sum: u64| overflow_sum != 0;
+379:             let overflow_did_not_happen = |overflow_sum: u64| !overflow_happened(overflow_sum);
+380: 
+381:             // Here, we will do what zero_out_if does, but to stay within noise constraints,
+382:             // we do it by hand so that we apply the factor (shift) to the correct block
+383:             assert!(overflow_sum.degree.get() <= 2); // at_least_one_upper_block_is_non_zero maybe be a trivial 0
+384:             let factor = MessageModulus(overflow_sum.degree.get() + 1);
+385:             let mut conditionally_zero_out_merged_interesting_remainder = || {
+386:                 let zero_out_if_overflow_did_not_happen =
+387:                     self.key.generate_lookup_table_bivariate_with_factor(
+388:                         |block, overflow_sum| {
+389:                             if overflow_did_not_happen(overflow_sum) {
+390:                                 0
+391:                             } else {
+392:                                 block
+393:                             }
+394:                         },
+395:                         factor,
+396:                     );
+397:                 cleaned_merged_interesting_remainder
+398:                     .blocks_mut()
+399:                     .par_iter_mut()
+400:                     .for_each(|block| {
+401:                         self.key.unchecked_apply_lookup_table_bivariate_assign(
+402:                             block,
+403:                             &overflow_sum,
+404:                             &zero_out_if_overflow_did_not_happen,
+405:                         );
+406:                     });
+407:             };
+408: 
+409:             let mut conditionally_zero_out_merged_new_remainder = || {
+410:                 let zero_out_if_overflow_happened =
+411:                     self.key.generate_lookup_table_bivariate_with_factor(
+412:                         |block, overflow_sum| {
+413:                             if overflow_happened(overflow_sum) {
+414:                                 0
+415:                             } else {
+416:                                 block
+417:                             }
+418:                         },
+419:                         factor,
+420:                     );
+421:                 new_remainder.blocks_mut().par_iter_mut().for_each(|block| {
+422:                     self.key.unchecked_apply_lookup_table_bivariate_assign(
+423:                         block,
+424:                         &overflow_sum,
+425:                         &zero_out_if_overflow_happened,
+426:                     );
+427:                 });
+428:             };
+429: 
+430:             let mut set_quotient_bit = || {
+431:                 let did_not_overflow = self.key.unchecked_apply_lookup_table_bivariate(
+432:                     subtraction_overflowed.as_ref(),
+433:                     &at_least_one_upper_block_is_non_zero,
+434:                     &merge_overflow_flags_luts[pos_in_block],
+435:                 );
+436: 
+437:                 self.key
+438:                     .unchecked_add_assign(&mut quotient.blocks[block_of_bit], &did_not_overflow);
+439:             };
+440: 
+441:             let tasks: [&mut (dyn FnMut() + Send + Sync); 3] = [
+442:                 &mut conditionally_zero_out_merged_interesting_remainder,
+443:                 &mut conditionally_zero_out_merged_new_remainder,
+444:                 &mut set_quotient_bit,
+445:             ];
+446:             tasks.into_par_iter().for_each(|task| task());
+447: 
+448:             assert_eq!(
+449:                 remainder1.blocks[..first_trivial_block].len(),
+450:                 cleaned_merged_interesting_remainder.blocks.len()
+451:             );
+452:             assert_eq!(
+453:                 remainder2.blocks[..first_trivial_block].len(),
+454:                 new_remainder.blocks.len()
+455:             );
+456:             remainder1.blocks[..first_trivial_block]
+457:                 .iter_mut()
+458:                 .zip(cleaned_merged_interesting_remainder.blocks.iter())
+459:                 .for_each(|(remainder_block, new_value)| {
+460:                     remainder_block.clone_from(new_value);
+461:                 });
+462:             remainder2.blocks[..first_trivial_block]
+463:                 .iter_mut()
+464:                 .zip(new_remainder.blocks.iter())
+465:                 .for_each(|(remainder_block, new_value)| {
+466:                     remainder_block.clone_from(new_value);
+467:                 });
+468:         }
+469: 
+470:         // Clean the quotient and remainder
+471:         // as even though they have no carries, they are not at nominal noise level
+472:         rayon::join(
+473:             || {
+474:                 remainder1
+475:                     .blocks_mut()
+476:                     .par_iter_mut()
+477:                     .zip(remainder2.blocks.par_iter())
+478:                     .for_each(|(r1_block, r2_block)| {
+479:                         self.key.unchecked_add_assign(r1_block, r2_block);
+480:                         self.key.message_extract_assign(r1_block);
+481:                     });
+482:             },
+483:             || {
+484:                 quotient.blocks_mut().par_iter_mut().for_each(|block| {
+485:                     self.key.message_extract_assign(block);
+486:                 });
+487:             },
+488:         );
+489: 
+490:         (quotient, remainder1)
+
+--- Lines 750-850 ---
+750:     ///
+751:     /// let ct1 = cks.encrypt(msg1);
+752:     /// let ct2 = cks.encrypt(msg2);
+753:     ///
+754:     /// // Compute homomorphically a division:
+755:     /// let ct_res = sks.div_parallelized(&ct1, &ct2);
+756:     ///
+757:     /// // Decrypt:
+758:     /// let dec_result: u64 = cks.decrypt(&ct_res);
+759:     /// assert_eq!(dec_result, msg1 / msg2);
+760:     /// ```
+761:     pub fn div_parallelized<T>(&self, numerator: &T, divisor: &T) -> T
+762:     where
+763:         T: IntegerRadixCiphertext,
+764:     {
+765:         let (q, _r) = self.div_rem_parallelized(numerator, divisor);
+766:         q
+767:     }
+768: 
+769:     //======================================================================
+770:     //                Rem
+771:     //======================================================================
+772: 
+773:     pub fn unchecked_rem_assign_parallelized<T>(&self, numerator: &mut T, divisor: &T)
+774:     where
+775:         T: IntegerRadixCiphertext,
+776:     {
+777:         let (_q, r) = self.unchecked_div_rem_parallelized(numerator, divisor);
+778:         *numerator = r;
+779:     }
+780: 
+781:     pub fn unchecked_rem_parallelized<T>(&self, numerator: &T, divisor: &T) -> T
+782:     where
+783:         T: IntegerRadixCiphertext,
+784:     {
+785:         let (_q, r) = self.unchecked_div_rem_parallelized(numerator, divisor);
+786:         r
+787:     }
+788: 
+789:     pub fn smart_rem_assign_parallelized<T>(&self, numerator: &mut T, divisor: &mut T)
+790:     where
+791:         T: IntegerRadixCiphertext,
+792:     {
+793:         let (_q, r) = self.smart_div_rem_parallelized(numerator, divisor);
+794:         *numerator = r;
+795:     }
+796: 
+797:     pub fn smart_rem_parallelized<T>(&self, numerator: &mut T, divisor: &mut T) -> T
+798:     where
+799:         T: IntegerRadixCiphertext,
+800:     {
+801:         let (_q, r) = self.smart_div_rem_parallelized(numerator, divisor);
+802:         r
+803:     }
+804: 
+805:     pub fn rem_assign_parallelized<T>(&self, numerator: &mut T, divisor: &T)
+806:     where
+807:         T: IntegerRadixCiphertext,
+808:     {
+809:         let mut tmp_divisor;
+810: 
+811:         let (numerator, divisor) = match (
+812:             numerator.block_carries_are_empty(),
+813:             divisor.block_carries_are_empty(),
+814:         ) {
+815:             (true, true) => (numerator, divisor),
+816:             (true, false) => {
+817:                 tmp_divisor = divisor.clone();
+818:                 self.full_propagate_parallelized(&mut tmp_divisor);
+819:                 (numerator, &tmp_divisor)
+820:             }
+821:             (false, true) => {
+822:                 self.full_propagate_parallelized(numerator);
+823:                 (numerator, divisor)
+824:             }
+825:             (false, false) => {
+826:                 tmp_divisor = divisor.clone();
+827:                 rayon::join(
+828:                     || self.full_propagate_parallelized(numerator),
+829:                     || self.full_propagate_parallelized(&mut tmp_divisor),
+830:                 );
+831:                 (numerator, &tmp_divisor)
+832:             }
+833:         };
+834: 
+835:         let (_q, r) = self.unchecked_div_rem_parallelized(numerator, divisor);
+836:         *numerator = r;
+837:     }
+838: 
+839:     /// Computes homomorphically the remainder (rest) of the division between two ciphertexts
+840:     ///
+841:     /// # Note
+842:     ///
+843:     /// If you need both the quotient and remainder use [Self::div_rem_parallelized].
+844:     ///
+845:     /// # Example
+846:     ///
+847:     /// ```rust
+848:     /// use tfhe::integer::gen_keys_radix;
+849:     /// use tfhe::shortint::parameters::PARAM_MESSAGE_2_CARRY_2;
+850:     ///

@@ -1,0 +1,2 @@
+cargo build --release --locked --offline --bin bench_checked
+RAYON_NUM_THREADS=8 bench_checked representations/table11_representations.csv 30

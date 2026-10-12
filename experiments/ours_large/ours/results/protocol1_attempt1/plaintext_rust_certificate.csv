@@ -1,0 +1,11 @@
+task_id,cartesian_inputs,reachable_scores,maximum_score,output_max,check
+hamming_interval10,1024,11,10,1,PASS
+set_interval4_6,4096,7,6,1,PASS
+set_threshold4_6,4096,7,6,1,PASS
+lower_median3_6,729,28,42,2,PASS
+mode3_6,729,28,42,2,PASS
+max3_6,729,28,42,2,PASS
+range3_6,729,28,42,2,PASS
+iqr3_6,729,28,42,2,PASS
+mad3_6,729,28,42,2,PASS
+distinct3_6,729,28,42,3,PASS

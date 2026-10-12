@@ -1,0 +1,2 @@
+Read-only dependency resolution only; no benchmark executed.
+cargo +1.96.0 metadata --offline --locked --format-version 1 --manifest-path "$SOURCE/Cargo.toml"

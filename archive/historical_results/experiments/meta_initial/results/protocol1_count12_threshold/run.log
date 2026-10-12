@@ -1,0 +1,62 @@
+AUTHOR_COMPILED_PARAMS {lweDimension:970 glweDimension:2048 glweRank:1 polyDegree:2048 logPolyDegree:11 lookUpTableSize:2048 polyExtendFactor:1 lweStdDev:1.9618934132504e-07 glweStdDev:7.6322028613628e-16 blockSize:1 blockCount:970 messageModulus:256 scale:72057594037927936 logQ:64 floatQ:1.8446744073709552e+19 blindRotateParameters:{base:2048 logBase:11 level:3 sizeT:64} keySwitchParameters:{base:4 logBase:2 level:10 sizeT:64} bootstrapOrder:0 worstCaseLogFailureProb:-42 fullTorus:true metaFBS:true TruncRepeatParameters:{itersCount:2 repeatBase:[16 8 10] truncationBound:[49 66 5] extendedCoeffsCount:[23 27 57] truncatedRepetitionParameters:[{base:2048 logBase:11 level:3 sizeT:64} {base:2048 logBase:11 level:3 sizeT:64} {base:2048 logBase:11 level:3 sizeT:64}] redundancy:[2 32 10] amplify:[8 128] mvGap:[2 32 256]} countLUTs:4 fullDomain:true countCancelSignLUTs:3 targetRedundancyInExtraction:3 inputNoiseIsGaussian:true isDummyPublicFunctionalKeySwitch:false RandomizedBlindRotate:true}
+Target capacities: c_Hom >= 9.889783 bits, c_meta >= 2.180000 bits
+Gadget parameters: B_br=2048, l_br=3, B_ks=4, l_ks=10
+Target extraction redundancy: 3
+Failure probability: per event 2^-42, union bound (4 events) <= 2^-40.000000
+Meta-PBS iterations: K = 2
+Iteration parameters:
+  i=0: beta_0=16, r_0=2, delta_0=48, T_0=49, epsilon_0=23, D_0=2, B_tr,0=2048, l_tr,0=3
+    r_1 = beta_0 * r_0 = 16 * 2 = 32
+  i=1: beta_1=8, r_1=32, delta_1=50, T_1=66, epsilon_1=27, D_1=32, B_tr,1=2048, l_tr,1=3
+    r_2 = beta_1 * r_1 = 8 * 32 = 256
+Final Meta-PBS state: r_2=256, delta_2=123, D_2=256
+Available extraction redundancy: r_2 - 2*delta_2 = 10
+Meta-WoP-PBS parameters: nu=2, tau=3
+Configured linear-combination count: L=25000
+CancelSign: beta_CS=10, r_ext=10, delta_CS=48, epsilon_CS=57, B_tr,CS=2048, l_tr,CS=3
+CancelSign output redundancy lower bound: 10 * 10 - 2 * 48 = 4
+Estimated compressed evaluation key size (body only): 100.21 MiB
+All BR capacity: 2^12.226969
+Randomized blind rotation: true
+KS capacity: 2^3.370742
+All TR capacity: 2^16.801719
+Last-batch all TR stddev (tau_j=3): 2^35.324147
+Fresh MetaPBS stddev: 2^39.900166
+Homomorphic capacity: 2^9.891992
+Final capacity (including capacity for Meta-FBS): 2^2.181785
+META_CONFIG {"author_commit":"5df59404858a0dfe5d4a361ff4934a9ffc8c3023","author_parameter":"BenchmarkMetaUint8 / Meta_8","complete_failure_bound_established":false,"count_route":"count-statistic adapter; not a direct2^n truth-table benchmark","fresh_input_sigma":7.6322028613628e-16,"fresh_sigma_after_online_linear_combination":2.643872625910587e-15,"input_encoding":"separate full-torus 8-bit big-LWE ciphertexts","input_manifest":"/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_v3/experiments_meta/inputs/count_n12.csv","input_noise_variance_factor":12,"input_scale":"2^56","online_path":"encrypted linear packing/sum + BootstrapFullDomainManyLUTsAssign + CancelSignAssign(1,2)","output_encoding":"full-torus 8-bit big-LWE ciphertext; value is quotient or Boolean","predicate":"threshold","rows":35,"setup_ms":155.191998,"single_output_recovery":true,"size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":0,"correct":true,"d":0,"elapsed_ms":173.120108,"expected":0,"index":0,"m":0,"phase":"warmup","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":1,"correct":true,"d":0,"elapsed_ms":175.883564,"expected":0,"index":1,"m":0,"phase":"warmup","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":4094,"correct":true,"d":0,"elapsed_ms":176.833305,"expected":1,"index":2,"m":0,"phase":"warmup","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":4095,"correct":true,"d":0,"elapsed_ms":174.337998,"expected":1,"index":3,"m":0,"phase":"warmup","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":31,"correct":true,"d":0,"elapsed_ms":176.183938,"expected":0,"index":4,"m":0,"phase":"warmup","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":0,"correct":true,"d":0,"elapsed_ms":178.313785,"expected":0,"index":0,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":1,"correct":true,"d":0,"elapsed_ms":173.326957,"expected":0,"index":1,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":4094,"correct":true,"d":0,"elapsed_ms":172.750392,"expected":1,"index":2,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":4095,"correct":true,"d":0,"elapsed_ms":175.661374,"expected":1,"index":3,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":31,"correct":true,"d":0,"elapsed_ms":176.061905,"expected":0,"index":4,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":63,"correct":true,"d":0,"elapsed_ms":173.13119,"expected":1,"index":5,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":127,"correct":true,"d":0,"elapsed_ms":178.439991,"expected":1,"index":6,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":1365,"correct":true,"d":0,"elapsed_ms":172.954946,"expected":1,"index":7,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":2730,"correct":true,"d":0,"elapsed_ms":174.317172,"expected":1,"index":8,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":2048,"correct":true,"d":0,"elapsed_ms":175.337752,"expected":0,"index":9,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":2684,"correct":true,"d":0,"elapsed_ms":177.149412,"expected":1,"index":10,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":95,"correct":true,"d":0,"elapsed_ms":173.785014,"expected":1,"index":11,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":29,"correct":true,"d":0,"elapsed_ms":178.32744,"expected":0,"index":12,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":523,"correct":true,"d":0,"elapsed_ms":175.660241,"expected":0,"index":13,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":1796,"correct":true,"d":0,"elapsed_ms":176.164533,"expected":0,"index":14,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":3411,"correct":true,"d":0,"elapsed_ms":175.556705,"expected":1,"index":15,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":3987,"correct":true,"d":0,"elapsed_ms":175.849605,"expected":1,"index":16,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":1046,"correct":true,"d":0,"elapsed_ms":186.023627,"expected":0,"index":17,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":748,"correct":true,"d":0,"elapsed_ms":180.78265,"expected":1,"index":18,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":6,"correct":true,"d":0,"elapsed_ms":175.517031,"expected":0,"index":19,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":3420,"correct":true,"d":0,"elapsed_ms":190.701604,"expected":1,"index":20,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":1291,"correct":true,"d":0,"elapsed_ms":178.983137,"expected":0,"index":21,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":1407,"correct":true,"d":0,"elapsed_ms":173.863814,"expected":1,"index":22,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":2771,"correct":true,"d":0,"elapsed_ms":177.583664,"expected":1,"index":23,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":2161,"correct":true,"d":0,"elapsed_ms":176.936066,"expected":0,"index":24,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":1821,"correct":true,"d":0,"elapsed_ms":177.223533,"expected":1,"index":25,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":1620,"correct":true,"d":0,"elapsed_ms":176.505144,"expected":0,"index":26,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":1,"bitmask":1706,"correct":true,"d":0,"elapsed_ms":176.833454,"expected":1,"index":27,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":2160,"correct":true,"d":0,"elapsed_ms":174.102546,"expected":0,"index":28,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}
+TRIAL {"actual":0,"bitmask":1216,"correct":true,"d":0,"elapsed_ms":175.14278,"expected":0,"index":29,"m":0,"phase":"measured","predicate":"threshold","size":12,"task":"count"}

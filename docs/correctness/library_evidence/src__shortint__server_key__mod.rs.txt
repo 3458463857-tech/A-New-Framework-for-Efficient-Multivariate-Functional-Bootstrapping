@@ -1,0 +1,285 @@
+TFHE-rs 0.8.7: src/shortint/server_key/mod.rs
+Whole-source SHA256: 3855aeec6b579e6036b6da18d500001f296d0151bb2f7a5543fb88062435abb4
+
+
+--- Lines 870-915 ---
+870:     ///
+871:     ///     // Need to manually help Rust to iterate over them easily
+872:     ///     let functions: &[&dyn Fn(u64) -> u64] = &[&f1, &f2];
+873:     ///     for (res, function) in vec_res.iter().zip(functions) {
+874:     ///         let dec = cks.decrypt(res);
+875:     ///         assert_eq!(dec, function(msg));
+876:     ///     }
+877:     /// }
+878:     /// ```
+879:     pub fn generate_many_lookup_table(
+880:         &self,
+881:         functions: &[&dyn Fn(u64) -> u64],
+882:     ) -> ManyLookupTableOwned {
+883:         let mut acc = GlweCiphertext::new(
+884:             0,
+885:             self.bootstrapping_key.glwe_size(),
+886:             self.bootstrapping_key.polynomial_size(),
+887:             self.ciphertext_modulus,
+888:         );
+889:         let (input_max_degree, sample_extraction_stride, per_function_output_degree) =
+890:             fill_many_lut_accumulator(
+891:                 &mut acc,
+892:                 self.bootstrapping_key.polynomial_size(),
+893:                 self.bootstrapping_key.glwe_size(),
+894:                 self.message_modulus,
+895:                 self.carry_modulus,
+896:                 functions,
+897:             );
+898: 
+899:         ManyLookupTableOwned {
+900:             acc,
+901:             input_max_degree,
+902:             sample_extraction_stride,
+903:             per_function_output_degree,
+904:         }
+905:     }
+906: 
+907:     /// Compute a keyswitch and programmable bootstrap.
+908:     ///
+909:     /// # Example
+910:     ///
+911:     /// ```rust
+912:     /// use tfhe::shortint::gen_keys;
+913:     /// use tfhe::shortint::parameters::PARAM_MESSAGE_2_CARRY_2_KS_PBS;
+914:     ///
+915:     /// // Generate the client key and the server key:
+
+--- Lines 1040-1075 ---
+1040:     ///     let functions: &[&dyn Fn(u64) -> u64] = &[&f1, &f2];
+1041:     ///     for (res, function) in vec_res.iter().zip(functions) {
+1042:     ///         let dec = cks.decrypt(res);
+1043:     ///         assert_eq!(dec, function(msg));
+1044:     ///     }
+1045:     /// }
+1046:     /// ```
+1047:     pub fn apply_many_lookup_table(
+1048:         &self,
+1049:         ct: &Ciphertext,
+1050:         acc: &ManyLookupTableOwned,
+1051:     ) -> Vec<Ciphertext> {
+1052:         match self.pbs_order {
+1053:             PBSOrder::KeyswitchBootstrap => self.keyswitch_programmable_bootstrap_many_lut(ct, acc),
+1054:             PBSOrder::BootstrapKeyswitch => self.programmable_bootstrap_keyswitch_many_lut(ct, acc),
+1055:         }
+1056:     }
+1057: 
+1058:     /// Applies the given function to the message of a ciphertext
+1059:     /// The input is reduced to the message space before the function application
+1060:     /// Thee output of the function is also rduced to the message space such that the carry bits are
+1061:     /// clean on the output
+1062:     pub fn evaluate_msg_univariate_function_assign<F>(&self, ct: &mut Ciphertext, f: F)
+1063:     where
+1064:         F: Fn(u64) -> u64,
+1065:     {
+1066:         // Generate the lookup table for the function
+1067:         let lookup_table = self.generate_msg_lookup_table(f, self.message_modulus);
+1068: 
+1069:         self.apply_lookup_table_assign(ct, &lookup_table);
+1070:     }
+1071: 
+1072:     /// Applies the given function to the message of a ciphertext
+1073:     /// The input is reduced to the message space before the function application
+1074:     /// Thee output of the function is also rduced to the message space such that the carry bits are
+1075:     /// clean on the output
+
+--- Lines 1345-1500 ---
+1345:     }
+1346: 
+1347:     pub fn set_deterministic_pbs_execution(&mut self, new_deterministic_execution: bool) {
+1348:         self.bootstrapping_key
+1349:             .set_deterministic_pbs_execution(new_deterministic_execution);
+1350:     }
+1351: 
+1352:     fn trivial_pbs_assign(&self, ct: &mut Ciphertext, acc: &LookupTableOwned) {
+1353:         #[cfg(feature = "pbs-stats")]
+1354:         // We want to count trivial PBS in simulator mode
+1355:         // In the non trivial case, this increment is done in the `apply_blind_rotate` function
+1356:         let _ = PBS_COUNT.fetch_add(1, Ordering::Relaxed);
+1357: 
+1358:         assert_eq!(ct.noise_level(), NoiseLevel::ZERO);
+1359:         let modulus_sup = self.message_modulus.0 * self.carry_modulus.0;
+1360:         let delta = (1_u64 << 63) / (self.message_modulus.0 * self.carry_modulus.0) as u64;
+1361:         let ct_value = *ct.ct.get_body().data / delta;
+1362: 
+1363:         let box_size = self.bootstrapping_key.polynomial_size().0 / modulus_sup;
+1364:         let result = if ct_value >= modulus_sup as u64 {
+1365:             // padding bit is 1
+1366:             let ct_value = ct_value % modulus_sup as u64;
+1367:             let index_in_lut = ct_value as usize * box_size;
+1368:             acc.acc.get_body().as_ref()[index_in_lut].wrapping_neg()
+1369:         } else {
+1370:             let index_in_lut = ct_value as usize * box_size;
+1371:             acc.acc.get_body().as_ref()[index_in_lut]
+1372:         };
+1373:         *ct.ct.get_mut_body().data = result;
+1374:         ct.degree = acc.degree;
+1375:     }
+1376: 
+1377:     fn trivial_pbs_many_lut(&self, ct: &Ciphertext, lut: &ManyLookupTableOwned) -> Vec<Ciphertext> {
+1378:         #[cfg(feature = "pbs-stats")]
+1379:         let _ = PBS_COUNT.fetch_add(1, Ordering::Relaxed);
+1380: 
+1381:         assert_eq!(ct.noise_level(), NoiseLevel::ZERO);
+1382:         let modulus_sup = self.message_modulus.0 * self.carry_modulus.0;
+1383:         let delta = (1_u64 << 63) / (self.message_modulus.0 * self.carry_modulus.0) as u64;
+1384:         let ct_value = *ct.ct.get_body().data / delta;
+1385: 
+1386:         let box_size = self.bootstrapping_key.polynomial_size().0 / modulus_sup;
+1387: 
+1388:         let padding_bit_set = ct_value >= modulus_sup as u64;
+1389:         let first_result_index_in_lut = {
+1390:             let ct_value = ct_value % modulus_sup as u64;
+1391:             ct_value as usize * box_size
+1392:         };
+1393: 
+1394:         let function_count = lut.function_count();
+1395:         let mut outputs = Vec::with_capacity(function_count);
+1396: 
+1397:         let polynomial_size = lut.acc.polynomial_size();
+1398: 
+1399:         for (fn_idx, output_degree) in lut.per_function_output_degree.iter().enumerate() {
+1400:             let (index_in_lut, negation_due_to_wrap_around) = {
+1401:                 let mut index_in_lut =
+1402:                     first_result_index_in_lut + fn_idx * lut.sample_extraction_stride;
+1403:                 let mut negation_due_to_wrap_around = false;
+1404: 
+1405:                 let cycles = index_in_lut / polynomial_size.0;
+1406:                 if cycles % 2 == 1 {
+1407:                     // We wrapped around an odd number of times
+1408:                     negation_due_to_wrap_around = true;
+1409:                 }
+1410: 
+1411:                 index_in_lut %= polynomial_size.0;
+1412:                 (index_in_lut, negation_due_to_wrap_around)
+1413:             };
+1414:             let has_to_negate = padding_bit_set ^ negation_due_to_wrap_around;
+1415:             let result = {
+1416:                 let mut result = lut.acc.get_body().as_ref()[index_in_lut];
+1417:                 if has_to_negate {
+1418:                     result = result.wrapping_neg();
+1419:                 }
+1420: 
+1421:                 result
+1422:             };
+1423: 
+1424:             let mut shortint_ct = ct.clone();
+1425:             *shortint_ct.ct.get_mut_body().data = result;
+1426:             shortint_ct.degree = *output_degree;
+1427:             outputs.push(shortint_ct);
+1428:         }
+1429: 
+1430:         outputs
+1431:     }
+1432: 
+1433:     pub(crate) fn keyswitch_programmable_bootstrap_many_lut(
+1434:         &self,
+1435:         ct: &Ciphertext,
+1436:         lut: &ManyLookupTableOwned,
+1437:     ) -> Vec<Ciphertext> {
+1438:         if ct.is_trivial() {
+1439:             return self.trivial_pbs_many_lut(ct, lut);
+1440:         }
+1441: 
+1442:         let mut acc = lut.acc.clone();
+1443: 
+1444:         ShortintEngine::with_thread_local_mut(|engine| {
+1445:             // Compute the programmable bootstrapping with fixed test polynomial
+1446:             let (mut ciphertext_buffers, buffers) = engine.get_buffers(self);
+1447: 
+1448:             // Compute a key switch
+1449:             keyswitch_lwe_ciphertext(
+1450:                 &self.key_switching_key,
+1451:                 &ct.ct,
+1452:                 &mut ciphertext_buffers.buffer_lwe_after_ks,
+1453:             );
+1454: 
+1455:             apply_blind_rotate(
+1456:                 &self.bootstrapping_key,
+1457:                 &ciphertext_buffers.buffer_lwe_after_ks.as_view(),
+1458:                 &mut acc,
+1459:                 buffers,
+1460:             );
+1461:         });
+1462: 
+1463:         // The accumulator has been rotated, we can now proceed with the various sample extractions
+1464:         let function_count = lut.function_count();
+1465:         let mut outputs = Vec::with_capacity(function_count);
+1466: 
+1467:         for (fn_idx, output_degree) in lut.per_function_output_degree.iter().enumerate() {
+1468:             let monomial_degree = MonomialDegree(fn_idx * lut.sample_extraction_stride);
+1469:             let mut output_shortint_ct = ct.clone();
+1470: 
+1471:             extract_lwe_sample_from_glwe_ciphertext(
+1472:                 &acc,
+1473:                 &mut output_shortint_ct.ct,
+1474:                 monomial_degree,
+1475:             );
+1476: 
+1477:             output_shortint_ct.degree = *output_degree;
+1478:             output_shortint_ct.set_noise_level(NoiseLevel::NOMINAL);
+1479:             outputs.push(output_shortint_ct);
+1480:         }
+1481: 
+1482:         outputs
+1483:     }
+1484: 
+1485:     pub(crate) fn programmable_bootstrap_keyswitch_many_lut(
+1486:         &self,
+1487:         ct: &Ciphertext,
+1488:         lut: &ManyLookupTableOwned,
+1489:     ) -> Vec<Ciphertext> {
+1490:         if ct.is_trivial() {
+1491:             return self.trivial_pbs_many_lut(ct, lut);
+1492:         }
+1493: 
+1494:         let mut acc = lut.acc.clone();
+1495: 
+1496:         ShortintEngine::with_thread_local_mut(|engine| {
+1497:             // Compute the programmable bootstrapping with fixed test polynomial
+1498:             let (_, buffers) = engine.get_buffers(self);
+1499: 
+1500:             apply_blind_rotate(&self.bootstrapping_key, &ct.ct, &mut acc, buffers);
+
+--- Lines 1615-1650 ---
+1615: pub(crate) fn apply_blind_rotate<Scalar, InputCont, OutputCont>(
+1616:     bootstrapping_key: &ShortintBootstrappingKey,
+1617:     in_buffer: &LweCiphertext<InputCont>,
+1618:     acc: &mut GlweCiphertext<OutputCont>,
+1619:     buffers: &mut ComputationBuffers,
+1620: ) where
+1621:     Scalar: UnsignedTorus + CastInto<usize> + CastFrom<usize> + Sync,
+1622:     InputCont: Container<Element = Scalar>,
+1623:     OutputCont: ContainerMut<Element = Scalar>,
+1624: {
+1625:     #[cfg(feature = "pbs-stats")]
+1626:     let _ = PBS_COUNT.fetch_add(1, Ordering::Relaxed);
+1627: 
+1628:     match bootstrapping_key {
+1629:         ShortintBootstrappingKey::Classic(fourier_bsk) => {
+1630:             let fft = Fft::new(fourier_bsk.polynomial_size());
+1631:             let fft = fft.as_view();
+1632:             buffers.resize(
+1633:                 programmable_bootstrap_lwe_ciphertext_mem_optimized_requirement::<u64>(
+1634:                     fourier_bsk.glwe_size(),
+1635:                     fourier_bsk.polynomial_size(),
+1636:                     fft,
+1637:                 )
+1638:                 .unwrap()
+1639:                 .unaligned_bytes_required(),
+1640:             );
+1641:             let stack = buffers.stack();
+1642: 
+1643:             // Compute the blind rotation
+1644:             blind_rotate_assign_mem_optimized(in_buffer, acc, fourier_bsk, fft, stack);
+1645:         }
+1646:         ShortintBootstrappingKey::MultiBit {
+1647:             fourier_bsk,
+1648:             thread_count,
+1649:             deterministic_execution,
+1650:         } => {

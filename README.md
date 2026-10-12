@@ -1,72 +1,97 @@
-This repository contains the implementation and reproducibility materials for the paper:
+# A New Framework for Efficient Multivariate Functional Bootstrapping
 
-"A New Framework for Efficient Multivariate Functional Bootstrapping"
+This repository contains the source code, parameter configurations, input data,
+and experimental records supporting the paper of the same title. The method
+uses function structure to reduce the size of a multivariate representation.
+Smaller representations do not guarantee lower running time for every function
+or implementation.
 
-The repository includes the implementations for the proposed decomposition framework, including the quotient construction described in Section 3 and the low-span representation framework described in Section 4, together with parameter configurations, experimental scripts, and auxiliary function catalogues.
+## Start here
 
-All documents, source files, comments, filenames, and reproduction instructions in this release are in English.
+1. Read [Supplementary Notes](docs/Supplementary_Notes.pdf) for the parameter
+   choices, measurement protocol, and limits of the comparisons.
+2. Use [TABLE_INDEX.csv](TABLE_INDEX.csv) to find the source, inputs, raw records,
+   and summary for a particular reported result.
+3. Read the [Function Catalogue](functions/Function_Catalogue_and_Verification_Records.pdf)
+   for function definitions, representation sizes, evidence, and measured cases.
+4. Follow the [Reproduction Guide](docs/Reproduction_Guide.md) to prepare a
+   workspace and run a selected experiment.
 
-## Repository layout
+## What is included
 
-The repository root intentionally contains only three entries:
+| Path | Contents |
+| --- | --- |
+| `experiments/` | Our programs, baseline adapters, parameter constants, inputs, raw measurements, and summaries. |
+| `experiments/supporting_materials/` | Shared definitions, inputs, offline search, and finite verification records used by the current material. |
+| `TABLE_INDEX.csv`, `TABLE_INDEX.json` | Final result-to-file index, including checksums and main/supplementary status. |
+| `functions/` | English catalogue, editable source, data table, and supporting evidence. |
+| `docs/` | Supplementary Notes, reproduction instructions, and file provenance. |
+| `scripts/` | File verification, workspace preparation, and statistics reconstruction. |
+| `archive/historical_results/` | Historical records only. Not used for final reported results. |
 
-- `Application_function.pdf`: a human-readable catalogue of selected function types and finite-domain compression experiments. Section 4 of that document concerns functions applicable to the paper's Section 3 scheme, and Section 5 concerns functions applicable to the paper's Section 4 scheme.
-- `Section4_Code/`: all released code, tests, benchmark inputs, retained records, and auxiliary experiment programs.
-- `README.md`: this consolidated description and reproduction guide.
+The four material categories stated in the paper are available here:
 
-No manuscript section, LaTeX source, or TeX-generated value file is included in this release.
+| Material | Where to find it |
+| --- | --- |
+| Source code | Experiment `source/`, `ours/`, and `scripts/` directories; exact measured source snapshots are indexed. |
+| Parameter configurations | Supplementary Notes, source constants, and recorded run configurations; the index identifies named parameter sets where available. |
+| Input data | Indexed input CSV files and saved input snapshots. |
+| Experimental records | Indexed raw logs, per-run observations, and summaries. |
 
-## Contents of `Section4_Code`
+## Final results and historical records
 
-- `chapter4_compression/` implements explicit low-span constructions, deterministic simulated annealing, exhaustive verification, and generation of the four benchmark representations.
-- `chapter4_compression/records/` contains the exact CSV and JSON representations consumed by the encrypted benchmark.
-- `tfhe_rs/` contains the output-checked TFHE-rs 0.8.7 benchmark. The binary Hamming-weight case uses one outer PBS. Each of the other three cases packs six inputs into two groups of three and uses two packed inner PBS calls followed by one outer PBS.
-- `tests/` contains the Section 4 regression tests, including exhaustive verification of the three-variable packing.
-- `scripts/` contains the Ubuntu/WSL2 benchmark runner and the CSV/JSON summarizer.
-- `experiment_records/run_20260810T052530Z/` preserves the accepted 30-repetition run, including the environment, dependency tree, raw per-repetition output, frozen representations, checksums, normalized CSV files, and machine-readable summary.
-- `application_function_study/` contains the deterministic finite-domain programs and retained raw records used by `Application_function.pdf`. It also preserves independent reruns of the base study and the intermediate-route comparison.
-- `LICENSE` is the MIT license for the original code. Dependencies remain under their own licenses.
+The index contains **84 measured entries**: 81 main-table entries and three
+supplementary entries. Four additional entries explicitly identify missing
+measurements. Quotient comparisons use exact integer division; the main table
+uses `t = 8, 16, 32`, with earlier `t = 64` observations retained as supplementary
+results. Missing values are not filled with estimated times.
 
-## Requirements
+Only the files selected by the index supply a reported timing. Other retained
+files include offline decompositions, correctness checks, build records, and
+failure diagnostics. Superseded measurements and the earlier public repository
+are separated under `archive/historical_results/`; see its README before using
+them. Old labels such as “final” in a frozen log do not override the current index.
 
-The plaintext reference checks and the applicable-function study require Python 3.11 or later and use only the Python standard library.
+The catalogue contains 45 structural examples, 21 measured task configurations,
+and eight construction families. These are different kinds of evidence, not
+74 independent timing successes. Instances without a speed advantage remain
+included.
 
-The encrypted benchmark additionally requires Ubuntu or WSL2, Bash, Rust, Cargo, and `sha256sum`. The Rust dependency is pinned by `Cargo.lock` to TFHE-rs 0.8.7.
+## Verify and prepare
 
-## Quick start
-
-Run the following commands from `Section4_Code/`:
+From the repository root, with Python 3.11 or newer:
 
 ```bash
-python3 chapter4_compression/generate_table11_records.py \
-  --output-dir chapter4_compression/records
-python3 chapter4_compression/examples.py
-python3 -m unittest discover -s tests -v
+python3 scripts/verify_artifact.py
+python3 scripts/rebuild_statistics.py --output ../statistics_check --run-frozen-parsers
+python3 scripts/prepare_workspace.py --output ../reproduction
 ```
 
-These commands regenerate and exhaustively verify the structural representations. The lower-median record uses deterministic simulated annealing with seed `20260810`; the other three cases use explicit count representations.
+These commands check files, reconstruct statistics from saved records, and
+prepare a separate workspace. They do not run ciphertext experiments. The output
+directories must be new. Use Linux or WSL for the experiment scripts, then follow
+the Reproduction Guide for the Rust/Go dependencies and execution commands.
 
-To regenerate the applicable-function records:
+Frozen programs and logs retain their original path strings. Preparation restores
+the compatible directory layout outside this repository and records the limited
+shell-runner adjustments needed for optional build caches and an installed Go
+toolchain. It does not change algorithms, parameters, inputs, or recorded results.
 
-```bash
-python3 application_function_study/run_experiments.py
-python3 application_function_study/compare_intermediate_routes.py
-```
+## Interpretation and limitations
 
-The base study evaluates 76 parameterized candidates and retains 45 under the rule “exact full-domain result and at least 2x direct-table compression.” The intermediate-route comparison checks 59 rows and retains 45: 19 elementary rows and 26 further functions. Ciphertext additions and multiplications used by the competing route are assigned zero LUT-record cost, deliberately favoring that alternative. These experiments report structural LUT-record counts, not ciphertext timing.
+The measurements compare implementations on the same machine, functions, and
+plaintext inputs. Encodings, cryptographic parameters, and failure calibrations
+are not fully unified. The results describe the tested configurations; they do
+not establish an absolute ranking at matched security and whole-computation
+failure probability. The adjusted BBR quotient parameters have not been
+recalibrated for evaluation failure probability.
 
-## Output-checked encrypted benchmark
+Logical LUT entries, PBS calls, memory, and online time are different quantities.
+Finite correctness checks and successful measured runs do not prove a
+cryptographic failure bound. Reconstructing saved statistics is also distinct
+from independently rerunning the benchmarks.
 
-From `Section4_Code/` under Ubuntu or WSL2, run:
+## License
 
-```bash
-bash scripts/run_ubuntu_experiments.sh 30
-```
-
-The runner regenerates the four representations, executes the Section 4 tests, builds the locked Rust benchmark, performs five untimed warm-ups, and records 30 timed evaluations for each function. Every result ciphertext is decrypted and checked after the timer stops. Key generation, LUT generation, input encryption, and output decryption are excluded from the timed region.
-
-The retained run is `experiment_records/run_20260810T052530Z/`. Its mean online times are 92.459701 ms, 277.384139 ms, 275.992643 ms, and 274.932895 ms, with PBS-call counts 1, 3, 3, and 3, respectively. The authoritative details are in `summary.json`, `table11_runs.csv`, and the raw `table11.log`.
-
-## Interpreting the auxiliary study
-
-Every displayed finite-domain result in `Application_function.pdf` is exact for its stated inputs and retains a structural advantage over the stated intermediate-value route. The rejected rows remain in the machine-readable records. A small output range motivates compression, but does not by itself prove that an efficient decomposition exists; parameter growth, ciphertext noise, key switching, memory traffic, and parallelism are outside these structural record counts.
+Original contributions use the [MIT License](LICENSE). Third-party components
+retain their own terms; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

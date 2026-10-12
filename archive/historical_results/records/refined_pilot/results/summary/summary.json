@@ -1,0 +1,59 @@
+{
+  "status": "completed",
+  "method": "Refined-LHE author-routine composition DIV4",
+  "upstream_commit": "9b0426e8e197020a4bf40776cc03641e6cf9b90e",
+  "parameter": "INT_LHE_BASE_16",
+  "extract_size": 2,
+  "warmups": 5,
+  "samples": 30,
+  "mismatches": 0,
+  "input": "two 4-bit no-padding big-LWE ciphertexts, delta=2^60",
+  "output": "one 4-bit padded big-LWE ciphertext, delta=2^59",
+  "included": [
+    "two input CBS conversions",
+    "online allocations",
+    "final selector Fourier conversion",
+    "fresh LUT accumulator clone",
+    "8 CMUX operations",
+    "output extraction"
+  ],
+  "excluded": [
+    "key generation",
+    "public LUT and identity-accumulator generation",
+    "input encryption",
+    "output decryption"
+  ],
+  "failure_probability": "No complete-path numerical failure bound provided by the selected author parameter definition. Empirical zero mismatches are not a cryptographic guarantee.",
+  "total_ms": {
+    "mean": 132.4519855,
+    "population_sd": 5.62429809271621,
+    "median": 130.4111395,
+    "min": 126.05097,
+    "max": 156.067901
+  },
+  "input_conversion_ms": {
+    "mean": 132.08548593333333,
+    "population_sd": 5.589630251608115,
+    "median": 130.0884605,
+    "min": 125.702361,
+    "max": 155.625327
+  },
+  "lut_ms": {
+    "mean": 0.3662643666666667,
+    "population_sd": 0.06425220790783942,
+    "median": 0.3487205,
+    "min": 0.312765,
+    "max": 0.652989
+  },
+  "same_ordered_inputs_as_v1": true,
+  "reference_v1": {
+    "method": "DCC supplementary t=16 run, not rerun in v2",
+    "samples": 30,
+    "warmups": 0,
+    "mean_ms": 278.9846192333333,
+    "population_sd_ms": 13.360796582022466,
+    "median_ms": 277.3595845,
+    "compatibility_note": "Same host, function and ordered inputs. Different input ciphertext conventions, TFHE versions, parameters, scheduling and warmups; not an equal-security or interface-identical benchmark."
+  },
+  "source_sha256": "7d957d7046fb14f8a0a0ca83653475862df302a5595fe88fb56c4b1af343470e"
+}

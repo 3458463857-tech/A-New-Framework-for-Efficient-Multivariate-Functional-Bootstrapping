@@ -1,0 +1,1592 @@
+{
+  "schema": 1,
+  "seed": 20261010,
+  "generator": "SplitMix64 with rejection sampling for bounded integers",
+  "measured_count": 30,
+  "warmup_count": 5,
+  "sampling": "10 specified boundary points followed by 20 independent public PRNG draws with replacement; not 30 uniform draws",
+  "warmups": "first five boundary points, freshly encrypted each time; separate from 30 measured trials",
+  "cryptographic_randomness": "fresh library/OS randomness, unrelated to public workload seed",
+  "datasets": [
+    {
+      "task": "division_t16",
+      "seed": 20261026,
+      "path": "division_t16.csv",
+      "sha256": "2615db095fc02455aa7fcb8e151ae321c2e69cb42d99282c292468015b015b05",
+      "rows": [
+        {
+          "phase": "warmup",
+          "index": 0,
+          "t": 16,
+          "m": 0,
+          "d": 15,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 1,
+          "t": 16,
+          "m": 1,
+          "d": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 2,
+          "t": 16,
+          "m": 15,
+          "d": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 3,
+          "t": 16,
+          "m": 15,
+          "d": 15,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 4,
+          "t": 16,
+          "m": 6,
+          "d": 13,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 0,
+          "t": 16,
+          "m": 0,
+          "d": 15,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 1,
+          "t": 16,
+          "m": 1,
+          "d": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 2,
+          "t": 16,
+          "m": 15,
+          "d": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 3,
+          "t": 16,
+          "m": 15,
+          "d": 15,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 4,
+          "t": 16,
+          "m": 6,
+          "d": 13,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 5,
+          "t": 16,
+          "m": 14,
+          "d": 3,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 6,
+          "t": 16,
+          "m": 7,
+          "d": 2,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 7,
+          "t": 16,
+          "m": 8,
+          "d": 3,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 8,
+          "t": 16,
+          "m": 13,
+          "d": 4,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 9,
+          "t": 16,
+          "m": 9,
+          "d": 8,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 10,
+          "t": 16,
+          "m": 0,
+          "d": 5,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 11,
+          "t": 16,
+          "m": 14,
+          "d": 3,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 12,
+          "t": 16,
+          "m": 3,
+          "d": 5,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 13,
+          "t": 16,
+          "m": 12,
+          "d": 7,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 14,
+          "t": 16,
+          "m": 1,
+          "d": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 15,
+          "t": 16,
+          "m": 4,
+          "d": 2,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 16,
+          "t": 16,
+          "m": 3,
+          "d": 2,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 17,
+          "t": 16,
+          "m": 0,
+          "d": 11,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 18,
+          "t": 16,
+          "m": 12,
+          "d": 7,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 19,
+          "t": 16,
+          "m": 4,
+          "d": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 20,
+          "t": 16,
+          "m": 5,
+          "d": 11,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 21,
+          "t": 16,
+          "m": 11,
+          "d": 7,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 22,
+          "t": 16,
+          "m": 2,
+          "d": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 23,
+          "t": 16,
+          "m": 13,
+          "d": 6,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 24,
+          "t": 16,
+          "m": 14,
+          "d": 3,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 25,
+          "t": 16,
+          "m": 5,
+          "d": 13,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 26,
+          "t": 16,
+          "m": 8,
+          "d": 6,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 27,
+          "t": 16,
+          "m": 12,
+          "d": 5,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 28,
+          "t": 16,
+          "m": 5,
+          "d": 14,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 29,
+          "t": 16,
+          "m": 8,
+          "d": 2,
+          "kind": "seeded_random"
+        }
+      ]
+    },
+    {
+      "task": "division_t32",
+      "seed": 20261042,
+      "path": "division_t32.csv",
+      "sha256": "740989ffac6e3a0446eb4cd3f8a965888d543b724e802845c971f4e5819b1b6a",
+      "rows": [
+        {
+          "phase": "warmup",
+          "index": 0,
+          "t": 32,
+          "m": 0,
+          "d": 31,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 1,
+          "t": 32,
+          "m": 1,
+          "d": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 2,
+          "t": 32,
+          "m": 31,
+          "d": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 3,
+          "t": 32,
+          "m": 31,
+          "d": 31,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 4,
+          "t": 32,
+          "m": 14,
+          "d": 29,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 0,
+          "t": 32,
+          "m": 0,
+          "d": 31,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 1,
+          "t": 32,
+          "m": 1,
+          "d": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 2,
+          "t": 32,
+          "m": 31,
+          "d": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 3,
+          "t": 32,
+          "m": 31,
+          "d": 31,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 4,
+          "t": 32,
+          "m": 14,
+          "d": 29,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 5,
+          "t": 32,
+          "m": 30,
+          "d": 3,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 6,
+          "t": 32,
+          "m": 15,
+          "d": 2,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 7,
+          "t": 32,
+          "m": 16,
+          "d": 3,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 8,
+          "t": 32,
+          "m": 29,
+          "d": 4,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 9,
+          "t": 32,
+          "m": 17,
+          "d": 16,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 10,
+          "t": 32,
+          "m": 16,
+          "d": 10,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 11,
+          "t": 32,
+          "m": 21,
+          "d": 7,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 12,
+          "t": 32,
+          "m": 0,
+          "d": 16,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 13,
+          "t": 32,
+          "m": 7,
+          "d": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 14,
+          "t": 32,
+          "m": 22,
+          "d": 28,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 15,
+          "t": 32,
+          "m": 14,
+          "d": 19,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 16,
+          "t": 32,
+          "m": 14,
+          "d": 27,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 17,
+          "t": 32,
+          "m": 26,
+          "d": 14,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 18,
+          "t": 32,
+          "m": 30,
+          "d": 20,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 19,
+          "t": 32,
+          "m": 14,
+          "d": 30,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 20,
+          "t": 32,
+          "m": 11,
+          "d": 11,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 21,
+          "t": 32,
+          "m": 0,
+          "d": 15,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 22,
+          "t": 32,
+          "m": 0,
+          "d": 11,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 23,
+          "t": 32,
+          "m": 31,
+          "d": 12,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 24,
+          "t": 32,
+          "m": 21,
+          "d": 31,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 25,
+          "t": 32,
+          "m": 28,
+          "d": 2,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 26,
+          "t": 32,
+          "m": 25,
+          "d": 12,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 27,
+          "t": 32,
+          "m": 21,
+          "d": 3,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 28,
+          "t": 32,
+          "m": 16,
+          "d": 19,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 29,
+          "t": 32,
+          "m": 17,
+          "d": 3,
+          "kind": "seeded_random"
+        }
+      ]
+    },
+    {
+      "task": "division_t64",
+      "seed": 20261074,
+      "path": "division_t64.csv",
+      "sha256": "3a130c948102017adf9f489dd169d98c2e5bad19e7342f1f1e6934f888034c0e",
+      "rows": [
+        {
+          "phase": "warmup",
+          "index": 0,
+          "t": 64,
+          "m": 0,
+          "d": 63,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 1,
+          "t": 64,
+          "m": 1,
+          "d": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 2,
+          "t": 64,
+          "m": 63,
+          "d": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 3,
+          "t": 64,
+          "m": 63,
+          "d": 63,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 4,
+          "t": 64,
+          "m": 30,
+          "d": 61,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 0,
+          "t": 64,
+          "m": 0,
+          "d": 63,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 1,
+          "t": 64,
+          "m": 1,
+          "d": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 2,
+          "t": 64,
+          "m": 63,
+          "d": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 3,
+          "t": 64,
+          "m": 63,
+          "d": 63,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 4,
+          "t": 64,
+          "m": 30,
+          "d": 61,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 5,
+          "t": 64,
+          "m": 62,
+          "d": 3,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 6,
+          "t": 64,
+          "m": 31,
+          "d": 2,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 7,
+          "t": 64,
+          "m": 32,
+          "d": 3,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 8,
+          "t": 64,
+          "m": 61,
+          "d": 4,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 9,
+          "t": 64,
+          "m": 33,
+          "d": 32,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 10,
+          "t": 64,
+          "m": 44,
+          "d": 53,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 11,
+          "t": 64,
+          "m": 6,
+          "d": 46,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 12,
+          "t": 64,
+          "m": 57,
+          "d": 12,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 13,
+          "t": 64,
+          "m": 51,
+          "d": 57,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 14,
+          "t": 64,
+          "m": 19,
+          "d": 21,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 15,
+          "t": 64,
+          "m": 36,
+          "d": 46,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 16,
+          "t": 64,
+          "m": 17,
+          "d": 12,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 17,
+          "t": 64,
+          "m": 20,
+          "d": 3,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 18,
+          "t": 64,
+          "m": 12,
+          "d": 61,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 19,
+          "t": 64,
+          "m": 30,
+          "d": 60,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 20,
+          "t": 64,
+          "m": 51,
+          "d": 31,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 21,
+          "t": 64,
+          "m": 46,
+          "d": 60,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 22,
+          "t": 64,
+          "m": 33,
+          "d": 18,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 23,
+          "t": 64,
+          "m": 5,
+          "d": 38,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 24,
+          "t": 64,
+          "m": 47,
+          "d": 54,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 25,
+          "t": 64,
+          "m": 18,
+          "d": 47,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 26,
+          "t": 64,
+          "m": 52,
+          "d": 24,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 27,
+          "t": 64,
+          "m": 12,
+          "d": 45,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 28,
+          "t": 64,
+          "m": 31,
+          "d": 50,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 29,
+          "t": 64,
+          "m": 28,
+          "d": 35,
+          "kind": "seeded_random"
+        }
+      ]
+    },
+    {
+      "task": "count_n12",
+      "seed": 20262022,
+      "path": "count_n12.csv",
+      "sha256": "072082495c4adb261e22b894fea3aa3e75b687e982259a5ace361ca1c1b0a71e",
+      "rows": [
+        {
+          "phase": "warmup",
+          "index": 0,
+          "n": 12,
+          "bitmask": 0,
+          "weight": 0,
+          "threshold": 0,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 1,
+          "n": 12,
+          "bitmask": 1,
+          "weight": 1,
+          "threshold": 0,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 2,
+          "n": 12,
+          "bitmask": 4094,
+          "weight": 11,
+          "threshold": 1,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 3,
+          "n": 12,
+          "bitmask": 4095,
+          "weight": 12,
+          "threshold": 1,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 4,
+          "n": 12,
+          "bitmask": 31,
+          "weight": 5,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 0,
+          "n": 12,
+          "bitmask": 0,
+          "weight": 0,
+          "threshold": 0,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 1,
+          "n": 12,
+          "bitmask": 1,
+          "weight": 1,
+          "threshold": 0,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 2,
+          "n": 12,
+          "bitmask": 4094,
+          "weight": 11,
+          "threshold": 1,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 3,
+          "n": 12,
+          "bitmask": 4095,
+          "weight": 12,
+          "threshold": 1,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 4,
+          "n": 12,
+          "bitmask": 31,
+          "weight": 5,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 5,
+          "n": 12,
+          "bitmask": 63,
+          "weight": 6,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 6,
+          "n": 12,
+          "bitmask": 127,
+          "weight": 7,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 7,
+          "n": 12,
+          "bitmask": 1365,
+          "weight": 6,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 8,
+          "n": 12,
+          "bitmask": 2730,
+          "weight": 6,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 9,
+          "n": 12,
+          "bitmask": 2048,
+          "weight": 1,
+          "threshold": 0,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 10,
+          "n": 12,
+          "bitmask": 2684,
+          "weight": 7,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 11,
+          "n": 12,
+          "bitmask": 95,
+          "weight": 6,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 12,
+          "n": 12,
+          "bitmask": 29,
+          "weight": 4,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 13,
+          "n": 12,
+          "bitmask": 523,
+          "weight": 4,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 14,
+          "n": 12,
+          "bitmask": 1796,
+          "weight": 4,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 15,
+          "n": 12,
+          "bitmask": 3411,
+          "weight": 7,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 16,
+          "n": 12,
+          "bitmask": 3987,
+          "weight": 8,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 17,
+          "n": 12,
+          "bitmask": 1046,
+          "weight": 4,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 18,
+          "n": 12,
+          "bitmask": 748,
+          "weight": 6,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 19,
+          "n": 12,
+          "bitmask": 6,
+          "weight": 2,
+          "threshold": 0,
+          "interval": 0,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 20,
+          "n": 12,
+          "bitmask": 3420,
+          "weight": 7,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 21,
+          "n": 12,
+          "bitmask": 1291,
+          "weight": 5,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 22,
+          "n": 12,
+          "bitmask": 1407,
+          "weight": 9,
+          "threshold": 1,
+          "interval": 0,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 23,
+          "n": 12,
+          "bitmask": 2771,
+          "weight": 7,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 24,
+          "n": 12,
+          "bitmask": 2161,
+          "weight": 5,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 25,
+          "n": 12,
+          "bitmask": 1821,
+          "weight": 7,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 26,
+          "n": 12,
+          "bitmask": 1620,
+          "weight": 5,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 27,
+          "n": 12,
+          "bitmask": 1706,
+          "weight": 6,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 28,
+          "n": 12,
+          "bitmask": 2160,
+          "weight": 4,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 29,
+          "n": 12,
+          "bitmask": 1216,
+          "weight": 3,
+          "threshold": 0,
+          "interval": 0,
+          "kind": "seeded_random"
+        }
+      ]
+    },
+    {
+      "task": "count_n16",
+      "seed": 20262026,
+      "path": "count_n16.csv",
+      "sha256": "93194cd08c50fdc2edf68ac7f57f6adef8987698c68d81bd6d3c89540d437db0",
+      "rows": [
+        {
+          "phase": "warmup",
+          "index": 0,
+          "n": 16,
+          "bitmask": 0,
+          "weight": 0,
+          "threshold": 0,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 1,
+          "n": 16,
+          "bitmask": 1,
+          "weight": 1,
+          "threshold": 0,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 2,
+          "n": 16,
+          "bitmask": 65534,
+          "weight": 15,
+          "threshold": 1,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 3,
+          "n": 16,
+          "bitmask": 65535,
+          "weight": 16,
+          "threshold": 1,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "warmup",
+          "index": 4,
+          "n": 16,
+          "bitmask": 127,
+          "weight": 7,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 0,
+          "n": 16,
+          "bitmask": 0,
+          "weight": 0,
+          "threshold": 0,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 1,
+          "n": 16,
+          "bitmask": 1,
+          "weight": 1,
+          "threshold": 0,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 2,
+          "n": 16,
+          "bitmask": 65534,
+          "weight": 15,
+          "threshold": 1,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 3,
+          "n": 16,
+          "bitmask": 65535,
+          "weight": 16,
+          "threshold": 1,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 4,
+          "n": 16,
+          "bitmask": 127,
+          "weight": 7,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 5,
+          "n": 16,
+          "bitmask": 255,
+          "weight": 8,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 6,
+          "n": 16,
+          "bitmask": 511,
+          "weight": 9,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 7,
+          "n": 16,
+          "bitmask": 21845,
+          "weight": 8,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 8,
+          "n": 16,
+          "bitmask": 43690,
+          "weight": 8,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 9,
+          "n": 16,
+          "bitmask": 32768,
+          "weight": 1,
+          "threshold": 0,
+          "interval": 0,
+          "kind": "boundary"
+        },
+        {
+          "phase": "measured",
+          "index": 10,
+          "n": 16,
+          "bitmask": 60126,
+          "weight": 11,
+          "threshold": 1,
+          "interval": 0,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 11,
+          "n": 16,
+          "bitmask": 15282,
+          "weight": 9,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 12,
+          "n": 16,
+          "bitmask": 40096,
+          "weight": 6,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 13,
+          "n": 16,
+          "bitmask": 28994,
+          "weight": 6,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 14,
+          "n": 16,
+          "bitmask": 34316,
+          "weight": 5,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 15,
+          "n": 16,
+          "bitmask": 1712,
+          "weight": 5,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 16,
+          "n": 16,
+          "bitmask": 13911,
+          "weight": 9,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 17,
+          "n": 16,
+          "bitmask": 2298,
+          "weight": 7,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 18,
+          "n": 16,
+          "bitmask": 54944,
+          "weight": 7,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 19,
+          "n": 16,
+          "bitmask": 11364,
+          "weight": 6,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 20,
+          "n": 16,
+          "bitmask": 25851,
+          "weight": 10,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 21,
+          "n": 16,
+          "bitmask": 31080,
+          "weight": 8,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 22,
+          "n": 16,
+          "bitmask": 14729,
+          "weight": 7,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 23,
+          "n": 16,
+          "bitmask": 28380,
+          "weight": 10,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 24,
+          "n": 16,
+          "bitmask": 4771,
+          "weight": 6,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 25,
+          "n": 16,
+          "bitmask": 44717,
+          "weight": 10,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 26,
+          "n": 16,
+          "bitmask": 43122,
+          "weight": 7,
+          "threshold": 0,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 27,
+          "n": 16,
+          "bitmask": 62502,
+          "weight": 8,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 28,
+          "n": 16,
+          "bitmask": 62786,
+          "weight": 8,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        },
+        {
+          "phase": "measured",
+          "index": 29,
+          "n": 16,
+          "bitmask": 52414,
+          "weight": 10,
+          "threshold": 1,
+          "interval": 1,
+          "kind": "seeded_random"
+        }
+      ]
+    }
+  ]
+}

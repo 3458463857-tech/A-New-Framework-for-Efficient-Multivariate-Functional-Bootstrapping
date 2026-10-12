@@ -1,0 +1,101 @@
+TFHE-rs 0.8.7: src/shortint/engine/mod.rs
+Whole-source SHA256: 591806329f8641def0dabbe256b6f32b7715d36dfa0a5160c341e436c763a01b
+
+
+--- Lines 160-255 ---
+160:     }
+161: }
+162: 
+163: /// Fills a GlweCiphertext for use in a ManyLookupTable setting
+164: pub(crate) fn fill_many_lut_accumulator<C>(
+165:     accumulator: &mut GlweCiphertext<C>,
+166:     polynomial_size: PolynomialSize,
+167:     glwe_size: GlweSize,
+168:     message_modulus: MessageModulus,
+169:     carry_modulus: CarryModulus,
+170:     functions: &[&dyn Fn(u64) -> u64],
+171: ) -> (MaxDegree, usize, Vec<Degree>)
+172: where
+173:     C: ContainerMut<Element = u64>,
+174: {
+175:     assert_eq!(accumulator.polynomial_size(), polynomial_size);
+176:     assert_eq!(accumulator.glwe_size(), glwe_size);
+177: 
+178:     let mut accumulator_view = accumulator.as_mut_view();
+179: 
+180:     accumulator_view.get_mut_mask().as_mut().fill(0);
+181: 
+182:     // Modulus of the msg contained in the msg bits and operations buffer
+183:     let modulus_sup = message_modulus.0 * carry_modulus.0;
+184: 
+185:     // N/(p/2) = size of each block
+186:     let box_size = polynomial_size.0 / modulus_sup;
+187: 
+188:     // Value of the delta we multiply our messages by
+189:     let delta = (1_u64 << 63) / (modulus_sup as u64);
+190: 
+191:     let mut body = accumulator_view.get_mut_body();
+192:     let accumulator_u64 = body.as_mut();
+193:     // Clear in case we don't fill the full accumulator so that the remainder part is 0
+194:     accumulator_u64.as_mut().fill(0u64);
+195: 
+196:     let fn_counts = functions.len();
+197: 
+198:     assert!(
+199:         fn_counts <= modulus_sup / 2,
+200:         "Cannot generate many lut accumulator for {fn_counts} functions, maximum possible is {}",
+201:         modulus_sup / 2
+202:     );
+203: 
+204:     // Max valid degree for a ciphertext when using the LUT we generate
+205:     let max_degree = MaxDegree::new(modulus_sup / fn_counts - 1);
+206: 
+207:     let mut per_fn_output_degree = vec![Degree::new(0); fn_counts];
+208: 
+209:     // If MaxDegree == 1, we can have two input values 0 and 1, so we need MaxDegree + 1 boxes
+210:     let single_function_sub_lut_size = (max_degree.get() + 1) * box_size;
+211: 
+212:     for ((function_sub_lut, output_degree), function) in accumulator_u64
+213:         .chunks_mut(single_function_sub_lut_size)
+214:         .zip(per_fn_output_degree.iter_mut())
+215:         .zip(functions)
+216:     {
+217:         for (msg_value, sub_lut_box) in function_sub_lut.chunks_exact_mut(box_size).enumerate() {
+218:             let msg_value = msg_value as u64;
+219:             let function_eval = function(msg_value);
+220:             *output_degree = Degree::new((function_eval as usize).max(output_degree.get()));
+221:             sub_lut_box.fill(function_eval * delta);
+222:         }
+223:     }
+224: 
+225:     let half_box_size = box_size / 2;
+226: 
+227:     // Negate the first half_box_size coefficients
+228:     for a_i in accumulator_u64[0..half_box_size].iter_mut() {
+229:         *a_i = (*a_i).wrapping_neg();
+230:     }
+231: 
+232:     // Rotate the accumulator
+233:     accumulator_u64.rotate_left(half_box_size);
+234: 
+235:     (
+236:         max_degree,
+237:         single_function_sub_lut_size,
+238:         per_fn_output_degree,
+239:     )
+240: }
+241: 
+242: /// Simple wrapper around [`std::error::Error`] to be able to
+243: /// forward all the possible `EngineError` type from [`core_crypto`](crate::core_crypto)
+244: #[allow(dead_code)]
+245: #[derive(Debug)]
+246: pub struct EngineError {
+247:     error: Box<dyn std::error::Error>,
+248: }
+249: 
+250: impl<T> From<T> for EngineError
+251: where
+252:     T: std::error::Error + 'static,
+253: {
+254:     fn from(error: T) -> Self {
+255:         Self {

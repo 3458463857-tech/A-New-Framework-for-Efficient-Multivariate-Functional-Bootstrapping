@@ -1,0 +1,6 @@
+M,case,correct,delta_max,delta_min,direct_records,distinct_sums,ell,float_table_mismatches,inputs,lower,method,span,stored_records_ungrouped,t,upper
+22,division_t16,True,86,-86,,,2,[],240,,exact integer powers and bit length; no floating logarithms,,,16,
+44,division_t32,True,218,-218,,,2,[],992,,exact integer powers and bit length; no floating logarithms,,,32,
+89,division_t64,True,532,-532,,,2,[],4032,,exact integer powers and bit length; no floating logarithms,,,64,
+,hamming_interval_l6,True,,,64,7,6,,64,2,"explicit p_i=(0,1), exhaustive verifier",6,19,2,4
+,hamming_interval_l10,True,,,1024,11,10,,1024,4,"explicit p_i=(0,1), exhaustive verifier",10,31,2,6

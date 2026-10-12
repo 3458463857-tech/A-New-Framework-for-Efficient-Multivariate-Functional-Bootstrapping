@@ -1,0 +1,11 @@
+test_hamming_ball (test_reference.CompressionTests.test_hamming_ball) ... ok
+test_small_anneal_returns_verified_result (test_reference.CompressionTests.test_small_anneal_returns_verified_result) ... ok
+test_symbol_interval_explicit_span (test_reference.CompressionTests.test_symbol_interval_explicit_span) ... ok
+test_symbol_threshold_explicit_span (test_reference.CompressionTests.test_symbol_threshold_explicit_span) ... ok
+test_table11_median_anneal_record (test_reference.CompressionTests.test_table11_median_anneal_record) ... ok
+test_table11_three_variable_packing (test_reference.CompressionTests.test_table11_three_variable_packing) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.025s
+
+OK

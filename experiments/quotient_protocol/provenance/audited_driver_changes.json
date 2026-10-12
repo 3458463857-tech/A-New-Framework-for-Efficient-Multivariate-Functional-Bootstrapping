@@ -1,0 +1,16 @@
+[
+  {
+    "source": "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_targeted_revision_v2\\correctness_audit\\code\\algorithm1_t16_audited.rs",
+    "candidate_sha256": "a0ce780d07ebca4bad46459092f39988ba423259ca4608ba18a7abf111a5e151",
+    "final_path": "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_targeted_revision_v2\\final_experiments\\source\\section3\\src\\bin\\algorithm1_t16_audited.rs",
+    "final_sha256": "b7d8bddd57de2fcca94db3226594cde314a62f15c2ea222ce9ef18841a95b41d",
+    "algorithm_and_budget_trait_unchanged": true
+  },
+  {
+    "source": "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_targeted_revision_v2\\correctness_audit\\code\\algorithm1_audited.rs",
+    "candidate_sha256": "c62ae589563aa8bb40bdcc7970256a558e81997b4200996ee0cd4c91f8797b34",
+    "final_path": "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_targeted_revision_v2\\final_experiments\\source\\section3\\src\\bin\\algorithm1_audited.rs",
+    "final_sha256": "62b41adf185cbf7724057f869fe588fa613f0be2f0e76ce556eda1fa8ac51c5b",
+    "algorithm_and_budget_trait_unchanged": true
+  }
+]

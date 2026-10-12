@@ -1,0 +1,268 @@
+{
+  "task_id": "iqr3_4",
+  "alphabet": 3,
+  "n": 4,
+  "p": 17,
+  "author_nu": 5,
+  "lambda_": 3,
+  "a": 0,
+  "atoms": [
+    {
+      "alpha": [
+        1,
+        3,
+        0,
+        0
+      ],
+      "lut": [
+        2,
+        6,
+        1,
+        6,
+        10,
+        5,
+        1,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "note": "histogram projection"
+    },
+    {
+      "alpha": [
+        0,
+        0,
+        1,
+        3,
+        0
+      ],
+      "lut": [
+        2,
+        6,
+        1,
+        6,
+        10,
+        5,
+        1,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "note": "histogram projection"
+    },
+    {
+      "alpha": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "lut": [
+        0,
+        2,
+        2,
+        0,
+        0,
+        1,
+        2,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "note": "function of projection sum"
+    }
+  ],
+  "output_beta": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "exhaustive_checked": 81,
+  "construction": [
+    {
+      "method": "same bounded histogram-projection family",
+      "trials": [
+        {
+          "directions": [
+            [
+              1,
+              0
+            ]
+          ],
+          "rank": 5,
+          "valid": false
+        },
+        {
+          "directions": [
+            [
+              0,
+              1
+            ]
+          ],
+          "rank": 5,
+          "valid": false
+        },
+        {
+          "directions": [
+            [
+              1,
+              1
+            ]
+          ],
+          "rank": 5,
+          "valid": false
+        },
+        {
+          "directions": [
+            [
+              1,
+              2
+            ]
+          ],
+          "rank": 9,
+          "valid": false
+        },
+        {
+          "directions": [
+            [
+              1,
+              3
+            ]
+          ],
+          "rank": 12,
+          "valid": false
+        },
+        {
+          "directions": [
+            [
+              1,
+              4
+            ]
+          ],
+          "rank": 14,
+          "valid": false
+        },
+        {
+          "directions": [
+            [
+              1,
+              5
+            ]
+          ],
+          "rank": 14,
+          "valid": true
+        }
+      ]
+    },
+    {
+      "selection": "fewest atoms in the explicitly listed finite candidates; squared coefficients break ties",
+      "candidates": [
+        {
+          "method": "histogram candidate",
+          "atoms": 3
+        },
+        {
+          "method": "single atom, all normalized nonzero F17 coefficients",
+          "attempts": 4096,
+          "valid_count": 0
+        },
+        {
+          "method": "identical pair-label LUTs followed by a sum LUT",
+          "normalized_assignments_checked": 3291,
+          "distinguishable_pair_rows": 6,
+          "found": true,
+          "pair_labels": [
+            {
+              "pair": [
+                0,
+                0
+              ],
+              "label": 0
+            },
+            {
+              "pair": [
+                0,
+                1
+              ],
+              "label": 1
+            },
+            {
+              "pair": [
+                0,
+                2
+              ],
+              "label": 3
+            },
+            {
+              "pair": [
+                1,
+                1
+              ],
+              "label": 10
+            },
+            {
+              "pair": [
+                1,
+                2
+              ],
+              "label": 4
+            },
+            {
+              "pair": [
+                2,
+                2
+              ],
+              "label": 6
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "provenance": "explicit structured certificate; not output of author random search",
+  "noise_scope": "Fresh raw-input weighted sums use independence; sums of preceding PBS outputs use absolute coefficient sums; final linear sum is not claimed to have one-PBS error probability.",
+  "definitions_sha256": "d13b175af8672a8d0ee026e4787a250378cdd20f2a2e760a33cafe5fdb898cf8",
+  "noise_factor_requirement": 3.1622776601683795,
+  "selected_author_parameter_row": {
+    "p": "17",
+    "nu": "5",
+    "l_ks": "4",
+    "l_bs": "1",
+    "k": "1",
+    "N": "4096",
+    "n": "849",
+    "b_ks": "16",
+    "b_bs": "33554432",
+    "sigma_lwe": "1.6512448356449926e-06",
+    "sigma_glwe": "2.168404344971009e-19",
+    "timing": "0",
+    "p_error": "2.938735877055719e-39"
+  }
+}

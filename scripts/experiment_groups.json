@@ -1,0 +1,104 @@
+[
+  {
+    "id": "ours_small",
+    "workspace_path": "work/DCC_fair_comparison_v5/experiments_ours_capacity",
+    "path": "experiments/ours_small",
+    "description": "Final small-domain and counting measurements"
+  },
+  {
+    "id": "ours_large",
+    "workspace_path": "work/DCC_fair_comparison_v5/experiments_ours_multibit",
+    "path": "experiments/ours_large",
+    "description": "Final six-input statistical measurements"
+  },
+  {
+    "id": "bbr",
+    "workspace_path": "work/DCC_fair_comparison_v5/experiments_bbr",
+    "path": "experiments/bbr",
+    "description": "BBR finite-field evaluator, verified decompositions, all attempts and repaired quotient"
+  },
+  {
+    "id": "meta_statistics",
+    "workspace_path": "work/DCC_fair_comparison_v5/experiments_meta_extended",
+    "path": "experiments/meta_statistics",
+    "description": "Meta statistics, Hamming weight and t32 quotient"
+  },
+  {
+    "id": "meta_small",
+    "workspace_path": "work/DCC_fair_comparison_v5/experiments_meta_small",
+    "path": "experiments/meta_small",
+    "description": "Meta small-domain statistical measurements"
+  },
+  {
+    "id": "refined_small",
+    "workspace_path": "work/DCC_fair_comparison_v5/experiments_refined_small_functions",
+    "path": "experiments/refined_small",
+    "description": "Refined-LHE small-domain measurements"
+  },
+  {
+    "id": "small_inputs",
+    "workspace_path": "work/DCC_fair_comparison_v5/experiments_small_functions",
+    "path": "experiments/shared_small_inputs",
+    "description": "Shared small-domain definitions and input manifests"
+  },
+  {
+    "id": "classical_functions",
+    "workspace_path": "work/DCC_submission_polish_v4/experiments_functions",
+    "path": "experiments/supporting_materials/classical_functions",
+    "description": "Earlier classical-PBS measurements and shared six-input definitions"
+  },
+  {
+    "id": "refined_division",
+    "workspace_path": "work/DCC_submission_polish_v4/experiments_refined_extended",
+    "path": "experiments/refined_division",
+    "description": "Refined-LHE t32 and t64 quotient measurements"
+  },
+  {
+    "id": "refined_statistics",
+    "workspace_path": "work/DCC_submission_polish_v4/experiments_refined_functions",
+    "path": "experiments/refined_statistics",
+    "description": "Refined-LHE six-input statistics, membership and Hamming weight"
+  },
+  {
+    "id": "quotient_protocol",
+    "workspace_path": "work/DCC_targeted_revision_v2/final_experiments",
+    "path": "experiments/quotient_protocol",
+    "description": "Common-protocol our/native quotients, Refined t16, and prior binary-count measurements"
+  },
+  {
+    "id": "meta_initial",
+    "workspace_path": "work/DCC_revision_v3/experiments_meta",
+    "path": "experiments/meta_initial",
+    "description": "Meta t16 quotient and earlier count measurements"
+  },
+  {
+    "id": "bbr_initial",
+    "workspace_path": "work/DCC_revision_v3/experiments_bbr",
+    "path": "archive/historical_results/records/bbr_initial",
+    "description": "Earlier BBR counts, build attempts and bounded division search"
+  },
+  {
+    "id": "initial_implementation",
+    "workspace_path": "work/DCC_revision_2026-10-10_v1/05_Reproducibility",
+    "path": "experiments/supporting_materials/initial_implementation",
+    "description": "Original implementations, plaintext search, historical and revised encrypted records"
+  },
+  {
+    "id": "refined_pilot",
+    "workspace_path": "work/DCC_targeted_revision_v2/refined_lhe_targeted_comparison",
+    "path": "archive/historical_results/records/refined_pilot",
+    "description": "Initial Refined comparison, preparation and pilot measurements"
+  },
+  {
+    "id": "bbr_division",
+    "workspace_path": "work/DCC_final_polish_v6/new_experiments/bbr",
+    "path": "experiments/bbr_division",
+    "description": "BBR t8/t32, mixed-domain verified decompositions and revised PBS"
+  },
+  {
+    "id": "division_t8",
+    "workspace_path": "work/DCC_final_polish_v6/new_experiments",
+    "path": "experiments/division_t8",
+    "description": "Shared t8 inputs and Ours/Native/Refined/Meta measurements"
+  }
+]

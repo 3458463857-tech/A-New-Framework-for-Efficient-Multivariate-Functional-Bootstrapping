@@ -1,0 +1,2 @@
+task_id,method,warmup,timed_samples,mean_ms,population_sd_ms,sample_sd_ms,median_ms,min_ms,max_ms,logical_pbs,correct_all_35
+division_t16,"BBR author evaluator, revised PBS decomposition",5,30,2729.5381733,33.64678894148887,34.22198939288382,2722.399114,2684.068977,2850.648212,47,True

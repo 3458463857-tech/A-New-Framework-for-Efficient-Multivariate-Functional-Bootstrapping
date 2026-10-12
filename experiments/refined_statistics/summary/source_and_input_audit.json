@@ -1,0 +1,22 @@
+{
+  "author_library_files_unchanged": 21,
+  "cargo_lock_unchanged": true,
+  "adapter_sha256": "9942e1d8c93af7329c577dd9157adba482c07627d1079069d4516eb68a1bfef3",
+  "all_build_and_run_snapshots_match": true,
+  "all_input_snapshots_match_frozen_canonical": true,
+  "input_sha256": {
+    "distinct3_6": "cb7decf77cb0aa03cfa32fd6b9ddfe074af35c55fe56874374a8504535abb449",
+    "hamming_interval10": "75aebf18d97d97d1ab204fbf7e24e32224a2ccff353ecb231a35879601ef6ac3",
+    "iqr3_6": "1f56ea16cadb28437e8d39233022bea9bc3d9f2a46c9c3ece3e8611f1ffa4ef4",
+    "lower_median3_6": "d8b57b23d5f7126e00560516ea10f66453a723da56389b141b1e399f64fa5eb3",
+    "mad3_6": "80660cab8fa8b73b7f620ff2003f15907bd1c27f8136cff11f6357cbcbe53517",
+    "max3_6": "8cfd04f752c97d611faba3f3838c79cd484294036fdefc35f63a6d52a966fcfe",
+    "mode3_6": "8d88651f7d79c62c7065bc7de3dc299f19d8b87f43380b4dbcd1f2ed49263fe8",
+    "range3_6": "05e542143bacaf4f214f447cfbd86e066ae80990c3367a9ab3b35b90432a6eb8",
+    "set_interval4_6": "30e7b2b2c256be75d76b9cdd5443a63c71fe7e9384f58392120411bdde4a0c2b",
+    "set_threshold4_6": "cf739813ac894a72b2295e3132a3e395c163126097d2a6670cbc89dd3112f891"
+  },
+  "encrypted_queries": 350,
+  "encrypted_queries_correct": 350,
+  "input_noise_note": "Online packing changes fresh-input variance; original single-fresh-input failure bound is not asserted."
+}

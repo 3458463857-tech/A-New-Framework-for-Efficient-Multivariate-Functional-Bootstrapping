@@ -1,0 +1,60 @@
+{
+  "parameter_set": "INT_LHE_BASE_16",
+  "small_lwe_dimension": 769,
+  "small_lwe_standard_deviation": 8.763872947670246e-06,
+  "glwe_dimension": 1,
+  "polynomial_size": 2048,
+  "glwe_and_fresh_big_lwe_standard_deviation": 9.25119974676756e-16,
+  "ciphertext_modulus_log2": 64,
+  "pbs_base_log_and_level": [
+    15,
+    2
+  ],
+  "keyswitch_base_log_and_level": [
+    4,
+    3
+  ],
+  "automorphism_base_log_and_level": [
+    7,
+    7
+  ],
+  "automorphism_fft": "Split(35)",
+  "scheme_switch_base_log_and_level": [
+    17,
+    2
+  ],
+  "cbs_base_log_and_level": [
+    4,
+    4
+  ],
+  "log_lut_count": 2,
+  "extract_size": 2,
+  "independently_encrypted_input_symbols": {
+    "arity3_tasks": 3,
+    "arity4_tasks": 4
+  },
+  "input_container_bits": 4,
+  "input_scale_log2": 60,
+  "output_blocks": 1,
+  "output_block_bits": 4,
+  "output_scale_log2": 59,
+  "cbs_4bit_blocks_after_online_packing": 2,
+  "full_lut_entries": 256,
+  "lut_polynomial_containers": 1,
+  "fresh_input_variance_multiplier_after_packing": {
+    "paired_block": 17,
+    "odd_unpaired_tail": 1
+  },
+  "fresh_noise_component_variance_multiplier_at_first_extraction": {
+    "paired_block": 272,
+    "odd_unpaired_tail": 16
+  },
+  "author_features": "default monothread",
+  "cpu_affinity": "0-7",
+  "whole_path_failure_probability": "not established for added online packing; original single-fresh-input bound not asserted",
+  "logical_input_bits": {
+    "arity3_tasks": 6,
+    "arity4_tasks": 8
+  },
+  "unused_high_symbol_for_odd_arity": "public zero"
+}

@@ -1,0 +1,57 @@
+AUTHOR_COMPILED_PARAMS {lweDimension:1170 glweDimension:2048 glweRank:1 polyDegree:2048 logPolyDegree:11 lookUpTableSize:2048 polyExtendFactor:1 lweStdDev:5.50160611398332e-09 glweStdDev:7.6322028613628e-16 blockSize:1 blockCount:1170 messageModulus:256 scale:72057594037927936 logQ:64 floatQ:1.8446744073709552e+19 blindRotateParameters:{base:32768 logBase:15 level:2 sizeT:64} keySwitchParameters:{base:512 logBase:9 level:2 sizeT:64} bootstrapOrder:0 worstCaseLogFailureProb:-66 fullTorus:true metaFBS:true TruncRepeatParameters:{itersCount:1 repeatBase:[9] truncationBound:[74] extendedCoeffsCount:[78] truncatedRepetitionParameters:[{base:8388608 logBase:23 level:1 sizeT:64}] redundancy:[16] amplify:[16] mvGap:[16 144]} countLUTs:1 fullDomain:false countCancelSignLUTs:1 targetRedundancyInExtraction:0 inputNoiseIsGaussian:true isDummyPublicFunctionalKeySwitch:false RandomizedBlindRotate:true}
+Target capacities: c_Hom >= 3.920180 bits, c_meta >= 1.410000 bits
+Gadget parameters: B_br=32768, l_br=2, B_ks=512, l_ks=2
+Target extraction redundancy: 0
+Failure probability: per event 2^-66, union bound (2 events) <= 2^-65.000000
+Meta-PBS iterations: K = 1
+Iteration parameters:
+  i=0: beta_0=9, r_0=16, delta_0=66, T_0=74, epsilon_0=78, B_tr,0=8388608, l_tr,0=1
+    r_1 = beta_0 * r_0 = 9 * 16 = 144
+Final Meta-PBS state: r_1=144, delta_1=71
+Available extraction redundancy: r_1 - 2*delta_1 = 2
+Estimated compressed evaluation key size (body only): 73.54 MiB
+All BR capacity: 2^8.977743
+Randomized blind rotation: true
+KS capacity: 2^2.350877
+All TR capacity: 2^6.930887
+Fresh MetaPBS stddev: 2^44.892353
+Homomorphic capacity: 2^5.251474
+Final capacity (including capacity for Meta-FBS): 2^2.095855
+INPUT_NOISE_MODEL {"allowed_pre_Meta_sigma_plaintext":0.020223569472911943,"combined_fresh_sigma_normalized":2.4135144606360767e-15,"estimated_KS_sigma_plaintext":0.01053478572577895,"fresh_sigma_normalized":7.6322028613628e-16,"fresh_sigma_plaintext":6.178597019228356e-13,"post_KS_sigma_triangle_bound_plaintext":0.01053478572639681,"strict_fullpath_tail_bound":false,"variance_factor":10,"within_author_capacity":true}
+META_CONFIG {"author_commit":"5df59404858a0dfe5d4a361ff4934a9ffc8c3023","author_parameter":"BenchmarkMetaFBS / ParamsMetaTemplate","capacity_bits":3.92018,"capacity_bits_meta":1.41,"complete_failure_bound_established":false,"excluded":"keygen, public table construction, encryption, decryption","full_domain":false,"full_torus":true,"input_encoding":"separate big-LWE symbols with the author full-torus scale","input_scale":"2^56","input_sha256":"75aebf18d97d97d1ab204fbf7e24e32224a2ccff353ecb231a35879601ef6ac3","online_path":"server linear packing/sum + BootstrapLUTAssign (KS, MetaFBS, sample extraction)","output_encoding":"one big-LWE ciphertext with the same scale","positive_half_size":128,"positive_half_table_sha256":"f9475ab8792d73ca7531be4f69b1f45e6a735fb0c8bfe30c4d034fbfe9ef0755","precision":8,"setup_ms":96.718189,"task_id":"hamming_interval10","weights":[1,1,1,1,1,1,1,1,1,1]}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":75.914637,"expected":1,"index":0,"inputs":[0,1,0,1,0,1,0,1,0,1],"kind":"cyclic_warmup","phase":"warmup","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":72.801584,"expected":1,"index":1,"inputs":[1,0,1,0,1,0,1,0,1,0],"kind":"cyclic_warmup","phase":"warmup","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":73.216512,"expected":1,"index":2,"inputs":[0,1,0,1,0,1,0,1,0,1],"kind":"cyclic_warmup","phase":"warmup","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":75.55698,"expected":1,"index":3,"inputs":[1,0,1,0,1,0,1,0,1,0],"kind":"cyclic_warmup","phase":"warmup","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":72.127553,"expected":1,"index":4,"inputs":[0,1,0,1,0,1,0,1,0,1],"kind":"cyclic_warmup","phase":"warmup","task_id":"hamming_interval10"}
+TRIAL {"actual":0,"correct":true,"elapsed_ms":71.890556,"expected":0,"index":0,"inputs":[0,0,0,0,0,0,0,0,0,0],"kind":"weight_0","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":0,"correct":true,"elapsed_ms":72.004581,"expected":0,"index":1,"inputs":[1,1,1,1,1,1,1,1,1,1],"kind":"weight_10","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":0,"correct":true,"elapsed_ms":71.836701,"expected":0,"index":2,"inputs":[1,1,1,0,0,0,0,0,0,0],"kind":"weight_3","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":72.30938,"expected":1,"index":3,"inputs":[1,1,1,1,0,0,0,0,0,0],"kind":"weight_4","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":77.419289,"expected":1,"index":4,"inputs":[1,1,1,1,1,0,0,0,0,0],"kind":"weight_5","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":76.178908,"expected":1,"index":5,"inputs":[1,1,1,1,1,1,0,0,0,0],"kind":"weight_6","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":0,"correct":true,"elapsed_ms":72.794095,"expected":0,"index":6,"inputs":[1,1,1,1,1,1,1,0,0,0],"kind":"weight_7","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":0,"correct":true,"elapsed_ms":71.745336,"expected":0,"index":7,"inputs":[1,0,0,0,0,0,0,0,0,0],"kind":"weight_1","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":0,"correct":true,"elapsed_ms":73.081145,"expected":0,"index":8,"inputs":[1,1,1,1,1,1,1,1,1,0],"kind":"weight_9","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":0,"correct":true,"elapsed_ms":73.363277,"expected":0,"index":9,"inputs":[1,1,0,0,0,0,0,0,0,0],"kind":"weight_2","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":73.060991,"expected":1,"index":10,"inputs":[0,1,1,1,0,0,1,1,0,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":0,"correct":true,"elapsed_ms":71.922604,"expected":0,"index":11,"inputs":[0,0,0,0,1,0,0,0,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":73.630862,"expected":1,"index":12,"inputs":[0,1,0,0,1,0,0,1,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":71.069603,"expected":1,"index":13,"inputs":[0,1,1,1,0,0,1,0,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":74.032284,"expected":1,"index":14,"inputs":[1,1,0,1,0,1,0,0,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":72.87141,"expected":1,"index":15,"inputs":[1,1,0,1,1,0,0,0,0,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":73.07797,"expected":1,"index":16,"inputs":[1,0,0,1,0,1,0,1,0,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":72.504335,"expected":1,"index":17,"inputs":[0,0,0,1,0,1,1,0,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":73.155254,"expected":1,"index":18,"inputs":[1,0,1,1,1,1,1,0,0,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":72.376366,"expected":1,"index":19,"inputs":[1,1,0,0,0,0,0,1,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":0,"correct":true,"elapsed_ms":71.495107,"expected":0,"index":20,"inputs":[1,1,0,1,0,1,0,1,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":71.936512,"expected":1,"index":21,"inputs":[0,1,1,0,0,0,0,1,0,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":71.162059,"expected":1,"index":22,"inputs":[0,1,0,0,1,1,0,1,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":73.514783,"expected":1,"index":23,"inputs":[0,0,1,0,0,1,0,1,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":73.507965,"expected":1,"index":24,"inputs":[1,0,1,1,1,0,1,0,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":73.37625,"expected":1,"index":25,"inputs":[0,1,1,1,1,1,0,0,0,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":72.189979,"expected":1,"index":26,"inputs":[1,1,1,1,0,0,0,0,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":71.258192,"expected":1,"index":27,"inputs":[1,0,1,0,1,0,0,1,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":0,"correct":true,"elapsed_ms":73.813099,"expected":0,"index":28,"inputs":[1,1,0,1,1,0,1,0,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+TRIAL {"actual":0,"correct":true,"elapsed_ms":71.412172,"expected":0,"index":29,"inputs":[0,0,0,0,0,1,1,0,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+COMPLETE {"correct":35,"measured":30,"task_id":"hamming_interval10","warmups":5}

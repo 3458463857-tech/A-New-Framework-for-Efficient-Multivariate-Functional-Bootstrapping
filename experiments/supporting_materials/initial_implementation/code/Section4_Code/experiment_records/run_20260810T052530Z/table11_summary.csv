@@ -1,0 +1,5 @@
+case_id,t,ell,pbs_calls,span,representation_method,annealing_seed,average_online_ms,stddev_ms,median_ms,minimum_ms,maximum_ms,all_outputs_checked
+hamming_weight_interval,2,10,1,10,explicit Hamming-weight representation,,92.459701,1.144599,92.460434,90.314544,94.422509,True
+symbol_set_interval,4,6,3,6,explicit count representation,,277.384139,5.429005,276.509138,270.382128,300.257256,True
+symbol_set_threshold,4,6,3,6,explicit count representation,,275.992643,3.357248,275.426841,272.042326,291.153552,True
+lower_median,3,6,3,42,deterministic symmetric simulated annealing,20260810,274.932895,2.522332,274.302002,271.926284,282.399639,True

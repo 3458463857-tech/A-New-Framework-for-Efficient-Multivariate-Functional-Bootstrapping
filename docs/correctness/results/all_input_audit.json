@@ -1,0 +1,771 @@
+{
+  "scope": "Finite-domain exact plaintext and TFHE metadata simulation; not an encrypted experiment, not a strict error-tail proof. All valid pairs, not a 30-case inference.",
+  "source_sha256": {
+    "algorithm1_audited.rs": "62b41adf185cbf7724057f869fe588fa613f0be2f0e76ce556eda1fa8ac51c5b",
+    "algorithm1_t16_audited.rs": "b7d8bddd57de2fcca94db3226594cde314a62f15c2ea222ce9ef18841a95b41d"
+  },
+  "domains": {
+    "16": {
+      "legal_pairs": 240,
+      "all_plaintext_results_correct": true,
+      "all_metadata_preconditions_pass": true,
+      "predicted_library_pbs_counter": [
+        42
+      ],
+      "predicted_nontrivial_blind_rotations": [
+        42
+      ],
+      "conservative_scalar_output_events": [
+        46
+      ],
+      "stage_budget": {
+        "inner_transform:PBS input": {
+          "checks": 1920,
+          "max_value": 15,
+          "max_degree": 15,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:PBS output": {
+          "checks": 1920,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:radix negation": {
+          "checks": 960,
+          "max_value": 4,
+          "max_degree": 4,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:linear add": {
+          "checks": 3360,
+          "max_value": 8,
+          "max_degree": 8,
+          "max_noise": 3,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:many-LUT input": {
+          "checks": 960,
+          "max_value": 7,
+          "max_degree": 7,
+          "max_noise": 2,
+          "smallest_input_limit": 7
+        },
+        "radix_subtraction:many-LUT output": {
+          "checks": 1920,
+          "max_value": 6,
+          "max_degree": 6,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:carry-state PBS input": {
+          "checks": 720,
+          "max_value": 7,
+          "max_degree": 7,
+          "max_noise": 3,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:carry-state PBS output": {
+          "checks": 720,
+          "max_value": 2,
+          "max_degree": 2,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:radix cleanup PBS input": {
+          "checks": 960,
+          "max_value": 8,
+          "max_degree": 8,
+          "max_noise": 2,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:radix cleanup PBS output": {
+          "checks": 960,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:scalar multiply": {
+          "checks": 480,
+          "max_value": 12,
+          "max_degree": 12,
+          "max_noise": 4,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:linear add": {
+          "checks": 1920,
+          "max_value": 15,
+          "max_degree": 15,
+          "max_noise": 5,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:PBS input": {
+          "checks": 3360,
+          "max_value": 15,
+          "max_degree": 15,
+          "max_noise": 5,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:PBS output": {
+          "checks": 3360,
+          "max_value": 9,
+          "max_degree": 9,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:bivariate packed input": {
+          "checks": 1680,
+          "max_value": 7,
+          "max_degree": 7,
+          "max_noise": 5,
+          "smallest_input_limit": 12
+        },
+        "outer_recovery:bit-times-digit range": {
+          "checks": 1680,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:partial refresh input": {
+          "checks": 240,
+          "max_value": 9,
+          "max_degree": 15,
+          "max_noise": 5,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:partial refresh output": {
+          "checks": 240,
+          "max_value": 9,
+          "max_degree": 9,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:range proof last two exclusive high rows": {
+          "checks": 240,
+          "max_value": 6,
+          "max_degree": 6,
+          "max_noise": 3,
+          "smallest_input_limit": 15
+        },
+        "final_output:linear add": {
+          "checks": 240,
+          "max_value": 15,
+          "max_degree": 15,
+          "max_noise": 4,
+          "smallest_input_limit": 15
+        },
+        "final_output:identity refresh input": {
+          "checks": 240,
+          "max_value": 15,
+          "max_degree": 15,
+          "max_noise": 4,
+          "smallest_input_limit": 15
+        },
+        "final_output:identity refresh output": {
+          "checks": 240,
+          "max_value": 15,
+          "max_degree": 15,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        }
+      }
+    },
+    "32": {
+      "legal_pairs": 992,
+      "all_plaintext_results_correct": true,
+      "all_metadata_preconditions_pass": true,
+      "predicted_library_pbs_counter": [
+        114
+      ],
+      "predicted_nontrivial_blind_rotations": [
+        113
+      ],
+      "conservative_scalar_output_events": [
+        118
+      ],
+      "stage_budget": {
+        "inner_transform:PBS input": {
+          "checks": 17856,
+          "max_value": 15,
+          "max_degree": 15,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:PBS output": {
+          "checks": 17856,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:range proof binary high": {
+          "checks": 1984,
+          "max_value": 1,
+          "max_degree": 1,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:bivariate packed input": {
+          "checks": 15872,
+          "max_value": 7,
+          "max_degree": 7,
+          "max_noise": 5,
+          "smallest_input_limit": 12
+        },
+        "inner_transform:bit-times-digit range": {
+          "checks": 15872,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:linear add": {
+          "checks": 9920,
+          "max_value": 3,
+          "max_degree": 6,
+          "max_noise": 3,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:range proof exclusive input branches": {
+          "checks": 9920,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 3,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:input refresh input": {
+          "checks": 9920,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 3,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:input refresh output": {
+          "checks": 9920,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:scalar multiply": {
+          "checks": 1984,
+          "max_value": 2,
+          "max_degree": 2,
+          "max_noise": 2,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:radix negation": {
+          "checks": 4960,
+          "max_value": 4,
+          "max_degree": 4,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:linear add": {
+          "checks": 17856,
+          "max_value": 15,
+          "max_degree": 15,
+          "max_noise": 4,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:many-LUT input": {
+          "checks": 4960,
+          "max_value": 7,
+          "max_degree": 7,
+          "max_noise": 2,
+          "smallest_input_limit": 7
+        },
+        "radix_subtraction:many-LUT output": {
+          "checks": 9920,
+          "max_value": 8,
+          "max_degree": 8,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:carry-state PBS input": {
+          "checks": 3968,
+          "max_value": 15,
+          "max_degree": 15,
+          "max_noise": 4,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:carry-state PBS output": {
+          "checks": 3968,
+          "max_value": 2,
+          "max_degree": 2,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:radix cleanup PBS input": {
+          "checks": 4960,
+          "max_value": 8,
+          "max_degree": 8,
+          "max_noise": 2,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:radix cleanup PBS output": {
+          "checks": 4960,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:scalar multiply": {
+          "checks": 1984,
+          "max_value": 12,
+          "max_degree": 12,
+          "max_noise": 4,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:linear add": {
+          "checks": 13888,
+          "max_value": 15,
+          "max_degree": 15,
+          "max_noise": 5,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:range proof shifted difference upper bound": {
+          "checks": 992,
+          "max_value": 1,
+          "max_degree": 1,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:PBS input": {
+          "checks": 23808,
+          "max_value": 15,
+          "max_degree": 15,
+          "max_noise": 5,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:PBS output": {
+          "checks": 23808,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:range proof binary outer high": {
+          "checks": 992,
+          "max_value": 1,
+          "max_degree": 1,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:bivariate packed input": {
+          "checks": 20832,
+          "max_value": 7,
+          "max_degree": 7,
+          "max_noise": 5,
+          "smallest_input_limit": 12
+        },
+        "outer_recovery:bit-times-digit range": {
+          "checks": 20832,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:range proof exclusive outer base branches": {
+          "checks": 2976,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 2,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:outer base refresh input": {
+          "checks": 2976,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 2,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:outer base refresh output": {
+          "checks": 2976,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:range proof residual component reconstruction": {
+          "checks": 6944,
+          "max_value": 5,
+          "max_degree": 5,
+          "max_noise": 2,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:residual bin refresh input": {
+          "checks": 1984,
+          "max_value": 5,
+          "max_degree": 11,
+          "max_noise": 5,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:residual bin refresh output": {
+          "checks": 1984,
+          "max_value": 5,
+          "max_degree": 5,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:range proof exclusive residual groups": {
+          "checks": 992,
+          "max_value": 5,
+          "max_degree": 5,
+          "max_noise": 2,
+          "smallest_input_limit": 15
+        },
+        "final_radix_add:linear add": {
+          "checks": 5952,
+          "max_value": 6,
+          "max_degree": 9,
+          "max_noise": 3,
+          "smallest_input_limit": 15
+        },
+        "final_radix_add:message extraction input": {
+          "checks": 2976,
+          "max_value": 6,
+          "max_degree": 9,
+          "max_noise": 3,
+          "smallest_input_limit": 15
+        },
+        "final_radix_add:message extraction output": {
+          "checks": 2976,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "final_radix_add:carry extraction input": {
+          "checks": 2976,
+          "max_value": 6,
+          "max_degree": 9,
+          "max_noise": 3,
+          "smallest_input_limit": 15
+        },
+        "final_radix_add:carry extraction output": {
+          "checks": 2976,
+          "max_value": 1,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        }
+      }
+    },
+    "64": {
+      "legal_pairs": 4032,
+      "all_plaintext_results_correct": true,
+      "all_metadata_preconditions_pass": true,
+      "predicted_library_pbs_counter": [
+        205
+      ],
+      "predicted_nontrivial_blind_rotations": [
+        204
+      ],
+      "conservative_scalar_output_events": [
+        219
+      ],
+      "stage_budget": {
+        "inner_transform:many-LUT input": {
+          "checks": 8064,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 3
+        },
+        "inner_transform:many-LUT output": {
+          "checks": 32256,
+          "max_value": 1,
+          "max_degree": 1,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:PBS input": {
+          "checks": 145152,
+          "max_value": 15,
+          "max_degree": 15,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:PBS output": {
+          "checks": 145152,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:bivariate packed input": {
+          "checks": 145152,
+          "max_value": 7,
+          "max_degree": 7,
+          "max_noise": 5,
+          "smallest_input_limit": 12
+        },
+        "inner_transform:bit-times-digit range": {
+          "checks": 145152,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:linear add": {
+          "checks": 145152,
+          "max_value": 3,
+          "max_degree": 12,
+          "max_noise": 5,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:range proof exclusive input branches": {
+          "checks": 48384,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 5,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:input refresh input": {
+          "checks": 48384,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 5,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:input refresh output": {
+          "checks": 48384,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "inner_transform:scalar multiply": {
+          "checks": 16128,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 3,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:radix negation": {
+          "checks": 24192,
+          "max_value": 4,
+          "max_degree": 4,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:linear add": {
+          "checks": 84672,
+          "max_value": 15,
+          "max_degree": 15,
+          "max_noise": 4,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:many-LUT input": {
+          "checks": 24192,
+          "max_value": 7,
+          "max_degree": 7,
+          "max_noise": 2,
+          "smallest_input_limit": 7
+        },
+        "radix_subtraction:many-LUT output": {
+          "checks": 48384,
+          "max_value": 8,
+          "max_degree": 8,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:carry-state PBS input": {
+          "checks": 20160,
+          "max_value": 15,
+          "max_degree": 15,
+          "max_noise": 4,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:carry-state PBS output": {
+          "checks": 20160,
+          "max_value": 2,
+          "max_degree": 2,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:radix cleanup PBS input": {
+          "checks": 24192,
+          "max_value": 9,
+          "max_degree": 9,
+          "max_noise": 3,
+          "smallest_input_limit": 15
+        },
+        "radix_subtraction:radix cleanup PBS output": {
+          "checks": 24192,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:scalar multiply": {
+          "checks": 12096,
+          "max_value": 12,
+          "max_degree": 12,
+          "max_noise": 4,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:linear add": {
+          "checks": 108864,
+          "max_value": 15,
+          "max_degree": 15,
+          "max_noise": 5,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:range proof shifted difference upper bound": {
+          "checks": 4032,
+          "max_value": 4,
+          "max_degree": 4,
+          "max_noise": 5,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:many-LUT input": {
+          "checks": 8064,
+          "max_value": 6,
+          "max_degree": 6,
+          "max_noise": 5,
+          "smallest_input_limit": 4
+        },
+        "outer_recovery:many-LUT output": {
+          "checks": 20160,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:PBS input": {
+          "checks": 169344,
+          "max_value": 15,
+          "max_degree": 15,
+          "max_noise": 5,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:PBS output": {
+          "checks": 169344,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:bivariate packed input": {
+          "checks": 173376,
+          "max_value": 7,
+          "max_degree": 7,
+          "max_noise": 5,
+          "smallest_input_limit": 12
+        },
+        "outer_recovery:bit-times-digit range": {
+          "checks": 173376,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:range proof exclusive outer base branches": {
+          "checks": 12096,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 3,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:outer base refresh input": {
+          "checks": 12096,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 3,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:outer base refresh output": {
+          "checks": 12096,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:range proof residual component reconstruction": {
+          "checks": 64512,
+          "max_value": 6,
+          "max_degree": 6,
+          "max_noise": 2,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:residual bin refresh input": {
+          "checks": 16128,
+          "max_value": 6,
+          "max_degree": 13,
+          "max_noise": 5,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:residual bin refresh output": {
+          "checks": 16128,
+          "max_value": 6,
+          "max_degree": 6,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:residual tree refresh input": {
+          "checks": 8064,
+          "max_value": 6,
+          "max_degree": 12,
+          "max_noise": 2,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:residual tree refresh output": {
+          "checks": 8064,
+          "max_value": 6,
+          "max_degree": 6,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "outer_recovery:range proof exclusive residual groups": {
+          "checks": 4032,
+          "max_value": 6,
+          "max_degree": 6,
+          "max_noise": 2,
+          "smallest_input_limit": 15
+        },
+        "final_radix_add:linear add": {
+          "checks": 24192,
+          "max_value": 6,
+          "max_degree": 7,
+          "max_noise": 3,
+          "smallest_input_limit": 15
+        },
+        "final_radix_add:message extraction input": {
+          "checks": 12096,
+          "max_value": 6,
+          "max_degree": 7,
+          "max_noise": 3,
+          "smallest_input_limit": 15
+        },
+        "final_radix_add:message extraction output": {
+          "checks": 12096,
+          "max_value": 3,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        },
+        "final_radix_add:carry extraction input": {
+          "checks": 12096,
+          "max_value": 6,
+          "max_degree": 7,
+          "max_noise": 3,
+          "smallest_input_limit": 15
+        },
+        "final_radix_add:carry extraction output": {
+          "checks": 12096,
+          "max_value": 1,
+          "max_degree": 3,
+          "max_noise": 1,
+          "smallest_input_limit": 15
+        }
+      }
+    }
+  }
+}

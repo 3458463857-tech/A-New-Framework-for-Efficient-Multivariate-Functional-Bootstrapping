@@ -1,0 +1,35 @@
+{
+  "mode_inputs_checked": 729,
+  "mode_records": 61,
+  "unique_additive_cases": 20,
+  "additive_input_checks": 58942,
+  "additive_checks": {
+    "mode_t3_n6": 729,
+    "median_t3_n6": 729,
+    "mode_t2_n10": 1024,
+    "median_t2_n10": 1024,
+    "mode_t2_n14": 16384,
+    "median_t2_n14": 16384,
+    "mode_t3_n5": 243,
+    "median_t3_n5": 243,
+    "threshold_t2_n8_A1": 256,
+    "threshold_t3_n5_A1": 243,
+    "threshold_t3_n6_A02": 729,
+    "threshold_t4_n6_A012": 4096,
+    "threshold_t3_n8_A1": 6561,
+    "hamming_interval_t2_n5_A1": 32,
+    "hamming_interval_t2_n6_A1": 64,
+    "hamming_interval_t2_n8_A1": 256,
+    "hamming_interval_t2_n10_A1": 1024,
+    "hamming_interval_t2_n12_A1": 4096,
+    "symbol_interval_t3_n6_A1": 729,
+    "symbol_interval_t4_n6_A13": 4096
+  },
+  "bbr_checks": {
+    "bbr_hamming_interval_n10": 1024,
+    "bbr_symbol_threshold_t4_n6": 4096
+  },
+  "bbr_input_checks": 5120,
+  "all_pass": true,
+  "note": "Verification reads saved tables; no generation, random search, or annealing."
+}

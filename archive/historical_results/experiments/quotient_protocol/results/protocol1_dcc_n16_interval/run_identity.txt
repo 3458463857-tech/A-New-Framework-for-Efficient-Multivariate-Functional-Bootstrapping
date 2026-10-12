@@ -1,0 +1,3 @@
+method=count
+size=16
+predicate=interval

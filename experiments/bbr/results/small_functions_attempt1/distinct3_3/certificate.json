@@ -1,0 +1,363 @@
+{
+  "task_id": "distinct3_3",
+  "alphabet": 3,
+  "n": 3,
+  "p": 17,
+  "author_nu": 5,
+  "lambda_": 2,
+  "a": 0,
+  "atoms": [
+    {
+      "alpha": [
+        1,
+        3,
+        0
+      ],
+      "lut": [
+        0,
+        1,
+        2,
+        1,
+        5,
+        3,
+        2,
+        3,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "note": "pair maps to start of third-input output row"
+    },
+    {
+      "alpha": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "lut": [
+        1,
+        2,
+        2,
+        3,
+        2,
+        2,
+        1,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "note": "row_start + original third symbol"
+    }
+  ],
+  "output_beta": [
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "exhaustive_checked": 27,
+  "construction": [
+    {
+      "method": "pair row-start table plus three-entry-word lookup",
+      "word_orders": 720,
+      "shortest_in_enumerated_layout": 8,
+      "words": [
+        {
+          "pair": [
+            0,
+            0
+          ],
+          "word": [
+            1,
+            2,
+            2
+          ]
+        },
+        {
+          "pair": [
+            0,
+            1
+          ],
+          "word": [
+            2,
+            2,
+            3
+          ]
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "word": [
+            2,
+            3,
+            2
+          ]
+        },
+        {
+          "pair": [
+            1,
+            1
+          ],
+          "word": [
+            2,
+            1,
+            2
+          ]
+        },
+        {
+          "pair": [
+            1,
+            2
+          ],
+          "word": [
+            3,
+            2,
+            2
+          ]
+        },
+        {
+          "pair": [
+            2,
+            2
+          ],
+          "word": [
+            2,
+            2,
+            1
+          ]
+        }
+      ],
+      "lookup_sequence": [
+        1,
+        2,
+        2,
+        3,
+        2,
+        2,
+        1,
+        2
+      ],
+      "pair_starts": [
+        {
+          "pair": [
+            0,
+            0
+          ],
+          "start": 0
+        },
+        {
+          "pair": [
+            0,
+            1
+          ],
+          "start": 1
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "start": 2
+        },
+        {
+          "pair": [
+            1,
+            1
+          ],
+          "start": 5
+        },
+        {
+          "pair": [
+            1,
+            2
+          ],
+          "start": 3
+        },
+        {
+          "pair": [
+            2,
+            2
+          ],
+          "start": 4
+        }
+      ]
+    },
+    {
+      "selection": "fewest atoms in the explicitly listed finite candidates; squared coefficients break ties",
+      "candidates": [
+        {
+          "method": "histogram candidate",
+          "atoms": 3
+        },
+        {
+          "method": "single atom, all normalized nonzero F17 coefficients",
+          "attempts": 256,
+          "valid_count": 0
+        },
+        {
+          "method": "pair row-start table plus three-entry-word lookup",
+          "word_orders": 720,
+          "shortest_in_enumerated_layout": 8,
+          "words": [
+            {
+              "pair": [
+                0,
+                0
+              ],
+              "word": [
+                1,
+                2,
+                2
+              ]
+            },
+            {
+              "pair": [
+                0,
+                1
+              ],
+              "word": [
+                2,
+                2,
+                3
+              ]
+            },
+            {
+              "pair": [
+                0,
+                2
+              ],
+              "word": [
+                2,
+                3,
+                2
+              ]
+            },
+            {
+              "pair": [
+                1,
+                1
+              ],
+              "word": [
+                2,
+                1,
+                2
+              ]
+            },
+            {
+              "pair": [
+                1,
+                2
+              ],
+              "word": [
+                3,
+                2,
+                2
+              ]
+            },
+            {
+              "pair": [
+                2,
+                2
+              ],
+              "word": [
+                2,
+                2,
+                1
+              ]
+            }
+          ],
+          "lookup_sequence": [
+            1,
+            2,
+            2,
+            3,
+            2,
+            2,
+            1,
+            2
+          ],
+          "pair_starts": [
+            {
+              "pair": [
+                0,
+                0
+              ],
+              "start": 0
+            },
+            {
+              "pair": [
+                0,
+                1
+              ],
+              "start": 1
+            },
+            {
+              "pair": [
+                0,
+                2
+              ],
+              "start": 2
+            },
+            {
+              "pair": [
+                1,
+                1
+              ],
+              "start": 5
+            },
+            {
+              "pair": [
+                1,
+                2
+              ],
+              "start": 3
+            },
+            {
+              "pair": [
+                2,
+                2
+              ],
+              "start": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "provenance": "explicit structured certificate; not output of author random search",
+  "noise_scope": "Fresh raw-input weighted sums use independence; sums of preceding PBS outputs use absolute coefficient sums; final linear sum is not claimed to have one-PBS error probability.",
+  "definitions_sha256": "d13b175af8672a8d0ee026e4787a250378cdd20f2a2e760a33cafe5fdb898cf8",
+  "noise_factor_requirement": 3.1622776601683795,
+  "selected_author_parameter_row": {
+    "p": "17",
+    "nu": "5",
+    "l_ks": "4",
+    "l_bs": "1",
+    "k": "1",
+    "N": "4096",
+    "n": "849",
+    "b_ks": "16",
+    "b_bs": "33554432",
+    "sigma_lwe": "1.6512448356449926e-06",
+    "sigma_glwe": "2.168404344971009e-19",
+    "timing": "0",
+    "p_error": "2.938735877055719e-39"
+  }
+}

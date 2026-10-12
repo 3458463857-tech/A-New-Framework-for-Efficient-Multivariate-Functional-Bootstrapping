@@ -1,0 +1,11 @@
+{
+  "stage": "static preparation, no compilation or encrypted execution",
+  "author_library_files_unchanged": 21,
+  "cargo_lock_unchanged": true,
+  "shared_manifest_sha256": "21a6590320bbe29d9de306582517b21f850b04ca174e3a4be617d4b44b8e19d8",
+  "canonical_input_count": 7,
+  "adapter_sha256": "817576dcd8fbbfa0a44405f676d96de4f56079f78b4cfc6e339f9d7109ad06d9",
+  "planned_four_bit_cbs_blocks_per_task": 2,
+  "planned_lut_entries": 256,
+  "planned_lut_polynomial_containers": 1
+}

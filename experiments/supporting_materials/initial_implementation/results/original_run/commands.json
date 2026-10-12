@@ -1,0 +1,107 @@
+[
+  {
+    "name": "division16",
+    "command": [
+      "python",
+      "reference/verify_algorithm1.py"
+    ],
+    "cwd_relative": "code\\Section3_Code",
+    "exit_code": 0,
+    "elapsed_seconds": 0.6797182000009343,
+    "log": "division16.log"
+  },
+  {
+    "name": "division32",
+    "command": [
+      "python",
+      "reference/verify_larger_domains.py",
+      "--t",
+      "32"
+    ],
+    "cwd_relative": "code\\Section3_Code",
+    "exit_code": 0,
+    "elapsed_seconds": 4.656751199996506,
+    "log": "division32.log"
+  },
+  {
+    "name": "division64",
+    "command": [
+      "python",
+      "reference/verify_larger_domains.py",
+      "--t",
+      "64"
+    ],
+    "cwd_relative": "code\\Section3_Code",
+    "exit_code": 0,
+    "elapsed_seconds": 31.94942070000252,
+    "log": "division64.log"
+  },
+  {
+    "name": "representations",
+    "command": [
+      "python",
+      "chapter4_compression/generate_table11_records.py",
+      "--output-dir",
+      "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\\representations"
+    ],
+    "cwd_relative": "code\\Section4_Code",
+    "exit_code": 0,
+    "elapsed_seconds": 1.203290299999935,
+    "log": "representations.log"
+  },
+  {
+    "name": "section4_tests",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "cwd_relative": "code\\Section4_Code",
+    "exit_code": 0,
+    "elapsed_seconds": 0.39997029999358347,
+    "log": "section4_tests.log"
+  },
+  {
+    "name": "catalogue",
+    "command": [
+      "python",
+      "application_function_study/run_experiments.py",
+      "--output-dir",
+      "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\\catalogue"
+    ],
+    "cwd_relative": "code\\Section4_Code",
+    "exit_code": 0,
+    "elapsed_seconds": 53.81386519999796,
+    "log": "catalogue.log"
+  },
+  {
+    "name": "intermediate_routes",
+    "command": [
+      "python",
+      "application_function_study/compare_intermediate_routes.py",
+      "--output-dir",
+      "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\\intermediate_routes"
+    ],
+    "cwd_relative": "code\\Section4_Code",
+    "exit_code": 0,
+    "elapsed_seconds": 7.026096499997948,
+    "log": "intermediate_routes.log"
+  },
+  {
+    "name": "search_comparison",
+    "command": [
+      "python",
+      "scripts/search_comparison.py",
+      "--output-dir",
+      "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\\search_comparison"
+    ],
+    "cwd_relative": ".",
+    "exit_code": 0,
+    "elapsed_seconds": 5.330342499997641,
+    "log": "search_comparison.log"
+  }
+]

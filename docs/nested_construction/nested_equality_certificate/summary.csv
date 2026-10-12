@@ -1,0 +1,9 @@
+n,input_pairs_checked,flat_min_span,flat_min_dense_records,nested_dense_records,nested_pure_lut_entries,status
+1,4,2,7,9,5,PASS
+2,16,6,15,17,9,PASS
+3,64,14,27,25,13,PASS
+4,256,30,47,33,17,PASS
+5,1024,62,83,41,21,PASS
+6,4096,126,151,49,25,PASS
+7,16384,254,283,57,29,PASS
+8,65536,510,543,65,33,PASS

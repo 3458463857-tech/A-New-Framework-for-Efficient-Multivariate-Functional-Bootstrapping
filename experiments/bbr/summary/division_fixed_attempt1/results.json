@@ -1,0 +1,40 @@
+{
+  "status": "encrypted_correctness_failure",
+  "search_status": "first_candidate_full_rank_and_exhaustively_verified",
+  "shape": {
+    "lambda": 25,
+    "a": 11,
+    "r": 27,
+    "p": 17
+  },
+  "search_seconds": 5.5323012049999996,
+  "matrix_rank": 256,
+  "plaintext_checked": 256,
+  "legal_inputs": 240,
+  "zero_pad_inputs": 16,
+  "author_worst_norm": 51.39066063011839,
+  "author_selected_nu": 55,
+  "completed_warmup": 1,
+  "completed_measured": 0,
+  "failure": {
+    "actual": 4,
+    "correct": false,
+    "d": 15,
+    "elapsed_ms": 1813.8971270000002,
+    "expected": 0,
+    "index": 0,
+    "kind": "boundary",
+    "m": 0,
+    "phase": "warmup",
+    "t": 16
+  },
+  "performance_mean_available": false,
+  "reason": "First encrypted warmup output was wrong; fail-fast stopped the run. No inference that the function is mathematically inapplicable.",
+  "diagnostic": "Author multiplication uses literal left+16right; effective coefficient L2 exceeds the selected author norm. This is an identified gap in calibration, not a uniquely isolated cause of the observed error.",
+  "minus_literal_l2_range": [
+    69.00724599634447,
+    98.91915891272023
+  ],
+  "final_linear_l1": 111,
+  "final_pbs_sum_terms": 22
+}

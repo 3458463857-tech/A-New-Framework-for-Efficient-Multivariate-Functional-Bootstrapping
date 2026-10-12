@@ -1,0 +1,5 @@
+04c8de11ee6e7b15d8d491a670faf86d1773d2ecb9cfe30597ab03aec7e887ba  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_targeted_revision_v2/final_experiments/results/protocol1_dcc_n16_threshold/source_snapshot.rs
+1200330635eb556ae7f3e2b1b3416325e223e3708693d134a30ddfa586111643  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_targeted_revision_v2/final_experiments/results/protocol1_dcc_n16_threshold/Cargo.toml
+52c2a05a45952242e0e3c58f1dc1821ec913e073a58e75e5a264592cb3e66ad0  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_targeted_revision_v2/final_experiments/results/protocol1_dcc_n16_threshold/Cargo.lock
+93194cd08c50fdc2edf68ac7f57f6adef8987698c68d81bd6d3c89540d437db0  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_targeted_revision_v2/final_experiments/results/protocol1_dcc_n16_threshold/input_manifest.csv
+4a096523394e3d0a914dfbd4183ecbe452867c2577ed9fab0857c24bb8b9665f  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_targeted_revision_v2/final_experiments/build/target/release/count_checked_final

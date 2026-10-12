@@ -1,0 +1,3 @@
+{"kind": "base", "attempt": 1, "rank": 54, "columns": 54, "seconds": 3.4918510229999953}
+{"kind": "solve", "output": 0, "attempt": 1, "rows": 1024, "columns": 1404, "rank": 1024, "structural_upper_bound": 1104, "accepted": true, "seconds": 9.98209374599999}
+{"kind": "solve", "output": 1, "attempt": 1, "rows": 1024, "columns": 1185, "rank": 1024, "structural_upper_bound": 1094, "accepted": true, "seconds": 15.42456103699999}

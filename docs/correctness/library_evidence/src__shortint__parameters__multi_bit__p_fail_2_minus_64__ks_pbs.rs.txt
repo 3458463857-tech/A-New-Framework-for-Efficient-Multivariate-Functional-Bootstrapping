@@ -1,0 +1,46 @@
+TFHE-rs 0.8.7: src/shortint/parameters/multi_bit/p_fail_2_minus_64/ks_pbs.rs
+Whole-source SHA256: de1e9378f88e783349dda4291772ee09472aa059452ac533c267e1fc9839ebca
+
+
+--- Lines 952-992 ---
+952:         carry_modulus: CarryModulus(2),
+953:         max_noise_level: MaxNoiseLevel::new(2),
+954:         log2_p_fail: -65.038,
+955:         ciphertext_modulus: CiphertextModulus::new_native(),
+956:         encryption_key_choice: EncryptionKeyChoice::Big,
+957:         grouping_factor: LweBskGroupingFactor(3),
+958:         deterministic_execution: false,
+959:     };
+960: // p-fail = 2^-64.442, algorithmic cost ~ 80, 2-norm = 5
+961: pub const PARAM_MULTI_BIT_GROUP_3_MESSAGE_2_CARRY_2_KS_PBS_GAUSSIAN_2M64: MultiBitPBSParameters =
+962:     MultiBitPBSParameters {
+963:         lwe_dimension: LweDimension(891),
+964:         glwe_dimension: GlweDimension(1),
+965:         polynomial_size: PolynomialSize(2048),
+966:         lwe_noise_distribution: DynamicDistribution::new_gaussian_from_std_dev(StandardDev(
+967:             1.3292631075564801e-06,
+968:         )),
+969:         glwe_noise_distribution: DynamicDistribution::new_gaussian_from_std_dev(StandardDev(
+970:             2.845267479601915e-15,
+971:         )),
+972:         pbs_base_log: DecompositionBaseLog(21),
+973:         pbs_level: DecompositionLevelCount(1),
+974:         ks_base_log: DecompositionBaseLog(4),
+975:         ks_level: DecompositionLevelCount(4),
+976:         message_modulus: MessageModulus(4),
+977:         carry_modulus: CarryModulus(4),
+978:         max_noise_level: MaxNoiseLevel::new(5),
+979:         log2_p_fail: -64.442,
+980:         ciphertext_modulus: CiphertextModulus::new_native(),
+981:         encryption_key_choice: EncryptionKeyChoice::Big,
+982:         grouping_factor: LweBskGroupingFactor(3),
+983:         deterministic_execution: false,
+984:     };
+985: // p-fail = 2^-64.086, algorithmic cost ~ 287, 2-norm = 10
+986: pub const PARAM_MULTI_BIT_GROUP_3_MESSAGE_2_CARRY_3_KS_PBS_GAUSSIAN_2M64: MultiBitPBSParameters =
+987:     MultiBitPBSParameters {
+988:         lwe_dimension: LweDimension(948),
+989:         glwe_dimension: GlweDimension(1),
+990:         polynomial_size: PolynomialSize(4096),
+991:         lwe_noise_distribution: DynamicDistribution::new_gaussian_from_std_dev(StandardDev(
+992:             4.971708676181112e-07,

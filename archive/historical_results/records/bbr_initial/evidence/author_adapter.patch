@@ -1,0 +1,35 @@
+--- author/bench/HLUT-rs/src/files.rs
++++ patched/bench/HLUT-rs/src/files.rs
+@@ -53,7 +53,7 @@
+     for result in rdr.records() {
+         let record = result.unwrap();
+         let nu_record = record[1].parse::<usize>().unwrap();
+-            if ((nu as i64 - nu_record as i64) < 0) {
++            if record[0].parse::<u64>().unwrap() == p && nu <= nu_record {
+                 println!("{:?}", record);
+             return Some(BooleanParameters {
+                 lwe_dimension: LweDimension(record[6].parse().unwrap()),
+--- author/bench/HLUT-rs/src/decomposition.rs
++++ patched/bench/HLUT-rs/src/decomposition.rs
+@@ -194,3 +194,21 @@
+ 
+     result
+ }
++
++// DCC comparison adapter: explicit fixed-function a=0 certificate, using the
++// author's unmodified partial_lut_evaluation and atomic-function implementations.
++impl Decomposition {
++    pub fn certified_count(n: usize, interval: bool, parameters: BooleanParameters) -> Self {
++        let p = 17;
++        assert!(n == 12 || n == 16);
++        let mut phis = HashMap::new();
++        let lut = (0..p).map(|s| if interval {
++            ((n/3) as u64 <= s && s <= (2*n/3) as u64) as u64
++        } else { (s >= (n/2) as u64) as u64 }).collect();
++        phis.insert((-1, 0), (vec![1;n], lut));
++        let mut beta = vec![0;n]; beta.push(1);
++        Self {log_s:1,s:2,p,n,l:1,t_is:vec![0],betas:vec![beta],
++            gammas:vec![vec![]],phis,sbox:vec![],parameters,
++            encodings:vec![Encoding::new_trivial(p)],cost_pbs:0.0}
++    }
++}

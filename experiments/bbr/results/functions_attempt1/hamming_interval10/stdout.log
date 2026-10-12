@@ -1,0 +1,38 @@
+StringRecord(["17", "5", "4", "1", "1", "4096", "849", "16", "33554432", "1.6512448356449926e-06", "2.168404344971009e-19", "0", "2.938735877055719e-39"])
+PARAMETERS {"lwe_dimension":849,"glwe_dimension":1,"polynomial_size":4096,"lwe_modular_std_dev":1.6512448356449926e-6,"glwe_modular_std_dev":2.168404344971009e-19,"pbs_base_log":25,"pbs_level":1,"ks_base_log":4,"ks_level":4,"encryption_key_choice":"Big"}
+CERTIFICATE {"atom_count":1,"author_nu":5,"final_linear_terms":1,"p":17,"scope":"explicit structured decomposition, original author homomorphic evaluator","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":37.92039,"expected":1,"index":0,"inputs":[0,1,0,1,0,1,0,1,0,1],"kind":"cyclic_warmup","phase":"warmup","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":38.53035,"expected":1,"index":1,"inputs":[1,0,1,0,1,0,1,0,1,0],"kind":"cyclic_warmup","phase":"warmup","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":38.556988,"expected":1,"index":2,"inputs":[0,1,0,1,0,1,0,1,0,1],"kind":"cyclic_warmup","phase":"warmup","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":39.876892999999995,"expected":1,"index":3,"inputs":[1,0,1,0,1,0,1,0,1,0],"kind":"cyclic_warmup","phase":"warmup","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":36.889317999999996,"expected":1,"index":4,"inputs":[0,1,0,1,0,1,0,1,0,1],"kind":"cyclic_warmup","phase":"warmup","task_id":"hamming_interval10"}
+{"actual":0,"correct":true,"elapsed_ms":37.997811999999996,"expected":0,"index":0,"inputs":[0,0,0,0,0,0,0,0,0,0],"kind":"weight_0","phase":"measured","task_id":"hamming_interval10"}
+{"actual":0,"correct":true,"elapsed_ms":36.761425,"expected":0,"index":1,"inputs":[1,1,1,1,1,1,1,1,1,1],"kind":"weight_10","phase":"measured","task_id":"hamming_interval10"}
+{"actual":0,"correct":true,"elapsed_ms":37.181668,"expected":0,"index":2,"inputs":[1,1,1,0,0,0,0,0,0,0],"kind":"weight_3","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":37.929876,"expected":1,"index":3,"inputs":[1,1,1,1,0,0,0,0,0,0],"kind":"weight_4","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":38.034522,"expected":1,"index":4,"inputs":[1,1,1,1,1,0,0,0,0,0],"kind":"weight_5","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":38.633707,"expected":1,"index":5,"inputs":[1,1,1,1,1,1,0,0,0,0],"kind":"weight_6","phase":"measured","task_id":"hamming_interval10"}
+{"actual":0,"correct":true,"elapsed_ms":36.956893,"expected":0,"index":6,"inputs":[1,1,1,1,1,1,1,0,0,0],"kind":"weight_7","phase":"measured","task_id":"hamming_interval10"}
+{"actual":0,"correct":true,"elapsed_ms":36.858738,"expected":0,"index":7,"inputs":[1,0,0,0,0,0,0,0,0,0],"kind":"weight_1","phase":"measured","task_id":"hamming_interval10"}
+{"actual":0,"correct":true,"elapsed_ms":38.146574,"expected":0,"index":8,"inputs":[1,1,1,1,1,1,1,1,1,0],"kind":"weight_9","phase":"measured","task_id":"hamming_interval10"}
+{"actual":0,"correct":true,"elapsed_ms":37.639324,"expected":0,"index":9,"inputs":[1,1,0,0,0,0,0,0,0,0],"kind":"weight_2","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":37.458336,"expected":1,"index":10,"inputs":[0,1,1,1,0,0,1,1,0,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":0,"correct":true,"elapsed_ms":37.345205,"expected":0,"index":11,"inputs":[0,0,0,0,1,0,0,0,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":37.274317,"expected":1,"index":12,"inputs":[0,1,0,0,1,0,0,1,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":37.196982000000006,"expected":1,"index":13,"inputs":[0,1,1,1,0,0,1,0,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":37.657343000000004,"expected":1,"index":14,"inputs":[1,1,0,1,0,1,0,0,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":36.997679,"expected":1,"index":15,"inputs":[1,1,0,1,1,0,0,0,0,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":38.821585,"expected":1,"index":16,"inputs":[1,0,0,1,0,1,0,1,0,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":36.959105,"expected":1,"index":17,"inputs":[0,0,0,1,0,1,1,0,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":37.938026,"expected":1,"index":18,"inputs":[1,0,1,1,1,1,1,0,0,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":37.282706,"expected":1,"index":19,"inputs":[1,1,0,0,0,0,0,1,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":0,"correct":true,"elapsed_ms":37.824656,"expected":0,"index":20,"inputs":[1,1,0,1,0,1,0,1,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":36.883564,"expected":1,"index":21,"inputs":[0,1,1,0,0,0,0,1,0,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":36.743956000000004,"expected":1,"index":22,"inputs":[0,1,0,0,1,1,0,1,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":37.255284,"expected":1,"index":23,"inputs":[0,0,1,0,0,1,0,1,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":37.035525,"expected":1,"index":24,"inputs":[1,0,1,1,1,0,1,0,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":36.860636,"expected":1,"index":25,"inputs":[0,1,1,1,1,1,0,0,0,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":37.144823,"expected":1,"index":26,"inputs":[1,1,1,1,0,0,0,0,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":1,"correct":true,"elapsed_ms":37.119138,"expected":1,"index":27,"inputs":[1,0,1,0,1,0,0,1,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":0,"correct":true,"elapsed_ms":38.256505000000004,"expected":0,"index":28,"inputs":[1,1,0,1,1,0,1,0,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}
+{"actual":0,"correct":true,"elapsed_ms":37.374169,"expected":0,"index":29,"inputs":[0,0,0,0,0,1,1,0,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"hamming_interval10"}

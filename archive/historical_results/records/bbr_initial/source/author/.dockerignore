@@ -1,0 +1,16 @@
+.git
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.so
+decomposer/.venv-artifact-tches
+**/target
+search
+figures
+!**/figures/paper/.gitkeep
+!**/figures/regenerated/.gitkeep
+.zed
+.ipynb_checkpoints
+**/regenerated/*
+!**/regenerated/.gitkeep
+Trash

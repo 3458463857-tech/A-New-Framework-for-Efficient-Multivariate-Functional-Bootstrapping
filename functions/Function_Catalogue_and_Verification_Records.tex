@@ -1,0 +1,324 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=20mm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,longtable,array,tabularx}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{xurl,fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{Function Catalogue and Verification Records}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\setlength{\LTpre}{4pt}\setlength{\LTpost}{4pt}
+\renewcommand{\arraystretch}{1.12}
+\setlength{\emergencystretch}{2em}
+\newcommand{\ind}{\mathbf{1}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Function Catalogue and\\[3pt] Verification Records}\par
+\vspace{5pt}
+{\large A New Framework for Efficient Multivariate Functional Bootstrapping}
+\end{center}
+\section{Reading the catalogue}
+This catalogue helps readers select a function, find its precise definition and input domain, and locate the evidence available for it. It contains \textbf{74 entries}: 45 finite-domain structural instances, 21 configurations with encrypted measurements, and 8 direct-construction families. Repeated functions on different domains remain separate entries. These counts do not mean 74 distinct function types or 74 speedups.
+
+\begin{center}
+\begin{tabular}{@{}lp{119mm}@{}}
+\toprule
+IDs & Evidence and intended use\\\midrule
+O01--O45 & Stored finite-domain checks and logical LUT-record counts. Use these to study representations; they are not encrypted timings.\\
+T01--T21 & Stored encrypted measurements for the stated configurations. Use the associated summaries, inputs and raw logs to inspect each result.\\
+F01--F08 & Applications of the existing count construction. These are function families, not additional measured configurations.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The machine-readable \path{catalog.csv} contains each entry's definition, original function name, domain, numerical values, evidence type, source and limitations. Search its \texttt{catalog\_id} column using the IDs printed here. Source paths in the CSV are relative to this directory; a suffix after \texttt{\#} identifies a task or row in the cited file.
+
+\subsection{What a record count means}
+Write $[t]=\{0,\ldots,t-1\}$. A single-layer representation has the form
+\[
+ f(x)=Q\!\left(\sum_i p_i(x_i)\right),\qquad
+ E=\max_x\sum_i p_i(x_i)-\min_x\sum_i p_i(x_i).
+\]
+Under the paper's generic accounting, a direct table has $t^n$ records, while the inner tables and contiguous outer table have $nt+E+1$ records. The comparison-network and histogram constructions in the structural study instead sum the contiguous unary-table intervals used at successive steps. They are not all single-layer representations.
+
+Logical records, abstract LUT calls, actual PBS calls, physical memory and elapsed time are different quantities. Table reuse, omission of affine maps and physical packing can affect implementation costs. The CSV therefore keeps \texttt{abstract\_lut\_evaluations} separate from \texttt{actual\_ours\_pbs}, and stores measured means in dedicated columns.
+
+\subsection{Scope of the comparisons}
+The structural study's \texttt{Alt.} column denotes a specified algebraic, sorting or histogram route. It is neither BBR26 timing nor a lower bound on the best implementation. The original script assigns no additional LUT records to ciphertext multiplication in those alternative routes. Their counts and route descriptions remain in the CSV and evidence files.
+
+Each measured configuration has five warm-ups, thirty timed evaluations and decrypted-output checks. Timing starts with separately encrypted inputs and ends when the result ciphertext is returned. It includes server-side packing, conversion, evaluation and recovery, but excludes key generation, input encryption and offline table construction. BBR26 uses the authors' evaluator with an explicit decomposition for the function; Refined-LHE and Meta-PBS use the authors' programs and the saved input adapters.
+
+Measured comparisons concern the recorded implementations and configurations. Encodings, parameters and overall failure probabilities have not been fully aligned. Lower latency in a row does not establish a ranking at a common security and reliability target. An empty cell means unmeasured; it is not zero time or an advantage.
+
+\newpage
+\section{Count-based construction families}
+Set $p_i(x_i)=\ind[x_i\in A]$ for a public set $A\subseteq[t]$. Then $S=\sum_i p_i(x_i)=c_A$ counts the inputs belonging to $A$. Changing the public outer table $Q(S)$ gives the following functions without searching for new inner maps for each threshold or interval.
+
+\begin{longtable}{@{}p{43mm}p{52mm}p{65mm}@{}}
+\toprule
+Function & Output table & Code entry\\\midrule
+\endfirsthead
+\toprule
+Function & Output table & Code entry\\\midrule
+\endhead
+F01 Set-membership count & $Q(S)=S$ & \texttt{symbol\_count}\\
+F02 Threshold and majority & $Q(S)=\ind[S\ge\tau]$ & \texttt{symbol\_set\_threshold}\\
+F03 Count interval & $Q(S)=\ind[a\le S\le b]$ & \texttt{symbol\_set\_interval}\\
+F04 Exact-count test & $Q(S)=\ind[S=k]$ & \texttt{exact\_k}\\
+F05 Count parity & $Q(S)=S\bmod2$ & General indicator maps; specify $Q$\\
+F06 Count modulo $k$ & $Q(S)=S\bmod k$, $k\ge2$ & General indicator maps; specify $Q$\\
+F07 Multilevel, binned or clipped count & Public $Q(0),\ldots,Q(n)$ & General indicator maps; specify $Q$\\
+F08 Hamming ball around a public template & $\ind[\sum_i\ind[x_i\ne a_i]\le r]$ & \texttt{hamming\_ball};\newline\texttt{hamming\_distance\_representation}\\
+\bottomrule\end{longtable}
+
+For F01--F07, $x_i\in[t]$ and $A$ is public; count thresholds and bounds lie in $0,\ldots,n$. Majority requires a tie rule for an even number of inputs. In F08, both the template $a$ and radius $r$ are public. This construction does not treat the template as an encrypted input.
+
+For example, when $S=5$, the threshold $\tau=4$ returns 1, the interval $[2,4]$ returns 0, and the exact count $k=5$ returns 1. Parity returns 1, reduction modulo 3 returns 2, and clipping by $Q(S)=\min(S,3)$ returns 3. The input $(0,0,0)$ has Hamming distance 1 from the public template $(0,1,0)$, so the radius-1 test returns 1. These examples explain definitions; they are not additional experiments.
+
+The generic inner and outer tables use at most $nt+n+1$ records. This yields compression under that convention only when $nt+n+1<t^n$. A change of input count, alphabet or output range still requires checks of the message space and noise constraints. No timing is supplied for unmeasured settings.
+
+\subsection{Using the existing implementation}
+\path{evidence/current_summaries/original_functions.py} defines the count, threshold, interval, exact-count and Hamming-ball targets. In the same directory, \path{original_compress.py} contains \path{indicator_representation}, which constructs the indicator inner maps, and \texttt{verify}, which checks every input of a supplied target function to confirm that each reachable sum has a consistent output.
+
+Parity, residue and multilevel outputs are choices of the public outer table in that general interface. They are not presented as dedicated ciphertext benchmarks. The output message space for reduction modulo $k$ must contain $0,\ldots,k-1$; this operation differs from only testing whether the residue is zero.
+
+\newpage
+\section{Measured small-domain statistics and counts}
+Let $c_A=\#\{i:x_i\in A\}$. The Hamming interval is $\ind[4\le\sum_{i=1}^{10}x_i\le6]$; the set interval is $\ind[2\le c_{\{1,3\}}\le4]$; the set threshold is $\ind[c_{\{0,2\}}\ge3]$.
+
+For sorted inputs $x_{(1)}\le\cdots\le x_{(n)}$, the lower median is $x_{(\lfloor(n+1)/2\rfloor)}$. A mode tie is resolved by selecting the smallest value. The interquartile range is
+\[
+x_{(\lfloor3(n-1)/4\rfloor+1)}-x_{(\lfloor(n-1)/4\rfloor+1)},
+\]
+without interpolation. MAD is the lower median of the absolute deviations from the lower median of the inputs.
+
+\begin{longtable}{@{}p{47mm}p{51mm}p{62mm}@{}}
+\toprule
+Function & Illustrative input & Output\\\midrule
+\endfirsthead
+\toprule
+Function & Illustrative input & Output\\\midrule
+\endhead
+T01 Hamming interval & Ten bits, five of them 1 & 1; weight 5 lies in $[4,6]$\\
+T02 Set interval & $(0,1,2,3,1,0)$ & 1; three values lie in $\{1,3\}$\\
+T03 Set threshold & $(0,1,2,3,1,0)$ & 1; three values lie in $\{0,2\}$\\
+T04 Lower median & $(0,1,2)$ & 1\\
+T05 Mode & $(0,0,1,1)$ & 0; smallest tied value\\
+T06 Maximum & $(0,1,2)$ & 2\\
+T07 Range & $(0,1,2)$ & $2-0=2$\\
+T08 Interquartile range & $(0,1,2,2)$ & $x_{(3)}-x_{(1)}=2$\\
+T09 MAD & $(0,0,2)$ & 0; centre 0, deviations $(0,0,2)$\\
+T10 Distinct-value count & $(0,0,2)$ & 2; values 0 and 2\\
+\bottomrule\end{longtable}
+\textbf{Recorded means in milliseconds.} Refined denotes Refined-LHE and Meta denotes Meta-PBS.\par
+\begin{longtable}{@{}p{56mm}lrrrr@{}}
+\toprule
+Function & Domain & Ours & BBR26 & Refined & Meta\\\midrule
+\endfirsthead
+\toprule
+Function & Domain & Ours & BBR26 & Refined & Meta\\\midrule
+\endhead
+T01 Hamming interval & $[2]^{10}$ & 19.31 & 37.45 & 68.51 & 72.80\\
+T02 Set count interval & $[4]^{6}$ & 53.56 & 150.87 & 200.31 & --\\
+T03 Set count threshold & $[4]^{6}$ & 64.09 & 149.86 & 205.53 & --\\
+T04 Lower median & $[3]^{3}$ & 44.52 & 75.40 & 136.11 & 71.74\\
+T05 Mode (smallest tie) & $[3]^{4}$ & 163.09 & 151.07 & 134.81 & 72.15\\
+T06 Maximum & $[3]^{3}$ & 59.02 & 75.97 & 137.51 & 72.64\\
+T07 Range & $[3]^{3}$ & 49.98 & 37.70 & 133.05 & 72.80\\
+T08 Interquartile range & $[3]^{4}$ & 157.99 & 113.77 & 134.66 & 72.48\\
+T09 MAD & $[3]^{3}$ & 45.56 & 76.22 & 136.49 & 73.09\\
+T10 Distinct-value count & $[3]^{3}$ & 44.10 & 76.61 & 136.95 & 73.56\\
+\bottomrule\end{longtable}
+
+Ours has lower latency than the measured BBR26, Refined-LHE and Meta-PBS routes in 7, 8 and 6 of these instances, respectively. The three-input range is faster only than Refined-LHE and Meta-PBS. The four-input mode and interquartile range show no latency advantage. Missing methods and other domains are not included in these counts.
+
+\newpage
+\section{Larger statistical inputs and integer quotient}
+\subsection{Six ternary inputs}
+These functions use the definitions on the preceding page. For $(0,0,1,1,2,2)$, the outputs in the order listed below are $1,0,2,2,1,1,3$. The interquartile range is $x_{(4)}-x_{(2)}$; both medians in MAD are lower medians.
+
+\begin{longtable}{@{}p{56mm}lrrrr@{}}
+\toprule
+Function & Domain & Ours & BBR26 & Refined & Meta\\\midrule
+\endfirsthead
+\toprule
+Function & Domain & Ours & BBR26 & Refined & Meta\\\midrule
+\endhead
+T11 Lower median & $[3]^{6}$ & 377.33 & 302.82 & 201.04 & 150.30\\
+T12 Mode (smallest tie) & $[3]^{6}$ & 398.25 & 295.42 & 199.31 & 150.25\\
+T13 Maximum & $[3]^{6}$ & 344.95 & 190.26 & 209.96 & 149.41\\
+T14 Range & $[3]^{6}$ & 336.86 & 302.56 & 208.62 & 150.27\\
+T15 Interquartile range & $[3]^{6}$ & 306.65 & 301.02 & 208.38 & 149.09\\
+T16 MAD & $[3]^{6}$ & 308.38 & 152.62 & 200.04 & 149.30\\
+T17 Distinct-value count & $[3]^{6}$ & 324.87 & 310.12 & 199.68 & 149.32\\
+\bottomrule\end{longtable}
+
+These instances passed the stored plaintext representation checks and recorded ciphertext-output checks, but the tested implementation of our method is slower than all three measured baselines. Its PBS parameters are larger in these configurations. A compact logical representation does not by itself imply lower encrypted latency.
+
+\subsection{Exact integer quotient}
+The target is $\lfloor m/d\rfloor$, with $0\le m<t$ and $1\le d<t$; for example, $m=7,d=2$ returns 3. Timings exclude the multiplication and subtraction needed to obtain a remainder. For $t=16,32,64$, the representation uses 205, 501 and 1193 records, including the zero-divisor padding slot; the scales are 22, 44 and 89. The $t=8$ measurement reuses the $T=16,M=22$ circuit rather than a separately minimized three-bit implementation.
+
+\begin{longtable}{@{}llrrrrr@{}}
+\toprule
+ID & $t$ & Ours & Native & BBR26 & Refined & Meta\\\midrule
+\endfirsthead
+\toprule
+ID & $t$ & Ours & Native & BBR26 & Refined & Meta\\\midrule
+\endhead
+T21 & 8 & 330.55 & 534.31 & 1272.67 & 158.90 & 85.01\\
+T18 & 16 & 319.15 & 436.12 & 2729.54 & 137.92 & 175.81\\
+T19 & 32 & 911.32 & 742.76 & 7122.82 & 270.40 & 148.81\\
+T20 & 64 & 1996.49 & 750.45 & -- & 280.53 & --\\
+\bottomrule\end{longtable}
+
+The $t=8,16$ rows have lower measured latency than Native and BBR26, but higher latency than Refined-LHE and Meta-PBS. At $t=32$, only BBR26 is slower; at $t=64$, no advantage is observed. The $t=64$ row is a retained supplementary measurement, not an additional row in the paper's main quotient table.
+
+All three successful BBR quotient records use PBS decomposition base log 15 with two levels, with underlying dimensions and encryption noise unchanged. Their failure probabilities have not been recalibrated; the original parameter labels are not carried over. At $t=32$, four independently encrypted input blocks produce two $\mathbb Z_{17}$ outputs.
+
+At $t=8$, Refined-LHE retains two full four-bit CBS operations and a 256-entry table, Meta-PBS uses the positive half of an eight-bit negacyclic domain with online packing $m+8d$, and Native retains two radix blocks. Meta-PBS uses a full-domain eight-bit configuration at $t=16$ and the positive half of an eleven-bit negacyclic domain at $t=32$. No corresponding ready-to-use $t=64$ configuration was measured. Consult the saved parameter files and documentation for each method; this catalogue does not estimate a common overall failure probability.
+
+\newpage
+\section{Elementary composite functions: structural records}
+The following entries correspond to the structural study and its stored \path{intermediate_routes.csv}. ``Records'' sums the logical table entries; ``calls'' counts abstract unary-LUT evaluations, not measured PBS calls. Apart from the quotient identity proved in the paper, these numerical findings concern the finite domains checked by the original scripts. The transcendental-ratio outputs were cross-checked at 80- and 110-digit decimal precision, not proved symbolically over arbitrary parameters or all real inputs. Here $a{:}b$ denotes an inclusive integer interval.
+
+\begin{longtable}{@{}p{76mm}p{38mm}rrr@{}}
+\toprule
+Function & Checked domain & Direct & Records & Calls\\\midrule
+\endfirsthead
+\toprule
+Function & Checked domain & Direct & Records & Calls\\\midrule
+\endhead
+O01 $\lfloor m/d\rfloor$ & $m=0{:}63,\ d=1{:}63$ & 4032 & 1192 & 3\\
+O02 $\lfloor(x_1x_2x_3)^{1/3}\rfloor$ & $x_i=1{:}15$ & 3375 & 1252 & 4\\
+O03 $\lfloor a^{1/b}\rfloor$ & $a,b=2:16$ & 225 & 106 & 3\\
+O04 $\lfloor a^{1/b}\rfloor$ & $a,b=2:32$ & 961 & 234 & 3\\
+O05 $\lfloor\log_a b\rfloor$ & $a,b=2:32$ & 961 & 347 & 3\\
+O06 $\lfloor\log(1+x)/\log(1+y)\rfloor$ & $x,y=1:31$ & 961 & 343 & 3\\
+O07 $\lfloor\log(1+x^2)/\log(1+y^2)\rfloor$ & $x,y=1:31$ & 961 & 435 & 3\\
+O08 $\lfloor\sqrt{1+x^2}/\sqrt{1+y^2}\rfloor$ & $x,y=1:31$ & 961 & 437 & 3\\
+O09 $\lfloor\operatorname{asinh}(x)/\operatorname{asinh}(y)\rfloor$ & $x,y=1:31$ & 961 & 411 & 3\\
+O10 $\lfloor\sqrt{\log(1+x)/\log(1+y)}\rfloor$ & $x,y=1:31$ & 961 & 339 & 3\\
+O11 $\lfloor\sqrt[3]{\log(1+x)/\log(1+y)}\rfloor$ & $x,y=1:31$ & 961 & 335 & 3\\
+O12 $\lfloor\sqrt{\operatorname{asinh}(x)/\operatorname{asinh}(y)}\rfloor$ & $x,y=1:31$ & 961 & 409 & 3\\
+O13 $\lfloor\log(1+x)/\log(1+y)\rfloor$ & $x,y=1:63$ & 3969 & 913 & 3\\
+O14 $\lfloor\log(1+x^2)/\log(1+y^2)\rfloor$ & $x,y=1:63$ & 3969 & 1187 & 3\\
+O15 $\lfloor\sqrt{1+x^2}/\sqrt{1+y^2}\rfloor$ & $x,y=1:63$ & 3969 & 1311 & 3\\
+O16 $\lfloor\operatorname{asinh}(x)/\operatorname{asinh}(y)\rfloor$ & $x,y=1:63$ & 3969 & 1001 & 3\\
+O17 $\lfloor\sqrt{\log(1+x)/\log(1+y)}\rfloor$ & $x,y=1:63$ & 3969 & 911 & 3\\
+O18 $\lfloor\sqrt[3]{\log(1+x)/\log(1+y)}\rfloor$ & $x,y=1:63$ & 3969 & 913 & 3\\
+O19 $\lfloor\sqrt{\operatorname{asinh}(x)/\operatorname{asinh}(y)}\rfloor$ & $x,y=1:63$ & 3969 & 981 & 3\\
+\bottomrule\end{longtable}
+
+The three-input geometric mean returns 4 on $(2,4,8)$; the variable-index root returns 4 on $(a,b)=(16,2)$; the variable-base logarithm returns 4 on $(a,b)=(2,16)$. Each of O06--O19 returns 1 at $x=y=1$.
+
+O01 counts only the legal inner domains, $64+63$, and therefore has 1192 records. The timed quotient representation T20 includes one zero-divisor padding slot and counts $64+64$, giving 1193. This is an accounting difference, not a different correctness claim or a new timing experiment. The other elementary functions have no encrypted timings for the domains listed here; use their saved tables and finite-domain checks before making implementation-performance claims.
+
+\newpage
+\section{Order statistics: structural records}
+All entries on this page have domain $[8]^6$, with 262144 records in a direct table. Following the original study, write the sorted inputs with zero-based indices, $z_0\le\cdots\le z_5$. The comparison-network constructions have the recorded costs below. No encrypted benchmark on this original domain is supplied; the ternary-input timings cannot be transferred to it.
+
+The example column uses $(0,1,2,3,4,5)$. ``Calls'' again means abstract unary-LUT evaluations.
+
+\begin{longtable}{@{}p{60mm}p{58mm}rrr@{}}
+\toprule
+Function & Definition & Example & Records & Calls\\\midrule
+\endfirsthead
+\toprule
+Function & Definition & Example & Records & Calls\\\midrule
+\endhead
+O20 Maximum & $z_5$ & 5 & 75 & 5\\
+O21 Minimum & $z_0$ & 0 & 75 & 5\\
+O22 Lower median & $z_2$ & 2 & 180 & 12\\
+O23 Upper median & $z_3$ & 3 & 180 & 12\\
+O24 Second smallest value & $z_1$ & 1 & 180 & 12\\
+O25 Second largest value & $z_4$ & 4 & 180 & 12\\
+O26 Range & $z_5-z_0$ & 5 & 105 & 7\\
+O27 Interquartile range & $z_3-z_1$ & 2 & 180 & 12\\
+O28 Sum of two largest values & $z_5+z_4$ & 9 & 180 & 12\\
+O29 Sum of two smallest values & $z_0+z_1$ & 1 & 180 & 12\\
+O30 Sum of three largest values & $z_3+z_4+z_5$ & 12 & 180 & 12\\
+O31 Sum of middle four values & $z_1+z_2+z_3+z_4$ & 10 & 105 & 7\\
+O32 Central gap & $z_3-z_2$ & 1 & 180 & 12\\
+O33 Median absolute deviation & $\operatorname{med}_{\rm low}(|x_i-z_2|)$ & 1 & 450 & 30\\
+O34 Count near lower median & $\sum_i\ind[|x_i-z_2|\le1]$ & 3 & 270 & 18\\
+\bottomrule\end{longtable}
+
+The stored full-sorting construction uses a twelve-comparator network. Range and the sum of the middle four values use a seven-comparator maximum/minimum procedure. MAD includes two sorting operations and six absolute-difference tables. These are the existing program's constructions; no optimality of the comparator count is claimed.
+
+These examples demonstrate different ways to combine small tables. They are not all represented by one application of $Q(\sum_i p_i(x_i))$, and their logical record counts use the multistep accounting described on page 1. The same table can be invoked more than once; the original accounting conservatively accumulates those evaluations.
+
+The CSV preserves the comparison routes and alternative logical counts from the original study. Those alternatives are specific constructions, not a complete search over all possible encrypted implementations. No abstract-call count in this section should be read as a measured PBS count or converted directly into a running time.
+
+\newpage
+\section{Histogram statistics: structural records}
+All entries on this page have domain $[5]^8$, with 390625 records in a direct table. Let $c_v=\#\{i:x_i=v\}$, and let $c_{[1]}\ge c_{[2]}$ denote the two largest frequencies, including zero frequencies. Accounting includes 200 records for constructing all five counts, followed by count-table evaluations or comparisons.
+
+The example input is $(0,0,0,1,1,2,3,4)$, whose histogram is $(c_0,c_1,c_2,c_3,c_4)=(3,2,1,1,1)$.
+
+\begin{longtable}{@{}p{58mm}p{60mm}rrr@{}}
+\toprule
+Function & Definition & Example & Records & Calls\\\midrule
+\endfirsthead
+\toprule
+Function & Definition & Example & Records & Calls\\\midrule
+\endhead
+O35 Mode (smallest tie) & $\min\arg\max_v c_v$ & 0 & 268 & 44\\
+O36 Distinct-value count & $\sum_v\ind[c_v>0]$ & 5 & 245 & 45\\
+O37 Gap between two largest frequencies & $c_{[1]}-c_{[2]}$ & 1 & 353 & 49\\
+O38 Modal frequency & $\max_vc_v$ & 3 & 268 & 44\\
+O39 Singleton count & $\sum_v\ind[c_v=1]$ & 3 & 245 & 45\\
+O40 Values occurring at least twice & $\sum_v\ind[c_v\ge2]$ & 2 & 245 & 45\\
+O41 Values occurring exactly twice & $\sum_v\ind[c_v=2]$ & 1 & 245 & 45\\
+O42 Values occurring at least three times & $\sum_v\ind[c_v\ge3]$ & 1 & 245 & 45\\
+O43 Minimum positive frequency & $\min\{c_v:c_v>0\}$ & 1 & 313 & 49\\
+O44 Range of positive frequencies & $\max_vc_v-\min\{c_v:c_v>0\}$ & 2 & 381 & 53\\
+O45 Number of tied modes & $\sum_v\ind[c_v=\max_uc_u]$ & 1 & 353 & 49\\
+\bottomrule\end{longtable}
+
+These entries broaden the set of constructions available for reuse. They do not imply compression for arbitrary input counts or alphabet sizes, nor that every listed construction can be replaced by a single-layer additive representation. Other candidates, rows not retained by the original comparison criterion and stored repeat checks remain in the evidence files. They are not counted here as additional supported claims.
+
+\subsection{Limits to retain when reusing the catalogue}
+\begin{itemize}
+\item A finite-domain check supports the stated domain. High-precision numerical checks of transcendental expressions do not establish a theorem over all real inputs.
+\item Structural compression is a count of logical records under a specified convention. It does not establish smaller physical buffers, fewer encrypted operations or shorter elapsed time.
+\item The measured results describe the listed hardware, programs, encodings and parameters. They do not establish an absolute ordering at unified security and failure probability.
+\item Correct outputs in the stored runs are an observed result, not a formal failure-probability bound. In particular, the changed BBR quotient parameters have no renewed failure calibration.
+\item Slower measured configurations remain included. Absence of a latency advantage does not make a function unrepresentable.
+\end{itemize}
+
+\newpage
+\section{Finding and reproducing the records}
+\subsection{Files in this directory}
+\begin{description}
+\item[\path{catalog.csv}] The complete 74-row index. All numerical values retain their stored precision. The PDF rounds elapsed-time means to two decimals for readability.
+\item[\path{evidence/current_summaries/}] Saved timing summaries, function definitions and plaintext verification outputs. The full inputs and per-evaluation logs are under \path{experiments/} at repository root.
+\item[\path{evidence/original_study/}] Source scripts, all saved CSV/JSON outputs and repeat-check records for the structural catalogue. These support O01--O45; they are not encrypted timing records for the paper's final comparison tables.
+\item[\path{evidence/Application_function_original.pdf}] The original English structural catalogue, preserved unchanged for provenance. Its old release-status statements and directory names are historical. The current README and reproduction guide describe the distributed code.
+\end{description}
+
+The root \path{TABLE_INDEX.csv} links reported measured cells to their code, parameter files, inputs, raw logs and summaries. It is the entry point for reconstructing the final reported tables. The repository's \path{archive/historical_results/} is separately labelled: historical records are not used for final reported results.
+
+\subsection{Program locations}
+Paths below are relative to repository root. The reproduction guide in \path{docs/} gives environment setup and the complete commands.
+\begin{itemize}
+\item Our small-domain and count programs: \path{experiments/ours_small/ours/src/bin/functions_checked.rs}; six-ternary-input program: \path{experiments/ours_large/ours/src/bin/functions_checked.rs}.
+\item BBR statistics: \path{experiments/bbr/source/HLUT-rs/src/bin/}, including \path{matched_functions.rs} and \path{matched_small_functions.rs}. The corrected quotient driver is \path{matched_division_pbs15x2.rs}.
+\item Refined-LHE statistics: \path{experiments/refined_statistics/} and \path{experiments/refined_small/}, each under \path{source/refined-tfhe-lhe/benches/bench_functions.rs}.
+\item Meta-PBS statistics: \path{experiments/meta_statistics/source/META-FBS/cmd/dccextended/main.go} and \path{experiments/meta_small/source/META-FBS/cmd/dccsmall/main.go}.
+\item Quotient drivers: \path{experiments/division_t8/source/} for four $t=8$ methods; \path{experiments/bbr_division/source/} for BBR $t=8,32$. Their adjacent input, result and summary directories contain the saved records.
+\end{itemize}
+
+\subsection{Checking saved records and rebuilding this document}
+From \path{functions/}, the following first command checks the structural study's stored records; it does not rerun its function enumeration. The two subsequent commands rebuild this PDF from its English source using a standard \LaTeX{} installation.
+\begin{verbatim}
+python evidence/original_study/verify_records.py
+pdflatex -interaction=nonstopmode -halt-on-error \
+  Function_Catalogue_and_Verification_Records.tex
+pdflatex -interaction=nonstopmode -halt-on-error \
+  Function_Catalogue_and_Verification_Records.tex
+\end{verbatim}
+To rerun the original finite-domain study, use \path{run_experiments.py} and \path{compare_intermediate_routes.py} inside \path{evidence/original_study/}. They enumerate functions and write results; run them in a separate working copy to preserve the supplied evidence. Encrypted benchmarks likewise require the documented dependencies and parameters. This catalogue was assembled from stored records; its preparation did not rerun those experiments.
+\end{document}

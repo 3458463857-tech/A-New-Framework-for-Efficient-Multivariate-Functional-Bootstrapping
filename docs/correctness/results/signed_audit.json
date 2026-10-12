@@ -1,0 +1,20 @@
+{
+  "16": {
+    "signed_legal_pairs": 930,
+    "all_results_correct": true,
+    "all_2t_residues_negacyclic_for_three_functions": true,
+    "scope": "Plaintext/FBP interface identities only; no signed ciphertext or noise-tail claim."
+  },
+  "32": {
+    "signed_legal_pairs": 3906,
+    "all_results_correct": true,
+    "all_2t_residues_negacyclic_for_three_functions": true,
+    "scope": "Plaintext/FBP interface identities only; no signed ciphertext or noise-tail claim."
+  },
+  "64": {
+    "signed_legal_pairs": 16002,
+    "all_results_correct": true,
+    "all_2t_residues_negacyclic_for_three_functions": true,
+    "scope": "Plaintext/FBP interface identities only; no signed ciphertext or noise-tail claim."
+  }
+}

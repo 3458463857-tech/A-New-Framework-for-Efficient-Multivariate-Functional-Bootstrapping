@@ -1,0 +1,614 @@
+warning: use of deprecated function `rayon::iter::repeatn`: use `repeat_n`
+  --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/concrete-csprng/src/generators/aes_ctr/parallel.rs:47:31
+   |
+47 | ...r::repeatn(
+   |       ^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: unnecessary `unsafe` block
+  --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/concrete-csprng/src/seeders/implem/rdseed.rs:25:5
+   |
+25 |     unsafe {
+   |     ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: `concrete-csprng` (lib) generated 2 warnings
+warning: unexpected `cfg` condition name: `bench`
+  --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/ciphertext_modulus.rs:27:12
+   |
+27 | ...tr(bench, d...
+   |       ^^^^^
+   |
+   = help: expected names are: `docsrs`, `feature`, and `test` and 31 more
+   = help: consider using a Cargo feature instead
+   = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+            [lints.rust]
+            unexpected_cfgs = { level = "warn", check-cfg = ['cfg(bench)'] }
+   = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(bench)");` to the top of the `build.rs`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: `#[warn(unexpected_cfgs)]` on by default
+
+warning: unexpected `cfg` condition name: `__profiling`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/fft_impl/fft64/crypto/ggsw.rs:476:12
+    |
+476 | ...tr(__profiling, i...
+    |       ^^^^^^^^^^^ help: found config with similar value: `feature = "__profiling"`
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(__profiling)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(__profiling)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `__profiling`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/fft_impl/fft64/crypto/ggsw.rs:600:12
+    |
+600 | ...tr(__profiling, i...
+    |       ^^^^^^^^^^^ help: found config with similar value: `feature = "__profiling"`
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(__profiling)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(__profiling)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `__profiling`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/fft_impl/fft64/crypto/ggsw.rs:615:12
+    |
+615 | ...tr(__profiling, i...
+    |       ^^^^^^^^^^^ help: found config with similar value: `feature = "__profiling"`
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(__profiling)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(__profiling)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `__profiling`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/fft_impl/fft64/math/fft/mod.rs:196:12
+    |
+196 | ...tr(__profiling, i...
+    |       ^^^^^^^^^^^ help: found config with similar value: `feature = "__profiling"`
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(__profiling)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(__profiling)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `__profiling`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/fft_impl/fft64/math/fft/mod.rs:241:12
+    |
+241 | ...tr(__profiling, i...
+    |       ^^^^^^^^^^^ help: found config with similar value: `feature = "__profiling"`
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(__profiling)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(__profiling)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `__profiling`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/fft_impl/fft64/math/fft/mod.rs:263:12
+    |
+263 | ...tr(__profiling, i...
+    |       ^^^^^^^^^^^ help: found config with similar value: `feature = "__profiling"`
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(__profiling)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(__profiling)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `__profiling`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/fft_impl/fft64/math/fft/mod.rs:306:12
+    |
+306 | ...tr(__profiling, i...
+    |       ^^^^^^^^^^^ help: found config with similar value: `feature = "__profiling"`
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(__profiling)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(__profiling)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `__profiling`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/fft_impl/fft128/crypto/ggsw.rs:358:12
+    |
+358 | ...tr(__profiling, i...
+    |       ^^^^^^^^^^^ help: found config with similar value: `feature = "__profiling"`
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(__profiling)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(__profiling)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `__profiling`
+  --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/fft_impl/fft128_u128/crypto/ggsw.rs:16:12
+   |
+16 | ...tr(__profiling, i...
+   |       ^^^^^^^^^^^ help: found config with similar value: `feature = "__profiling"`
+   |
+   = help: consider using a Cargo feature instead
+   = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+            [lints.rust]
+            unexpected_cfgs = { level = "warn", check-cfg = ['cfg(__profiling)'] }
+   = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(__profiling)");` to the top of the `build.rs`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unused import: `pulp::Scalar`
+ --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/algorithms/custom_glwe_glwe_product.rs:3:5
+  |
+3 | use pulp::Scalar;
+  |     ^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `crate::core_crypto::commons::math::decomposition::SignedDecompositionIter`
+ --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/algorithms/custom_glwe_glwe_product.rs:5:5
+  |
+5 | use crate...nIter;
+  |     ^^^^^...^^^^^
+
+warning: unused imports: `polynomial_wrapping_add_mul_assign` and `polynomial_wrapping_mul`
+ --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/algorithms/custom_glwe_glwe_product.rs:8:125
+  |
+8 | ...n, polyn...ssign, polynomial_wrapping_mul};
+  |       ^^^^^...^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::core_crypto::prelude::slice_algorithms::slice_wrapping_add_assign`
+ --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/algorithms/custom_glwe_glwe_product.rs:9:5
+  |
+9 | use crate...ssign;
+  |     ^^^^^...^^^^^
+
+warning: unused import: `ActivatedRandomGenerator`
+  --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/algorithms/custom_relinearization_key_generation.rs:10:49
+   |
+10 | ...::{Activ...rator, B...
+   |       ^^^^^...^^^^^
+
+warning: unused import: `LweSecretKey`
+  --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/algorithms/custom_relinearization_key_generation.rs:14:65
+   |
+14 | ...d, LweSecretKey,
+   |       ^^^^^^^^^^^^
+
+warning: unexpected `cfg` condition name: `bench`
+  --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/ciphertext_modulus.rs:19:7
+   |
+19 | #[cfg(bench)]
+   |       ^^^^^
+   |
+   = help: consider using a Cargo feature instead
+   = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+            [lints.rust]
+            unexpected_cfgs = { level = "warn", check-cfg = ['cfg(bench)'] }
+   = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(bench)");` to the top of the `build.rs`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unused imports: `Container` and `Polynomial`
+ --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/math/decomposition/iter.rs:7:35
+  |
+7 | ...::{Container, Polynomial};
+  |       ^^^^^^^^^  ^^^^^^^^^^
+
+warning: use of deprecated function `rayon::iter::repeatn`: use `repeat_n`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/traits/contiguous_entity_container.rs:250:31
+    |
+250 | ...r::repeatn(me...
+    |       ^^^^^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated function `rayon::iter::repeatn`: use `repeat_n`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/traits/contiguous_entity_container.rs:271:31
+    |
+271 | ...r::repeatn(me...
+    |       ^^^^^^^
+
+warning: use of deprecated function `rayon::iter::repeatn`: use `repeat_n`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/traits/contiguous_entity_container.rs:297:31
+    |
+297 | ...r::repeatn(me...
+    |       ^^^^^^^
+
+warning: use of deprecated function `rayon::iter::repeatn`: use `repeat_n`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/traits/contiguous_entity_container.rs:453:31
+    |
+453 | ...r::repeatn(me...
+    |       ^^^^^^^
+
+warning: use of deprecated function `rayon::iter::repeatn`: use `repeat_n`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/traits/contiguous_entity_container.rs:474:31
+    |
+474 | ...r::repeatn(me...
+    |       ^^^^^^^
+
+warning: use of deprecated function `rayon::iter::repeatn`: use `repeat_n`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/traits/contiguous_entity_container.rs:500:31
+    |
+500 | ...r::repeatn(me...
+    |       ^^^^^^^
+
+warning: an associated constant with this name may be added to the standard library in the future
+  --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/math/random/gaussian.rs:33:32
+   |
+33 |                     let size = <$T>::BITS as...
+   |                                ^^^^^^^^^^ help: use the fully qualified path to the associated const: `<f32 as numeric::Numeric>::BITS`
+...
+51 | imple... i32);
+   | -----...----- in this macro invocation
+   |
+   = warning: once this associated item is added to the standard library, the ambiguity may cause an error or change in behavior!
+   = note: for more information, see issue #48919 <https://github.com/rust-lang/rust/issues/48919>
+   = note: `#[warn(unstable_name_collisions)]` (part of `#[warn(future_incompatible)]`) on by default
+   = note: this warning originates in the macro `implement_gaussian` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: an associated constant with this name may be added to the standard library in the future
+  --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/math/random/gaussian.rs:33:32
+   |
+33 |                     let size = <$T>::BITS as...
+   |                                ^^^^^^^^^^ help: use the fully qualified path to the associated const: `<f64 as numeric::Numeric>::BITS`
+...
+52 | imple... i64);
+   | -----...----- in this macro invocation
+   |
+   = warning: once this associated item is added to the standard library, the ambiguity may cause an error or change in behavior!
+   = note: for more information, see issue #48919 <https://github.com/rust-lang/rust/issues/48919>
+   = note: this warning originates in the macro `implement_gaussian` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: an associated constant with this name may be added to the standard library in the future
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/numeric/float.rs:105:20
+    |
+105 |                 if Self::BITS ==...
+    |                    ^^^^^^^^^^ help: use the fully qualified path to the associated const: `<f64 as numeric::Numeric>::BITS`
+...
+121 | imple..., 64);
+    | -----...----- in this macro invocation
+    |
+    = warning: once this associated item is added to the standard library, the ambiguity may cause an error or change in behavior!
+    = note: for more information, see issue #48919 <https://github.com/rust-lang/rust/issues/48919>
+    = note: this warning originates in the macro `implement` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: an associated constant with this name may be added to the standard library in the future
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/numeric/float.rs:105:20
+    |
+105 |                 if Self::BITS ==...
+    |                    ^^^^^^^^^^ help: use the fully qualified path to the associated const: `<f32 as numeric::Numeric>::BITS`
+...
+122 | imple..., 32);
+    | -----...----- in this macro invocation
+    |
+    = warning: once this associated item is added to the standard library, the ambiguity may cause an error or change in behavior!
+    = note: for more information, see issue #48919 <https://github.com/rust-lang/rust/issues/48919>
+    = note: this warning originates in the macro `implement` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: variable does not need to be mutable
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/algorithms/lwe_packing_keyswitch_key_generation.rs:178:9
+    |
+178 | ...et mut n...h_key = ...
+    |       ----^...^^^^^
+    |       |
+    |       help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `noise_parameters`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/algorithms/lwe_packing_keyswitch_key_generation.rs:168:5
+    |
+168 |     noise...eters: i...
+    |     ^^^^^...^^^^^ help: if this is intentional, prefix it with an underscore: `_noise_parameters`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `generator`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/algorithms/lwe_packing_keyswitch_key_generation.rs:170:5
+    |
+170 |     generator: &...
+    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_generator`
+
+warning: variable does not need to be mutable
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/algorithms/custom_glwe_glwe_product.rs:177:85
+    |
+177 | ...p(|mut c..._iter| c...
+    |       ----^...^^^^^
+    |       |
+    |       help: remove this `mut`
+
+warning: unused variable: `ciphertext_modulus`
+  --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/algorithms/custom_glwe_glwe_product.rs:75:9
+   |
+75 | ...et ciphe...dulus = ...
+   |       ^^^^^...^^^^^ help: if this is intentional, prefix it with an underscore: `_ciphertext_modulus`
+
+warning: unused variable: `ciphertext`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/gadget/engine/bootstrapping.rs:585:9
+    |
+585 | ...   ciphertext : ...
+    |       ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_ciphertext`
+
+warning: unused variable: `client_key_debug`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/gadget/engine/bootstrapping.rs:590:9
+    |
+590 | ...   clien...debug : ...
+    |       ^^^^^...^^^^^ help: if this is intentional, prefix it with an underscore: `_client_key_debug`
+
+warning: unused variable: `i`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/gadget/engine/mod.rs:344:45
+    |
+344 | ...(|(i, x...
+    |       ^ help: if this is intentional, prefix it with an underscore: `_i`
+
+warning: unused variable: `x`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/gadget/engine/mod.rs:348:33
+    |
+348 | ...al(x) =...
+    |       ^ help: if this is intentional, prefix it with an underscore: `_x`
+
+warning: unused variable: `enc_in`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/gadget/engine/mod.rs:321:9
+    |
+321 | ...   enc_in: &...
+    |       ^^^^^^ help: if this is intentional, prefix it with an underscore: `_enc_in`
+
+warning: unused variable: `t`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/gadget/engine/mod.rs:582:9
+    |
+582 | ...   t: u64,
+    |       ^ help: if this is intentional, prefix it with an underscore: `_t`
+
+warning: unused variable: `log`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/gadget/engine/mod.rs:586:9
+    |
+586 | ...   log: b...
+    |       ^^^ help: if this is intentional, prefix it with an underscore: `_log`
+
+warning: unused variable: `r2`
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/gadget/server_key/mod.rs:187:13
+    |
+187 | ...et r2 = ...
+    |       ^^ help: if this is intentional, prefix it with an underscore: `_r2`
+
+warning: trait `BinaryGatesEngine` is never used
+  --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/gadget/engine/mod.rs:31:18
+   |
+31 | ...it Binar...ngine<L,...
+   |       ^^^^^...^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: trait `BinaryGatesAssignEngine` is never used
+  --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/gadget/engine/mod.rs:40:18
+   |
+40 | ...it Binar...ngine<L,...
+   |       ^^^^^...^^^^^
+
+warning: associated function `decrypt_glwe_with_builtin_function` is never used
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/gadget/engine/bootstrapping.rs:572:12
+    |
+261 | impl ...apper {
+    | -----...----- associated function in this implementation
+...
+572 |     pub fn decry...ction<Ou...
+    |            ^^^^^...^^^^^
+
+warning: variable `S_i` should have a snake case name
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/algorithms/custom_relinearization_key_generation.rs:126:13
+    |
+126 | ...et S_i = ...
+    |       ^^^ help: convert the identifier to snake case (notice the capitalization): `s_i`
+    |
+    = note: `#[warn(non_snake_case)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+warning: variable `S_j` should have a snake case name
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/algorithms/custom_relinearization_key_generation.rs:127:13
+    |
+127 | ...et S_j = ...
+    |       ^^^ help: convert the identifier to snake case (notice the capitalization): `s_j`
+
+warning: eliding a lifetime that's named elsewhere is confusing
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/traits/contiguous_entity_container.rs:257:48
+    |
+255 | ...  &'this self,
+    |       ----- the lifetime is named here
+256 | ...  chunk_size: usize,
+257 | ...-> ParallelChunksWrappingLendingIterator<'_, Self::Element, Self::SelfView<'_>>
+    |                                             ^^                                ^^ the same lifetime is elided here
+    |                                             |
+    |                                             the same lifetime is elided here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+    = note: `#[warn(mismatched_lifetime_syntaxes)]` on by default
+help: consistently use `'this`
+    |
+257 -     ) -> ParallelChunksWrappingLendingIterator<'_, Self::Element, Self::SelfView<'_>>
+257 +     ) -> ParallelChunksWrappingLendingIterator<'this, Self::Element, Self::SelfView<'this>>
+    |
+
+warning: eliding a lifetime that's named elsewhere is confusing
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/traits/contiguous_entity_container.rs:278:53
+    |
+276 | ...  &'this self,
+    |       ----- the lifetime is named here
+277 | ...  chunk_size: usize,
+278 | ...-> ParallelChunksExactWrappingLendingIterator<'_, Self::Element, Self::SelfView<'_>>
+    |                                                  ^^                                ^^ the same lifetime is elided here
+    |                                                  |
+    |                                                  the same lifetime is elided here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+help: consistently use `'this`
+    |
+278 -     ) -> ParallelChunksExactWrappingLendingIterator<'_, Self::Element, Self::SelfView<'_>>
+278 +     ) -> ParallelChunksExactWrappingLendingIterator<'this, Self::Element, Self::SelfView<'this>>
+    |
+
+warning: eliding a lifetime that's named elsewhere is confusing
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/traits/contiguous_entity_container.rs:460:51
+    |
+458 | ...  &'this mut self,
+    |       ----- the lifetime is named here
+459 | ...  chunk_size: usize,
+460 | ...-> ParallelChunksWrappingLendingIteratorMut<'_, Self::Element, Self::SelfMutView<'_>>
+    |                                                ^^ the same lifetime is elided here  ^^ the same lifetime is elided here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+help: consistently use `'this`
+    |
+460 -     ) -> ParallelChunksWrappingLendingIteratorMut<'_, Self::Element, Self::SelfMutView<'_>>
+460 +     ) -> ParallelChunksWrappingLendingIteratorMut<'this, Self::Element, Self::SelfMutView<'this>>
+    |
+
+warning: eliding a lifetime that's named elsewhere is confusing
+   --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/commons/traits/contiguous_entity_container.rs:481:56
+    |
+479 | ...  &'this mut self,
+    |       ----- the lifetime is named here
+480 | ...  chunk_size: usize,
+481 | ...-> ParallelChunksExactWrappingLendingIteratorMut<'_, Self::Element, Self::SelfMutView<'_>>
+    |                                                     ^^ the same lifetime is elided here  ^^ the same lifetime is elided here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+help: consistently use `'this`
+    |
+481 -     ) -> ParallelChunksExactWrappingLendingIteratorMut<'_, Self::Element, Self::SelfMutView<'_>>
+481 +     ) -> ParallelChunksExactWrappingLendingIteratorMut<'this, Self::Element, Self::SelfMutView<'this>>
+    |
+
+warning: hiding a lifetime that's elided elsewhere is confusing
+  --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/entities/lwe_ciphertext.rs:70:26
+   |
+70 | ...m: &[T], meta: Self::Metadata) -> LweBodyRef<T> {
+   |       ^^^^                           ^^^^^^^^^^^^^ the same lifetime is hidden here
+   |       |
+   |       the lifetime is elided here
+   |
+   = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+help: use `'_` for type paths
+   |
+70 |     fn create_from(from: &[T], meta: Self::Metadata) -> LweBodyRef<'_, T> {
+   |                                                                    +++
+
+warning: hiding a lifetime that's elided elsewhere is confusing
+  --> /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/tfhe-rs-odd/tfhe/src/core_crypto/entities/lwe_ciphertext.rs:83:26
+   |
+83 | ...m: &mut [T], meta: Self::Metadata) -> LweBo...ut<T> {
+   |       ^^^^^^^^                           ^^^^^...^^^^^ the same lifetime is hidden here
+   |       |
+   |       the lifetime is elided here
+   |
+   = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+help: use `'_` for type paths
+   |
+83 |     fn create_from(from: &mut [T], meta: Self::Metadata) -> LweBodyRefMut<'_, T> {
+   |                                                                           +++
+
+warning: `tfhe` (lib) generated 52 warnings (run `cargo fix --lib -p tfhe` to apply 30 suggestions)
+   Compiling HLUT-rs v0.1.0 (/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/source/HLUT-rs)
+warning: unused import: `Error`
+ --> src/bin/../files.rs:4:41
+  |
+4 | ...r, Error, R...
+  |       ^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `IntoParallelIterator`
+ --> src/bin/../decomposition.rs:8:19
+  |
+8 | ...::{IntoP...rator, P...
+  |       ^^^^^...^^^^^
+
+warning: unused import: `ParallelIterator`
+ --> src/bin/../decomposition.rs:8:41
+  |
+8 | ...r, Paral...rator};
+  |       ^^^^^...^^^^^
+
+warning: variable `counter` is assigned to, but never used
+   --> src/bin/../files.rs:133:9
+    |
+133 | ...et mut counter = 0;
+    |       ^^^^^^^^^^^
+    |
+    = note: consider using `_counter` instead
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `key`
+   --> src/bin/../files.rs:154:13
+    |
+154 | ...et key = lhs
+    |       ^^^ help: if this is intentional, prefix it with an underscore: `_key`
+
+warning: value assigned to `counter` is never read
+   --> src/bin/../files.rs:143:17
+    |
+143 | ...   counter += 1;
+    |       ^^^^^^^^^^^^
+    |
+    = help: maybe it is overwritten before being read?
+    = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `client_key_debug`
+  --> src/bin/../decomposition.rs:84:9
+   |
+84 | ...   clien...debug: &...
+   |       ^^^^^...^^^^^ help: if this is intentional, prefix it with an underscore: `_client_key_debug`
+
+warning: fields `log_s`, `s`, `sbox`, and `cost_pbs` are never read
+  --> src/bin/../decomposition.rs:18:5
+   |
+17 | pub struct Decomposition {
+   |            ------------- fields in this struct
+18 |     log_s: usize,
+   |     ^^^^^
+19 |     s: u64,
+   |     ^
+...
+27 |     pub sbox: Sbox,
+   |         ^^^^
+...
+30 |     pub cost_pbs: f64,
+   |         ^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: method `compute_theoretical_cost` is never used
+  --> src/bin/../decomposition.rs:72:12
+   |
+33 | impl ...ition {
+   | -----...----- method in this implementation
+...
+72 |     pub fn compu..._cost(&s...
+   |            ^^^^^...^^^^^
+
+warning: associated function `certified_count` is never used
+   --> src/bin/../decomposition.rs:201:12
+    |
+200 | impl ...ition {
+    | -----...----- associated function in this implementation
+201 |     pub fn certi...count(n:...
+    |            ^^^^^...^^^^^
+
+warning: associated function `from_explicit_atoms` is never used
+   --> src/bin/../decomposition.rs:218:12
+    |
+217 | impl ...ition {
+    | -----...----- associated function in this implementation
+218 |     pub fn from_...atoms(n:...
+    |            ^^^^^...^^^^^
+
+warning: `HLUT-rs` (bin "diagnose_division") generated 11 warnings (run `cargo fix --bin "diagnose_division" -p HLUT-rs` to apply 4 suggestions)
+    Finished `release` profile [optimized] target(s) in 4.05s

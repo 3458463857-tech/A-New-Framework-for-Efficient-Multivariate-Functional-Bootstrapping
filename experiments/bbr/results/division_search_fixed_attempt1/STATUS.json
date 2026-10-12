@@ -1,0 +1,10 @@
+{
+  "exit_code": 0,
+  "timeout_seconds": 120,
+  "completed_candidates": 1,
+  "maximum_rank": 256,
+  "accepted_candidates": 1,
+  "verified_certificate": true,
+  "status": "success",
+  "scope": "lambda25,a11,n2,s16,p17,seed20261010; this is not an impossibility claim"
+}

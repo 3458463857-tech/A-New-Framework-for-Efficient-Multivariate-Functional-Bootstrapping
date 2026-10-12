@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software for you research, please cite it as below."
+authors:
+- family-names: "Bon"
+  given-names: "Nicolas"
+  orcid: "https://orcid.org/0009-0002-3777-3018"
+title: "Decomposition of Large Look-Up Tables for Fast Homomorphic Evaluation: Artifact and Tooling"
+version: 1.0.0
+date-released: 2026-04-28
+url: "https://github.com/CryptoExperts/artifact-HLUT-TCHES"

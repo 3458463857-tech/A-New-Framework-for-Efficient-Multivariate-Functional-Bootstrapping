@@ -1,0 +1,762 @@
+TFHE-rs 0.8.7: src/integer/server_key/radix_parallel/add.rs
+Whole-source SHA256: 831f3ecd5fa3dc44bf7f57e8eff9ffb7e649ffa9e69f9146ab738db1d120ada7
+
+
+--- Lines 1-112 ---
+1: use crate::core_crypto::commons::numeric::UnsignedInteger;
+2: use crate::integer::ciphertext::IntegerRadixCiphertext;
+3: use crate::integer::{BooleanBlock, RadixCiphertext, ServerKey, SignedRadixCiphertext};
+4: use crate::shortint::ciphertext::Degree;
+5: use crate::shortint::Ciphertext;
+6: use rayon::prelude::*;
+7: 
+8: /// Possible output flag that the advanced_add_assign_with_carry family of
+9: /// functions can compute.
+10: #[derive(Copy, Clone, PartialEq, Eq, Debug)]
+11: pub(crate) enum OutputFlag {
+12:     /// Request no flag at all
+13:     None,
+14:     /// The overflow flag is the flag that tells whether the input carry bit onto the last bit
+15:     /// is different from the output bit.
+16:     ///
+17:     /// This is useful to know if a signed addition overflowed (in 2's complement)
+18:     Overflow,
+19:     /// The carry flag is simply the carry bit that the output from the last pair of blocks
+20:     /// in an addition.
+21:     ///
+22:     /// This is useful to know if an unsigned addition overflowed.
+23:     Carry,
+24: }
+25: 
+26: impl OutputFlag {
+27:     /// Returns which flag shall be computed in order to get the flag
+28:     /// telling the overflow status
+29:     pub(crate) const fn from_signedness(is_signed: bool) -> Self {
+30:         if is_signed {
+31:             Self::Overflow
+32:         } else {
+33:             Self::Carry
+34:         }
+35:     }
+36: }
+37: 
+38: fn should_parallel_propagation_be_faster(
+39:     full_modulus: usize,
+40:     num_blocks: usize,
+41:     num_threads: usize,
+42: ) -> bool {
+43:     const PARALLEL_LATENCY_PENALTY: usize = 1;
+44:     // However that penalty only kicks in when certain level of
+45:     // parallelism is used
+46:     let penalty_threshold = num_threads / 2;
+47: 
+48:     // The unit of latency is a PBS
+49:     let compute_latency_of_one_layer = |num_blocks: usize, num_threads: usize| -> usize {
+50:         let latency = num_blocks.div_ceil(num_threads);
+51:         if num_blocks >= penalty_threshold {
+52:             latency * PARALLEL_LATENCY_PENALTY
+53:         } else {
+54:             latency
+55:         }
+56:     };
+57: 
+58:     // Estimate the latency of the parallelized algorithm
+59:     // One pre-processing layer, one layer to compute what happens in each grouping,
+60:     // one final post processing layer
+61:     let mut parallel_expected_latency = 3 * compute_latency_of_one_layer(num_blocks, num_threads);
+62: 
+63:     let grouping_size = full_modulus.ilog2();
+64:     let num_groups = num_blocks.div_ceil(grouping_size as usize);
+65: 
+66:     let num_carry_to_resolve = num_groups.saturating_sub(1);
+67: 
+68:     let sequential_depth = (num_carry_to_resolve.saturating_sub(1) as u32) / (grouping_size - 1);
+69:     let hillis_steel_depth = if num_carry_to_resolve == 0 {
+70:         0
+71:     } else {
+72:         num_carry_to_resolve.ceil_ilog2()
+73:     };
+74: 
+75:     let parallel_algo_uses_sequential_to_resolve_grouping_carries =
+76:         sequential_depth <= hillis_steel_depth;
+77: 
+78:     if parallel_algo_uses_sequential_to_resolve_grouping_carries {
+79:         parallel_expected_latency += sequential_depth as usize
+80:             * compute_latency_of_one_layer(grouping_size as usize, num_threads);
+81:     } else {
+82:         let max_depth = num_blocks.ceil_ilog2();
+83:         let mut space = 1;
+84:         for _ in 0..max_depth {
+85:             let num_block_at_iter = num_blocks - space;
+86:             let iter_latency = compute_latency_of_one_layer(num_block_at_iter, num_threads);
+87:             parallel_expected_latency += iter_latency;
+88:             space *= 2;
+89:         }
+90:     }
+91: 
+92:     // the other algorithm has num_blocks latency
+93:     parallel_expected_latency < num_blocks
+94: }
+95: 
+96: impl ServerKey {
+97:     pub fn unchecked_add_parallelized<T>(&self, lhs: &T, rhs: &T) -> T
+98:     where
+99:         T: IntegerRadixCiphertext,
+100:     {
+101:         let mut result = lhs.clone();
+102:         self.unchecked_add_assign_parallelized(&mut result, rhs);
+103:         result
+104:     }
+105: 
+106:     pub fn unchecked_add_assign_parallelized<T>(&self, lhs: &mut T, rhs: &T)
+107:     where
+108:         T: IntegerRadixCiphertext,
+109:     {
+110:         lhs.blocks_mut()
+111:             .par_iter_mut()
+112:             .zip(rhs.blocks().par_iter())
+
+--- Lines 395-420 ---
+395:         );
+396:         assert!(!ct_left.blocks.is_empty(), "inputs cannot be empty");
+397: 
+398:         let mut result = ct_left.clone();
+399:         let overflowed = self.overflowing_add_assign_with_carry(&mut result, ct_right, None);
+400:         (result, overflowed)
+401:     }
+402: 
+403:     pub(crate) fn is_eligible_for_parallel_single_carry_propagation(
+404:         &self,
+405:         num_blocks: usize,
+406:     ) -> bool {
+407:         // having 4-bits is a hard requirement
+408:         // as the parallel implementation uses a bivariate BPS where individual values need
+409:         // 2 bits
+410:         let total_modulus = self.key.message_modulus.0 * self.key.carry_modulus.0;
+411:         let has_enough_bits_per_block = total_modulus >= (1 << 4);
+412:         if !has_enough_bits_per_block {
+413:             return false;
+414:         }
+415: 
+416:         should_parallel_propagation_be_faster(
+417:             self.message_modulus().0 * self.carry_modulus().0,
+418:             num_blocks,
+419:             rayon::current_num_threads(),
+420:         )
+
+--- Lines 480-700 ---
+480:     ///
+481:     /// This will selects what seems to be best algorithm to propagate carries
+482:     /// (fully parallel vs sequential) by looking at the number of blocks and
+483:     /// number of threads.
+484:     ///
+485:     /// - `lhs` and `rhs` must have the same `len()`, empty is allowed
+486:     /// - `blocks of lhs` and `rhs` must all be without carry
+487:     /// - blocks must have at least one bit of message and one bit of carry
+488:     ///
+489:     /// Returns `Some(...)` if requested_flag != ComputationFlags::None
+490:     pub(crate) fn advanced_add_assign_with_carry_parallelized(
+491:         &self,
+492:         lhs: &mut [Ciphertext],
+493:         rhs: &[Ciphertext],
+494:         input_carry: Option<&BooleanBlock>,
+495:         requested_flag: OutputFlag,
+496:     ) -> Option<BooleanBlock> {
+497:         if self.is_eligible_for_parallel_single_carry_propagation(lhs.len()) {
+498:             self.advanced_add_assign_with_carry_at_least_4_bits(
+499:                 lhs,
+500:                 rhs,
+501:                 input_carry,
+502:                 requested_flag,
+503:             )
+504:         } else {
+505:             self.advanced_add_assign_with_carry_sequential_parallelized(
+506:                 lhs,
+507:                 rhs,
+508:                 input_carry,
+509:                 requested_flag,
+510:             )
+511:         }
+512:     }
+513: 
+514:     /// Computes the result of `lhs += rhs + input_carry`
+515:     ///
+516:     /// This uses the sequential algorithm to propagate the carries
+517:     ///
+518:     /// - `lhs` and `rhs` must have the same `len()`, empty is allowed
+519:     /// - `blocks of lhs` and `rhs` must all be without carry
+520:     /// - blocks must have at least one bit of message and one bit of carry
+521:     ///
+522:     /// Returns `Some(...)` if requested_flag != ComputationFlags::None
+523:     pub(crate) fn advanced_add_assign_with_carry_sequential_parallelized(
+524:         &self,
+525:         lhs: &mut [Ciphertext],
+526:         rhs: &[Ciphertext],
+527:         input_carry: Option<&BooleanBlock>,
+528:         requested_flag: OutputFlag,
+529:     ) -> Option<BooleanBlock> {
+530:         assert_eq!(
+531:             lhs.len(),
+532:             rhs.len(),
+533:             "Both operands must have the same number of blocks"
+534:         );
+535: 
+536:         if lhs.is_empty() {
+537:             return if requested_flag == OutputFlag::None {
+538:                 None
+539:             } else {
+540:                 Some(self.create_trivial_boolean_block(false))
+541:             };
+542:         }
+543: 
+544:         let carry =
+545:             input_carry.map_or_else(|| self.create_trivial_boolean_block(false), Clone::clone);
+546: 
+547:         // 2_2, 3_3, 4_4
+548:         // If we have at least 2 bits and at least as much carries
+549:         //
+550:         // The num blocks == 1 + requested_flag == OverflowFlag will actually result in one more
+551:         // PBS of latency than num_blocks == 1 && requested_flag != OverflowFlag
+552:         //
+553:         // It happens because the computation of the overflow flag requires 2 steps,
+554:         // and we insert these two steps in parallel to normal carry propagation.
+555:         // The first step is done when processing the first block,
+556:         // the second step is done when processing the last block.
+557:         // So if the number of block is smaller than 2 then,
+558:         // the overflow computation adds additional layer of PBS.
+559:         if self.key.message_modulus.0 >= 4 && self.key.carry_modulus.0 >= self.key.message_modulus.0
+560:         {
+561:             self.advanced_add_assign_sequential_at_least_4_bits(
+562:                 requested_flag,
+563:                 lhs,
+564:                 rhs,
+565:                 carry,
+566:                 input_carry,
+567:             )
+568:         } else if self.key.message_modulus.0 == 2
+569:             && self.key.carry_modulus.0 >= self.key.message_modulus.0
+570:         {
+571:             self.advanced_add_assign_sequential_at_least_2_bits(lhs, rhs, carry, requested_flag)
+572:         } else {
+573:             panic!(
+574:                 "Invalid combo of message modulus ({}) and carry modulus ({}) \n\
+575:                 This function requires the message modulus >= 2 and carry modulus >= message_modulus \n\
+576:                 I.e. PARAM_MESSAGE_X_CARRY_Y where X >= 1 and Y >= X.",
+577:                 self.key.message_modulus.0, self.key.carry_modulus.0
+578:             );
+579:         }
+580:     }
+581: 
+582:     /// Computes lhs += (rhs + carry) using the sequential propagation of carries
+583:     ///
+584:     /// parameters of blocks must have 4 bits, parameters in the form X_Y where X >= 2 && Y >= X
+585:     fn advanced_add_assign_sequential_at_least_4_bits(
+586:         &self,
+587:         requested_flag: OutputFlag,
+588:         lhs: &mut [Ciphertext],
+589:         rhs: &[Ciphertext],
+590:         carry: BooleanBlock,
+591:         input_carry: Option<&BooleanBlock>,
+592:     ) -> Option<BooleanBlock> {
+593:         let mut carry = carry.0;
+594: 
+595:         let mut overflow_flag = if requested_flag == OutputFlag::Overflow {
+596:             let mut block = self
+597:                 .key
+598:                 .unchecked_scalar_mul(lhs.last().as_ref().unwrap(), self.message_modulus().0 as u8);
+599:             self.key
+600:                 .unchecked_add_assign(&mut block, rhs.last().as_ref().unwrap());
+601:             Some(block)
+602:         } else {
+603:             None
+604:         };
+605: 
+606:         // Handle the first block
+607:         self.key.unchecked_add_assign(&mut lhs[0], &rhs[0]);
+608:         self.key.unchecked_add_assign(&mut lhs[0], &carry);
+609: 
+610:         // To be able to use carry_extract_assign in it
+611:         carry.clone_from(&lhs[0]);
+612:         rayon::scope(|s| {
+613:             s.spawn(|_| {
+614:                 self.key.message_extract_assign(&mut lhs[0]);
+615:             });
+616: 
+617:             s.spawn(|_| {
+618:                 self.key.carry_extract_assign(&mut carry);
+619:             });
+620: 
+621:             if requested_flag == OutputFlag::Overflow {
+622:                 s.spawn(|_| {
+623:                     // Computing the overflow flag requires an extra step for the first block
+624: 
+625:                     let overflow_flag = overflow_flag.as_mut().unwrap();
+626:                     let num_bits_in_message = self.message_modulus().0.ilog2() as u64;
+627:                     let lut = self.key.generate_lookup_table(|lhs_rhs| {
+628:                         let lhs = lhs_rhs / self.message_modulus().0 as u64;
+629:                         let rhs = lhs_rhs % self.message_modulus().0 as u64;
+630:                         overflow_flag_preparation_lut(lhs, rhs, num_bits_in_message)
+631:                     });
+632:                     self.key.apply_lookup_table_assign(overflow_flag, &lut);
+633:                 });
+634:             }
+635:         });
+636: 
+637:         let num_blocks = lhs.len();
+638: 
+639:         // We did the first block before, the last block is done after this if,
+640:         // so we need 3 blocks at least to enter this
+641:         if num_blocks >= 3 {
+642:             for (lhs_b, rhs_b) in lhs[1..num_blocks - 1]
+643:                 .iter_mut()
+644:                 .zip(rhs[1..num_blocks - 1].iter())
+645:             {
+646:                 self.key.unchecked_add_assign(lhs_b, rhs_b);
+647:                 self.key.unchecked_add_assign(lhs_b, &carry);
+648: 
+649:                 carry.clone_from(lhs_b);
+650:                 rayon::join(
+651:                     || self.key.message_extract_assign(lhs_b),
+652:                     || self.key.carry_extract_assign(&mut carry),
+653:                 );
+654:             }
+655:         }
+656: 
+657:         if num_blocks >= 2 {
+658:             // Handle the last block
+659:             self.key
+660:                 .unchecked_add_assign(&mut lhs[num_blocks - 1], &rhs[num_blocks - 1]);
+661:             self.key
+662:                 .unchecked_add_assign(&mut lhs[num_blocks - 1], &carry);
+663:         }
+664: 
+665:         if let Some(block) = overflow_flag.as_mut() {
+666:             if num_blocks == 1 && input_carry.is_some() {
+667:                 self.key
+668:                     .unchecked_add_assign(block, input_carry.map(|b| &b.0).unwrap());
+669:             } else if num_blocks > 1 {
+670:                 self.key.unchecked_add_assign(block, &carry);
+671:             }
+672:         }
+673: 
+674:         // Note that here when num_blocks == 1 && requested_flag != Overflow nothing
+675:         // will actually be spawned.
+676:         rayon::scope(|s| {
+677:             if num_blocks >= 2 {
+678:                 // To be able to use carry_extract_assign in it
+679:                 carry.clone_from(&lhs[num_blocks - 1]);
+680: 
+681:                 // These would already have been done when the first block was processed
+682:                 s.spawn(|_| {
+683:                     self.key.message_extract_assign(&mut lhs[num_blocks - 1]);
+684:                 });
+685: 
+686:                 s.spawn(|_| {
+687:                     self.key.carry_extract_assign(&mut carry);
+688:                 });
+689:             }
+690: 
+691:             if requested_flag == OutputFlag::Overflow {
+692:                 s.spawn(|_| {
+693:                     let overflow_flag_block = overflow_flag.as_mut().unwrap();
+694:                     // Computing the overflow flag requires and extra step for the first block
+695:                     let overflow_flag_lut = self.key.generate_lookup_table(|block| {
+696:                         let input_carry = block & 1;
+697:                         let does_overflow_if_carry_is_1 = (block >> 3) & 1;
+698:                         let does_overflow_if_carry_is_0 = (block >> 2) & 1;
+699:                         if input_carry == 1 {
+700:                             does_overflow_if_carry_is_1
+
+--- Lines 795-870 ---
+795:     /// - Parameters must have at least 2 bits of message, 2 bits of carry
+796:     /// - blocks of lhs and rhs must be clean (no carries)
+797:     /// - lhs and rhs must have the same length
+798:     pub(crate) fn advanced_add_assign_with_carry_at_least_4_bits(
+799:         &self,
+800:         lhs: &mut [Ciphertext],
+801:         rhs: &[Ciphertext],
+802:         input_carry: Option<&BooleanBlock>,
+803:         requested_flag: OutputFlag,
+804:     ) -> Option<BooleanBlock> {
+805:         // Empty rhs is a specially allowed 'weird' case to
+806:         // act like a 'propagate single carry' function.
+807:         // This is not made explicit in the docs as we have a
+808:         // `propagate_single_carry_parallelized` function which wraps this special case
+809:         if rhs.is_empty() {
+810:             // Techinically, CarryFlag is computable, but OverflowFlag is not
+811:             assert_eq!(
+812:                 requested_flag,
+813:                 OutputFlag::None,
+814:                 "Cannot compute flags when called in propagation mode"
+815:             );
+816:         } else {
+817:             assert_eq!(
+818:                 lhs.len(),
+819:                 rhs.len(),
+820:                 "Both operands must have the same number of blocks"
+821:             );
+822:         }
+823: 
+824:         if lhs.is_empty() {
+825:             // Then both are empty
+826:             if requested_flag == OutputFlag::None {
+827:                 return None;
+828:             }
+829:             return Some(self.create_trivial_boolean_block(false));
+830:         }
+831: 
+832:         let saved_last_blocks = if requested_flag == OutputFlag::Overflow {
+833:             Some((lhs.last().cloned().unwrap(), rhs.last().cloned().unwrap()))
+834:         } else {
+835:             None
+836:         };
+837: 
+838:         // Perform the block additions
+839:         for (lhs_b, rhs_b) in lhs.iter_mut().zip(rhs.iter()) {
+840:             self.key.unchecked_add_assign(lhs_b, rhs_b);
+841:         }
+842:         if let Some(carry) = input_carry {
+843:             self.key.unchecked_add_assign(&mut lhs[0], &carry.0);
+844:         }
+845: 
+846:         let blocks = lhs;
+847:         let num_blocks = blocks.len();
+848: 
+849:         let message_modulus = self.message_modulus().0 as u64;
+850:         let num_bits_in_message = message_modulus.ilog2() as u64;
+851: 
+852:         let block_modulus = self.message_modulus().0 * self.carry_modulus().0;
+853:         let num_bits_in_block = block_modulus.ilog2();
+854: 
+855:         // Just in case we compare with max noise level, but it should always be num_bits_in_blocks
+856:         // with the parameters we provide
+857:         let grouping_size = (num_bits_in_block as usize).min(self.key.max_noise_level.get());
+858: 
+859:         let mut output_flag = None;
+860: 
+861:         // First step
+862:         let (shifted_blocks, block_states) = match requested_flag {
+863:             OutputFlag::None => {
+864:                 let (shifted_blocks, mut block_states) =
+865:                     self.compute_shifted_blocks_and_block_states(blocks);
+866:                 let _ = block_states.pop().unwrap();
+867:                 (shifted_blocks, block_states)
+868:             }
+869:             OutputFlag::Overflow => {
+870:                 let (block, (shifted_blocks, block_states)) = rayon::join(
+
+--- Lines 985-1135 ---
+985:                 rayon::join(
+986:                     || {
+987:                         let block = output_flag.as_mut().unwrap();
+988:                         self.key.unchecked_add_assign(
+989:                             block,
+990:                             &resolved_carries[resolved_carries.len() - 1],
+991:                         );
+992:                         self.key.apply_lookup_table_assign(block, &carry_flag_lut);
+993:                     },
+994:                     add_carries_and_cleanup,
+995:                 );
+996:             }
+997:         }
+998: 
+999:         blocks.clone_from_slice(&prepared_blocks);
+1000: 
+1001:         match requested_flag {
+1002:             OutputFlag::None => None,
+1003:             OutputFlag::Overflow | OutputFlag::Carry => {
+1004:                 output_flag.map(BooleanBlock::new_unchecked)
+1005:             }
+1006:         }
+1007:     }
+1008: 
+1009:     pub(crate) fn compute_propagation_simulators_and_groups_carries(
+1010:         &self,
+1011:         grouping_size: usize,
+1012:         block_states: &[Ciphertext],
+1013:     ) -> (Vec<Ciphertext>, Vec<Ciphertext>) {
+1014:         if block_states.is_empty() {
+1015:             return (
+1016:                 vec![self.key.create_trivial(0)],
+1017:                 vec![self.key.create_trivial(0)],
+1018:             );
+1019:         }
+1020:         let message_modulus = self.key.message_modulus.0 as u64;
+1021:         let block_modulus = message_modulus * self.carry_modulus().0 as u64;
+1022:         let num_bits_in_block = block_modulus.ilog2();
+1023:         let num_blocks = block_states.len();
+1024: 
+1025:         // This stores the LUTs that given a cum sum block in the first grouping
+1026:         // tells if a carry is generated or not
+1027:         let first_grouping_inner_propagation_luts = (0..grouping_size - 1)
+1028:             .map(|index| {
+1029:                 self.key.generate_lookup_table(|propa_cum_sum_block| {
+1030:                     let carry = (propa_cum_sum_block >> index) & 1;
+1031:                     if carry != 0 {
+1032:                         2 // Generates
+1033:                     } else {
+1034:                         0 // Nothing
+1035:                     }
+1036:                 })
+1037:             })
+1038:             .collect::<Vec<_>>();
+1039: 
+1040:         // This stores the LUTs that given a cum sum in non first grouping
+1041:         // tells if a carry is generated or propagated or neither of these
+1042:         let other_groupings_inner_propagation_luts = (0..grouping_size)
+1043:             .map(|index| {
+1044:                 self.key.generate_lookup_table(|propa_cum_sum_block| {
+1045:                     let mask = (2 << index) - 1;
+1046:                     if propa_cum_sum_block >= (2 << index) {
+1047:                         2 // Generates
+1048:                     } else if (propa_cum_sum_block & mask) == mask {
+1049:                         1 // Propagate
+1050:                     } else {
+1051:                         0
+1052:                     }
+1053:                 })
+1054:             })
+1055:             .collect::<Vec<_>>();
+1056: 
+1057:         // This stores the LUT that outputs the propagation result of the first grouping
+1058:         let first_grouping_outer_propagation_lut = self.key.generate_lookup_table(|block| {
+1059:             // Check if the last bit of the block is set
+1060:             (block >> (num_bits_in_block - 1)) & 1
+1061:         });
+1062: 
+1063:         let num_groupings = num_blocks.div_ceil(grouping_size);
+1064:         let num_carry_to_resolve = num_groupings - 1;
+1065: 
+1066:         let sequential_depth =
+1067:             (num_carry_to_resolve.saturating_sub(1) as u32) / (grouping_size as u32 - 1);
+1068:         let hillis_steel_depth = if num_carry_to_resolve == 0 {
+1069:             0
+1070:         } else {
+1071:             num_carry_to_resolve.ceil_ilog2()
+1072:         };
+1073: 
+1074:         let use_sequential_algorithm_to_resolved_grouping_carries =
+1075:             sequential_depth <= hillis_steel_depth;
+1076: 
+1077:         // This stores the LUTs that output the propagation result of the other groupings
+1078:         let grouping_chunk_pgn_luts = if use_sequential_algorithm_to_resolved_grouping_carries {
+1079:             // When using the sequential algorithm for the propagation of one grouping to the
+1080:             // other we need to shift the PGN state to the correct position, so we later, when
+1081:             // using them only lwe_add is needed and so noise management is easy
+1082:             //
+1083:             // Also, these LUTs are 'negacylic', they are made to exploit the padding bit
+1084:             // resulting blocks from these LUTs must be added the constant `1 << index`.
+1085:             (0..grouping_size - 1)
+1086:                 .map(|i| {
+1087:                     self.key.generate_lookup_table(|block| {
+1088:                         // All bits set to 1 (e.g. 0b1111), means propagate
+1089:                         if block == (block_modulus - 1) {
+1090:                             0
+1091:                         } else {
+1092:                             // u64::MAX is -1 in two's complement
+1093:                             // We apply the modulus including the padding bit
+1094:                             (u64::MAX << i) % (1 << (num_bits_in_block + 1))
+1095:                         }
+1096:                     })
+1097:                 })
+1098:                 .collect::<Vec<_>>()
+1099:         } else {
+1100:             // This LUT is for when we are using Hillis-Steele prefix-scan to propagate carries
+1101:             // between groupings. When using this propagation, the encoding of the states
+1102:             // are a bit different.
+1103:             //
+1104:             // Also, these LUTs are 'negacylic', they are made to exploit the padding bit
+1105:             // resulting blocks from these LUTs must be added the constant `1`.
+1106:             vec![self.key.generate_lookup_table(|block| {
+1107:                 if block == (block_modulus - 1) {
+1108:                     // All bits set to 1 (e.g. 0b1111), means propagate
+1109:                     2
+1110:                 } else {
+1111:                     // u64::MAX is -1 in two's complement
+1112:                     // We apply the modulus including the padding bit
+1113:                     u64::MAX % (1 << (block_modulus + 1))
+1114:                 }
+1115:             })]
+1116:         };
+1117: 
+1118:         let mut propagation_cum_sums = Vec::with_capacity(num_blocks);
+1119:         block_states.chunks(grouping_size).for_each(|grouping| {
+1120:             propagation_cum_sums.push(grouping[0].clone());
+1121:             for other in &grouping[1..] {
+1122:                 let mut result = other.clone();
+1123:                 self.key
+1124:                     .unchecked_add_assign(&mut result, propagation_cum_sums.last().unwrap());
+1125: 
+1126:                 propagation_cum_sums.push(result);
+1127:             }
+1128:         });
+1129: 
+1130:         // Compute the cum sum arrays,
+1131:         // each grouping is independent of other groupings,
+1132:         // but we store everything flattened (Vec<_>) instead of nested (Vec<Vec<_>>)
+1133:         propagation_cum_sums
+1134:             .par_iter_mut()
+1135:             .enumerate()
+
+--- Lines 1290-1450 ---
+1290:                 .zip(luts.par_iter())
+1291:                 .for_each(|(cum_sum_block, lut)| {
+1292:                     self.key.apply_lookup_table_assign(cum_sum_block, lut);
+1293:                 });
+1294: 
+1295:             // Cum sums now contains the output carries
+1296:             resolved_carries.append(&mut cum_sums);
+1297:         }
+1298: 
+1299:         resolved_carries
+1300:     }
+1301: 
+1302:     fn compute_shifted_blocks_and_block_states(
+1303:         &self,
+1304:         blocks: &[Ciphertext],
+1305:     ) -> (Vec<Ciphertext>, Vec<Ciphertext>) {
+1306:         let num_blocks = blocks.len();
+1307: 
+1308:         let message_modulus = self.message_modulus().0 as u64;
+1309: 
+1310:         let block_modulus = self.message_modulus().0 * self.carry_modulus().0;
+1311:         let num_bits_in_block = block_modulus.ilog2();
+1312: 
+1313:         let grouping_size = num_bits_in_block as usize;
+1314: 
+1315:         let shift_block_fn = |block| (block % message_modulus) << 1;
+1316:         let mut first_grouping_luts = vec![{
+1317:             let first_block_state_fn = |block| {
+1318:                 if block >= message_modulus {
+1319:                     1 // Generates
+1320:                 } else {
+1321:                     0 // Nothing
+1322:                 }
+1323:             };
+1324:             self.key
+1325:                 .generate_many_lookup_table(&[&first_block_state_fn, &shift_block_fn])
+1326:         }];
+1327:         for i in 1..grouping_size {
+1328:             let state_fn = |block| {
+1329:                 let r = if block >= message_modulus {
+1330:                     2 // Generates Carry
+1331:                 } else if block == message_modulus - 1 {
+1332:                     1 // Propagates a carry
+1333:                 } else {
+1334:                     0 // Does not generate carry
+1335:                 };
+1336: 
+1337:                 r << (i - 1)
+1338:             };
+1339:             first_grouping_luts.push(
+1340:                 self.key
+1341:                     .generate_many_lookup_table(&[&state_fn, &shift_block_fn]),
+1342:             );
+1343:         }
+1344: 
+1345:         let other_block_state_luts = (0..grouping_size)
+1346:             .map(|i| {
+1347:                 let state_fn = |block| {
+1348:                     let r = if block >= message_modulus {
+1349:                         2 // Generates Carry
+1350:                     } else if block == message_modulus - 1 {
+1351:                         1 // Propagates a carry
+1352:                     } else {
+1353:                         0 // Does not borrow
+1354:                     };
+1355: 
+1356:                     r << i
+1357:                 };
+1358:                 self.key
+1359:                     .generate_many_lookup_table(&[&state_fn, &shift_block_fn])
+1360:             })
+1361:             .collect::<Vec<_>>();
+1362: 
+1363:         // For the last block we do something a bit different because the
+1364:         // state we compute will be used (if needed) to compute the output carry
+1365:         // of the whole addition. And this computation will be done during the 'cleaning'
+1366:         // phase
+1367:         let last_block_luts = {
+1368:             if blocks.len() == 1 {
+1369:                 let first_block_state_fn = |block| {
+1370:                     if block >= message_modulus {
+1371:                         2 << 1 // Generates
+1372:                     } else {
+1373:                         0 // Nothing
+1374:                     }
+1375:                 };
+1376:                 self.key
+1377:                     .generate_many_lookup_table(&[&first_block_state_fn, &shift_block_fn])
+1378:             } else {
+1379:                 first_grouping_luts[2].clone()
+1380:             }
+1381:         };
+1382: 
+1383:         let tmp = blocks
+1384:             .par_iter()
+1385:             .enumerate()
+1386:             .map(|(index, block)| {
+1387:                 let grouping_index = index / grouping_size;
+1388:                 let is_in_first_grouping = grouping_index == 0;
+1389:                 let index_in_grouping = index % (grouping_size);
+1390:                 let is_last_index = index == blocks.len() - 1;
+1391: 
+1392:                 let luts = if is_last_index {
+1393:                     &last_block_luts
+1394:                 } else if is_in_first_grouping {
+1395:                     &first_grouping_luts[index_in_grouping]
+1396:                 } else {
+1397:                     &other_block_state_luts[index_in_grouping]
+1398:                 };
+1399:                 self.key.apply_many_lookup_table(block, luts)
+1400:             })
+1401:             .collect::<Vec<_>>();
+1402: 
+1403:         let mut shifted_blocks = Vec::with_capacity(num_blocks);
+1404:         let mut block_states = Vec::with_capacity(num_blocks);
+1405:         for mut blocks in tmp {
+1406:             assert_eq!(blocks.len(), 2);
+1407:             shifted_blocks.push(blocks.pop().unwrap());
+1408:             block_states.push(blocks.pop().unwrap());
+1409:         }
+1410: 
+1411:         (shifted_blocks, block_states)
+1412:     }
+1413: 
+1414:     /// Computes a prefix sum/scan in parallel using Hillis & Steel algorithm
+1415:     pub(crate) fn compute_prefix_sum_hillis_steele<F>(
+1416:         &self,
+1417:         mut blocks: Vec<Ciphertext>,
+1418:         sum_function: F,
+1419:     ) -> Vec<Ciphertext>
+1420:     where
+1421:         F: for<'a, 'b> Fn(&'a mut Ciphertext, &'b Ciphertext) + Sync,
+1422:     {
+1423:         debug_assert!(self.key.message_modulus.0 * self.key.carry_modulus.0 >= (1 << 4));
+1424: 
+1425:         if blocks.is_empty() || blocks.len() == 1 {
+1426:             return blocks;
+1427:         }
+1428: 
+1429:         let num_blocks = blocks.len();
+1430:         let num_steps = blocks.len().ceil_ilog2() as usize;
+1431: 
+1432:         let mut space = 1;
+1433:         let mut step_output = blocks.clone();
+1434:         for _ in 0..num_steps {
+1435:             step_output[space..num_blocks]
+1436:                 .par_iter_mut()
+1437:                 .enumerate()
+1438:                 .for_each(|(i, block)| {
+1439:                     let prev_block_carry = &blocks[i];
+1440:                     sum_function(block, prev_block_carry);
+1441:                 });
+1442:             for i in space..num_blocks {
+1443:                 blocks[i].clone_from(&step_output[i]);
+1444:             }
+1445: 
+1446:             space *= 2;
+1447:         }
+1448: 
+1449:         blocks
+1450:     }

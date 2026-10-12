@@ -1,0 +1,45 @@
+{
+  "mode_checks": 729,
+  "mode_E": 42,
+  "mode_K": 28,
+  "mode_records": 61,
+  "independent_mode_outer_differs_at": 3,
+  "table_rows": 22,
+  "table_rows_exhaustively_checked": 20,
+  "corrections": [
+    {
+      "case_id": "mode_t3_n5",
+      "family": "frequency",
+      "historical_records": 78,
+      "current_records": 51,
+      "E": 35,
+      "K": 21,
+      "verified_cases": 243,
+      "status": "explicit construction; exhaustive pass; no search"
+    },
+    {
+      "case_id": "median_t3_n5",
+      "family": "frequency",
+      "historical_records": 71,
+      "current_records": 51,
+      "E": 35,
+      "K": 21,
+      "verified_cases": 243,
+      "status": "explicit construction; exhaustive pass; no search"
+    },
+    {
+      "case_id": "mode_t3_n6",
+      "family": "frequency",
+      "historical_records": 127,
+      "current_records": 61,
+      "E": 42,
+      "K": 28,
+      "verified_cases": 729,
+      "status": "explicit construction; exhaustive pass; no search"
+    }
+  ],
+  "bbr_cases": 2,
+  "bbr_input_checks": 5120,
+  "bbr_target_systems_exactly_solved": true,
+  "no_random_search": true
+}

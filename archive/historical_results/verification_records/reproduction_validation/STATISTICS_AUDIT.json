@@ -1,0 +1,22 @@
+{
+  "table_cells_recomputed": 84,
+  "timed_observations": 2520,
+  "correct_observations_including_warmup": 2940,
+  "all_published_means_match": true,
+  "all_reported_sd_conventions_match": true,
+  "frozen_parsers": [
+    {
+      "group": "bbr_division",
+      "rows": 2,
+      "original_script_sha256": "461529133b5231f8cc7e273127cc6e3084341b00671905ca92a8f8f1fb758394",
+      "exit_code": 0
+    },
+    {
+      "group": "division_t8",
+      "rows": 4,
+      "original_script_sha256": "87d0f72e2074a3d9b8146c297747c01faedc4e9eddfee76ed116d4286de92123",
+      "exit_code": 0
+    }
+  ],
+  "scope": "Only statistics on retained records. No build, search or encrypted computation."
+}

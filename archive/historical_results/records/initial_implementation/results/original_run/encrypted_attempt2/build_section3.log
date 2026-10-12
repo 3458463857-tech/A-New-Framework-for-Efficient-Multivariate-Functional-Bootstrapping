@@ -1,0 +1,14 @@
+    Blocking waiting for file lock on build directory
+   Compiling concrete-csprng v0.4.1
+   Compiling tfhe v0.8.7
+   Compiling serde_core v1.0.229
+   Compiling serde v1.0.229
+   Compiling num-complex v0.4.6
+   Compiling aligned-vec v0.5.0
+   Compiling bincode v1.3.3
+   Compiling pulp v0.18.22
+   Compiling tfhe-versionable v0.3.2
+   Compiling concrete-ntt v0.2.0
+   Compiling concrete-fft v0.5.1
+   Compiling section3-algorithm1-reproduction v0.1.0 (/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_2026-10-10_v1/05_Reproducibility/code/Section3_Code)
+    Finished `release` profile [optimized] target(s) in 2m 04s

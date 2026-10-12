@@ -1,0 +1,21 @@
+{
+  "indexed_files": 225,
+  "uncompressed_bytes": 3205013,
+  "excludes": [
+    ".git",
+    "__pycache__",
+    "build",
+    "target"
+  ],
+  "index_excludes_self_and_metadata": true,
+  "private_review_material_included": false,
+  "build_cache_included": false,
+  "primary_historical_division_means_ms": [
+    221.248942,
+    593.430483,
+    1226.251213
+  ],
+  "primary_division_provenance": "author-confirmed supplied historical logs",
+  "new_measurements": "results/revision_2026-10-10/encrypted_final/",
+  "results_index": "docs/RECORD_INDEX.md"
+}

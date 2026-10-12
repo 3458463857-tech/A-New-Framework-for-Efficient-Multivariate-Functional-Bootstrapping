@@ -1,0 +1,21 @@
+{
+  "task": "division_t8_four_existing_methods",
+  "status": "completed",
+  "completed_encrypted_trials": 140,
+  "running_process": false,
+  "input_sha256": "c634744163c3a8a10cbfacb25593ec0700ca0ea177d9a61798537096582ffe05",
+  "methods": [
+    "ours",
+    "native",
+    "refined",
+    "meta"
+  ],
+  "blocking_stage": null,
+  "blocking_reason": null,
+  "execution_attempts": 2,
+  "retry_performed": true,
+  "measured_means_available": true,
+  "earlier_launch_failure": "First shell request was not executed because approval review could not complete; after the user continued and approval recovered, the second request executed normally.",
+  "result": "results/protocol1_attempt1",
+  "summary": "summary/results.json"
+}

@@ -1,0 +1,31 @@
+TFHE-rs 0.8.7: src/shortint/server_key/neg.rs
+Whole-source SHA256: 11692df7f594bf059904e0ae7dce3fefe00d9ff20782dd060bd33367c81625f3
+
+
+--- Lines 220-245 ---
+220:     }
+221: 
+222:     pub fn unchecked_neg_assign_with_correcting_term(&self, ct: &mut Ciphertext) -> u64 {
+223:         // z = ceil( degree / 2^p ) * 2^p
+224:         let msg_mod = ct.message_modulus.0;
+225:         // Ensure z is always >= 1 (which would not be the case if degree == 0)
+226:         // some algorithms (e.g. overflowing_sub) require this even for trivial zeros
+227:         let mut z = ct.degree.get().div_ceil(msg_mod).max(1) as u64;
+228:         z *= msg_mod as u64;
+229: 
+230:         // Value of the shift we multiply our messages by
+231:         let delta = (1_u64 << 63) / (self.message_modulus.0 * self.carry_modulus.0) as u64;
+232: 
+233:         //Scaling + 1 on the padding bit
+234:         let w = Plaintext(z * delta);
+235: 
+236:         // (0,Delta*z) - ct
+237:         lwe_ciphertext_opposite_assign(&mut ct.ct);
+238: 
+239:         lwe_ciphertext_plaintext_add_assign(&mut ct.ct, w);
+240: 
+241:         // Update the degree
+242:         ct.degree = Degree::new(z as usize);
+243: 
+244:         z
+245:     }

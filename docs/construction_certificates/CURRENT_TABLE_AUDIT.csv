@@ -1,0 +1,23 @@
+﻿case_id,family,historical_records,current_records,E,K,verified_cases,status
+mode_t2_n10,frequency,31,31,10,11,1024,explicit construction; exhaustive pass; no search
+median_t2_n10,frequency,31,31,10,11,1024,explicit construction; exhaustive pass; no search
+mode_t2_n14,frequency,43,43,14,15,16384,explicit construction; exhaustive pass; no search
+median_t2_n14,frequency,43,43,14,15,16384,explicit construction; exhaustive pass; no search
+mode_t3_n5,frequency,78,51,35,21,243,explicit construction; exhaustive pass; no search
+median_t3_n5,frequency,71,51,35,21,243,explicit construction; exhaustive pass; no search
+mode_t3_n6,frequency,127,61,42,28,729,explicit construction; exhaustive pass; no search
+median_t3_n6,frequency,61,61,42,28,729,explicit construction; exhaustive pass; no search
+mode_t4_n3,frequency,76,76,,,0,historical only; original inner/outer certificate not recovered; no new search
+median_t4_n3,frequency,58,58,,,0,historical only; original inner/outer certificate not recovered; no new search
+threshold_t2_n8_A1,threshold,25,25,8,9,256,explicit construction; exhaustive pass; no search
+threshold_t3_n5_A1,threshold,21,21,5,6,243,explicit construction; exhaustive pass; no search
+threshold_t3_n6_A02,threshold,25,25,6,7,729,explicit construction; exhaustive pass; no search
+threshold_t4_n6_A012,threshold,31,31,6,7,4096,explicit construction; exhaustive pass; no search
+threshold_t3_n8_A1,threshold,33,33,8,9,6561,explicit construction; exhaustive pass; no search
+hamming_interval_t2_n5_A1,hamming_interval,16,16,5,6,32,explicit construction; exhaustive pass; no search
+hamming_interval_t2_n6_A1,hamming_interval,19,19,6,7,64,explicit construction; exhaustive pass; no search
+hamming_interval_t2_n8_A1,hamming_interval,25,25,8,9,256,explicit construction; exhaustive pass; no search
+hamming_interval_t2_n10_A1,hamming_interval,31,31,10,11,1024,explicit construction; exhaustive pass; no search
+hamming_interval_t2_n12_A1,hamming_interval,37,37,12,13,4096,explicit construction; exhaustive pass; no search
+symbol_interval_t3_n6_A1,symbol_interval,25,25,6,7,729,explicit construction; exhaustive pass; no search
+symbol_interval_t4_n6_A13,symbol_interval,31,31,6,7,4096,explicit construction; exhaustive pass; no search

@@ -1,0 +1,27 @@
+{
+  "task": "division",
+  "t": 16,
+  "status": "target decomposition not generated within 300-second search budget",
+  "homomorphic_runtime_measured": false,
+  "exit_status": 124,
+  "timeout_seconds": 300,
+  "seed": 20261010,
+  "gamma": 1.05,
+  "s": 16,
+  "p": 17,
+  "n": 2,
+  "lambda_": 21,
+  "t0": 11,
+  "matrix_shape": [
+    256,
+    276
+  ],
+  "completed_rank_reports": 722,
+  "observed_rank_min": 210,
+  "observed_rank_max": 221,
+  "structural_rank_bound": 221,
+  "rank_bound_reason": "For dim(U)=r<=23 and dim(W)<=s<=11 with W subset U, commutative products span dim(U W)<=r*s-s*(s-1)/2. Adding the linear columns gives rank<=23*11-55+23=221. This is a bound for this selected shape, not an impossibility certificate for the fixed quotient target.",
+  "input_manifest": "inputs/division_t16.csv",
+  "statement": "This finite search outcome does not show inapplicability or an impossibility result. No new search or hand-designed replacement was run.",
+  "larger_division_tasks": "t32 and t64: no target decomposition generated or timed in this bounded follow-up; no cost-model number is substituted."
+}

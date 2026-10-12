@@ -1,0 +1,109 @@
+{
+  "protocol": "functions_v4_frozen10",
+  "schema": "phase,index,task_id,inputs,expected,kind",
+  "random": "SplitMix64 with unbiased rejection per coordinate",
+  "shared_random_inputs": "same alphabet and arity use the same seed and random vectors",
+  "definitions_sha256": "54347777d1ef1ec0c737694f918632dc362e90eaa19c9ba6ab54493b76737a98",
+  "files": [
+    {
+      "task_id": "lower_median3_6",
+      "file": "lower_median3_6.csv",
+      "sha256": "d8b57b23d5f7126e00560516ea10f66453a723da56389b141b1e399f64fa5eb3",
+      "seed": 20264016,
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    },
+    {
+      "task_id": "mode3_6",
+      "file": "mode3_6.csv",
+      "sha256": "8d88651f7d79c62c7065bc7de3dc299f19d8b87f43380b4dbcd1f2ed49263fe8",
+      "seed": 20264016,
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    },
+    {
+      "task_id": "set_interval4_6",
+      "file": "set_interval4_6.csv",
+      "sha256": "30e7b2b2c256be75d76b9cdd5443a63c71fe7e9384f58392120411bdde4a0c2b",
+      "seed": 20265016,
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    },
+    {
+      "task_id": "set_threshold4_6",
+      "file": "set_threshold4_6.csv",
+      "sha256": "cf739813ac894a72b2295e3132a3e395c163126097d2a6670cbc89dd3112f891",
+      "seed": 20265016,
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    },
+    {
+      "task_id": "hamming_interval10",
+      "file": "hamming_interval10.csv",
+      "sha256": "75aebf18d97d97d1ab204fbf7e24e32224a2ccff353ecb231a35879601ef6ac3",
+      "seed": 20263020,
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    },
+    {
+      "task_id": "max3_6",
+      "file": "max3_6.csv",
+      "sha256": "8cfd04f752c97d611faba3f3838c79cd484294036fdefc35f63a6d52a966fcfe",
+      "seed": 20264016,
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    },
+    {
+      "task_id": "range3_6",
+      "file": "range3_6.csv",
+      "sha256": "05e542143bacaf4f214f447cfbd86e066ae80990c3367a9ab3b35b90432a6eb8",
+      "seed": 20264016,
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    },
+    {
+      "task_id": "iqr3_6",
+      "file": "iqr3_6.csv",
+      "sha256": "1f56ea16cadb28437e8d39233022bea9bc3d9f2a46c9c3ece3e8611f1ffa4ef4",
+      "seed": 20264016,
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    },
+    {
+      "task_id": "mad3_6",
+      "file": "mad3_6.csv",
+      "sha256": "80660cab8fa8b73b7f620ff2003f15907bd1c27f8136cff11f6357cbcbe53517",
+      "seed": 20264016,
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    },
+    {
+      "task_id": "distinct3_6",
+      "file": "distinct3_6.csv",
+      "sha256": "cb7decf77cb0aa03cfa32fd6b9ddfe074af35c55fe56874374a8504535abb449",
+      "seed": 20264016,
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    }
+  ]
+}

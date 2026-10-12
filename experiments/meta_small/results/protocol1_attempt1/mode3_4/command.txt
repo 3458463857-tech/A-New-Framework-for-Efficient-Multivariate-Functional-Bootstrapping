@@ -1,0 +1,1 @@
+/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_meta_small/build/dccsmall mode3_4 /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_meta_small/inputs/mode3_4.csv 

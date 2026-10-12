@@ -1,0 +1,1 @@
+/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_submission_polish_v4/experiments_functions/ours/build/target/release/functions_checked --run --task set_threshold4_6 --parameter m2c4 --manifest /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_submission_polish_v4/experiments_functions/inputs/set_threshold4_6.csv 

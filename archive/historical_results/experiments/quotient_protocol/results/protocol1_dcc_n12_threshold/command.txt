@@ -1,0 +1,2 @@
+taskset -c 0-7 /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_targeted_revision_v2/final_experiments/build/target/release/count_checked_final 12 threshold /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_targeted_revision_v2/final_experiments/inputs/count_n12.csv 
+DCC_INPUT_MANIFEST=unused

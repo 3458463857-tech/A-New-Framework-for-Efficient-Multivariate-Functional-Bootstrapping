@@ -1,0 +1,1 @@
+cargo +1.96.0 build --release --locked --offline --manifest-path BBR_SOURCE/bench/HLUT-rs/Cargo.toml

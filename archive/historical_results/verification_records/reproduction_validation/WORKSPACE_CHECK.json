@@ -1,0 +1,22 @@
+{
+  "files_verified": 3756,
+  "record_files_intentionally_omitted": 1476,
+  "experiment_groups": 17,
+  "cargo_manifests": 35,
+  "local_cargo_references": 15,
+  "go_manifests": 8,
+  "explicit_cargo_targets": 57,
+  "workspace_member_references": 12,
+  "new_division_source_entrypoints": 5,
+  "local_go_references": 0,
+  "missing_local_references": [],
+  "compatibility_changes": [
+    {
+      "path": "work/DCC_final_polish_v6/new_experiments/scripts/run_t8.sh",
+      "before_sha256": "b2531a6e702c02c685db29e5493fe14d6faeedaa3f06e8d711f09cb96147ac37",
+      "after_sha256": "d014af332abd3f0a7828b0ef3b7e34934350883505700f47c3f6ed98dcd741a6",
+      "reason": "Make optional build-cache copies conditional; use installed Go when the unshipped toolchain is absent. No algorithm, parameters, timing or input changes."
+    }
+  ],
+  "dependencies": "Compiler installations and registry dependencies are prerequisites; see docs/RUN_COMMANDS.md. This checker does not download, compile, or execute benchmarks."
+}

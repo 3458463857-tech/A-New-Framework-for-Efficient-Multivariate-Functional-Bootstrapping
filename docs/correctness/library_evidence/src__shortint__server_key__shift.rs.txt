@@ -1,0 +1,41 @@
+TFHE-rs 0.8.7: src/shortint/server_key/shift.rs
+Whole-source SHA256: 2fc832f3bee9c8433bece298713e170f8a4d071e2d83f52322698bf5e8c76de0
+
+
+--- Lines 395-430 ---
+395:     /// // |  0 0  |   1 0   |
+396:     ///
+397:     /// // Decrypt:
+398:     /// let msg_only = cks.decrypt(&ct);
+399:     /// let modulus = cks.parameters.message_modulus().0 as u64;
+400:     ///
+401:     /// assert_eq!((msg << shift) % modulus, msg_only);
+402:     /// ```
+403:     pub fn scalar_left_shift_assign(&self, ct: &mut Ciphertext, shift: u8) {
+404:         let modulus = self.message_modulus.0 as u64;
+405:         let acc = self.generate_lookup_table(|x| (x << shift) % modulus);
+406:         self.apply_lookup_table_assign(ct, &acc);
+407:     }
+408: 
+409:     /// Compute homomorphically a left shift of the bits without checks.
+410:     ///
+411:     /// # Example
+412:     ///
+413:     /// ```rust
+414:     /// use tfhe::shortint::gen_keys;
+415:     /// use tfhe::shortint::parameters::{
+416:     ///     PARAM_MESSAGE_2_CARRY_2_KS_PBS, PARAM_MESSAGE_2_CARRY_2_PBS_KS,
+417:     /// };
+418:     ///
+419:     /// // Generate the client key and the server key:
+420:     /// let (cks, sks) = gen_keys(PARAM_MESSAGE_2_CARRY_2_KS_PBS);
+421:     ///
+422:     /// let msg = 2;
+423:     ///
+424:     /// // Encrypt a message
+425:     /// let ct = cks.encrypt(msg);
+426:     /// // |       ct        |
+427:     /// // | carry | message |
+428:     /// // |-------|---------|
+429:     /// // |  0 0  |   1 0   |
+430:     ///

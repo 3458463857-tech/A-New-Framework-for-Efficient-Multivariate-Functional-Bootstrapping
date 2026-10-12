@@ -1,0 +1,38 @@
+StringRecord(["17", "5", "4", "1", "1", "4096", "849", "16", "33554432", "1.6512448356449926e-06", "2.168404344971009e-19", "0", "2.938735877055719e-39"])
+PARAMETERS {"lwe_dimension":849,"glwe_dimension":1,"polynomial_size":4096,"lwe_modular_std_dev":1.6512448356449926e-6,"glwe_modular_std_dev":2.168404344971009e-19,"pbs_base_log":25,"pbs_level":1,"ks_base_log":4,"ks_level":4,"encryption_key_choice":"Big"}
+CERTIFICATE {"atom_count":4,"author_nu":5,"final_linear_terms":1,"p":17,"scope":"explicit structured decomposition, original author homomorphic evaluator","task_id":"mad3_6"}
+{"actual":1,"correct":true,"elapsed_ms":149.243065,"expected":1,"index":0,"inputs":[0,1,2,0,1,2],"kind":"cyclic_warmup","phase":"warmup","task_id":"mad3_6"}
+{"actual":1,"correct":true,"elapsed_ms":160.72851,"expected":1,"index":1,"inputs":[1,2,0,1,2,0],"kind":"cyclic_warmup","phase":"warmup","task_id":"mad3_6"}
+{"actual":1,"correct":true,"elapsed_ms":150.200946,"expected":1,"index":2,"inputs":[2,0,1,2,0,1],"kind":"cyclic_warmup","phase":"warmup","task_id":"mad3_6"}
+{"actual":1,"correct":true,"elapsed_ms":152.00381099999998,"expected":1,"index":3,"inputs":[0,1,2,0,1,2],"kind":"cyclic_warmup","phase":"warmup","task_id":"mad3_6"}
+{"actual":1,"correct":true,"elapsed_ms":149.927076,"expected":1,"index":4,"inputs":[1,2,0,1,2,0],"kind":"cyclic_warmup","phase":"warmup","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":150.162166,"expected":0,"index":0,"inputs":[0,0,0,0,0,0],"kind":"all_zero","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":149.603665,"expected":0,"index":1,"inputs":[1,1,1,1,1,1],"kind":"all_one","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":148.95686899999998,"expected":0,"index":2,"inputs":[2,2,2,2,2,2],"kind":"all_two","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":150.591286,"expected":0,"index":3,"inputs":[0,0,0,1,1,1],"kind":"tie_zero_one","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":150.860187,"expected":0,"index":4,"inputs":[1,1,1,2,2,2],"kind":"tie_one_two","phase":"measured","task_id":"mad3_6"}
+{"actual":1,"correct":true,"elapsed_ms":154.605222,"expected":1,"index":5,"inputs":[0,0,1,1,2,2],"kind":"three_way_tie","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":150.48797,"expected":0,"index":6,"inputs":[0,0,0,0,2,2],"kind":"four_zero_two_two","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":159.56485,"expected":0,"index":7,"inputs":[0,0,2,2,2,2],"kind":"two_zero_four_two","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":155.775478,"expected":0,"index":8,"inputs":[0,1,1,1,1,2],"kind":"four_one_extremes","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":152.968297,"expected":0,"index":9,"inputs":[0,0,0,1,2,2],"kind":"lower_median_boundary","phase":"measured","task_id":"mad3_6"}
+{"actual":1,"correct":true,"elapsed_ms":154.553109,"expected":1,"index":10,"inputs":[0,1,1,2,2,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":156.898151,"expected":0,"index":11,"inputs":[1,0,1,1,2,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":1,"correct":true,"elapsed_ms":149.489703,"expected":1,"index":12,"inputs":[1,2,2,2,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":150.62007699999998,"expected":0,"index":13,"inputs":[2,0,1,1,0,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":150.294088,"expected":0,"index":14,"inputs":[0,1,0,0,0,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":149.836899,"expected":0,"index":15,"inputs":[1,0,1,2,0,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":1,"correct":true,"elapsed_ms":154.056538,"expected":1,"index":16,"inputs":[1,0,0,2,1,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":1,"correct":true,"elapsed_ms":151.206291,"expected":1,"index":17,"inputs":[1,2,1,0,2,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":1,"correct":true,"elapsed_ms":149.148925,"expected":1,"index":18,"inputs":[1,2,1,2,2,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":162.452267,"expected":0,"index":19,"inputs":[1,1,2,0,1,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":154.47799700000002,"expected":0,"index":20,"inputs":[0,0,2,2,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":148.98526,"expected":0,"index":21,"inputs":[2,0,0,1,0,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":154.16202900000002,"expected":0,"index":22,"inputs":[2,1,0,1,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":1,"correct":true,"elapsed_ms":153.59497299999998,"expected":1,"index":23,"inputs":[2,1,2,2,0,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":149.969929,"expected":0,"index":24,"inputs":[1,1,1,2,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":153.855405,"expected":0,"index":25,"inputs":[1,2,1,0,0,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":150.355057,"expected":0,"index":26,"inputs":[1,1,0,0,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":1,"correct":true,"elapsed_ms":150.323067,"expected":1,"index":27,"inputs":[0,1,0,1,2,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":1,"correct":true,"elapsed_ms":159.667275,"expected":1,"index":28,"inputs":[0,1,1,2,0,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}
+{"actual":0,"correct":true,"elapsed_ms":151.147458,"expected":0,"index":29,"inputs":[1,2,1,1,1,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"mad3_6"}

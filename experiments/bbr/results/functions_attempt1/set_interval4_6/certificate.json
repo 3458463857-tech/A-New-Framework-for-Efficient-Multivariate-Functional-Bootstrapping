@@ -1,0 +1,160 @@
+{
+  "task_id": "set_interval4_6",
+  "alphabet": 4,
+  "n": 6,
+  "p": 17,
+  "author_nu": 5,
+  "lambda_": 4,
+  "a": 0,
+  "atoms": [
+    {
+      "alpha": [
+        1,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "lut": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        2,
+        1,
+        2,
+        0,
+        1,
+        0,
+        1,
+        1,
+        2,
+        1,
+        2,
+        0
+      ],
+      "note": "pair membership count"
+    },
+    {
+      "alpha": [
+        0,
+        0,
+        1,
+        4,
+        0,
+        0,
+        0
+      ],
+      "lut": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        2,
+        1,
+        2,
+        0,
+        1,
+        0,
+        1,
+        1,
+        2,
+        1,
+        2,
+        0
+      ],
+      "note": "pair membership count"
+    },
+    {
+      "alpha": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        4,
+        0,
+        0
+      ],
+      "lut": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        2,
+        1,
+        2,
+        0,
+        1,
+        0,
+        1,
+        1,
+        2,
+        1,
+        2,
+        0
+      ],
+      "note": "pair membership count"
+    },
+    {
+      "alpha": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "lut": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "note": "predicate of the six-symbol membership count"
+    }
+  ],
+  "output_beta": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "exhaustive_checked": 4096,
+  "construction": [
+    {
+      "method": "three pair atoms plus one outer",
+      "rejected_three_input_atom_family": "all normalized nonzero F17 coefficients",
+      "attempts": 256
+    }
+  ],
+  "provenance": "explicit structured certificate; not output of author random search",
+  "noise_scope": "Fresh raw-input weighted sums use independence; sums of preceding PBS outputs use absolute coefficient sums; final linear sum is not claimed to have one-PBS error probability.",
+  "definitions_sha256": "54347777d1ef1ec0c737694f918632dc362e90eaa19c9ba6ab54493b76737a98"
+}

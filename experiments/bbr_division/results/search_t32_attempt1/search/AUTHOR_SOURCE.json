@@ -1,0 +1,29 @@
+{
+  "directory": "/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_v3/experiments_bbr/source/author/decomposer/src/decomposer",
+  "sha256": {
+    "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "atomic_function.py": "d160756f0e1837c20fa172b13793c6db95bf74ae10eb69f876ca618749e3fd2c",
+    "chain.py": "5aeb1c12e1b2db870f018f5f0d69c9db2c48512230bf76f35119ff05f98a25b4",
+    "decomposition.py": "7cd60a003230bfe3270d0deb60a978a398a67df1b1036b8ce3f155012a604272",
+    "encoding.py": "940cea47a77b8c35c642e0b4e1b27219ae5e163c58b7b97e3df78906af48905f",
+    "experiments.py": "6173754d0cb8c3af84c895d7d8fd42c08d5af2ebd8b662fda3213adcfb6ff638",
+    "gauss.py": "1bf6ac2e50abee7c3df97976692d15cf5440c16ce8b4a9caf60b1ff5bcebcb59",
+    "gauss_elimination_rs.cpython-312-x86_64-linux-gnu.so": "44b73abc61a158376cb41a2b8aac595a1f1712486e1e6fa94aa8ad74c767b3dc",
+    "plots/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "plots/figure_correlation_margin_rank/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "plots/figure_correlation_margin_rank/figure_correlation.py": "a3fcb1a7e104a48612933fe69ff0bb8805b029bd3d3f6695931affa0615b1746",
+    "plots/figure_multi_outputs/plot_figure_multi_outputs.py": "e488d45829bd40e37b9aa6bde18220847c4f4a114c41a339664b6ad3d147766a",
+    "plots/figure_perfs_encodings/export_latex.py": "23e588783746dd53e3aed74641aa125b60ce751aa46915512a29f9b67edd9602",
+    "plots/figure_ranks/plot_figure_ranks.py": "1d0516673254f25b40a586d4a140fbdfd2852b8e47b69c21e2cddf4f0a4dcd29",
+    "plots/figure_results/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "plots/figure_results/plot_figure_results.py": "1ec9f98388a1f1b857ccff53fe6a511f61ed5c0137f77b2654160b3a1dce2f78",
+    "plots/format_tables_of_results.py": "a64bc6615c3fc24284d79fe34f265fb0c92cf81487484bc6286b25d9b9f1dcad",
+    "plots/format_woppbs_data.py": "b415eba474583905ccea5c146749da743a8e9160ac874ee4f85c87a6ea7c9f59",
+    "plots/loggers.py": "11070595c31ed482a7e62dc5ad77c6ddb12309bf121077d4140f253f30674c72",
+    "search.py": "43064717d8af40cfb72572a3ae9b61c2864d84c1e522bf38b80fd4f5ba413b3c",
+    "shape_decomposition.py": "3a7570d29e3c9ddd6be4f7f2982a0568516f83b170b20827e9126540c76b0564",
+    "utils/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "utils/parameters.py": "d5306d8069f6b9d054e6f4f83c2367e9c21c0b6bc704f8ef713204427a22b8b4",
+    "utils/utils.py": "d90123f7118c9c5b7989b590838d1c61ad991fc75e00442ed4f8ea377bd9bf81"
+  }
+}

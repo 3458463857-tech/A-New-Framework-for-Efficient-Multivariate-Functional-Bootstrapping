@@ -1,0 +1,13 @@
+{
+  "author_library_files_identical_to_frozen_R2": 21,
+  "cargo_lock_identical_to_frozen_R2": true,
+  "input_manifests_identical_to_frozen_R2": {
+    "division_t32.csv": "740989ffac6e3a0446eb4cd3f8a965888d543b724e802845c971f4e5819b1b6a",
+    "division_t64.csv": "3a130c948102017adf9f489dd169d98c2e5bad19e7342f1f1e6934f888034c0e"
+  },
+  "both_run_snapshots_match_final_adapter": true,
+  "adapter_sha256": "37d47f81bcee3d9a56740ff8619cd7d1d086175e49e5b23ca95eac84d30dceeb",
+  "full_plaintext_padded_domain_checks_per_run": 65280,
+  "empirical_encrypted_queries_passed": 70,
+  "notes": "No statement that all encrypted inputs were exhaustively evaluated."
+}

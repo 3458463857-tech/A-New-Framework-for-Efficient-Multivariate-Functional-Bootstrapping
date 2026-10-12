@@ -1,0 +1,26 @@
+[
+  {
+    "file": "refined_lhe_mirror.pdf",
+    "download_url": "https://eprint.iacr.asia/2024/1318.pdf",
+    "canonical_url": "https://eprint.iacr.org/2024/1318",
+    "accessed": "2026-10-10",
+    "bytes": 1387769,
+    "sha256": "59c0a84f65ef1a2e375bf5a7f7c3e4e41f5ecedc6345e7eee15874078c5fcb33"
+  },
+  {
+    "file": "meta_pbs_mirror.pdf",
+    "download_url": "https://eprint.iacr.asia/2025/2284.pdf",
+    "canonical_url": "https://eprint.iacr.org/2025/2284",
+    "accessed": "2026-10-10",
+    "bytes": 1679826,
+    "sha256": "1bb10cdaebda03508a1646fb7b6b1cd77e517ee860a34d1dc14638e2e5b12115"
+  },
+  {
+    "file": "refined_lhe_ietf125_author_slides.pdf",
+    "download_url": "https://datatracker.ietf.org/meeting/125/materials/slides-125-cfrg-recent-advances-in-fully-homomorphic-encryption-01",
+    "canonical_url": "https://datatracker.ietf.org/meeting/125/materials/slides-125-cfrg-recent-advances-in-fully-homomorphic-encryption-01",
+    "accessed": "2026-10-10",
+    "bytes": 2151759,
+    "sha256": "6dae85e6c58e01b29233fd09f6eb179450a9cbba072039bfbdd75fe0db4f9b02"
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "task_id": "hamming_interval10",
+    "cartesian_inputs": 1024,
+    "reachable_scores": 11,
+    "maximum_score": 10,
+    "output_max": 1,
+    "declared_output_bound": 1
+  },
+  {
+    "task_id": "set_interval4_6",
+    "cartesian_inputs": 4096,
+    "reachable_scores": 7,
+    "maximum_score": 6,
+    "output_max": 1,
+    "declared_output_bound": 1
+  },
+  {
+    "task_id": "set_threshold4_6",
+    "cartesian_inputs": 4096,
+    "reachable_scores": 7,
+    "maximum_score": 6,
+    "output_max": 1,
+    "declared_output_bound": 1
+  },
+  {
+    "task_id": "lower_median3_3",
+    "cartesian_inputs": 27,
+    "reachable_scores": 10,
+    "maximum_score": 12,
+    "output_max": 2,
+    "declared_output_bound": 2
+  },
+  {
+    "task_id": "mode3_4",
+    "cartesian_inputs": 81,
+    "reachable_scores": 15,
+    "maximum_score": 20,
+    "output_max": 2,
+    "declared_output_bound": 2
+  },
+  {
+    "task_id": "max3_3",
+    "cartesian_inputs": 27,
+    "reachable_scores": 10,
+    "maximum_score": 12,
+    "output_max": 2,
+    "declared_output_bound": 2
+  },
+  {
+    "task_id": "range3_3",
+    "cartesian_inputs": 27,
+    "reachable_scores": 10,
+    "maximum_score": 12,
+    "output_max": 2,
+    "declared_output_bound": 2
+  },
+  {
+    "task_id": "iqr3_4",
+    "cartesian_inputs": 81,
+    "reachable_scores": 15,
+    "maximum_score": 20,
+    "output_max": 2,
+    "declared_output_bound": 2
+  },
+  {
+    "task_id": "mad3_3",
+    "cartesian_inputs": 27,
+    "reachable_scores": 10,
+    "maximum_score": 12,
+    "output_max": 1,
+    "declared_output_bound": 2
+  },
+  {
+    "task_id": "distinct3_3",
+    "cartesian_inputs": 27,
+    "reachable_scores": 10,
+    "maximum_score": 12,
+    "output_max": 3,
+    "declared_output_bound": 3
+  }
+]

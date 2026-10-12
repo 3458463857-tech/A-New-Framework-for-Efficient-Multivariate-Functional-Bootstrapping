@@ -1,0 +1,3 @@
+StringRecord(["17", "55", "4", "1", "1", "4096", "849", "16", "536870912", "1.6512448356449926e-06", "2.168404344971009e-19", "0", "2.938735877055719e-39"])
+PARAMETERS {"lwe_dimension":849,"glwe_dimension":1,"polynomial_size":4096,"lwe_modular_std_dev":1.6512448356449926e-6,"glwe_modular_std_dev":2.168404344971009e-19,"pbs_base_log":29,"pbs_level":1,"ks_base_log":4,"ks_level":4,"encryption_key_choice":"Big"}
+{"actual":4,"correct":false,"d":15,"elapsed_ms":1813.8971270000002,"expected":0,"index":0,"kind":"boundary","m":0,"phase":"warmup","t":16}

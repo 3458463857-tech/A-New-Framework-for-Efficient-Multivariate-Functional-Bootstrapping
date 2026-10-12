@@ -1,0 +1,118 @@
+COMMAND: python3 audit_all_inputs.py --source-dir ../final_experiments/source/section3/src/bin
+EXIT_CODE: 0
+{
+  "16": {
+    "legal_pairs": 240,
+    "all_plaintext_results_correct": true,
+    "all_metadata_preconditions_pass": true,
+    "predicted_library_pbs_counter": [
+      42
+    ],
+    "predicted_nontrivial_blind_rotations": [
+      42
+    ],
+    "conservative_scalar_output_events": [
+      46
+    ]
+  },
+  "32": {
+    "legal_pairs": 992,
+    "all_plaintext_results_correct": true,
+    "all_metadata_preconditions_pass": true,
+    "predicted_library_pbs_counter": [
+      114
+    ],
+    "predicted_nontrivial_blind_rotations": [
+      113
+    ],
+    "conservative_scalar_output_events": [
+      118
+    ]
+  },
+  "64": {
+    "legal_pairs": 4032,
+    "all_plaintext_results_correct": true,
+    "all_metadata_preconditions_pass": true,
+    "predicted_library_pbs_counter": [
+      205
+    ],
+    "predicted_nontrivial_blind_rotations": [
+      204
+    ],
+    "conservative_scalar_output_events": [
+      219
+    ]
+  }
+}
+
+
+COMMAND: python3 audit_controls.py
+EXIT_CODE: 0
+{
+  "scope": "Exact input and local budget checks; native library implementation reviewed separately; no probability-tail proof.",
+  "native_domains": {
+    "16": {
+      "legal_pairs": 240,
+      "restoring_division_invariant": "PASS"
+    },
+    "32": {
+      "legal_pairs": 992,
+      "restoring_division_invariant": "PASS"
+    },
+    "64": {
+      "legal_pairs": 4032,
+      "restoring_division_invariant": "PASS"
+    }
+  },
+  "native_local_rule_cases": 32,
+  "count_domains": {
+    "12": {
+      "inputs_checked": 4096,
+      "max_degree": 36,
+      "max_noise_level": 12,
+      "PBS_input_capacity": 63,
+      "PBS_noise_capacity": 21,
+      "PBS_events": 1,
+      "threshold_positive_inputs": 2510,
+      "interval_positive_inputs": 3498
+    },
+    "16": {
+      "inputs_checked": 65536,
+      "max_degree": 48,
+      "max_noise_level": 16,
+      "PBS_input_capacity": 63,
+      "PBS_noise_capacity": 21,
+      "PBS_events": 1,
+      "threshold_positive_inputs": 39203,
+      "interval_positive_inputs": 56134
+    }
+  },
+  "refined_division_selector_pairs": 240,
+  "refined_count_selector_order": "MSB first, as author vertical_packing",
+  "total_observed_correct": 525
+}
+
+
+COMMAND: python3 audit_signed.py
+EXIT_CODE: 0
+{
+  "16": {
+    "signed_legal_pairs": 930,
+    "all_results_correct": true,
+    "all_2t_residues_negacyclic_for_three_functions": true,
+    "scope": "Plaintext/FBP interface identities only; no signed ciphertext or noise-tail claim."
+  },
+  "32": {
+    "signed_legal_pairs": 3906,
+    "all_results_correct": true,
+    "all_2t_residues_negacyclic_for_three_functions": true,
+    "scope": "Plaintext/FBP interface identities only; no signed ciphertext or noise-tail claim."
+  },
+  "64": {
+    "signed_legal_pairs": 16002,
+    "all_results_correct": true,
+    "all_2t_residues_negacyclic_for_three_functions": true,
+    "scope": "Plaintext/FBP interface identities only; no signed ciphertext or noise-tail claim."
+  }
+}
+

@@ -1,0 +1,1 @@
+CARGO_HTTP_TIMEOUT=15 CARGO_NET_RETRY=0 timeout 180 cargo bench --bench bench_lut_eval --no-run

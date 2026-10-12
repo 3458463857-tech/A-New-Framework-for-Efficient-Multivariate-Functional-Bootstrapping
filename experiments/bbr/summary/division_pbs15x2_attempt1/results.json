@@ -1,0 +1,58 @@
+{
+  "task_id": "division_t16",
+  "method": "BBR author evaluator, revised PBS decomposition",
+  "input_domain": "0<=m<16, 1<=d<16; output floor(m/d)",
+  "output_encoding": "one big-LWE, canonical F17 elements 0..15",
+  "warmup": 5,
+  "timed_samples": 30,
+  "correct_all_35": true,
+  "mean_ms": 2729.5381733,
+  "population_sd_ms": 33.64678894148887,
+  "sample_sd_ms": 34.22198939288382,
+  "median_ms": 2722.399114,
+  "min_ms": 2684.068977,
+  "max_ms": 2850.648212,
+  "logical_pbs": 47,
+  "atomic_pbs": 25,
+  "multiplication_pbs": 22,
+  "parameters": {
+    "lwe_dimension": 849,
+    "glwe_dimension": 1,
+    "polynomial_size": 4096,
+    "lwe_modular_std_dev": 1.6512448356449926e-06,
+    "glwe_modular_std_dev": 2.168404344971009e-19,
+    "pbs_base_log": 15,
+    "pbs_level": 2,
+    "ks_base_log": 4,
+    "ks_level": 4,
+    "encryption_key_choice": "Big"
+  },
+  "author_parameter_row_used_as_base": {
+    "p": 17,
+    "nu": 55
+  },
+  "parameter_override": {
+    "pbs_base_log": 15,
+    "pbs_level": 2
+  },
+  "parameter_qualification": "The original CSV error label is not reassigned to the modified configuration. Whole-path failure probability and concrete security were not re-estimated.",
+  "timing_scope": "From two independently encrypted input LWE ciphertexts through all 25 atoms, 11 two-PBS multiplications, linear output combination to one output LWE. Input encryption, key generation, output decryption, offline decomposition and file I/O are outside the timer. No diagnostic decryption inside the production evaluator.",
+  "thread_configuration": {
+    "affinity": "CPU 0-7",
+    "RAYON_NUM_THREADS": 8,
+    "OMP_NUM_THREADS": 8,
+    "OPENBLAS_NUM_THREADS": 8,
+    "online_author_evaluator": "sequential; no parallel iterator in the timed evaluator"
+  },
+  "provenance": {
+    "results/division_fhe_pbs15x2_attempt1/raw.jsonl": "091fc3924e7f387bbc906efdff2cc2d20e536ef1ce763aed554f943702b946ff",
+    "results/division_fhe_pbs15x2_attempt1/input.csv": "2615db095fc02455aa7fcb8e151ae321c2e69cb42d99282c292468015b015b05",
+    "results/division_fhe_pbs15x2_attempt1/source_snapshot.rs": "e0af7316d0b0801e8880cab142bbcb3d2977ac5f9da1df8c7bd4256188f4e362",
+    "results/division_fhe_pbs15x2_attempt1/decomposition_snapshot.rs": "0a148414e3da37382c13f13e6e0e3c50727eb884653b5d96ec1305bdf52563ee",
+    "results/division_fhe_pbs15x2_attempt1/files_snapshot.rs": "5f15ea46c84fd8456512d16b36d89535f2f26d99eb54a4a76c701ff1578e4a96",
+    "results/division_fhe_pbs15x2_attempt1/Cargo.lock": "a51dddbc0aef8ac6c1caf41e7c7bcbdf0d1222b99d9410ca74eb64c8f76c841c",
+    "results/division_fhe_pbs15x2_attempt1/certificate.json": "e94a0a1f69d8e3e36c72d173d5584c0d2a3f12c12f9f04137cfc1e884dd7955f"
+  },
+  "raw_record": "results/division_fhe_pbs15x2_attempt1/raw.jsonl",
+  "diagnosis": "evidence/DIVISION_ROOT_CAUSE_AND_REPAIR.md"
+}

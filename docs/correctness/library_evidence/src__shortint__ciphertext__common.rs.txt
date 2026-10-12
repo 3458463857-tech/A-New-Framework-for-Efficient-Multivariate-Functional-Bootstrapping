@@ -1,0 +1,116 @@
+TFHE-rs 0.8.7: src/shortint/ciphertext/common.rs
+Whole-source SHA256: 991052832294b5ea3671a2ef48a2d64a3bdb557db5762d424aa51ab3622509c6
+
+
+--- Lines 35-145 ---
+35:     }
+36: 
+37:     // This function is valid for current parameters as they guarantee the p-error for a norm2 noise
+38:     // limit equal to the norm2 limit which guarantees a clean padding bit
+39:     //
+40:     // TODO: remove this functions once noise norm2 constraint is decorrelated and stored in
+41:     // parameter sets
+42:     pub const fn from_msg_carry_modulus(
+43:         msg_modulus: MessageModulus,
+44:         carry_modulus: CarryModulus,
+45:     ) -> Self {
+46:         Self((carry_modulus.0 * msg_modulus.0 - 1) / (msg_modulus.0 - 1))
+47:     }
+48: 
+49:     pub const fn validate(&self, noise_level: NoiseLevel) -> Result<(), CheckError> {
+50:         if noise_level.0 > self.0 {
+51:             return Err(CheckError::NoiseTooBig {
+52:                 noise_level,
+53:                 max_noise_level: *self,
+54:             });
+55:         }
+56:         Ok(())
+57:     }
+58: }
+59: 
+60: /// This tracks the amount of noise in a ciphertext.
+61: #[derive(
+62:     Debug, PartialEq, Eq, PartialOrd, Ord, Copy, Clone, Serialize, Deserialize, Versionize,
+63: )]
+64: #[versionize(NoiseLevelVersions)]
+65: pub struct NoiseLevel(usize);
+66: 
+67: impl NoiseLevel {
+68:     pub const NOMINAL: Self = Self(1);
+69:     pub const ZERO: Self = Self(0);
+70:     // To force a refresh no matter the tolerance of the server key, useful for serialization update
+71:     // for formats which did not have noise levels saved
+72:     pub const MAX: Self = Self(usize::MAX);
+73:     // As a safety measure the unknown noise level is set to the max value
+74:     pub const UNKNOWN: Self = Self::MAX;
+75: }
+76: 
+77: impl NoiseLevel {
+78:     pub fn get(&self) -> usize {
+79:         self.0
+80:     }
+81: }
+82: 
+83: impl std::ops::AddAssign for NoiseLevel {
+84:     fn add_assign(&mut self, rhs: Self) {
+85:         self.0 = self.0.saturating_add(rhs.0);
+86:     }
+87: }
+88: 
+89: impl std::ops::Add for NoiseLevel {
+90:     type Output = Self;
+91: 
+92:     fn add(mut self, rhs: Self) -> Self {
+93:         self += rhs;
+94:         self
+95:     }
+96: }
+97: 
+98: impl std::ops::MulAssign<usize> for NoiseLevel {
+99:     fn mul_assign(&mut self, rhs: usize) {
+100:         self.0 = self.0.saturating_mul(rhs);
+101:     }
+102: }
+103: 
+104: impl std::ops::Mul<usize> for NoiseLevel {
+105:     type Output = Self;
+106: 
+107:     fn mul(mut self, rhs: usize) -> Self::Output {
+108:         self *= rhs;
+109: 
+110:         self
+111:     }
+112: }
+113: 
+114: /// Maximum value that the degree can reach.
+115: #[derive(Debug, PartialEq, Eq, Copy, Clone, Serialize, Deserialize, Versionize)]
+116: #[versionize(MaxDegreeVersions)]
+117: pub struct MaxDegree(usize);
+118: 
+119: impl MaxDegree {
+120:     pub fn new(value: usize) -> Self {
+121:         Self(value)
+122:     }
+123: 
+124:     pub fn get(&self) -> usize {
+125:         self.0
+126:     }
+127: 
+128:     pub fn from_msg_carry_modulus(
+129:         msg_modulus: MessageModulus,
+130:         carry_modulus: CarryModulus,
+131:     ) -> Self {
+132:         Self(carry_modulus.0 * msg_modulus.0 - 1)
+133:     }
+134: 
+135:     pub fn validate(&self, degree: Degree) -> Result<(), CheckError> {
+136:         if degree.get() > self.0 {
+137:             return Err(CheckError::CarryFull {
+138:                 degree,
+139:                 max_degree: *self,
+140:             });
+141:         }
+142:         Ok(())
+143:     }
+144: }
+145: 

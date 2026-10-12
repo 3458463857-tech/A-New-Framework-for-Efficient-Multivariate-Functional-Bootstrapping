@@ -1,0 +1,76 @@
+DROP floor division                     m in [0,15], d in [1,15]                   direct=     240 decomposed=     204 ratio=    1.18 exact=True M=22
+DROP floor division                     m in [0,31], d in [1,31]                   direct=     992 decomposed=     500 ratio=    1.98 exact=True M=44
+KEEP floor division                     m in [0,63], d in [1,63]                   direct=    4032 decomposed=    1192 ratio=    3.38 exact=True M=89
+DROP 2-input geometric mean             x_i in [1,15]                              direct=     225 decomposed=     383 ratio=    0.59 exact=True M=45
+KEEP 3-input geometric mean             x_i in [1,15]                              direct=    3375 decomposed=    1252 ratio=    2.70 exact=True M=103
+DROP 2-input geometric mean             x_i in [1,31]                              direct=     961 decomposed=    4759 ratio=    0.20 exact=True M=474
+DROP weighted geometric mean            floor((x*y^2)^(1/3)), x,y in [1,15]        direct=     225 decomposed=     500 ratio=    0.45 exact=True M=40
+DROP two-input harmonic mean            floor(2xy/(x+y)), x,y in [1,15]            direct=     225 decomposed=     535 ratio=    0.42 exact=True M=270
+KEEP variable-index integer root        floor(a^(1/b)), a,b in [2,16]              direct=     225 decomposed=     106 ratio=    2.12 exact=True M=15
+DROP variable-base integer logarithm    floor(log_a(b)), a,b in [2,16]             direct=     225 decomposed=     123 ratio=    1.83 exact=True M=23
+KEEP variable-index integer root        floor(a^(1/b)), a,b in [2,32]              direct=     961 decomposed=     234 ratio=    4.11 exact=True M=27
+KEEP variable-base integer logarithm    floor(log_a(b)), a,b in [2,32]             direct=     961 decomposed=     347 ratio=    2.77 exact=True M=61
+DROP floor(sin(pi*x/(2t))/sin(pi*y/(2t))) x,y in [1,15], t=16                        direct=     225 decomposed=     233 ratio=    0.97 exact=True M=30
+DROP floor(tan(pi*x/(4t))/tan(pi*y/(4t))) x,y in [1,15], t=16                        direct=     225 decomposed=     199 ratio=    1.13 exact=True M=20
+DROP floor(cos(pi*x/(2t))/cos(pi*y/(2t))) x,y in [1,15], t=16                        direct=     225 decomposed=     233 ratio=    0.97 exact=True M=30
+DROP floor(log(1+x)/log(1+y))           x,y in [1,15], t=16                        direct=     225 decomposed=     123 ratio=    1.83 exact=True M=23
+DROP floor(log(1+x^2)/log(1+y^2))       x,y in [1,15], t=16                        direct=     225 decomposed=     151 ratio=    1.49 exact=True M=20
+DROP floor(sqrt(1+x^2)/sqrt(1+y^2))     x,y in [1,15], t=16                        direct=     225 decomposed=     141 ratio=    1.60 exact=True M=16
+DROP floor(asinh(x)/asinh(y))           x,y in [1,15], t=16                        direct=     225 decomposed=     121 ratio=    1.86 exact=True M=23
+DROP floor(sinh(x/t)/sinh(y/t))         x,y in [1,15], t=16                        direct=     225 decomposed=     311 ratio=    0.72 exact=True M=34
+DROP floor(sqrt(sin(pi*x/(2t))/sin(pi*y/(2t)))) x,y in [1,15], t=16                        direct=     225 decomposed=     191 ratio=    1.18 exact=True M=48
+DROP floor(sqrt(log(1+x)/log(1+y)))     x,y in [1,15], t=16                        direct=     225 decomposed=     117 ratio=    1.92 exact=True M=43
+DROP floor(cuberoot(log(1+x)/log(1+y))) x,y in [1,15], t=16                        direct=     225 decomposed=     117 ratio=    1.92 exact=True M=65
+DROP floor(sqrt(asinh(x)/asinh(y)))     x,y in [1,15], t=16                        direct=     225 decomposed=     121 ratio=    1.86 exact=True M=46
+DROP floor(sin(pi*x/(2t))/sin(pi*y/(2t))) x,y in [1,31], t=32                        direct=     961 decomposed=     899 ratio=    1.07 exact=True M=96
+DROP floor(tan(pi*x/(4t))/tan(pi*y/(4t))) x,y in [1,31], t=32                        direct=     961 decomposed=     665 ratio=    1.45 exact=True M=57
+DROP floor(cos(pi*x/(2t))/cos(pi*y/(2t))) x,y in [1,31], t=32                        direct=     961 decomposed=     899 ratio=    1.07 exact=True M=96
+KEEP floor(log(1+x)/log(1+y))           x,y in [1,31], t=32                        direct=     961 decomposed=     343 ratio=    2.80 exact=True M=60
+KEEP floor(log(1+x^2)/log(1+y^2))       x,y in [1,31], t=32                        direct=     961 decomposed=     435 ratio=    2.21 exact=True M=56
+KEEP floor(sqrt(1+x^2)/sqrt(1+y^2))     x,y in [1,31], t=32                        direct=     961 decomposed=     437 ratio=    2.20 exact=True M=42
+KEEP floor(asinh(x)/asinh(y))           x,y in [1,31], t=32                        direct=     961 decomposed=     411 ratio=    2.34 exact=True M=78
+DROP floor(sinh(x/t)/sinh(y/t))         x,y in [1,31], t=32                        direct=     961 decomposed=     777 ratio=    1.24 exact=True M=69
+DROP floor(sqrt(sin(pi*x/(2t))/sin(pi*y/(2t)))) x,y in [1,31], t=32                        direct=     961 decomposed=     899 ratio=    1.07 exact=True M=192
+KEEP floor(sqrt(log(1+x)/log(1+y)))     x,y in [1,31], t=32                        direct=     961 decomposed=     339 ratio=    2.83 exact=True M=119
+KEEP floor(cuberoot(log(1+x)/log(1+y))) x,y in [1,31], t=32                        direct=     961 decomposed=     335 ratio=    2.87 exact=True M=175
+KEEP floor(sqrt(asinh(x)/asinh(y)))     x,y in [1,31], t=32                        direct=     961 decomposed=     409 ratio=    2.35 exact=True M=155
+DROP floor(sin(pi*x/(2t))/sin(pi*y/(2t))) x,y in [1,63], t=64                        direct=    3969 decomposed=    4235 ratio=    0.94 exact=True M=384
+DROP floor(tan(pi*x/(4t))/tan(pi*y/(4t))) x,y in [1,63], t=64                        direct=    3969 decomposed=    4621 ratio=    0.86 exact=True M=356
+DROP floor(cos(pi*x/(2t))/cos(pi*y/(2t))) x,y in [1,63], t=64                        direct=    3969 decomposed=    4235 ratio=    0.94 exact=True M=384
+KEEP floor(log(1+x)/log(1+y))           x,y in [1,63], t=64                        direct=    3969 decomposed=     913 ratio=    4.35 exact=True M=152
+KEEP floor(log(1+x^2)/log(1+y^2))       x,y in [1,63], t=64                        direct=    3969 decomposed=    1187 ratio=    3.34 exact=True M=148
+KEEP floor(sqrt(1+x^2)/sqrt(1+y^2))     x,y in [1,63], t=64                        direct=    3969 decomposed=    1311 ratio=    3.03 exact=True M=108
+KEEP floor(asinh(x)/asinh(y))           x,y in [1,63], t=64                        direct=    3969 decomposed=    1001 ratio=    3.97 exact=True M=178
+DROP floor(sinh(x/t)/sinh(y/t))         x,y in [1,63], t=64                        direct=    3969 decomposed=    3811 ratio=    1.04 exact=True M=297
+DROP floor(sqrt(sin(pi*x/(2t))/sin(pi*y/(2t)))) x,y in [1,63], t=64                        direct=    3969 decomposed=    4229 ratio=    0.94 exact=True M=767
+KEEP floor(sqrt(log(1+x)/log(1+y)))     x,y in [1,63], t=64                        direct=    3969 decomposed=     911 ratio=    4.36 exact=True M=303
+KEEP floor(cuberoot(log(1+x)/log(1+y))) x,y in [1,63], t=64                        direct=    3969 decomposed=     913 ratio=    4.35 exact=True M=456
+KEEP floor(sqrt(asinh(x)/asinh(y)))     x,y in [1,63], t=64                        direct=    3969 decomposed=     981 ratio=    4.05 exact=True M=347
+KEEP integer mean                       t=8, ell=6                                 direct=  262144 decomposed=      43 ratio= 6096.37 exact=True M=None
+KEEP integer RMS                        t=8, ell=6                                 direct=  262144 decomposed=     343 ratio=  764.27 exact=True M=None
+KEEP quadratic-energy threshold         t=8, ell=6, tau=98                         direct=  262144 decomposed=     343 ratio=  764.27 exact=True M=None
+KEEP variance bucket                    t=8, ell=6                                 direct=  262144 decomposed=   12733 ratio=   20.59 exact=True M=None
+KEEP clipped affine activation          t=8, ell=6, w=(3, -2, 1, -1, 2, -3)        direct=  262144 decomposed=      85 ratio= 3084.05 exact=True M=None
+KEEP maximum                            t=8, ell=6                                 direct=  262144 decomposed=      75 ratio= 3495.25 exact=True M=None
+KEEP lower median                       t=8, ell=6                                 direct=  262144 decomposed=     225 ratio= 1165.08 exact=True M=None
+KEEP range                              t=8, ell=6                                 direct=  262144 decomposed=     225 ratio= 1165.08 exact=True M=None
+KEEP interquartile range                t=8, ell=6                                 direct=  262144 decomposed=     225 ratio= 1165.08 exact=True M=None
+KEEP top-two sum                        t=8, ell=6                                 direct=  262144 decomposed=     225 ratio= 1165.08 exact=True M=None
+KEEP winsorized mean                    t=8, ell=6                                 direct=  262144 decomposed=     225 ratio= 1165.08 exact=True M=None
+KEEP median absolute deviation          t=8, ell=6                                 direct=  262144 decomposed=     540 ratio=  485.45 exact=True M=None
+KEEP mode                               t=5, ell=8                                 direct=  390625 decomposed=     268 ratio= 1457.56 exact=True M=None
+KEEP distinct-count                     t=5, ell=8                                 direct=  390625 decomposed=     245 ratio= 1594.39 exact=True M=None
+KEEP second frequency moment            t=5, ell=8                                 direct=  390625 decomposed=     245 ratio= 1594.39 exact=True M=None
+KEEP collision-pair count               t=5, ell=8                                 direct=  390625 decomposed=     245 ratio= 1594.39 exact=True M=None
+KEEP Gini impurity bucket               t=5, ell=8                                 direct=  390625 decomposed=     245 ratio= 1594.39 exact=True M=None
+KEEP plurality margin                   t=5, ell=8                                 direct=  390625 decomposed=     370 ratio= 1055.74 exact=True M=None
+KEEP quantized Jaccard                  two binary vectors, n=8, output scale=15   direct=   65536 decomposed=     113 ratio=  579.96 exact=True M=None
+KEEP quantized Dice                     two binary vectors, n=8, output scale=15   direct=   65536 decomposed=     185 ratio=  354.25 exact=True M=None
+KEEP quantized cosine similarity        two binary vectors, n=8, output scale=15   direct=   65536 decomposed=     761 ratio=   86.12 exact=True M=None
+KEEP quantized overlap coefficient      two binary vectors, n=8, output scale=15   direct=   65536 decomposed=     761 ratio=   86.12 exact=True M=None
+KEEP binary Levenshtein distance        two binary strings, n=8                    direct=   65536 decomposed=    2208 ratio=   29.68 exact=True M=None
+KEEP binary longest-common-subsequence length two binary strings, n=8                    direct=   65536 decomposed=    1344 ratio=   48.76 exact=True M=None
+KEEP dynamic time-warping distance      two length-4 sequences over [0,2]          direct=    6561 decomposed=    1008 ratio=    6.51 exact=True M=None
+KEEP discrete Frechet distance          two length-4 sequences over [0,2]          direct=    6561 decomposed=     320 ratio=   20.50 exact=True M=None
+DROP Euclidean GCD                      a,b in [1,32]                              direct=    1024 decomposed=    3549 ratio=    0.29 exact=True M=None
+DROP mixed activation bit               binary ell=12                              direct=    4096 decomposed=    4120 ratio=    0.99 exact=True M=None

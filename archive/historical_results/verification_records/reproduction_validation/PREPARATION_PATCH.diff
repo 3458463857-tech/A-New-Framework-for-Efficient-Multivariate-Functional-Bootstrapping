@@ -1,0 +1,26 @@
+--- published/work/DCC_final_polish_v6/new_experiments/scripts/run_t8.sh
++++ execution-copy/work/DCC_final_polish_v6/new_experiments/scripts/run_t8.sh
+@@ -8,7 +8,11 @@
+ export PATH="$HOME/.cargo/bin:$PATH"
+ export RAYON_NUM_THREADS=8 OMP_NUM_THREADS=8 OPENBLAS_NUM_THREADS=8 GOMAXPROCS=8
+ export CARGO_NET_OFFLINE=true
+-export GOROOT="$WORK/DCC_revision_v3/experiments_meta/toolchain/go"
++if [[ -x "$WORK/DCC_revision_v3/experiments_meta/toolchain/go/bin/go" ]]; then
++  export GOROOT="$WORK/DCC_revision_v3/experiments_meta/toolchain/go"
++else
++  export GOROOT="$(go env GOROOT)"
++fi
+ export GOPATH="$WORK/DCC_revision_v3/experiments_meta/toolchain/gopath"
+ export PATH="$GOROOT/bin:$PATH"
+ export GOCACHE="$ROOT/build/gocache" GOPROXY=off
+@@ -20,8 +24,8 @@
+ cp "$ROOT/inputs/division_t8.csv" "$OUT/input_snapshot.csv"
+ sha256sum "$OUT/input_snapshot.csv" > "$OUT/input_sha256.txt"
+ # Copy build caches to a new directory; earlier source and build files stay untouched.
+-cp -a "$WORK/DCC_targeted_revision_v2/final_experiments/build/target" "$ROOT/build/target"
+-cp -a "$WORK/DCC_targeted_revision_v2/baseline_experiments/build/refined" "$ROOT/build/refined"
++if [[ -d "$WORK/DCC_targeted_revision_v2/final_experiments/build/target" ]]; then cp -a "$WORK/DCC_targeted_revision_v2/final_experiments/build/target" "$ROOT/build/target"; fi
++if [[ -d "$WORK/DCC_targeted_revision_v2/baseline_experiments/build/refined" ]]; then cp -a "$WORK/DCC_targeted_revision_v2/baseline_experiments/build/refined" "$ROOT/build/refined"; fi
+ export CARGO_TARGET_DIR="$ROOT/build/target"
+ cd "$ROOT/source/section3"
+ cargo build --release --locked --offline --bin algorithm1_t8_audited --bin baseline_div_t8 > "$OUT/build_section3.log" 2>&1

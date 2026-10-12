@@ -1,0 +1,4 @@
+2d20c0be3aaf85bf179e4a900350a004c089e16e4a7a66264f613d2cb3250664  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_meta_small/build/dccsmall
+37c843d095576dd78730ec764067f3c6ee8b9896159d59aaeeae60c72d5c0359  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_meta_small/results/protocol1_attempt1/adapter_snapshot.go
+c0302339dc5fb13282ea48268018c4579df3c2e3b6a01de340fb0cef43cc2749  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_meta_small/results/protocol1_attempt1/go.mod
+5c167f0e3c3011ee5d64e4f16c9a085c32c923a3a6620788f93c5bc83b09a625  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_meta_small/results/protocol1_attempt1/go.sum

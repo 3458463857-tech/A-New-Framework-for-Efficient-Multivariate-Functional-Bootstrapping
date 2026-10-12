@@ -1,0 +1,91 @@
+{
+  "all_pass": true,
+  "protected_representations_unchanged": true,
+  "checks": [
+    {
+      "script": "code/Section4_Code/chapter4_compression/generate_table11_records.py",
+      "args": [
+        "--help"
+      ],
+      "exit": 0,
+      "output": "usage: generate_table11_records.py [-h] [--output-dir OUTPUT_DIR]\n\noptions:\n  -h, --help            show this help message and exit\n  --output-dir OUTPUT_DIR\n"
+    },
+    {
+      "script": "code/Section4_Code/chapter4_compression/generate_table11_records.py",
+      "args": [
+        "--output-dir",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\\representations"
+      ],
+      "exit": 2,
+      "output": "usage: generate_table11_records.py [-h] [--output-dir OUTPUT_DIR]\ngenerate_table11_records.py: error: refusing to overwrite nonempty output directory: C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\\representations\n"
+    },
+    {
+      "script": "code/Section4_Code/application_function_study/run_experiments.py",
+      "args": [
+        "--help"
+      ],
+      "exit": 0,
+      "output": "usage: run_experiments.py [-h] [--output-dir OUTPUT_DIR]\n\noptions:\n  -h, --help            show this help message and exit\n  --output-dir OUTPUT_DIR\n"
+    },
+    {
+      "script": "code/Section4_Code/application_function_study/run_experiments.py",
+      "args": [
+        "--output-dir",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\\representations"
+      ],
+      "exit": 2,
+      "output": "usage: run_experiments.py [-h] [--output-dir OUTPUT_DIR]\nrun_experiments.py: error: refusing to overwrite nonempty output directory: C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\\representations\n"
+    },
+    {
+      "script": "code/Section4_Code/application_function_study/compare_intermediate_routes.py",
+      "args": [
+        "--help"
+      ],
+      "exit": 0,
+      "output": "usage: compare_intermediate_routes.py [-h] [--output-dir OUTPUT_DIR]\n\noptions:\n  -h, --help            show this help message and exit\n  --output-dir OUTPUT_DIR\n"
+    },
+    {
+      "script": "code/Section4_Code/application_function_study/compare_intermediate_routes.py",
+      "args": [
+        "--output-dir",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\\representations"
+      ],
+      "exit": 2,
+      "output": "usage: compare_intermediate_routes.py [-h] [--output-dir OUTPUT_DIR]\ncompare_intermediate_routes.py: error: refusing to overwrite nonempty output directory: C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\\representations\n"
+    },
+    {
+      "script": "code/Reproduction_Materials_for_Application_function/run_experiments.py",
+      "args": [
+        "--help"
+      ],
+      "exit": 0,
+      "output": "usage: run_experiments.py [-h] [--output-dir OUTPUT_DIR]\n\noptions:\n  -h, --help            show this help message and exit\n  --output-dir OUTPUT_DIR\n"
+    },
+    {
+      "script": "code/Reproduction_Materials_for_Application_function/run_experiments.py",
+      "args": [
+        "--output-dir",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\\representations"
+      ],
+      "exit": 2,
+      "output": "usage: run_experiments.py [-h] [--output-dir OUTPUT_DIR]\nrun_experiments.py: error: refusing to overwrite nonempty output directory: C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\\representations\n"
+    },
+    {
+      "script": "code/Reproduction_Materials_for_Application_function/compare_intermediate_routes.py",
+      "args": [
+        "--help"
+      ],
+      "exit": 0,
+      "output": "usage: compare_intermediate_routes.py [-h] [--output-dir OUTPUT_DIR]\n\noptions:\n  -h, --help            show this help message and exit\n  --output-dir OUTPUT_DIR\n"
+    },
+    {
+      "script": "code/Reproduction_Materials_for_Application_function/compare_intermediate_routes.py",
+      "args": [
+        "--output-dir",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\\representations"
+      ],
+      "exit": 2,
+      "output": "usage: compare_intermediate_routes.py [-h] [--output-dir OUTPUT_DIR]\ncompare_intermediate_routes.py: error: refusing to overwrite nonempty output directory: C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\\representations\n"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "t": 32,
+  "checked": 1024,
+  "legal": 992,
+  "padding": 32,
+  "pass_": true,
+  "logical_pbs": 128,
+  "certificate_sha256": "75c2fa8a7e435bd611f465120341d7a4c94a310fa4d24f90d6e7f95fa1e3e4fb",
+  "exported_files_sha256": {
+    "betas_17_4": "8d25594914ab6595cdae852202c43aa906af77b771a9823418267f615b6b17ab",
+    "d_17_4": "aaa64093028a76c00a2fb250d8c04e009a3c92659362f1158b703f6f517f37f5",
+    "encodings_17_4": "e9629b375a7f98a0127c9ce3bf5719b8fa933458b6e4ff200f80f364d475f077",
+    "new_phis_17_4": "663903446221b95cd5f8e5a5ff823c7e8aeab89d1c35ab59a4ad2394c1185178",
+    "parameters_17_4": "18773632014be58ed2e3f4aaccc5d04f2f5b966ecbbc3e8c6520f97cc957ff25",
+    "sbox_17_4": "74e46b3bcb0a28ed12b056d06e084e32f24406e4feffe8753fbf8a5f621c511b"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "parent_source": "/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_ours_multibit/ours/src/bin/functions_checked.rs",
+  "parent_sha256": "e340dde9b286ca49b5a66da2444299bc403a8c49625e349e76bf43dc98ccfb65",
+  "derived_sha256": "bf535f7c1187adf97d31a21e01ac5dd858a9dbcadf03385c317eddee4f30b425",
+  "changes": [
+    "fixed published smaller parameters",
+    "two-symbol inner grouping with actual last-group arity",
+    "seven explicitly new small-domain tasks",
+    "uniform histogram score (n+1,0,n)",
+    "dynamic exact PBS-count assertions"
+  ],
+  "initial_generated_sha256": "b7b6dd532303ae282d5b04001470c514f3bdf80aad7b3020ae5f06f1073da29e",
+  "compile_repair": "Cast the expected PBS count from usize to u64 in an assertion; no circuit change. Both build snapshots retained."
+}

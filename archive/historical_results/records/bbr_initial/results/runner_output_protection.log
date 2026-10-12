@@ -1,0 +1,6 @@
+Refusing nonempty output directory
+run_counts.sh exit=2 expected=2
+Refusing nonempty output directory
+run_division_search.sh exit=2 expected=2
+Refusing nonempty build-log directory
+build_environment.sh exit=2 expected=2

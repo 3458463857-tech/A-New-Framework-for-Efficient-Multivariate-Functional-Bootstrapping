@@ -1,0 +1,67 @@
+{
+  "files": [
+    {
+      "task_id": "distinct3_3",
+      "sha256": "9ef0c67675447b824055953b56b23b9f324fd3887772110178c7c6d811cc776c",
+      "original": "DCC_fair_comparison_v5/experiments_small_functions/inputs/distinct3_3.csv",
+      "rows": 35
+    },
+    {
+      "task_id": "hamming_interval10",
+      "sha256": "75aebf18d97d97d1ab204fbf7e24e32224a2ccff353ecb231a35879601ef6ac3",
+      "original": "DCC_submission_polish_v4/experiments_functions/inputs/hamming_interval10.csv",
+      "rows": 35
+    },
+    {
+      "task_id": "iqr3_4",
+      "sha256": "35691dfe4adb391b7fa274992e6f01700a5703286ac995007583f2711000fb74",
+      "original": "DCC_fair_comparison_v5/experiments_small_functions/inputs/iqr3_4.csv",
+      "rows": 35
+    },
+    {
+      "task_id": "lower_median3_3",
+      "sha256": "915a3b7833e04c9d1ff0ca842d5255f6fa72e01bbada0ab22f7cc88fb6f7fd75",
+      "original": "DCC_fair_comparison_v5/experiments_small_functions/inputs/lower_median3_3.csv",
+      "rows": 35
+    },
+    {
+      "task_id": "mad3_3",
+      "sha256": "6049c99bdad9a80a95c11922d578e221f2c5e19ca97356323235f7ffdb866ad8",
+      "original": "DCC_fair_comparison_v5/experiments_small_functions/inputs/mad3_3.csv",
+      "rows": 35
+    },
+    {
+      "task_id": "max3_3",
+      "sha256": "eb7d46acc2ede7010fcf94587524f2b9c9028695f93b63b6bf837af0439dd01c",
+      "original": "DCC_fair_comparison_v5/experiments_small_functions/inputs/max3_3.csv",
+      "rows": 35
+    },
+    {
+      "task_id": "mode3_4",
+      "sha256": "1cf6c3efd729359ae7e08dc9911e3be18e7bb5175c8ff5bf968d468a9541cdcc",
+      "original": "DCC_fair_comparison_v5/experiments_small_functions/inputs/mode3_4.csv",
+      "rows": 35
+    },
+    {
+      "task_id": "range3_3",
+      "sha256": "e7a8b6683283a8843d385927cd90f9a8888aeebe5e4820dd92f0804ebd76472a",
+      "original": "DCC_fair_comparison_v5/experiments_small_functions/inputs/range3_3.csv",
+      "rows": 35
+    },
+    {
+      "task_id": "set_interval4_6",
+      "sha256": "30e7b2b2c256be75d76b9cdd5443a63c71fe7e9384f58392120411bdde4a0c2b",
+      "original": "DCC_submission_polish_v4/experiments_functions/inputs/set_interval4_6.csv",
+      "rows": 35
+    },
+    {
+      "task_id": "set_threshold4_6",
+      "sha256": "cf739813ac894a72b2295e3132a3e395c163126097d2a6670cbc89dd3112f891",
+      "original": "DCC_submission_polish_v4/experiments_functions/inputs/set_threshold4_6.csv",
+      "rows": 35
+    }
+  ],
+  "copy_binding": "PASS",
+  "large_definitions_sha256": "54347777d1ef1ec0c737694f918632dc362e90eaa19c9ba6ab54493b76737a98",
+  "small_definitions_sha256": "d13b175af8672a8d0ee026e4787a250378cdd20f2a2e760a33cafe5fdb898cf8"
+}

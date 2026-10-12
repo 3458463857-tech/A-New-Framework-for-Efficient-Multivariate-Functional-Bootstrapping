@@ -1,0 +1,20 @@
+--- original_matched_division.rs
++++ matched_division_pbs15x2.rs
+@@ -1,4 +1,5 @@
+-//! Original author evaluator, one searched F17 output, separately encrypted m,d.
++//! Original author evaluator and certificate; PBS decomposition changed to (15,2).
++//! Dimensions, noise distributions, KS, encoding and online evaluation are unchanged.
+ #[path="../files.rs"] mod files;
+ #[path="../decomposition.rs"] mod decomposition;
+ use std::{env,fs,time::Instant,io::Write};
+@@ -9,7 +10,9 @@
+ fn main() {
+     let a:Vec<_>=env::args().collect();
+     assert_eq!(a.len(),4,"usage: matched_division DECOMPOSITION_NAME MANIFEST.csv OUTPUT.jsonl");
+-    let dec=Decomposition::load_decomposition(4,17,2,128,&a[1]);
++    let mut dec=Decomposition::load_decomposition(4,17,2,128,&a[1]);
++    dec.parameters.pbs_base_log=DecompositionBaseLog(15);
++    dec.parameters.pbs_level=DecompositionLevelCount(2);
+     assert_eq!(dec.sbox.len(),256);
+     for d in 0..16usize {for m in 0..16usize {
+         assert_eq!(dec.sbox[m+16*d],if d==0 {0} else {(m/d) as u64});

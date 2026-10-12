@@ -1,0 +1,48 @@
+[build-system]
+requires = ["maturin>=1.9,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "decomposer"
+requires-python = ">=3.8"
+dynamic = ["version"]
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = ["click"]
+
+[project.scripts]
+experiments-correlation-margin-ranks = "decomposer.experiments:experiment_correlation_margin_rank"
+plot-correlation-margin-ranks = "decomposer.plots.figure_correlation_margin_rank.figure_correlation:plot_figure_correlation"
+
+experiments-ranks-distribution = "decomposer.experiments:full_benchmark_ranks"
+plot-ranks-distributions = "decomposer.plots.figure_ranks.plot_figure_ranks:plot"
+
+plot-multi-outputs = "decomposer.plots.figure_multi_outputs.plot_figure_multi_outputs:plot"
+
+experiments-encodings = "decomposer.experiments:benchmark_encodings"
+plot-encodings = "decomposer.plots.figure_perfs_encodings.export_latex:print_table"
+
+run-search-decomposition = "decomposer.search:reproduce_search_paper"
+search-api = "decomposer.search:search_api"
+
+generate_tables_count_pbs_data = "decomposer.experiments:generate_tables_count_pbs_data"
+format_tables_count_pbs = "decomposer.experiments:format_tables_count_pbs"
+
+generate_tables_size_data = "decomposer.experiments:generate_table_size_data"
+format_tables_size="decomposer.experiments:format_table_size"
+
+plot-comparison-soa = "decomposer.plots.figure_results.plot_figure_results:plot_figure_results_main"
+plot-comparison-soa-intro = "decomposer.plots.figure_results.plot_figure_results:both_plot_intro_figures"
+
+format-tables-benches = "decomposer.plots.format_tables_of_results:format_tables"
+
+
+[tool.maturin]
+python-source = "src"
+module-name = "decomposer.gauss_elimination_rs"
+manifest-path = "src/gauss_elimination_rs/Cargo.toml"
+bindings = "pyo3"
+# (no features here)

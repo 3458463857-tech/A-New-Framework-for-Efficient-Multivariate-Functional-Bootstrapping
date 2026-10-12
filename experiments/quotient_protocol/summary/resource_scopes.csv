@@ -1,0 +1,5 @@
+n,method,logical_records,logical_source,public_buffer_coefficient_bytes,buffer_source,key_serialized_bytes,isolated_query_scratch_bytes
+12,DCC,37,explicit identity-score construction; unelided inner records,131072,"structural allocation calculation: one GLWE accumulator, (k+1)*N u64 coefficients",not separately measured,not separately measured
+12,Refined Boolean CBS + full LUT,4096,complete n-bit LUT,32768,actual logged PolynomialList u64 coefficient count,not separately measured,not separately measured
+16,DCC,49,explicit identity-score construction; unelided inner records,131072,"structural allocation calculation: one GLWE accumulator, (k+1)*N u64 coefficients",not separately measured,not separately measured
+16,Refined Boolean CBS + full LUT,65536,complete n-bit LUT,524288,actual logged PolynomialList u64 coefficient count,not separately measured,not separately measured

@@ -1,0 +1,3 @@
+method=native
+size=32
+predicate=none

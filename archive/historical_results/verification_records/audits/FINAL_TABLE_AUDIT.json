@@ -1,0 +1,91 @@
+{
+  "small_domains": [
+    "hamming_interval10",
+    "set_interval4_6",
+    "set_threshold4_6",
+    "lower_median3_3",
+    "mode3_4",
+    "max3_3",
+    "range3_3",
+    "iqr3_4",
+    "mad3_3",
+    "distinct3_3"
+  ],
+  "larger_domains": [
+    "lower_median3_6",
+    "mode3_6",
+    "max3_6",
+    "range3_6",
+    "iqr3_6",
+    "mad3_6",
+    "distinct3_6"
+  ],
+  "measured_faster_instances": {
+    "BBR26": [
+      "hamming_interval10",
+      "set_interval4_6",
+      "set_threshold4_6",
+      "lower_median3_3",
+      "max3_3",
+      "mad3_3",
+      "distinct3_3"
+    ],
+    "Refined-LHE": [
+      "hamming_interval10",
+      "set_interval4_6",
+      "set_threshold4_6",
+      "lower_median3_3",
+      "max3_3",
+      "range3_3",
+      "mad3_3",
+      "distinct3_3"
+    ],
+    "Meta-PBS": [
+      "hamming_interval10",
+      "lower_median3_3",
+      "max3_3",
+      "range3_3",
+      "mad3_3",
+      "distinct3_3"
+    ]
+  },
+  "data_kind": "All nonempty times are same-machine measured means. BBR t16 uses the author evaluator with revised PBS decomposition 15/2; the original failed run is retained separately and is not a timing mean.",
+  "mean_cell_audit": {
+    "count": 78,
+    "previously_verified": 77,
+    "newly_verified": 1,
+    "languages": [
+      "EN",
+      "ZH"
+    ],
+    "rounding": "two decimal places",
+    "status": "PASS"
+  },
+  "bbr_division_t16": {
+    "status": "PASS",
+    "mean_ms": 2729.5381733,
+    "table_mean_ms": "2729.54",
+    "warmup": 5,
+    "timed_samples": 30,
+    "correct_all_35": true,
+    "logical_pbs": 47,
+    "pbs_base_log": 15,
+    "pbs_level": 2,
+    "source_summary": "work/DCC_fair_comparison_v5/experiments_bbr/summary/division_pbs15x2_attempt1/results.json",
+    "raw_record": "work/DCC_fair_comparison_v5/experiments_bbr/results/division_fhe_pbs15x2_attempt1/raw.jsonl",
+    "source_sha256": "e0af7316d0b0801e8880cab142bbcb3d2977ac5f9da1df8c7bd4256188f4e362",
+    "provenance_files_checked": 7,
+    "original_failed_run": "retained separately, not counted as successful mean",
+    "failure_calibration": "not recalibrated; original CSV 2^-128 is not transferred"
+  },
+  "security_overview_review": {
+    "status": "PASS",
+    "files": [
+      "02_LaTeX/EN/correctness_final.tex",
+      "02_LaTeX/ZH/correctness_final.tex"
+    ],
+    "scope": "Source-reported security targets and local failure calibrations; no common whole-computation failure bound or common quantum-security claim",
+    "independent_security_estimator_run": false,
+    "source_audit": "SECURITY_COMPARISON_AUDIT.md"
+  }
+}

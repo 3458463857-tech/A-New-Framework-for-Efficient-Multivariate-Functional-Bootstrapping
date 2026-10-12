@@ -1,0 +1,48 @@
+TFHE-rs 0.8.7: src/shortint/parameters/classic/gaussian/p_fail_2_minus_64/ks_pbs.rs
+Whole-source SHA256: ad50b339d803a585e9b37b3984f6829188abb6925000dc3727ffae3fd925647f
+
+
+--- Lines 270-312 ---
+270:         pbs_level: DecompositionLevelCount(2),
+271:         ks_base_log: DecompositionBaseLog(3),
+272:         ks_level: DecompositionLevelCount(6),
+273:         message_modulus: MessageModulus(4),
+274:         carry_modulus: CarryModulus(8),
+275:         max_noise_level: MaxNoiseLevel::new(10),
+276:         log2_p_fail: -64.084,
+277:         ciphertext_modulus: CiphertextModulus::new_native(),
+278:         encryption_key_choice: EncryptionKeyChoice::Big,
+279:     };
+280: // p-fail = 2^-64.078, algorithmic cost ~ 833, 2-norm = 21
+281: pub const PARAM_MESSAGE_2_CARRY_4_KS_PBS_GAUSSIAN_2M64: ClassicPBSParameters =
+282:     ClassicPBSParameters {
+283:         lwe_dimension: LweDimension(977),
+284:         glwe_dimension: GlweDimension(1),
+285:         polynomial_size: PolynomialSize(8192),
+286:         lwe_noise_distribution: DynamicDistribution::new_gaussian_from_std_dev(StandardDev(
+287:             3.0144389706858286e-07,
+288:         )),
+289:         glwe_noise_distribution: DynamicDistribution::new_gaussian_from_std_dev(StandardDev(
+290:             2.168404344971009e-19,
+291:         )),
+292:         pbs_base_log: DecompositionBaseLog(15),
+293:         pbs_level: DecompositionLevelCount(2),
+294:         ks_base_log: DecompositionBaseLog(3),
+295:         ks_level: DecompositionLevelCount(6),
+296:         message_modulus: MessageModulus(4),
+297:         carry_modulus: CarryModulus(16),
+298:         max_noise_level: MaxNoiseLevel::new(21),
+299:         log2_p_fail: -64.078,
+300:         ciphertext_modulus: CiphertextModulus::new_native(),
+301:         encryption_key_choice: EncryptionKeyChoice::Big,
+302:     };
+303: // p-fail = 2^-64.058, algorithmic cost ~ 2517, 2-norm = 42
+304: pub const PARAM_MESSAGE_2_CARRY_5_KS_PBS_GAUSSIAN_2M64: ClassicPBSParameters =
+305:     ClassicPBSParameters {
+306:         lwe_dimension: LweDimension(1052),
+307:         glwe_dimension: GlweDimension(1),
+308:         polynomial_size: PolynomialSize(16384),
+309:         lwe_noise_distribution: DynamicDistribution::new_gaussian_from_std_dev(StandardDev(
+310:             8.264676629436917e-08,
+311:         )),
+312:         glwe_noise_distribution: DynamicDistribution::new_gaussian_from_std_dev(StandardDev(

@@ -1,0 +1,67 @@
+{
+  "task_id": "hamming_interval10",
+  "alphabet": 2,
+  "n": 10,
+  "p": 17,
+  "author_nu": 5,
+  "lambda_": 1,
+  "a": 0,
+  "atoms": [
+    {
+      "alpha": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "lut": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "note": "count interval"
+    }
+  ],
+  "output_beta": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "exhaustive_checked": 1024,
+  "construction": [
+    {
+      "method": "one known count atom"
+    }
+  ],
+  "provenance": "explicit structured certificate; not output of author random search",
+  "noise_scope": "Fresh raw-input weighted sums use independence; sums of preceding PBS outputs use absolute coefficient sums; final linear sum is not claimed to have one-PBS error probability.",
+  "definitions_sha256": "54347777d1ef1ec0c737694f918632dc362e90eaa19c9ba6ab54493b76737a98"
+}

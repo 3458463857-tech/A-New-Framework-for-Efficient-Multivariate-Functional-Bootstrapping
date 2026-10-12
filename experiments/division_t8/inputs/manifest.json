@@ -1,0 +1,291 @@
+{
+  "seed": 20261018,
+  "generator": "SplitMix64 with rejection",
+  "warmups": 5,
+  "measured": 30,
+  "measured_boundary": 10,
+  "measured_random": 20,
+  "sha256": "c634744163c3a8a10cbfacb25593ec0700ca0ea177d9a61798537096582ffe05",
+  "rows": [
+    {
+      "phase": "warmup",
+      "index": 0,
+      "t": 8,
+      "m": 0,
+      "d": 7,
+      "kind": "boundary"
+    },
+    {
+      "phase": "warmup",
+      "index": 1,
+      "t": 8,
+      "m": 1,
+      "d": 1,
+      "kind": "boundary"
+    },
+    {
+      "phase": "warmup",
+      "index": 2,
+      "t": 8,
+      "m": 7,
+      "d": 1,
+      "kind": "boundary"
+    },
+    {
+      "phase": "warmup",
+      "index": 3,
+      "t": 8,
+      "m": 7,
+      "d": 7,
+      "kind": "boundary"
+    },
+    {
+      "phase": "warmup",
+      "index": 4,
+      "t": 8,
+      "m": 2,
+      "d": 5,
+      "kind": "boundary"
+    },
+    {
+      "phase": "measured",
+      "index": 0,
+      "t": 8,
+      "m": 0,
+      "d": 7,
+      "kind": "boundary"
+    },
+    {
+      "phase": "measured",
+      "index": 1,
+      "t": 8,
+      "m": 1,
+      "d": 1,
+      "kind": "boundary"
+    },
+    {
+      "phase": "measured",
+      "index": 2,
+      "t": 8,
+      "m": 7,
+      "d": 1,
+      "kind": "boundary"
+    },
+    {
+      "phase": "measured",
+      "index": 3,
+      "t": 8,
+      "m": 7,
+      "d": 7,
+      "kind": "boundary"
+    },
+    {
+      "phase": "measured",
+      "index": 4,
+      "t": 8,
+      "m": 2,
+      "d": 5,
+      "kind": "boundary"
+    },
+    {
+      "phase": "measured",
+      "index": 5,
+      "t": 8,
+      "m": 6,
+      "d": 3,
+      "kind": "boundary"
+    },
+    {
+      "phase": "measured",
+      "index": 6,
+      "t": 8,
+      "m": 3,
+      "d": 2,
+      "kind": "boundary"
+    },
+    {
+      "phase": "measured",
+      "index": 7,
+      "t": 8,
+      "m": 4,
+      "d": 3,
+      "kind": "boundary"
+    },
+    {
+      "phase": "measured",
+      "index": 8,
+      "t": 8,
+      "m": 5,
+      "d": 4,
+      "kind": "boundary"
+    },
+    {
+      "phase": "measured",
+      "index": 9,
+      "t": 8,
+      "m": 5,
+      "d": 4,
+      "kind": "boundary"
+    },
+    {
+      "phase": "measured",
+      "index": 10,
+      "t": 8,
+      "m": 3,
+      "d": 2,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 11,
+      "t": 8,
+      "m": 1,
+      "d": 7,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 12,
+      "t": 8,
+      "m": 3,
+      "d": 3,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 13,
+      "t": 8,
+      "m": 3,
+      "d": 7,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 14,
+      "t": 8,
+      "m": 2,
+      "d": 7,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 15,
+      "t": 8,
+      "m": 3,
+      "d": 1,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 16,
+      "t": 8,
+      "m": 0,
+      "d": 2,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 17,
+      "t": 8,
+      "m": 3,
+      "d": 4,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 18,
+      "t": 8,
+      "m": 6,
+      "d": 4,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 19,
+      "t": 8,
+      "m": 0,
+      "d": 1,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 20,
+      "t": 8,
+      "m": 0,
+      "d": 3,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 21,
+      "t": 8,
+      "m": 0,
+      "d": 4,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 22,
+      "t": 8,
+      "m": 7,
+      "d": 6,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 23,
+      "t": 8,
+      "m": 5,
+      "d": 1,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 24,
+      "t": 8,
+      "m": 7,
+      "d": 6,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 25,
+      "t": 8,
+      "m": 2,
+      "d": 3,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 26,
+      "t": 8,
+      "m": 7,
+      "d": 1,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 27,
+      "t": 8,
+      "m": 1,
+      "d": 5,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 28,
+      "t": 8,
+      "m": 3,
+      "d": 6,
+      "kind": "seeded_random"
+    },
+    {
+      "phase": "measured",
+      "index": 29,
+      "t": 8,
+      "m": 3,
+      "d": 1,
+      "kind": "seeded_random"
+    }
+  ]
+}

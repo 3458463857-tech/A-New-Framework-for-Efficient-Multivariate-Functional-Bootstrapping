@@ -1,0 +1,317 @@
+--- code/Section3_Code/src/bin/algorithm1_small_parameter.rs
++++ code/Section3_Code/src/bin/algorithm1_noise_checked.rs
+@@ -1,3 +1,4 @@
++// Budget-checked revision of algorithm1_small_parameter.rs.
+ use std::collections::BTreeMap;
+ use std::env;
+ use std::process::ExitCode;
+@@ -523,10 +524,10 @@
+             if config.input_branches == 2 {
+                 let mut high_bit = high.clone();
+                 high_bit.degree = Degree::new(1);
+-                let not_high = sks.apply_lookup_table(&high_bit, &luts.equalities[0]);
++                let not_high = sks.budget_lut(&high_bit, &luts.equalities[0]);
+                 vec![not_high, high_bit]
+             } else {
+-                sks.apply_many_lookup_table(
++                sks.budget_many(
+                     high,
+                     luts.equalities_many
+                         .as_ref()
+@@ -538,7 +539,7 @@
+             digit_luts
+                 .par_iter()
+                 .map(|lut| match lut {
+-                    BranchDigitLut::Variable(lut) => Some(sks.apply_lookup_table(low, lut)),
++                    BranchDigitLut::Variable(lut) => Some(sks.budget_lut(low, lut)),
+                     BranchDigitLut::Zero | BranchDigitLut::Constant(_) => None,
+                 })
+                 .collect::<Vec<_>>()
+@@ -552,10 +553,10 @@
+                 BranchDigitLut::Zero => sks.create_trivial(0),
+                 BranchDigitLut::Constant(value) => {
+                     let mut selected = equalities[branch].clone();
+-                    sks.unchecked_scalar_mul_assign(&mut selected, *value as u8);
++                    sks.budget_scalar_mul_assign(&mut selected, *value as u8);
+                     selected
+                 }
+-                BranchDigitLut::Variable(_) => sks.unchecked_apply_lookup_table_bivariate(
++                BranchDigitLut::Variable(_) => sks.budget_bivariate(
+                     &equalities[branch],
+                     branch_digits[index]
+                         .as_ref()
+@@ -570,10 +571,13 @@
+         .map(|block| {
+             let mut digit = gated[block].clone();
+             for branch in 1..config.input_branches {
+-                sks.unchecked_add_assign(&mut digit, &gated[branch * config.radix_blocks + block]);
++                sks.budget_add_assign(&mut digit, &gated[branch * config.radix_blocks + block]);
+             }
+             digit.degree = Degree::new((RADIX_BASE - 1) as usize);
+-            digit
++            // The verified branch partition bounds the message, not its noise.
++            // Refresh while this sum still has a valid level <= 5, before the
++            // standard radix subtraction combines two such blocks.
++            sks.budget_extract(&digit)
+         })
+         .collect::<Vec<_>>();
+     RadixCiphertext::from(blocks)
+@@ -585,8 +589,8 @@
+     high_digit: &ShortintCiphertext,
+ ) -> ShortintCiphertext {
+     let mut packed = high_digit.clone();
+-    sks.unchecked_scalar_mul_assign(&mut packed, RADIX_BASE as u8);
+-    sks.unchecked_add_assign(&mut packed, low_digit);
++    sks.budget_scalar_mul_assign(&mut packed, RADIX_BASE as u8);
++    sks.budget_add_assign(&mut packed, low_digit);
+     packed
+ }
+ 
+@@ -612,7 +616,7 @@
+                 .next()
+                 .expect("every nonconstant group has a residual branch");
+             for residual in matching {
+-                sks.unchecked_add_assign(&mut value, &residual);
++                sks.budget_add_assign(&mut value, &residual);
+             }
+             value.degree = Degree::new(outer_group.max_residual as usize);
+             value
+@@ -625,9 +629,9 @@
+         .map(|bin| {
+             let mut value = group_values[bin[0]].clone();
+             for &group in &bin[1..] {
+-                sks.unchecked_add_assign(&mut value, &group_values[group]);
+-            }
+-            sks.apply_lookup_table(&value, refresh)
++                sks.budget_add_assign(&mut value, &group_values[group]);
++            }
++            sks.budget_lut(&value, refresh)
+         })
+         .collect::<Vec<_>>();
+     while current.len() > 2 {
+@@ -638,14 +642,14 @@
+                     return chunk[0].clone();
+                 }
+                 let mut sum = chunk[0].clone();
+-                sks.unchecked_add_assign(&mut sum, &chunk[1]);
+-                sks.apply_lookup_table(&sum, refresh)
++                sks.budget_add_assign(&mut sum, &chunk[1]);
++                sks.budget_lut(&sum, refresh)
+             })
+             .collect();
+     }
+     let mut sum = current[0].clone();
+     for value in &current[1..] {
+-        sks.unchecked_add_assign(&mut sum, value);
++        sks.budget_add_assign(&mut sum, value);
+     }
+     sum.degree = Degree::new(config.max_row_residual as usize);
+     sum
+@@ -676,10 +680,10 @@
+                         let mut high_bit = high.clone();
+                         high_bit.degree = Degree::new(1);
+                         let not_high = shortint_sks
+-                            .apply_lookup_table(&high_bit, &luts.outer_high_equalities[0]);
++                            .budget_lut(&high_bit, &luts.outer_high_equalities[0]);
+                         vec![not_high, high_bit]
+                     } else {
+-                        shortint_sks.apply_many_lookup_table(
++                        shortint_sks.budget_many(
+                             &high,
+                             luts.outer_high_equalities_many
+                                 .as_ref()
+@@ -690,7 +694,7 @@
+                 || {
+                     luts.outer_mid_equalities
+                         .par_iter()
+-                        .map(|lut| shortint_sks.apply_lookup_table(&mid, lut))
++                        .map(|lut| shortint_sks.budget_lut(&mid, lut))
+                         .collect::<Vec<_>>()
+                 },
+             )
+@@ -702,7 +706,7 @@
+                         .par_iter()
+                         .map(|lut| match lut {
+                             BranchDigitLut::Variable(lut) => {
+-                                Some(shortint_sks.apply_lookup_table(&mid, lut))
++                                Some(shortint_sks.budget_lut(&mid, lut))
+                             }
+                             BranchDigitLut::Zero | BranchDigitLut::Constant(_) => None,
+                         })
+@@ -711,7 +715,7 @@
+                 || {
+                     luts.outer_residual_digits
+                         .par_iter()
+-                        .map(|lut| shortint_sks.apply_lookup_table(&low, lut))
++                        .map(|lut| shortint_sks.budget_lut(&low, lut))
+                         .collect::<Vec<_>>()
+                 },
+             )
+@@ -736,11 +740,11 @@
+                         BranchDigitLut::Constant(value) => {
+                             let mut selected = high_equalities[branch].clone();
+                             shortint_sks
+-                                .unchecked_scalar_mul_assign(&mut selected, *value as u8);
++                                .budget_scalar_mul_assign(&mut selected, *value as u8);
+                             selected
+                         }
+                         BranchDigitLut::Variable(_) => {
+-                            shortint_sks.unchecked_apply_lookup_table_bivariate(
++                            shortint_sks.budget_bivariate(
+                                 &high_equalities[branch],
+                                 base_branch_digits[index]
+                                     .as_ref()
+@@ -757,7 +761,7 @@
+                 .outer_groups
+                 .par_iter()
+                 .map(|outer_group| {
+-                    shortint_sks.unchecked_apply_lookup_table_bivariate(
++                    shortint_sks.budget_bivariate(
+                         &high_equalities[high_positions[&outer_group.high]],
+                         &mid_equalities[outer_group.mid_selector],
+                         &luts.gate_digit,
+@@ -771,7 +775,7 @@
+         .into_par_iter()
+         .map(|index| {
+             let group = config.outer_residuals[index].group;
+-            shortint_sks.unchecked_apply_lookup_table_bivariate(
++            shortint_sks.budget_bivariate(
+                 &row_conditions[group],
+                 &residual_digits[index],
+                 &luts.gate_digit,
+@@ -783,13 +787,14 @@
+         .map(|digit| {
+             let mut value = base_gated[digit].clone();
+             for branch in 1..config.outer_highs.len() {
+-                shortint_sks.unchecked_add_assign(
++                shortint_sks.budget_add_assign(
+                     &mut value,
+                     &base_gated[branch * QUOTIENT_RADIX_BLOCKS + digit],
+                 );
+             }
+             value.degree = Degree::new((RADIX_BASE - 1) as usize);
+-            value
++            // Supply a nominal-noise radix block to the final radix addition.
++            shortint_sks.budget_extract(&value)
+         })
+         .collect::<Vec<_>>();
+     let residual_low = sum_mutually_exclusive_residuals(
+@@ -801,10 +806,10 @@
+     let residual_blocks = if config.t == 32 {
+         luts.residual_split_digits
+             .par_iter()
+-            .map(|lut| shortint_sks.apply_lookup_table(&residual_low, lut))
++            .map(|lut| shortint_sks.budget_lut(&residual_low, lut))
+             .collect::<Vec<_>>()
+     } else {
+-        shortint_sks.apply_many_lookup_table(
++        shortint_sks.budget_many(
+             &residual_low,
+             luts.residual_split_digits_many
+                 .as_ref()
+@@ -817,6 +822,8 @@
+         shortint_sks.create_trivial(0),
+     ]);
+     let base = RadixCiphertext::from(base_blocks);
++    assert_nominal_radix(&base, "final radix addition base");
++    assert_nominal_radix(&residual, "final radix addition residual");
+     sks.add_parallelized(&base, &residual)
+ }
+ 
+@@ -880,7 +887,10 @@
+     let input_ms = started.elapsed().as_secs_f64() * 1000.0;
+     let input_pbs = get_pbs_count();
+     let subtraction_started = Instant::now();
++    assert_nominal_radix(&encrypted_ceil, "radix subtraction left");
++    assert_nominal_radix(&encrypted_floor, "radix subtraction right");
+     let shifted_delta = sks.sub_parallelized(&encrypted_ceil, &encrypted_floor);
++    assert_nominal_radix(&shifted_delta, "radix subtraction output");
+     let subtraction_ms = subtraction_started.elapsed().as_secs_f64() * 1000.0;
+     let after_subtraction_pbs = get_pbs_count();
+     let outer_started = Instant::now();
+@@ -1060,7 +1070,7 @@
+         OuterRoute::Threshold => "parallel_threshold_PBS_circuits",
+     };
+     println!(
+-        "ALGORITHM1_CONFIG,t={},M={},base={BASE},radix_base={RADIX_BASE},intermediate_radix_blocks={},quotient_radix_blocks={QUOTIENT_RADIX_BLOCKS},parameter=PARAM_MULTI_BIT_MESSAGE_2_CARRY_2_GROUP_3_KS_PBS,input_route=encrypted_16_value_chunks,offset_fused=true,constant_digits_elided=true,parallel_luts=true,outer_high_branches={},outer_mid_selectors={},outer_residual_groups={},outer_residual_components={},outer_residual_bins={},outer_route={outer_route_name}",
++        "ALGORITHM1_CONFIG,noise_checked=true,refresh_transform_blocks=true,refresh_outer_base_blocks=true,t={},M={},base={BASE},radix_base={RADIX_BASE},intermediate_radix_blocks={},quotient_radix_blocks={QUOTIENT_RADIX_BLOCKS},parameter=PARAM_MULTI_BIT_MESSAGE_2_CARRY_2_GROUP_3_KS_PBS,input_route=encrypted_16_value_chunks,offset_fused=true,constant_digits_elided=true,parallel_luts=true,outer_high_branches={},outer_mid_selectors={},outer_residual_groups={},outer_residual_components={},outer_residual_bins={},outer_route={outer_route_name}",
+         config.t,
+         config.m_scale,
+         config.radix_blocks,
+@@ -1160,3 +1170,76 @@
+         }
+     }
+ }
++
++
++
++// Explicit metadata contracts for every hand-composed shortint operation.
++// These checks enforce the library's calibrated regime. They are not a
++// new proof of Gaussian/FFT tail probabilities or independence assumptions.
++trait BudgetChecked {
++    fn budget_lut(&self, input: &ShortintCiphertext, lut: &LookupTableOwned) -> ShortintCiphertext;
++    fn budget_many(&self, input: &ShortintCiphertext, lut: &ManyLookupTableOwned) -> Vec<ShortintCiphertext>;
++    fn budget_bivariate(&self, left: &ShortintCiphertext, right: &ShortintCiphertext, lut: &BivariateLookupTableOwned) -> ShortintCiphertext;
++    fn budget_extract(&self, input: &ShortintCiphertext) -> ShortintCiphertext;
++    fn budget_add_assign(&self, left: &mut ShortintCiphertext, right: &ShortintCiphertext);
++    fn budget_scalar_mul_assign(&self, value: &mut ShortintCiphertext, scalar: u8);
++}
++
++fn assert_shortint_budget(value: &ShortintCiphertext, operation: &str) {
++    assert!(value.noise_level().get() <= 5,
++        "{operation}: noise level {} exceeds calibrated budget 5", value.noise_level().get());
++    assert!(value.degree.get() <= 15,
++        "{operation}: degree {} exceeds combined capacity 15", value.degree.get());
++}
++
++fn assert_nominal_radix(value: &RadixCiphertext, operation: &str) {
++    for block in value.blocks() {
++        assert!(block.degree.get() <= 3 && block.noise_level().get() <= 1,
++            "{operation}: standard radix operation requires carry-free nominal blocks");
++    }
++}
++
++impl BudgetChecked for ShortintServerKey {
++    fn budget_lut(&self, input: &ShortintCiphertext, lut: &LookupTableOwned) -> ShortintCiphertext {
++        assert_shortint_budget(input, "univariate PBS input");
++        self.apply_lookup_table(input, lut)
++    }
++    fn budget_many(&self, input: &ShortintCiphertext, lut: &ManyLookupTableOwned) -> Vec<ShortintCiphertext> {
++        assert_shortint_budget(input, "many-LUT PBS input");
++        self.apply_many_lookup_table(input, lut)
++    }
++    fn budget_bivariate(&self, left: &ShortintCiphertext, right: &ShortintCiphertext, lut: &BivariateLookupTableOwned) -> ShortintCiphertext {
++        assert_shortint_budget(left, "bivariate left input");
++        assert_shortint_budget(right, "bivariate right input");
++        self.is_functional_bivariate_pbs_possible(left.noise_degree(), right.noise_degree(), Some(lut))
++            .expect("bivariate packing exceeds calibrated budget");
++        let mut result = self.unchecked_apply_lookup_table_bivariate(left, right, lut);
++        // Every bivariate table in this executable is condition * digit.
++        // The table is populated for all 4x4 inputs, but the encrypted condition
++        // is a verified bit. Its generic LUT degree 9 is therefore too loose.
++        assert!(left.degree.get() <= 1 && right.degree.get() <= 3);
++        result.degree = Degree::new(left.degree.get() * right.degree.get());
++        result
++    }
++    fn budget_extract(&self, input: &ShortintCiphertext) -> ShortintCiphertext {
++        assert_shortint_budget(input, "radix refresh input");
++        self.message_extract(input)
++    }
++    fn budget_add_assign(&self, left: &mut ShortintCiphertext, right: &ShortintCiphertext) {
++        // The integer server key reserves message room in its generic checked
++        // max_degree (12). This circuit intentionally uses all 16 combined
++        // slots before a PBS, so enforce the actual full-domain bound (15).
++        assert!(left.degree.get() + right.degree.get() <= 15,
++            "shortint sum exceeds combined-domain degree 15");
++        assert!(left.noise_level().get() + right.noise_level().get() <= 5,
++            "shortint sum exceeds calibrated noise level 5");
++        self.unchecked_add_assign(left, right);
++    }
++    fn budget_scalar_mul_assign(&self, value: &mut ShortintCiphertext, scalar: u8) {
++        assert!(value.degree.get() * scalar as usize <= 15,
++            "shortint scalar product exceeds combined-domain degree 15");
++        assert!(value.noise_level().get() * scalar as usize <= 5,
++            "shortint scalar product exceeds calibrated noise level 5");
++        self.unchecked_scalar_mul_assign(value, scalar);
++    }
++}

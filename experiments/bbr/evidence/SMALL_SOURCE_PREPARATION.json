@@ -1,0 +1,12 @@
+{
+  "status": "prepared_before_encrypted_measurement",
+  "certificates": "evidence/small_certificates_attempt2",
+  "sha256": {
+    "source/HLUT-rs/src/bin/matched_small_functions.rs": "3cb419a4350ccdd37699ce7da4412abdd2f9245affefba62abc0eece280b2c28",
+    "scripts/prepare_small_certificates.py": "c82f403139af0be80f28a81de3b4197eb2304561a79d8f5088c1dac9dd8e34f1",
+    "scripts/build_small.sh": "6aa6324fa3713217473cb6907aba60c3f0b6828822ff3af3774a278eca25fec9",
+    "scripts/run_small_functions.sh": "9adc99973441cbb52384f63a2c499ad542c882a821588c3cefffc3bb77e5ad26",
+    "scripts/summarize_small_functions.py": "94435777193589fc0a84470bc2ec1ab0174fcde538a7a33e3440a639ecff06a7",
+    "shared_small_protocol/scripts/task_definitions.py": "d13b175af8672a8d0ee026e4787a250378cdd20f2a2e760a33cafe5fdb898cf8"
+  }
+}

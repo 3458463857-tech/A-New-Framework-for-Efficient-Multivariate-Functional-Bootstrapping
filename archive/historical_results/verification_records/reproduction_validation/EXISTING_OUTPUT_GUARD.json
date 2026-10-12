@@ -1,0 +1,6 @@
+{
+  "exit_code": 2,
+  "refused_existing_directory": true,
+  "no_files_overwritten": true,
+  "stderr": "usage: prepare_workspace.py [-h] [--list] [--output OUTPUT] [--dry-run]\n                            [--include-records]\nprepare_workspace.py: error: Refusing existing output directory: C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_final_polish_v6\\reproduction_validation\\workspace_attempt1\n"
+}

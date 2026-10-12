@@ -1,0 +1,26 @@
+[
+  {
+    "baseline": "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_targeted_revision_v2\\final_experiments\\source\\section3\\src\\bin\\algorithm1_t16_audited.rs",
+    "baseline_sha256": "b7d8bddd57de2fcca94db3226594cde314a62f15c2ea222ce9ef18841a95b41d",
+    "source": "source\\section3\\src\\bin\\algorithm1_t8_audited.rs",
+    "source_sha256": "96bd4b14f52064c2fb2292829a36e8ec015b9a4ed655a7f4f84fb01f36ce0819"
+  },
+  {
+    "baseline": "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_targeted_revision_v2\\final_experiments\\source\\section3\\src\\bin\\baseline_div_final.rs",
+    "baseline_sha256": "0b818fe285b77eafd606e057221d433d14c6e35152210cf287472a89bad57a9e",
+    "source": "source\\section3\\src\\bin\\baseline_div_t8.rs",
+    "source_sha256": "1c9f9c13ce542f46ee000f34d6c541f758b7cff49b331b7ddb724027bdef4827"
+  },
+  {
+    "baseline": "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_targeted_revision_v2\\final_experiments\\source\\refined-tfhe-lhe\\benches\\bench_targeted_div4.rs",
+    "baseline_sha256": "ef85967600bcec6617af520a3898dcb90f07225e643ce2114d772cb47cf8d01d",
+    "source": "source\\refined-tfhe-lhe\\benches\\bench_targeted_div8.rs",
+    "source_sha256": "97a9a2ccc27c97c5a8e3a0b50133fa7646af47b7c4167628c13a126ac9587588"
+  },
+  {
+    "baseline": "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_fair_comparison_v5\\experiments_meta_extended\\source\\META-FBS\\cmd\\dccextended\\main.go",
+    "baseline_sha256": "60ed30de4a4ab583a09a72573ac31f3be454746e9abdacff7d4a7edd4b2fa9a4",
+    "source": "source\\META-FBS\\cmd\\dcct8\\main.go",
+    "source_sha256": "744049025a070d4f489106369f2636b53ec91c2ebfebca5471d16c2b4ee13e42"
+  }
+]

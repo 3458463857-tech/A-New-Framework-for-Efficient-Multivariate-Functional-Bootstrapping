@@ -1,0 +1,14 @@
+click==8.3.2
+# Editable install with no version control (decomposer==0.1.0)
+-e /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_v3/experiments_bbr/source/author/decomposer
+galois==0.4.6
+llvmlite==0.44.0
+maturin==1.9.4
+numba==0.61.2
+numpy==2.2.6
+pandas==2.3.0
+python-dateutil==2.9.0.post0
+pytz==2026.5
+six==1.17.0
+typing_extensions==4.16.0
+tzdata==2026.5

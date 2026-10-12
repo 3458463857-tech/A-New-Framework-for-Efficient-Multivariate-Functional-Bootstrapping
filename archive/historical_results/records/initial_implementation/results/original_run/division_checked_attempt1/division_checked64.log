@@ -1,0 +1,220 @@
+PLAINTEXT_EXHAUSTIVE_PASS,t=64,M=89,base=2,cases=4032,delta_offset=532,max_shifted_delta=1064,input_chunks=4
+ALGORITHM1_CONFIG,noise_checked=true,refresh_transform_blocks=true,refresh_outer_base_blocks=true,t=64,M=89,base=2,radix_base=4,intermediate_radix_blocks=6,quotient_radix_blocks=3,parameter=PARAM_MULTI_BIT_MESSAGE_2_CARRY_2_GROUP_3_KS_PBS,input_route=encrypted_16_value_chunks,offset_fused=true,constant_digits_elided=true,parallel_luts=true,outer_high_branches=3,outer_mid_selectors=15,outer_residual_groups=16,outer_residual_components=19,outer_residual_bins=4,outer_route=packed_nibble_reachable_row_fusion_PBS
+KEYGEN_MS,1092.601164
+
+thread '<unnamed>' (485) panicked at src/bin/algorithm1_noise_checked.rs:1223:46:
+shortint addition exceeds degree/noise budget: CarryFull { degree: Degree(18), max_degree: MaxDegree(12) }
+stack backtrace:
+   0: __rustc::rust_begin_unwind
+   1: core::panicking::panic_fmt
+   2: core::result::unwrap_failed
+   3: core::ops::function::impls::<impl core::ops::function::FnMut<A> for &F>::call_mut
+   4: rayon::iter::plumbing::Folder::consume_iter
+   5: rayon::iter::plumbing::bridge_producer_consumer::helper
+   6: rayon_core::join::join_context::{{closure}}
+   7: rayon_core::registry::in_worker
+   8: rayon::iter::plumbing::bridge_producer_consumer::helper
+   9: rayon_core::join::join_context::{{closure}}
+  10: rayon_core::registry::in_worker
+  11: rayon::iter::plumbing::bridge_producer_consumer::helper
+  12: rayon::iter::collect::collect_with_consumer
+  13: rayon::iter::extend::<impl rayon::iter::ParallelExtend<T> for alloc::vec::Vec<T>>::par_extend
+  14: algorithm1_noise_checked::transform_input
+  15: rayon_core::join::join_context::{{closure}}
+  16: <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+  17: rayon_core::registry::WorkerThread::wait_until_cold
+  18: rayon_core::registry::ThreadBuilder::run
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+thread '<unnamed>' (488) panicked at src/bin/algorithm1_noise_checked.rs:1223:46:
+shortint addition exceeds degree/noise budget: CarryFull { degree: Degree(18), max_degree: MaxDegree(12) }
+stack backtrace:
+   0: __rustc::rust_begin_unwind
+   1: core::panicking::panic_fmt
+   2: core::result::unwrap_failed
+   3: core::ops::function::impls::<impl core::ops::function::FnMut<A> for &F>::call_mut
+   4: rayon::iter::plumbing::Folder::consume_iter
+   5: rayon::iter::plumbing::bridge_producer_consumer::helper
+   6: rayon_core::join::join_context::{{closure}}
+   7: rayon_core::registry::in_worker
+   8: rayon::iter::plumbing::bridge_producer_consumer::helper
+   9: <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+  10: rayon_core::registry::WorkerThread::wait_until_cold
+  11: rayon_core::join::join_context::{{closure}}
+  12: rayon_core::registry::in_worker
+  13: rayon::iter::plumbing::bridge_producer_consumer::helper
+  14: rayon_core::join::join_context::{{closure}}
+  15: rayon_core::registry::in_worker
+  16: rayon::iter::plumbing::bridge_producer_consumer::helper
+  17: <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+  18: rayon_core::registry::WorkerThread::wait_until_cold
+  19: rayon_core::join::join_context::{{closure}}
+  20: rayon_core::registry::in_worker
+  21: rayon::iter::plumbing::bridge_producer_consumer::helper
+  22: <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+  23: rayon_core::registry::WorkerThread::wait_until_cold
+  24: rayon_core::registry::ThreadBuilder::run
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+thread '<unnamed>' (486) panicked at src/bin/algorithm1_noise_checked.rs:1223:46:
+shortint addition exceeds degree/noise budget: CarryFull { degree: Degree(18), max_degree: MaxDegree(12) }
+stack backtrace:
+   0: __rustc::rust_begin_unwind
+   1: core::panicking::panic_fmt
+   2: core::result::unwrap_failed
+   3: core::ops::function::impls::<impl core::ops::function::FnMut<A> for &F>::call_mut
+   4: rayon::iter::plumbing::Folder::consume_iter
+   5: rayon::iter::plumbing::bridge_producer_consumer::helper
+   6: rayon_core::join::join_context::{{closure}}
+   7: rayon_core::registry::in_worker
+   8: rayon::iter::plumbing::bridge_producer_consumer::helper
+   9: <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+  10: rayon_core::registry::WorkerThread::wait_until_cold
+  11: rayon_core::join::join_context::{{closure}}
+  12: rayon_core::registry::in_worker
+  13: rayon::iter::plumbing::bridge_producer_consumer::helper
+  14: rayon_core::job::StackJob<L,F,R>::run_inline
+  15: rayon_core::join::join_context::{{closure}}
+  16: rayon_core::registry::in_worker
+  17: rayon::iter::plumbing::bridge_producer_consumer::helper
+  18: rayon_core::join::join_context::{{closure}}
+  19: rayon_core::registry::in_worker
+  20: rayon::iter::plumbing::bridge_producer_consumer::helper
+  21: rayon_core::join::join_context::{{closure}}
+  22: rayon_core::registry::in_worker
+  23: rayon::iter::plumbing::bridge_producer_consumer::helper
+  24: rayon::iter::collect::collect_with_consumer
+  25: rayon::iter::extend::<impl rayon::iter::ParallelExtend<T> for alloc::vec::Vec<T>>::par_extend
+  26: algorithm1_noise_checked::transform_input
+  27: <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+  28: rayon_core::registry::WorkerThread::wait_until_cold
+  29: rayon_core::registry::ThreadBuilder::run
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+thread '<unnamed>' (489) panicked at src/bin/algorithm1_noise_checked.rs:1223:46:
+shortint addition exceeds degree/noise budget: CarryFull { degree: Degree(21), max_degree: MaxDegree(12) }
+stack backtrace:
+   0: __rustc::rust_begin_unwind
+   1: core::panicking::panic_fmt
+   2: core::result::unwrap_failed
+   3: core::ops::function::impls::<impl core::ops::function::FnMut<A> for &F>::call_mut
+   4: rayon::iter::plumbing::Folder::consume_iter
+   5: rayon::iter::plumbing::bridge_producer_consumer::helper
+   6: rayon_core::join::join_context::{{closure}}
+   7: rayon_core::registry::in_worker
+   8: rayon::iter::plumbing::bridge_producer_consumer::helper
+   9: <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+  10: rayon_core::registry::WorkerThread::wait_until_cold
+  11: rayon_core::registry::ThreadBuilder::run
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+thread '<unnamed>' (491) panicked at src/bin/algorithm1_noise_checked.rs:1223:46:
+shortint addition exceeds degree/noise budget: CarryFull { degree: Degree(18), max_degree: MaxDegree(12) }
+stack backtrace:
+   0: __rustc::rust_begin_unwind
+   1: core::panicking::panic_fmt
+   2: core::result::unwrap_failed
+   3: core::ops::function::impls::<impl core::ops::function::FnMut<A> for &F>::call_mut
+   4: rayon::iter::plumbing::Folder::consume_iter
+   5: rayon::iter::plumbing::bridge_producer_consumer::helper
+   6: <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+   7: rayon_core::registry::WorkerThread::wait_until_cold
+   8: rayon_core::join::join_context::{{closure}}
+   9: rayon_core::registry::in_worker
+  10: rayon::iter::plumbing::bridge_producer_consumer::helper
+  11: <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+  12: rayon_core::registry::WorkerThread::wait_until_cold
+  13: rayon_core::registry::ThreadBuilder::run
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+thread '<unnamed>' (486) panicked at src/bin/algorithm1_noise_checked.rs:1223:46:
+shortint addition exceeds degree/noise budget: CarryFull { degree: Degree(18), max_degree: MaxDegree(12) }
+stack backtrace:
+   0: __rustc::rust_begin_unwind
+   1: core::panicking::panic_fmt
+   2: core::result::unwrap_failed
+   3: core::ops::function::impls::<impl core::ops::function::FnMut<A> for &F>::call_mut
+   4: rayon::iter::plumbing::Folder::consume_iter
+   5: rayon::iter::plumbing::bridge_producer_consumer::helper
+   6: rayon_core::join::join_context::{{closure}}
+   7: rayon_core::registry::in_worker
+   8: rayon::iter::plumbing::bridge_producer_consumer::helper
+   9: rayon_core::join::join_context::{{closure}}
+  10: rayon_core::registry::in_worker
+  11: rayon::iter::plumbing::bridge_producer_consumer::helper
+  12: rayon::iter::collect::collect_with_consumer
+  13: rayon::iter::extend::<impl rayon::iter::ParallelExtend<T> for alloc::vec::Vec<T>>::par_extend
+  14: algorithm1_noise_checked::transform_input
+  15: <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+  16: rayon_core::registry::WorkerThread::wait_until_cold
+  17: rayon_core::registry::ThreadBuilder::run
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+thread '<unnamed>' (485) panicked at src/bin/algorithm1_noise_checked.rs:1223:46:
+shortint addition exceeds degree/noise budget: CarryFull { degree: Degree(18), max_degree: MaxDegree(12) }
+stack backtrace:
+   0: __rustc::rust_begin_unwind
+   1: core::panicking::panic_fmt
+   2: core::result::unwrap_failed
+   3: core::ops::function::impls::<impl core::ops::function::FnMut<A> for &F>::call_mut
+   4: rayon::iter::plumbing::Folder::consume_iter
+   5: rayon::iter::plumbing::bridge_producer_consumer::helper
+   6: rayon_core::join::join_context::{{closure}}
+   7: rayon_core::registry::in_worker
+   8: rayon::iter::plumbing::bridge_producer_consumer::helper
+   9: <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+  10: rayon_core::registry::WorkerThread::wait_until_cold
+  11: rayon_core::join::join_recover_from_panic
+  12: rayon_core::join::join_context::{{closure}}
+  13: <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+  14: rayon_core::registry::WorkerThread::wait_until_cold
+  15: rayon_core::registry::ThreadBuilder::run
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+thread '<unnamed>' (487) panicked at src/bin/algorithm1_noise_checked.rs:1223:46:
+shortint addition exceeds degree/noise budget: CarryFull { degree: Degree(18), max_degree: MaxDegree(12) }
+stack backtrace:
+   0: __rustc::rust_begin_unwind
+   1: core::panicking::panic_fmt
+   2: core::result::unwrap_failed
+   3: core::ops::function::impls::<impl core::ops::function::FnMut<A> for &F>::call_mut
+   4: rayon::iter::plumbing::Folder::consume_iter
+   5: rayon::iter::plumbing::bridge_producer_consumer::helper
+   6: rayon_core::join::join_context::{{closure}}
+   7: rayon_core::registry::in_worker
+   8: rayon::iter::plumbing::bridge_producer_consumer::helper
+   9: <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+  10: rayon_core::registry::WorkerThread::wait_until_cold
+  11: rayon_core::registry::ThreadBuilder::run
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+thread '<unnamed>' (488) panicked at src/bin/algorithm1_noise_checked.rs:1223:46:
+shortint addition exceeds degree/noise budget: CarryFull { degree: Degree(20), max_degree: MaxDegree(12) }
+stack backtrace:
+   0: __rustc::rust_begin_unwind
+   1: core::panicking::panic_fmt
+   2: core::result::unwrap_failed
+   3: core::ops::function::impls::<impl core::ops::function::FnMut<A> for &F>::call_mut
+   4: rayon::iter::plumbing::Folder::consume_iter
+   5: rayon::iter::plumbing::bridge_producer_consumer::helper
+   6: rayon_core::join::join_context::{{closure}}
+   7: rayon_core::registry::in_worker
+   8: rayon::iter::plumbing::bridge_producer_consumer::helper
+   9: <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+  10: rayon_core::registry::WorkerThread::wait_until_cold
+  11: rayon_core::registry::ThreadBuilder::run
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+thread '<unnamed>' (490) panicked at src/bin/algorithm1_noise_checked.rs:1223:46:
+shortint addition exceeds degree/noise budget: CarryFull { degree: Degree(18), max_degree: MaxDegree(12) }
+stack backtrace:
+   0: __rustc::rust_begin_unwind
+   1: core::panicking::panic_fmt
+   2: core::result::unwrap_failed
+   3: core::ops::function::impls::<impl core::ops::function::FnMut<A> for &F>::call_mut
+   4: rayon::iter::plumbing::Folder::consume_iter
+   5: rayon::iter::plumbing::bridge_producer_consumer::helper
+   6: <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+   7: rayon_core::registry::WorkerThread::wait_until_cold
+   8: rayon_core::registry::ThreadBuilder::run
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.

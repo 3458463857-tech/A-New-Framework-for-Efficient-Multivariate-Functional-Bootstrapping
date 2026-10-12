@@ -1,0 +1,11 @@
+{
+  "n": 2,
+  "s": 16,
+  "lambda_": 25,
+  "a": 11,
+  "p": 17,
+  "gamma": 1.05,
+  "seed": 20261010,
+  "timeout_seconds": 120,
+  "output_digits": 1
+}

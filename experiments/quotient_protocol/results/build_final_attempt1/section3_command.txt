@@ -1,0 +1,1 @@
+cargo build --release --locked --offline --bin algorithm1_t16_audited --bin algorithm1_audited --bin baseline_div_final --bin count_checked_final

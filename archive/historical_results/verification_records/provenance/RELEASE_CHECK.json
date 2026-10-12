@@ -1,0 +1,21 @@
+{
+  "original_entries_preserved": 4156,
+  "new_frozen_entries": 1098,
+  "table_cells": 88,
+  "measured_cells": 84,
+  "main_quotient_t": [
+    8,
+    16,
+    32
+  ],
+  "supplementary_quotient_t": [
+    64
+  ],
+  "actual_preparation": "PASS",
+  "static_local_dependency_check": "PASS",
+  "all_table_statistics_rebuilt": "PASS",
+  "frozen_statistics_scripts": "PASS",
+  "patched_runner_bash_syntax_exit_code": 0,
+  "no_new_experiments_during_packaging": true,
+  "function_catalogue": "Parent merges final catalogue before regenerating the final manifest"
+}

@@ -1,0 +1,290 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,booktabs,array,tabularx,makecell}
+\newcommand{\Z}{\mathbb{Z}}
+\usepackage[margin=25mm]{geometry}
+\usepackage{xurl,hyperref,fancyhdr,placeins,float,needspace}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,pdftitle={Supplementary Notes},pdfauthor={}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlength{\emergencystretch}{3em}
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thetable}{S\arabic{table}}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{Supplementary Notes}\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Supplementary Notes}\par\medskip
+{\large A New Framework for Efficient Multivariate Functional Bootstrapping}
+\end{center}
+These notes explain the experimental protocol, parameter configurations, correctness checks, and limitations of the accompanying public code and records. The main paper gives the constructions and proofs. Function definitions, structural compression results, and their evidence are collected in \path{Function_Catalogue_and_Verification_Records.pdf}. Commands for rebuilding and running the programs are in \path{Reproduction_Guide.md}.
+
+\section*{Finding the reported results}
+Start with \path{TABLE_INDEX.csv} in the repository root. Each row identifies a function, method and result, with paths to its input file, raw measurements, summary, source snapshot and recorded hashes. The index contains 84 measured cells: 81 in the main comparisons and three supplementary $t=64$ cells. The \texttt{display\_scope} column distinguishes these two groups. Missing measurements remain explicitly unmeasured.
+
+\begin{center}\small
+\begin{tabularx}{\linewidth}{@{}lX@{}}\toprule
+Table identifier & Scope\\\midrule
+\texttt{tab:function-small} & Counting functions and small-domain statistical functions.\\
+\texttt{tab:function-large} & The seven statistical functions with six ternary inputs.\\
+\texttt{tab:division-final} & Exact integer quotients for $t=8,16,32$.\\
+\texttt{tab:division-t64-supplement} & Three retained quotient measurements for $t=64$.\\\bottomrule
+\end{tabularx}
+\end{center}
+For every quotient baseline, the target is the exact integer $\lfloor m/d\rfloor$, with $0\le m<t$ and $1\le d<t$. Input encoding and the number of output ciphertexts differ between implementations; these differences are specified below and in the retained code.
+
+The \path{experiments/} directories contain the programs and measurements selected by the index. A group can also contain unsuccessful or earlier attempts. Only the indexed paths supply a reported cell. The directory \path{archive/historical_results/} contains earlier records and source packages: \emph{Historical records only. Not used for final reported results.} Historical values must not replace the indexed measurements, even when an older document calls them ``final.''
+
+\section*{Measurement protocol and interpretation}
+The recorded platform is an Intel Core i7-14700 with 24 GB RAM, running Ubuntu under WSL2. Programs exposing a worker-thread setting use eight threads, and measurement jobs run sequentially. The retained environment records identify the compiler, library version, source hashes and command for each run. Our implementation and native division use TFHE-rs 0.8.7; BBR, Refined-LHE and Meta-PBS use the retained author implementations and adapters.
+
+Each input variable is encrypted separately. Online timing starts with these ciphertexts available and ends with the result ciphertexts. It includes server-side packing, input conversions, encrypted operations, table evaluation and output recovery. Key generation, encryption, decryption checks and offline public-table construction are excluded. Encoding or accumulator construction performed inside an author's evaluation routine remains timed.
+
+Every successfully completed configuration has five warm-ups and thirty timed evaluations: ten common boundary inputs and twenty fixed-seed random inputs. Each encryption uses fresh randomness. The paper reports mean milliseconds. Raw times and both named standard-deviation conventions are preserved where available. Population standard deviation uses denominator 30, and sample standard deviation uses denominator 29; these fields must not be interchanged. Encryption randomness is not a promise of byte-identical reruns, and wall-clock times can change on another machine.
+
+The comparisons use the same machine, plaintext task and input list. They retain different encodings, parameter configurations and failure calibrations. They therefore describe the cost of the tested implementations; they do not establish an ordering at equal security parameters and equal whole-computation failure probability. In particular, the modified BBR quotient PBS parameters have not received a new failure calibration.
+
+Logical lookup-table entries, actual PBS calls, memory use and elapsed time are different quantities. Compact representations reduce the number of logical entries; online cost also depends on packing, conversions, ciphertext capacity, parameters and implementation. The retained six-input and quotient results include cases in which our program takes longer. Structural compression alone does not imply an online speed advantage.
+
+The correctness evidence also has distinct meanings. Exact integer identities and exhaustively checked finite-domain representations concern the plaintext computation. Decrypted-output checks establish the observed outcomes of the recorded ciphertext runs. Library noise checks and conditional failure estimates depend on their stated models. None of these should be substituted for another.
+
+\section{Historical search results for a synthetic function}\label{app:stress}
+The following synthetic function combines integer multiplication, shifts, and XOR. The table retains the entry counts found in earlier searches; these results do not establish that the counts are minimal.
+
+\noindent\textbf{Bit extraction from a synthetic function.}
+Let $\mathbf{x}\in[2]^\ell$, and interpret it as an integer
+\[
+X=\sum_{i=1}^\ell x_i2^{\ell-i}.
+\]
+Define the synthetic transform
+\[
+\phi_{\mathrm{act}}(X)
+=
+\Bigl(
+\bigl((X\cdot 131+17)\oplus((X\gg 3)+(X\ll 5))\bigr)
+\bmod 2^\ell
+\Bigr),
+\]
+where $\oplus$ denotes bitwise XOR, and $\gg$ and $\ll$ denote logical right and left shifts, respectively. For bit index $k=\ell-2$, define
+\[
+f_{\mathrm{act},k}(\mathbf{x})
+=
+(\phi_{\mathrm{act}}(X)\gg k)\mathbin{\&}1.
+\]
+Here $\mathbin{\&}1$ denotes the bitwise AND with $1$, which extracts the least significant bit after the right shift. Equivalently, $f_{\mathrm{act},k}$ extracts the $(k+1)$-th bit of $\phi_{\mathrm{act}}(X)$ when bits are counted from right to left, starting from the least significant bit.
+
+\begin{table}[H]
+	\centering
+	\small
+	\caption{Historical LUT entry counts for the synthetic function.}
+	\label{tab:compress-activation-bit}
+	\begin{tabular}{c|c|c|c|c|c}
+		\hline
+		$\ell$ & $T$ & $k$ & $2^\ell$
+		& \makecell{Our\\method}
+		& \makecell{BBR~\cite{BBR26}\\strategy model} \\
+		\hline
+		$8$  & $256$  & $6$  & $256$  & $68$   & $111$ \\
+		$10$ & $1024$ & $8$  & $1024$ & $972$  & $243$ \\
+		$12$ & $4096$ & $10$ & $4096$ & $4104$ & $516$ \\
+		\hline
+	\end{tabular}
+\end{table}
+
+
+
+
+The BBR strategy-model column is a historical estimate for that search strategy, not an implemented cost or a cost lower bound for these fixed functions.
+
+
+\section{Search parameters}
+\label{app:search-parameters}
+These offline searches find candidate representations; they are not a new bootstrapping algorithm or a guarantee of optimal compression. The settings below describe the reference implementations; the equal-budget comparison uses the protocol in the final paragraph.
+
+The procedure \texttt{anneal} implements Algorithm~3. It chooses move types uniformly. When a coordinate is needed, it chooses uniformly among the differing coordinates of two inputs with the same output; perturbations are uniform in $\{-2,-1,1,2\}$. A change is rejected if an entry becomes negative or two equal sums have different outputs. Every iteration updates the temperature and the count of iterations without improvement, including rejected changes. Finding a span smaller than the current best resets this count.
+
+The procedure \texttt{anneal\_symmetric} uses the same inner table for every input, setting all $p_i=r$. Initial entries are sampled independently from $\{0,\ldots,12\}$, after which their minimum is subtracted. Each step selects an entry uniformly, changes it by a uniform member of $\{-2,-1,1,2\}$, clamps it to $[0,12]$, and subtracts the minimum again. The search temporarily permits equal sums with different outputs and penalizes them using
+\[
+ H(r)=E(r)+C(r)t^\ell\bigl(\ell\max\{\max r,1\}+1\bigr),
+\]\[
+ C(r)=\sum_z\left(\sum_y n_{z,y}-\max_y n_{z,y}\right),
+\]
+where $n_{z,y}$ counts inputs with sum $z$ and output $y$. For each sum, retain its most frequent output; $C$ counts the inputs excluded by this choice. Thus, $C=0$ means that equal sums always have equal outputs. Both procedures accept changes that do not increase the objective, and accept an increase $\Delta$ with probability $\exp(-\Delta/\max(T,10^{-12}))$. The program separately retains the smallest-span table found that satisfies the separation condition.
+
+\begin{table}[H]
+\centering\small
+\caption{Parameters of the reference search procedures.}
+\label{tab:search-parameters}
+\begin{tabular}{lll}
+\hline
+Setting & General & Symmetric lower median\\
+\hline
+Initialization & $p_i(v)=vt^{i-1}$ & \makecell[l]{Random $[0,12]$ table\\minus its minimum}\\
+Proposals per run & $10{,}000$ & At most $20{,}000$\\
+Runs & One & At most eight restarts\\
+Seed & $20260803$ & $20260810$\\
+Initial temperature & $20$ & $100$\\
+Cooling factor & $0.9995$ & $0.9995$\\
+\makecell[l]{Iterations without\\improvement} & $2000$ & $2000$\\
+Reheating & $T\leftarrow T+(20-T)/2$ & $T\leftarrow\max(T,50)$\\
+Early stopping & None & Verified $E\leq42$\\
+\hline
+\end{tabular}
+\end{table}
+
+The equal-budget comparison also uses one inner table for all inputs, with minimum entry zero. Each run uses exactly $2000$ objective evaluations including initialization, one restart, and seeds $20261010,\ldots,20261019$. Greedy descent tries the same entry changes and accepts only those that do not increase the objective; random search independently samples a new table at each evaluation. Inputs with the same symbol counts are grouped and weighted by their number, giving the same objective as individual evaluation. Final tables are still checked on every input. Candidate tables, unsuccessful runs, and checks within the bounded search range are retained with the code.
+
+
+
+\section{Parameters and correctness conditions}\label{app:parameters}
+Here $n$ denotes the LWE dimension, $N$ the polynomial degree, and $q=2^{64}$ the ciphertext modulus. The blind-rotation index modulus $\rho=2N$ in the main paper's conditional model is a different quantity. Concrete conversions and key switching are included in the measured programs.
+
+All configurations below use ciphertext modulus $2^{64}$ and GLWE rank $k=1$. Here $n$ is the small-LWE dimension, $N$ the polynomial degree, and a decomposition $b/\ell$ means base $2^b$ and $\ell$ levels. Standard deviations are normalized by the ciphertext modulus and rounded in the tables. Complete constants are preserved in the parameter sources, each run's \texttt{full\_parameter} or \texttt{PARAMETERS} record, and Meta-PBS's \texttt{summary/provenance.json}. All use uniform binary secret coefficients. TFHE-rs, BBR, and Refined-LHE generate the small-LWE and GLWE keys separately; Meta-PBS uses the small-LWE key as a prefix of the large-LWE/GLWE key, with \texttt{BlockSize=1}. We retain these key-generation procedures and the authors' encryption noise.
+
+The computational-security claims are those of the parameter sources, not new estimates. TFHE-rs declares a 128-bit IND-CPA target using Lattice Estimator with the classical BDGL16 cost model. Refined-LHE reports 130.1 and 130.7 bits for the LWE and GLWE parameters used here, targeting 128 bits~\cite{WHSLCWL25}. Meta-PBS declares an at-least-128-bit IND-CPA target, using Estimator version 5ba00f5 with primal/dual attacks and BDGL16. BBR's custom CSV gives no per-row security-bit estimate; its filename suffix 128 denotes the error target $2^{-128}$. We have not re-estimated all configurations with one estimator version or claimed 128-bit quantum security.
+
+Write G3M$a$C$b$ for the published TFHE-rs 0.8.7 group-three KS-PBS Gaussian \texttt{2M64} parameters with message and carry moduli $2^a$ and $2^b$. All use the large LWE key and nondeterministic multibit PBS. Table~\ref{tab:final-parameters} gives the parameters of the main comparisons. G3M1C3 is used for Hamming weight; G3M2C2 for membership, three-input ternary statistics, and both quotient programs; G3M2C3 for four-input ternary statistics; and G3M2C4 for six-input ternary statistics. Earlier classical M2C4 experiments belong only to the retained comparison records.
+
+\begin{table}[H]
+\centering\small
+\setlength{\tabcolsep}{4pt}
+\caption{TFHE-rs~\cite{TFHERs087} parameters in the main tables. Capacity is message modulus times carry modulus.}
+\label{tab:final-parameters}
+\begin{tabular}{lrrrr}
+\toprule
+Field & G3M1C3 & G3M2C2 & G3M2C3 & G3M2C4\\
+\midrule
+$n$ & 840 & 891 & 948 & 996\\
+$N$ & 2048 & 2048 & 4096 & 8192\\
+LWE $\sigma$ & $3.2045\,10^{-6}$ & $1.3293\,10^{-6}$ & $4.9717\,10^{-7}$ & $2.1719\,10^{-7}$\\
+GLWE $\sigma$ & $2.8453\,10^{-15}$ & $2.8453\,10^{-15}$ & $2.1684\,10^{-19}$ & $2.1684\,10^{-19}$\\
+PBS & 14/2 & 21/1 & 14/2 & 14/2\\
+KS & 3/5 & 4/4 & 4/4 & 3/6\\
+Capacity & 16 & 16 & 32 & 64\\
+Max. noise level & 15 & 5 & 10 & 21\\
+Library $\log_2p_{\rm PBS}$ & $-64.870$ & $-64.442$ & $-64.086$ & $-64.068$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The pairs below give upper bounds on the plaintext value and the library's tracked noise level. Ten fresh bits give $(10,10)$. Membership packing $x+4y$ gives $(15,5)$; the three inner counts sum to $(6,3)$. Ternary pairs $x+3y$ have library bounds $(12,4)$, including the conservative plaintext bound $3$ for fresh ciphertexts. The outer sums have bounds $(12,2)$ or $(20,2)$ at arities three and four. At arity six, packing three symbols gives $(39,13)$ and the outer sum $(42,2)$. Each final lookup refreshes the ciphertext noise and returns a value within the message modulus. Quotient checks additionally cover radix subtraction, carries, multiple-output lookups, and recovery.
+
+For the added domain $t=8$, our implementation and native TFHE-rs retain G3M2C2 and their four-bit input representation. Our program reuses the audited $t=16$ circuit with $M=22$ and records $42$ PBS calls. Native division uses two base-four blocks per operand and records $66$ PBS calls, including the online input conversion and final conversion to one ciphertext. The inputs are restricted to $0\le m<8$ and $1\le d<8$; both rows therefore measure the retained four-bit implementations on this smaller domain.
+
+
+\begin{table}[H]
+\centering\small
+\setlength{\tabcolsep}{5pt}
+\caption{Author-implementation parameters. Meta 8+/11+ use the positive half of a negacyclic table; Meta 8F is full-domain. The BBR quotient row gives the parameters used for all three measured quotient domains.}
+\label{tab:bbr-meta-parameters}
+\begin{tabular}{lrrrr}
+\toprule
+Configuration & $n$ & $N$ & PBS/BR & KS\\
+\midrule
+Refined I16~\cite{WHSLCWL25} & 769 & 2048 & 15/2 & 4/3\\
+BBR~\cite{BBR26} $p=17,\nu=5$ & 849 & 4096 & 25/1 & 4/4\\
+BBR~\cite{BBR26} $p=17,\nu=15$ & 849 & 4096 & 31/1 & 4/4\\
+BBR~\cite{BBR26} quotients (revised) & 849 & 4096 & 15/2 & 4/4\\
+Meta 8+~\cite{MHWXWW26} & 1170 & 2048 & 15/2 & 9/2\\
+Meta 11+~\cite{MHWXWW26} & 1170 & 2048 & 11/3 & 4/6\\
+Meta 8F~\cite{MHWXWW26} & 970 & 2048 & 11/3 & 2/10\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Refined I16 denotes \texttt{INT\_LHE\_BASE\_16}, used throughout the main tables. Its LWE/GLWE standard deviations are $8.7639\cdot10^{-6}$ and $9.2512\cdot10^{-16}$. Automorphism, scheme-switching, and CBS decompositions are $7/7$, $17/2$, and $4/4$, with Split(35) FFT and extraction size $2$. Input/output scales are $2^{60}$/$2^{59}$. Online pairing $x+4y$ multiplies the fresh-noise variance by $17$; Hamming summation multiplies it by $10$. The first CBS extraction further multiplies this component's variance by $16$. An unpaired last symbol has factor $1$ before extraction. We do not reuse a fresh-input failure estimate for this composed computation.
+
+At $t=8$, Refined-LHE retains two four-bit input ciphertexts and the $256$-entry quotient table used at $t=16$. It performs the complete conversion from encrypted integers to selectors and then evaluates that table, returning one four-bit ciphertext. The input and output scales remain $2^{60}$ and $2^{59}$, and the I16 parameters above are unchanged.
+
+BBR uses arithmetic encoding over $\mathbb F_{17}$ and LWE/GLWE standard deviations $1.6512\cdot10^{-6}$ and $2.1684\cdot10^{-19}$. The counting and statistical tasks use the matching author-table row with $\nu=5$, except range on $[3]^3$, which uses $\nu=15$: its fresh-input coefficients $(1,6,10)$ have norm $\sqrt{137}<15$. Intermediate checks use the sum of absolute coefficients when independence is unavailable; the small-mode coefficients $(1,4)$ give multiplier $5$. Final sums of PBS outputs retain their combined error.
+
+The BBR quotients at $t=8,16,32$ all use the revised PBS decomposition $15/2$, with $n=849$, $N=4096$, and KS $4/4$. Their fixed searched decompositions use respectively $21$, $47$, and $128$ PBS calls: $13+2\cdot4$, $25+2\cdot11$, and $50+2(25+14)$. The author's coefficient-norm selector returns rows $\nu=45,55,90$, whose original PBS decompositions are $31/1$, $29/1$, and $30/1$; dimensions, secret distributions, encryption noise and KS remain unchanged when PBS is replaced. All three revised runs pass their five warm-ups and thirty measured inputs. Their failure probabilities have not been recalibrated, so none inherits the original CSV's $2^{-128}$ value.
+
+For $t=8$ and $16$, BBR encrypts each operand as one field element and returns one ciphertext. For $t=32$, it encrypts the four blocks $(m\bmod16,\lfloor m/16\rfloor,d\bmod16,\lfloor d/16\rfloor)$ separately. The $50$ atoms are shared; the first output's $25$ products also enter the second output's basis. The author evaluator returns two ciphertexts for $q\bmod16$ and $\lfloor q/16\rfloor$. Their plaintext reconstruction $q=q_0+16q_1$ is part of checking the decrypted answer. All online operations producing both ciphertexts are timed. The offline verification covers the $16\times2\times16\times2=1024$ possible block inputs, including $32$ zero-divisor padding cases.
+
+The original $t=16$ parameter choice failed because errors from earlier atomic evaluations accumulated before a later lookup. The successful run uses the author's evaluator with PBS decomposition $15/2$, without intermediate decryption or additional refresh. The diagnostic records and unsuccessful attempts are retained separately; see \path{experiments/bbr/evidence/DIVISION_ROOT_CAUSE_AND_REPAIR.md}. They explain the parameter choice but do not establish a new failure-probability bound.
+
+Meta 8+/11+ use the authors' \texttt{BenchmarkMetaFBS} configurations, with capacity pairs $(3.920180,1.41)$ and $(6.114680,2.40)$. Their LWE/GLWE standard deviations are $5.5016\cdot10^{-9}$ and $7.6322\cdot10^{-16}$; their respective input/output scales are $2^{56}$ and $2^{53}$. Base-three packing has fresh-variance factors $91$, $820$, and $66430$ at arities three, four, and six. Hamming summation and $m+32d$ have factors $10$ and $1025$. Before execution, we add the packed-input standard deviation to the author's estimated input-KS standard deviation. In plaintext units, the largest bounds are below $0.010535$ for 8+ and $0.003864$ for 11+, within the respective calibrated capacities $0.020223$ and $0.010182$. This is a Gaussian-model check, not a strict tail proof.
+
+The $t=8$ Meta-PBS row uses Meta 8+: $n=1170$, $N=2048$, blind rotation $15/2$, KS $9/2$, and scale $2^{56}$. Its server forms $m+8d$ from the two encrypted operands, giving fresh-noise variance factor $1+8^2=65$. The $64$ possible logical indices occupy the first half of the $128$-entry positive-half table; the unused entries are zero. Here \texttt{full\_torus=true} specifies the encoding, while \texttt{full\_domain=false} specifies positive-half evaluation, so this row does not use the $t=16$ sign-cancellation procedure. The recorded Gaussian-model input bound is $0.0105347857274$ plaintext units, below the author capacity $0.0202235694729$; it is not a full-computation tail bound.
+
+Meta 8F is used only for the $t=16$ quotient in the main tables. Its LWE standard deviation is $1.9619\cdot10^{-7}$, with the same GLWE standard deviation as above, scale $2^{56}$, Meta capacity $2.18$, and extraction redundancy target $3$. Packing $m+16d$ has fresh-variance factor $257$; full-domain evaluation includes timed sign cancellation. Its reported four-event calibration differs from the 8+/11+ configurations.
+
+
+
+Let $p_{\rm in}$ and $p_{\rm out}$ cover input and final-decoding failures not already counted, and let $\varepsilon_j$ bound output $j$'s error probability conditional on preceding outputs being correct. Then
+\[
+ p_{\rm fail}\le p_{\rm in}+\sum_{j=1}^{N_{\rm evt}}\varepsilon_j+p_{\rm out}.
+\]
+No independence is required. Substituting a library calibration for $\varepsilon_j$ is conditional on its applicability at that step; a uniform claim requires applicability to every legal input. Our current Hamming, membership, and statistical evaluations have $1$, $4$, and $3$ PBS events. The retained quotient analysis counts multiple-output calls once per scalar output (Table~\ref{tab:failure-model}).
+
+\begin{table}[H]
+\centering\small
+\caption{Retained quotient event counts and conditional PBS contribution, excluding additional $p_{\rm in}$ and $p_{\rm out}$.}
+\label{tab:failure-model}
+\begin{tabular}{lrrr}
+\toprule
+Quantity & $t=16$ & $t=32$ & $t=64$\\
+\midrule
+Our scalar-output events & 46 & 118 & 219\\
+Native~\cite{TFHERs087} scalar-output events & 66 & 117 & 117\\
+Our $N_{\rm evt}2^{-64.442}$ & $2^{-58.9}$ & $2^{-57.6}$ & $2^{-56.7}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+BBR's original table records a local calibration of $2^{-128}$; the revised quotient has no replacement calibration. Refined-LHE sets a single-PBS target of $2^{-40}$, without thereby bounding the complete packing--CBS--CMUX evaluation in the comparison. Meta 8+/11+ report a per-event target $2^{-66}$; Meta 8F reports $2^{-42}$ per event and $2^{-40}$ for its four-event sum. These quantities count different events. They neither establish a common whole-computation failure probability nor replace range checks and decrypted-output tests. The timings compare the stated implementations on the same tasks and machine, without claiming that their whole-computation failure rates have been equalized.
+
+
+\FloatBarrier
+\section{Conditional costs and supplementary quotient results}
+\paragraph{Conditional cost-model examples.} 
+
+
+Table~\ref{tab:practical-div} gives examples of the conditional blind-rotation cost model of Section~3, not measured call counts of the TFHE-rs program. The displayed decimal scales are rounded. When generating the tables, the scale must satisfy Theorem~1, and every reachable entry must be checked.
+
+ 
+
+\begin{table}[H] 
+	\centering
+	\caption{Historical conditional cost-model counts; no matched correctness guarantee is implied.} 
+	\label{tab:practical-div} 
+	\begin{tabular}{ccccc} 
+		\toprule
+		$t$ & $B$ & $M$ & Our method \# $\Z[\zeta_q]$-BR & \cite{OKC21} \# $\Z[\zeta_q]$-BR \\ 
+		\midrule
+		$2^4=16$ & 100 & 142.70 & 14 & 80 \\ 
+		$2^6=64$ & 2 & 88.03 & 20 & 320 \\ 
+		$2^7=128$ & 100 & 1174.42 & 22 & 640 \\ 
+		\bottomrule
+	\end{tabular} 
+\end{table}
+
+
+\paragraph{Measured quotients at the larger domain.}
+The $t=64$ measurements use the same timing boundary as the main comparison. Our program uses $M=89$ and 1193 logical entries. Its lookups, block subtraction and output recovery are timed. The tested native division and Refined-LHE implementations take less time. BBR was not measured at this parameter; the supplied Meta-PBS parameter table does not provide the required thirteen-bit negacyclic parameters. Those entries remain unmeasured.
+
+\begin{table}[h]
+\centering\small
+\caption{Retained measured quotient means for $t=64$ (ms). A dash denotes an unmeasured task.}
+\begin{tabular}{rrrrr}\toprule
+Ours & Native TFHE-rs & BBR26 & Refined-LHE & Meta-PBS\\\midrule
+1996.49 & 750.45 & -- & 280.53 & --\\\bottomrule
+\end{tabular}
+\end{table}
+The three measured entries are identified as supplementary in \path{TABLE_INDEX.csv}. Other older results and model projections are historical records, not additional measured baselines for the current comparison.
+
+\section{Rebuilding and checking the records}
+The public package supplies source code, locked dependencies, parameter choices, input files, raw observations and summaries. A fresh execution workspace can be prepared without overwriting these records. See \path{Reproduction_Guide.md} for the exact commands, including the initial dependency downloads required before the frozen offline build scripts can run.
+
+The statistics reconstruction script reads the retained observations and checks the indexed means; it does not run encryption or bootstrapping. A successful reconstruction establishes consistency between these records and the reported aggregates. It is not a new experiment, independent authentication of the original measurements, a cross-machine reproduction, or a recalibration of security and failure probability.
+
+\Needspace{14\baselineskip}
+\begin{thebibliography}{9}
+\bibitem{BBR26} S. Bela\"id, N. Bon and M. Rivain. Decomposition of large look-up tables for fast homomorphic evaluation. IACR TCHES 2026(3), 247--278. \url{https://doi.org/10.46586/tches.v2026.i3.247-278}.
+\bibitem{WHSLCWL25} R. Wang, J. Ha, X. Shen, X. Lu, C. Chen, K. Wang and J. Lee. Refined TFHE leveled homomorphic evaluation and its application. ACM CCS 2025, pp. 2309--2323. \url{https://doi.org/10.1145/3719027.3744873}.
+\bibitem{TFHERs087} Zama. TFHE-rs, version 0.8.7. \url{https://github.com/zama-ai/tfhe-rs/tree/tfhe-rs-0.8.7}.
+\bibitem{MHWXWW26} S. Ma, T. Huang, A. Wang, C. Xu, T. Wei and X. Wang. Meta-PBS: Compact high-precision programmable bootstrapping. IACR ePrint 2025/2284. \url{https://eprint.iacr.org/2025/2284}.
+\bibitem{OKC21} H. Okada, S. Kiyomoto and C. Cid. Integer-wise functional bootstrapping on TFHE: Applications in secure integer arithmetics. Information 12(8), 297 (2021).\end{thebibliography}
+\end{document}

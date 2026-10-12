@@ -1,0 +1,59 @@
+AUTHOR_COMPILED_PARAMS {lweDimension:1170 glweDimension:2048 glweRank:1 polyDegree:2048 logPolyDegree:11 lookUpTableSize:2048 polyExtendFactor:1 lweStdDev:5.50160611398332e-09 glweStdDev:7.6322028613628e-16 blockSize:1 blockCount:1170 messageModulus:2048 scale:9007199254740992 logQ:64 floatQ:1.8446744073709552e+19 blindRotateParameters:{base:2048 logBase:11 level:3 sizeT:64} keySwitchParameters:{base:16 logBase:4 level:6 sizeT:64} bootstrapOrder:0 worstCaseLogFailureProb:-66 fullTorus:true metaFBS:true TruncRepeatParameters:{itersCount:2 repeatBase:[9 8] truncationBound:[67 74] extendedCoeffsCount:[92 107] truncatedRepetitionParameters:[{base:32768 logBase:15 level:2 sizeT:64} {base:32768 logBase:15 level:2 sizeT:64}] redundancy:[2 17] amplify:[2 18] mvGap:[2 18 144]} countLUTs:1 fullDomain:false countCancelSignLUTs:1 targetRedundancyInExtraction:0 inputNoiseIsGaussian:true isDummyPublicFunctionalKeySwitch:false RandomizedBlindRotate:true}
+Target capacities: c_Hom >= 6.114680 bits, c_meta >= 2.400000 bits
+Gadget parameters: B_br=2048, l_br=3, B_ks=16, l_ks=6
+Target extraction redundancy: 0
+Failure probability: per event 2^-66, union bound (3 events) <= 2^-64.415037
+Meta-PBS iterations: K = 2
+Iteration parameters:
+  i=0: beta_0=9, r_0=2, delta_0=66, T_0=67, epsilon_0=92, B_tr,0=32768, l_tr,0=2
+    r_1 = 17 <= beta_0 * r_0 = 9 * 2 = 18
+  i=1: beta_1=8, r_1=17, delta_1=66, T_1=74, epsilon_1=107, B_tr,1=32768, l_tr,1=2
+    r_2 = beta_1 * r_1 = 8 * 17 = 136
+Final Meta-PBS state: r_2=136, delta_2=67
+Available extraction redundancy: r_2 - 2*delta_2 = 2
+Estimated compressed evaluation key size (body only): 111.04 MiB
+All BR capacity: 2^8.955577
+Randomized blind rotation: true
+KS capacity: 2^3.798187
+All TR capacity: 2^10.730929
+Fresh MetaPBS stddev: 2^39.885675
+Homomorphic capacity: 2^6.384391
+Final capacity (including capacity for Meta-FBS): 2^2.624105
+INPUT_NOISE_MODEL {"allowed_pre_Meta_sigma_plaintext":0.010182117761353159,"combined_fresh_sigma_normalized":1.9671253335626447e-13,"estimated_KS_sigma_plaintext":0.003863152844331025,"fresh_sigma_normalized":7.6322028613628e-16,"fresh_sigma_plaintext":4.0286726831362964e-10,"post_KS_sigma_triangle_bound_plaintext":0.0038631532471982933,"strict_fullpath_tail_bound":false,"variance_factor":66430,"within_author_capacity":true}
+META_CONFIG {"author_commit":"5df59404858a0dfe5d4a361ff4934a9ffc8c3023","author_parameter":"BenchmarkMetaFBS / ParamsMetaTemplate","capacity_bits":6.11468,"capacity_bits_meta":2.4,"complete_failure_bound_established":false,"excluded":"keygen, public table construction, encryption, decryption","full_domain":false,"full_torus":true,"input_encoding":"separate big-LWE symbols with the author full-torus scale","input_scale":"2^53","input_sha256":"cb7decf77cb0aa03cfa32fd6b9ddfe074af35c55fe56874374a8504535abb449","online_path":"server linear packing/sum + BootstrapLUTAssign (KS, MetaFBS, sample extraction)","output_encoding":"one big-LWE ciphertext with the same scale","positive_half_size":1024,"positive_half_table_sha256":"7c5607b8d5ebc568fb8dbe7186bfa587fdb1491a437aca892178abfe11b0cc43","precision":11,"setup_ms":138.739274,"task_id":"distinct3_6","weights":[1,3,9,27,81,243]}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":147.21605,"expected":3,"index":0,"inputs":[0,1,2,0,1,2],"kind":"cyclic_warmup","phase":"warmup","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":148.842866,"expected":3,"index":1,"inputs":[1,2,0,1,2,0],"kind":"cyclic_warmup","phase":"warmup","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":150.319469,"expected":3,"index":2,"inputs":[2,0,1,2,0,1],"kind":"cyclic_warmup","phase":"warmup","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":150.199596,"expected":3,"index":3,"inputs":[0,1,2,0,1,2],"kind":"cyclic_warmup","phase":"warmup","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":151.985138,"expected":3,"index":4,"inputs":[1,2,0,1,2,0],"kind":"cyclic_warmup","phase":"warmup","task_id":"distinct3_6"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":147.72603,"expected":1,"index":0,"inputs":[0,0,0,0,0,0],"kind":"all_zero","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":149.31305,"expected":1,"index":1,"inputs":[1,1,1,1,1,1],"kind":"all_one","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":1,"correct":true,"elapsed_ms":151.050542,"expected":1,"index":2,"inputs":[2,2,2,2,2,2],"kind":"all_two","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":2,"correct":true,"elapsed_ms":148.803403,"expected":2,"index":3,"inputs":[0,0,0,1,1,1],"kind":"tie_zero_one","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":2,"correct":true,"elapsed_ms":149.38778,"expected":2,"index":4,"inputs":[1,1,1,2,2,2],"kind":"tie_one_two","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":148.612799,"expected":3,"index":5,"inputs":[0,0,1,1,2,2],"kind":"three_way_tie","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":2,"correct":true,"elapsed_ms":151.727623,"expected":2,"index":6,"inputs":[0,0,0,0,2,2],"kind":"four_zero_two_two","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":2,"correct":true,"elapsed_ms":150.863693,"expected":2,"index":7,"inputs":[0,0,2,2,2,2],"kind":"two_zero_four_two","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":145.879792,"expected":3,"index":8,"inputs":[0,1,1,1,1,2],"kind":"four_one_extremes","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":151.284033,"expected":3,"index":9,"inputs":[0,0,0,1,2,2],"kind":"lower_median_boundary","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":147.118964,"expected":3,"index":10,"inputs":[0,1,1,2,2,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":148.082797,"expected":3,"index":11,"inputs":[1,0,1,1,2,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":149.8821,"expected":3,"index":12,"inputs":[1,2,2,2,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":147.661924,"expected":3,"index":13,"inputs":[2,0,1,1,0,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":2,"correct":true,"elapsed_ms":150.535276,"expected":2,"index":14,"inputs":[0,1,0,0,0,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":150.482675,"expected":3,"index":15,"inputs":[1,0,1,2,0,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":149.199538,"expected":3,"index":16,"inputs":[1,0,0,2,1,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":149.251848,"expected":3,"index":17,"inputs":[1,2,1,0,2,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":147.77191,"expected":3,"index":18,"inputs":[1,2,1,2,2,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":150.213561,"expected":3,"index":19,"inputs":[1,1,2,0,1,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":149.257893,"expected":3,"index":20,"inputs":[0,0,2,2,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":147.426053,"expected":3,"index":21,"inputs":[2,0,0,1,0,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":149.804325,"expected":3,"index":22,"inputs":[2,1,0,1,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":147.333804,"expected":3,"index":23,"inputs":[2,1,2,2,0,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":151.061479,"expected":3,"index":24,"inputs":[1,1,1,2,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":148.301994,"expected":3,"index":25,"inputs":[1,2,1,0,0,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":2,"correct":true,"elapsed_ms":151.322702,"expected":2,"index":26,"inputs":[1,1,0,0,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":148.461373,"expected":3,"index":27,"inputs":[0,1,0,1,2,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":3,"correct":true,"elapsed_ms":150.792478,"expected":3,"index":28,"inputs":[0,1,1,2,0,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+TRIAL {"actual":2,"correct":true,"elapsed_ms":151.085159,"expected":2,"index":29,"inputs":[1,2,1,1,1,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"distinct3_6"}
+COMPLETE {"correct":35,"measured":30,"task_id":"distinct3_6","warmups":5}

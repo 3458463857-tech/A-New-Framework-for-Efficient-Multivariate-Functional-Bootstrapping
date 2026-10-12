@@ -1,0 +1,30 @@
+{
+  "t": 32,
+  "p": 17,
+  "n": 4,
+  "lambda_": 50,
+  "products": [
+    25,
+    14
+  ],
+  "seed": 20261011,
+  "maximum_candidates_per_output": 3,
+  "timeout_seconds": 180,
+  "output_radix": 16,
+  "input_order": [
+    "m_low4",
+    "m_high1",
+    "d_low4",
+    "d_high1"
+  ],
+  "domain_cardinalities": [
+    16,
+    2,
+    16,
+    2
+  ],
+  "output_order": [
+    "q%16",
+    "q//16"
+  ]
+}

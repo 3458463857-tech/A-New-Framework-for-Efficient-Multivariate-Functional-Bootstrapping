@@ -1,0 +1,38 @@
+StringRecord(["17", "15", "4", "1", "1", "4096", "849", "16", "2147483648", "1.6512448356449926e-06", "2.168404344971009e-19", "0", "2.938735877055719e-39"])
+PARAMETERS {"lwe_dimension":849,"glwe_dimension":1,"polynomial_size":4096,"lwe_modular_std_dev":1.6512448356449926e-6,"glwe_modular_std_dev":2.168404344971009e-19,"pbs_base_log":31,"pbs_level":1,"ks_base_log":4,"ks_level":4,"encryption_key_choice":"Big"}
+CERTIFICATE {"atom_count":1,"author_nu":15,"final_linear_terms":1,"p":17,"scope":"explicit structured decomposition, original author homomorphic evaluator","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":39.508641,"expected":2,"index":0,"inputs":[0,1,2],"kind":"cyclic_warmup","phase":"warmup","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":37.706049,"expected":2,"index":1,"inputs":[1,2,0],"kind":"cyclic_warmup","phase":"warmup","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":37.249768,"expected":2,"index":2,"inputs":[2,0,1],"kind":"cyclic_warmup","phase":"warmup","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":41.238105,"expected":2,"index":3,"inputs":[0,1,2],"kind":"cyclic_warmup","phase":"warmup","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":38.06138,"expected":2,"index":4,"inputs":[1,2,0],"kind":"cyclic_warmup","phase":"warmup","task_id":"range3_3"}
+{"actual":0,"correct":true,"elapsed_ms":38.088521,"expected":0,"index":0,"inputs":[0,0,0],"kind":"boundary_histogram_0","phase":"measured","task_id":"range3_3"}
+{"actual":0,"correct":true,"elapsed_ms":36.807391,"expected":0,"index":1,"inputs":[1,1,1],"kind":"boundary_histogram_1","phase":"measured","task_id":"range3_3"}
+{"actual":0,"correct":true,"elapsed_ms":39.832190000000004,"expected":0,"index":2,"inputs":[2,2,2],"kind":"boundary_histogram_2","phase":"measured","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":37.169354,"expected":2,"index":3,"inputs":[0,1,2],"kind":"boundary_histogram_3","phase":"measured","task_id":"range3_3"}
+{"actual":1,"correct":true,"elapsed_ms":38.930364000000004,"expected":1,"index":4,"inputs":[0,0,1],"kind":"boundary_histogram_4","phase":"measured","task_id":"range3_3"}
+{"actual":1,"correct":true,"elapsed_ms":36.615149,"expected":1,"index":5,"inputs":[0,1,1],"kind":"boundary_histogram_5","phase":"measured","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":39.488319000000004,"expected":2,"index":6,"inputs":[0,0,2],"kind":"boundary_histogram_6","phase":"measured","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":37.250757,"expected":2,"index":7,"inputs":[0,2,2],"kind":"boundary_histogram_7","phase":"measured","task_id":"range3_3"}
+{"actual":1,"correct":true,"elapsed_ms":37.120206,"expected":1,"index":8,"inputs":[1,1,2],"kind":"boundary_histogram_8","phase":"measured","task_id":"range3_3"}
+{"actual":1,"correct":true,"elapsed_ms":37.780819,"expected":1,"index":9,"inputs":[1,2,2],"kind":"boundary_histogram_9","phase":"measured","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":37.162302000000004,"expected":2,"index":10,"inputs":[0,2,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":38.854253,"expected":2,"index":11,"inputs":[0,1,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":1,"correct":true,"elapsed_ms":39.920009,"expected":1,"index":12,"inputs":[1,0,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":1,"correct":true,"elapsed_ms":37.954656,"expected":1,"index":13,"inputs":[2,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":1,"correct":true,"elapsed_ms":37.395317,"expected":1,"index":14,"inputs":[1,2,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":1,"correct":true,"elapsed_ms":36.634774,"expected":1,"index":15,"inputs":[1,2,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":37.650126,"expected":2,"index":16,"inputs":[2,0,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":1,"correct":true,"elapsed_ms":37.117997,"expected":1,"index":17,"inputs":[2,1,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":1,"correct":true,"elapsed_ms":36.793391,"expected":1,"index":18,"inputs":[1,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":38.050008000000005,"expected":2,"index":19,"inputs":[2,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":1,"correct":true,"elapsed_ms":37.255318,"expected":1,"index":20,"inputs":[1,0,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":37.068397000000004,"expected":2,"index":21,"inputs":[2,2,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":37.297354,"expected":2,"index":22,"inputs":[2,0,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":38.264073,"expected":2,"index":23,"inputs":[2,0,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":37.603403,"expected":2,"index":24,"inputs":[2,0,2],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":37.254302,"expected":2,"index":25,"inputs":[0,2,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":37.604594999999996,"expected":2,"index":26,"inputs":[2,2,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":2,"correct":true,"elapsed_ms":37.154604,"expected":2,"index":27,"inputs":[0,2,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":1,"correct":true,"elapsed_ms":37.608991,"expected":1,"index":28,"inputs":[0,1,0],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}
+{"actual":1,"correct":true,"elapsed_ms":37.152921,"expected":1,"index":29,"inputs":[0,1,1],"kind":"splitmix64_uniform","phase":"measured","task_id":"range3_3"}

@@ -1,0 +1,25 @@
+{
+  "t": 64,
+  "n": 30,
+  "warmups": 0,
+  "rayon_workers": 8,
+  "pbs_calls": 205,
+  "pbs_breakdown": {
+    "input": 86,
+    "subtraction": 17,
+    "outer": 102
+  },
+  "mean_ms": 1145.1076426,
+  "population_stddev_ms": 66.0650644431209,
+  "median_ms": 1134.6693375,
+  "min_ms": 997.6908,
+  "max_ms": 1287.355972,
+  "parameter": "PARAM_MULTI_BIT_MESSAGE_2_CARRY_2_GROUP_3_KS_PBS",
+  "same_ordered_input_pairs_as_unrepaired_additional_run": true,
+  "all_observed_outputs_pass": true,
+  "source_sha256": "ab9ad602df188dccc30a3e70cdbcf2273fb560075e84528f2f403ee408702a12",
+  "raw_log_sha256": "b018aeae9e30a1dafb23ae281550a56c58338c0815966b81e8a0a3a6d26257b2",
+  "calibrated_model_only_log2_union_estimate": -56.762519900494546,
+  "formal_end_to_end_tail_bound_proved": false,
+  "role": "additional repaired variant; confirmed historical main table unchanged"
+}

@@ -1,0 +1,39 @@
+REFERENCE_PASS,t=16,M=22,cases=240,reachable_deltas=117,delta_min=-86,delta_max=86
+RUN_ENV,RAYON_NUM_THREADS=8
+   Compiling section3-algorithm1-reproduction v0.1.0 (/mnt/c/Users/Wu/Documents/Codex/2026-08-03/wo/output/Section3_Algorithm1_Reproduction_20260816)
+    Finished `release` profile [optimized] target(s) in 2.99s
+     Running `target/release/section3-algorithm1-reproduction --samples 30`
+PLAINTEXT_EXHAUSTIVE_PASS,t=16,M=22,base=2,cases=240,delta_offset=86
+ALGORITHM1_CONFIG,t=16,M=22,base=2,radix_base=4,intermediate_radix_blocks=4,quotient_encoding=one_shortint_message_carry_block,parameter=PARAM_MULTI_BIT_MESSAGE_2_CARRY_2_GROUP_3_KS_PBS,offset_fused=true,parallel_luts=true,outer_route=packed_nibble_piecewise_PBS
+KEYGEN_MS,1052.946544
+ENCRYPTED_RESULT,index=0,m=0,d=15,clog_plus_1=0,floorlog_plus_1=86,shifted_delta=0,expected=0,actual=0,pbs_count=41,elapsed_ms=202.893801
+ENCRYPTED_RESULT,index=1,m=1,d=1,clog_plus_1=1,floorlog_plus_1=1,shifted_delta=86,expected=1,actual=1,pbs_count=41,elapsed_ms=197.358216
+ENCRYPTED_RESULT,index=2,m=15,d=1,clog_plus_1=87,floorlog_plus_1=1,shifted_delta=172,expected=15,actual=15,pbs_count=41,elapsed_ms=225.110457
+ENCRYPTED_RESULT,index=3,m=15,d=15,clog_plus_1=87,floorlog_plus_1=86,shifted_delta=87,expected=1,actual=1,pbs_count=41,elapsed_ms=201.190586
+ENCRYPTED_RESULT,index=4,m=6,d=13,clog_plus_1=58,floorlog_plus_1=82,shifted_delta=62,expected=0,actual=0,pbs_count=41,elapsed_ms=231.549757
+ENCRYPTED_RESULT,index=5,m=14,d=3,clog_plus_1=85,floorlog_plus_1=35,shifted_delta=136,expected=4,actual=4,pbs_count=41,elapsed_ms=210.364772
+ENCRYPTED_RESULT,index=6,m=7,d=2,clog_plus_1=63,floorlog_plus_1=23,shifted_delta=126,expected=3,actual=3,pbs_count=41,elapsed_ms=213.136276
+ENCRYPTED_RESULT,index=7,m=8,d=3,clog_plus_1=67,floorlog_plus_1=35,shifted_delta=118,expected=2,actual=2,pbs_count=41,elapsed_ms=217.990428
+ENCRYPTED_RESULT,index=8,m=13,d=4,clog_plus_1=83,floorlog_plus_1=45,shifted_delta=124,expected=3,actual=3,pbs_count=41,elapsed_ms=216.892616
+ENCRYPTED_RESULT,index=9,m=9,d=8,clog_plus_1=71,floorlog_plus_1=67,shifted_delta=90,expected=1,actual=1,pbs_count=41,elapsed_ms=244.520154
+ENCRYPTED_RESULT,index=10,m=0,d=1,clog_plus_1=0,floorlog_plus_1=1,shifted_delta=85,expected=0,actual=0,pbs_count=41,elapsed_ms=197.896968
+ENCRYPTED_RESULT,index=11,m=0,d=2,clog_plus_1=0,floorlog_plus_1=23,shifted_delta=63,expected=0,actual=0,pbs_count=41,elapsed_ms=223.902531
+ENCRYPTED_RESULT,index=12,m=0,d=3,clog_plus_1=0,floorlog_plus_1=35,shifted_delta=51,expected=0,actual=0,pbs_count=41,elapsed_ms=200.490751
+ENCRYPTED_RESULT,index=13,m=0,d=4,clog_plus_1=0,floorlog_plus_1=45,shifted_delta=41,expected=0,actual=0,pbs_count=41,elapsed_ms=212.534589
+ENCRYPTED_RESULT,index=14,m=0,d=5,clog_plus_1=0,floorlog_plus_1=52,shifted_delta=34,expected=0,actual=0,pbs_count=41,elapsed_ms=216.842014
+ENCRYPTED_RESULT,index=15,m=0,d=6,clog_plus_1=0,floorlog_plus_1=57,shifted_delta=29,expected=0,actual=0,pbs_count=41,elapsed_ms=219.287424
+ENCRYPTED_RESULT,index=16,m=0,d=7,clog_plus_1=0,floorlog_plus_1=62,shifted_delta=24,expected=0,actual=0,pbs_count=41,elapsed_ms=220.834381
+ENCRYPTED_RESULT,index=17,m=0,d=8,clog_plus_1=0,floorlog_plus_1=67,shifted_delta=19,expected=0,actual=0,pbs_count=41,elapsed_ms=223.387229
+ENCRYPTED_RESULT,index=18,m=0,d=9,clog_plus_1=0,floorlog_plus_1=70,shifted_delta=16,expected=0,actual=0,pbs_count=41,elapsed_ms=240.698646
+ENCRYPTED_RESULT,index=19,m=0,d=10,clog_plus_1=0,floorlog_plus_1=74,shifted_delta=12,expected=0,actual=0,pbs_count=41,elapsed_ms=219.070021
+ENCRYPTED_RESULT,index=20,m=0,d=11,clog_plus_1=0,floorlog_plus_1=77,shifted_delta=9,expected=0,actual=0,pbs_count=41,elapsed_ms=243.452641
+ENCRYPTED_RESULT,index=21,m=0,d=12,clog_plus_1=0,floorlog_plus_1=79,shifted_delta=7,expected=0,actual=0,pbs_count=41,elapsed_ms=251.617575
+ENCRYPTED_RESULT,index=22,m=0,d=13,clog_plus_1=0,floorlog_plus_1=82,shifted_delta=4,expected=0,actual=0,pbs_count=41,elapsed_ms=228.152924
+ENCRYPTED_RESULT,index=23,m=0,d=14,clog_plus_1=0,floorlog_plus_1=84,shifted_delta=2,expected=0,actual=0,pbs_count=41,elapsed_ms=222.373170
+ENCRYPTED_RESULT,index=24,m=1,d=2,clog_plus_1=1,floorlog_plus_1=23,shifted_delta=64,expected=0,actual=0,pbs_count=41,elapsed_ms=206.464361
+ENCRYPTED_RESULT,index=25,m=1,d=3,clog_plus_1=1,floorlog_plus_1=35,shifted_delta=52,expected=0,actual=0,pbs_count=41,elapsed_ms=256.766438
+ENCRYPTED_RESULT,index=26,m=1,d=4,clog_plus_1=1,floorlog_plus_1=45,shifted_delta=42,expected=0,actual=0,pbs_count=41,elapsed_ms=228.082724
+ENCRYPTED_RESULT,index=27,m=1,d=5,clog_plus_1=1,floorlog_plus_1=52,shifted_delta=35,expected=0,actual=0,pbs_count=41,elapsed_ms=229.188286
+ENCRYPTED_RESULT,index=28,m=1,d=6,clog_plus_1=1,floorlog_plus_1=57,shifted_delta=30,expected=0,actual=0,pbs_count=41,elapsed_ms=212.905230
+ENCRYPTED_RESULT,index=29,m=1,d=7,clog_plus_1=1,floorlog_plus_1=62,shifted_delta=25,expected=0,actual=0,pbs_count=41,elapsed_ms=222.513290
+ENCRYPTED_SUMMARY,PASS,cases=30,average_pbs=41.000,average_ms=221.248942,total_pbs=1230

@@ -1,0 +1,72 @@
+path,status,reason
+experiments/bbr/results/build_attempt1,supporting_build_record,Retained build environment/compiler record; not a final timing. Can move to supporting_evidence or archive with updated provenance; do not describe it as a stale performance measurement.
+experiments/bbr/results/build_small_attempt1,supporting_build_record,Retained build environment/compiler record; not a final timing. Can move to supporting_evidence or archive with updated provenance; do not describe it as a stale performance measurement.
+experiments/bbr/results/division_diagnostic_attempt1,keep_supporting_failure_diagnosis,"Original BBR failure and repair diagnostics are technical evidence for final supplementary explanation, although not used in mean timings."
+experiments/bbr/results/division_diagnostic_pbs15x2_attempt1,keep_supporting_failure_diagnosis,"Original BBR failure and repair diagnostics are technical evidence for final supplementary explanation, although not used in mean timings."
+experiments/bbr/results/division_fhe_attempt1,keep_supporting_failure_diagnosis,"Original BBR failure and repair diagnostics are technical evidence for final supplementary explanation, although not used in mean timings."
+experiments/bbr/results/division_fhe_pbs15x2_attempt1,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/bbr/results/division_search_fixed_attempt1,keep_supporting_offline_input,Offline representation consumed by documented final BBR reproduction command.
+experiments/bbr/results/functions_attempt1,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/bbr/results/small_functions_attempt1,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/bbr_division/results/fhe_t32_attempt1,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/bbr_division/results/fhe_t8_attempt1,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/bbr_division/results/search_t32_attempt1,keep_supporting_offline_input,Offline representation consumed by documented final BBR reproduction command.
+experiments/bbr_division/results/search_t8_attempt1,keep_supporting_offline_input,Offline representation consumed by documented final BBR reproduction command.
+experiments/division_t8/results/protocol1_attempt1,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/meta_initial/results/build_adapter1,supporting_build_record,Retained build environment/compiler record; not a final timing. Can move to supporting_evidence or archive with updated provenance; do not describe it as a stale performance measurement.
+experiments/meta_initial/results/build_final,supporting_build_record,Retained build environment/compiler record; not a final timing. Can move to supporting_evidence or archive with updated provenance; do not describe it as a stale performance measurement.
+experiments/meta_initial/results/build_initial,supporting_build_record,Retained build environment/compiler record; not a final timing. Can move to supporting_evidence or archive with updated provenance; do not describe it as a stale performance measurement.
+archive/historical_results/experiments/meta_initial/results/protocol1_count12_interval,archive_candidate,"No TABLE_INDEX file or listed final BBR offline input is within this run directory; preserve bytes and path mapping, check retained scripts for fixed path references before relocating."
+archive/historical_results/experiments/meta_initial/results/protocol1_count12_threshold,archive_candidate,"No TABLE_INDEX file or listed final BBR offline input is within this run directory; preserve bytes and path mapping, check retained scripts for fixed path references before relocating."
+archive/historical_results/experiments/meta_initial/results/protocol1_count16_interval,archive_candidate,"No TABLE_INDEX file or listed final BBR offline input is within this run directory; preserve bytes and path mapping, check retained scripts for fixed path references before relocating."
+archive/historical_results/experiments/meta_initial/results/protocol1_count16_threshold,archive_candidate,"No TABLE_INDEX file or listed final BBR offline input is within this run directory; preserve bytes and path mapping, check retained scripts for fixed path references before relocating."
+experiments/meta_initial/results/protocol1_div16,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+archive/historical_results/experiments/meta_initial/results/smoke_div16,archive_candidate,"No TABLE_INDEX file or listed final BBR offline input is within this run directory; preserve bytes and path mapping, check retained scripts for fixed path references before relocating."
+experiments/meta_small/results/build_attempt1,supporting_build_record,Retained build environment/compiler record; not a final timing. Can move to supporting_evidence or archive with updated provenance; do not describe it as a stale performance measurement.
+experiments/meta_small/results/protocol1_attempt1,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/meta_statistics/results/build_attempt1,supporting_build_record,Retained build environment/compiler record; not a final timing. Can move to supporting_evidence or archive with updated provenance; do not describe it as a stale performance measurement.
+experiments/meta_statistics/results/protocol1_attempt1,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/quotient_protocol/results/build_final_attempt1,supporting_build_record,Retained build environment/compiler record; not a final timing. Can move to supporting_evidence or archive with updated provenance; do not describe it as a stale performance measurement.
+experiments/quotient_protocol/results/build_final_attempt2,supporting_build_record,Retained build environment/compiler record; not a final timing. Can move to supporting_evidence or archive with updated provenance; do not describe it as a stale performance measurement.
+experiments/quotient_protocol/results/protocol1_dcc_div16,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/quotient_protocol/results/protocol1_dcc_div32,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/quotient_protocol/results/protocol1_dcc_div64,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+archive/historical_results/experiments/quotient_protocol/results/protocol1_dcc_n12_interval,archive_candidate,"No TABLE_INDEX file or listed final BBR offline input is within this run directory; preserve bytes and path mapping, check retained scripts for fixed path references before relocating."
+archive/historical_results/experiments/quotient_protocol/results/protocol1_dcc_n12_threshold,archive_candidate,"No TABLE_INDEX file or listed final BBR offline input is within this run directory; preserve bytes and path mapping, check retained scripts for fixed path references before relocating."
+archive/historical_results/experiments/quotient_protocol/results/protocol1_dcc_n16_interval,archive_candidate,"No TABLE_INDEX file or listed final BBR offline input is within this run directory; preserve bytes and path mapping, check retained scripts for fixed path references before relocating."
+archive/historical_results/experiments/quotient_protocol/results/protocol1_dcc_n16_threshold,archive_candidate,"No TABLE_INDEX file or listed final BBR offline input is within this run directory; preserve bytes and path mapping, check retained scripts for fixed path references before relocating."
+experiments/quotient_protocol/results/protocol1_native_div16,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/quotient_protocol/results/protocol1_native_div32,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/quotient_protocol/results/protocol1_native_div64,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/quotient_protocol/results/protocol1_refined_div16,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+archive/historical_results/experiments/quotient_protocol/results/protocol1_refined_n12_interval,archive_candidate,"No TABLE_INDEX file or listed final BBR offline input is within this run directory; preserve bytes and path mapping, check retained scripts for fixed path references before relocating."
+archive/historical_results/experiments/quotient_protocol/results/protocol1_refined_n12_threshold,archive_candidate,"No TABLE_INDEX file or listed final BBR offline input is within this run directory; preserve bytes and path mapping, check retained scripts for fixed path references before relocating."
+archive/historical_results/experiments/quotient_protocol/results/protocol1_refined_n16_interval,archive_candidate,"No TABLE_INDEX file or listed final BBR offline input is within this run directory; preserve bytes and path mapping, check retained scripts for fixed path references before relocating."
+archive/historical_results/experiments/quotient_protocol/results/protocol1_refined_n16_threshold,archive_candidate,"No TABLE_INDEX file or listed final BBR offline input is within this run directory; preserve bytes and path mapping, check retained scripts for fixed path references before relocating."
+experiments/quotient_protocol/results/runner_guard_check,keep_supporting_validation,"Frozen output-directory validation record, not a timing experiment."
+experiments/refined_division/results/protocol1_refined_div32,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_division/results/protocol1_refined_div64,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_small/results/build_attempt1,supporting_build_record,Retained build environment/compiler record; not a final timing. Can move to supporting_evidence or archive with updated provenance; do not describe it as a stale performance measurement.
+experiments/refined_small/results/protocol1_distinct3_3,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_small/results/protocol1_iqr3_4,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_small/results/protocol1_lower_median3_3,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_small/results/protocol1_mad3_3,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_small/results/protocol1_max3_3,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_small/results/protocol1_mode3_4,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_small/results/protocol1_range3_3,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_statistics/results/build_attempt1,supporting_build_record,Retained build environment/compiler record; not a final timing. Can move to supporting_evidence or archive with updated provenance; do not describe it as a stale performance measurement.
+experiments/refined_statistics/results/protocol1_distinct3_6,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_statistics/results/protocol1_hamming_interval10,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_statistics/results/protocol1_iqr3_6,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_statistics/results/protocol1_lower_median3_6,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_statistics/results/protocol1_mad3_6,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_statistics/results/protocol1_max3_6,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_statistics/results/protocol1_mode3_6,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_statistics/results/protocol1_range3_6,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_statistics/results/protocol1_set_interval4_6,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/refined_statistics/results/protocol1_set_threshold4_6,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/ours_large/ours/results/build_attempt1,supporting_build_record,Retained build environment/compiler record; not a final timing. Can move to supporting_evidence or archive with updated provenance; do not describe it as a stale performance measurement.
+experiments/ours_large/ours/results/protocol1_attempt1,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.
+experiments/ours_small/ours/results/build_attempt1,supporting_build_record,Retained build environment/compiler record; not a final timing. Can move to supporting_evidence or archive with updated provenance; do not describe it as a stale performance measurement.
+experiments/ours_small/ours/results/build_attempt2,supporting_build_record,Retained build environment/compiler record; not a final timing. Can move to supporting_evidence or archive with updated provenance; do not describe it as a stale performance measurement.
+experiments/ours_small/ours/results/protocol1_attempt1,keep_final_indexed,Contains raw/input/source file explicitly selected by TABLE_INDEX.

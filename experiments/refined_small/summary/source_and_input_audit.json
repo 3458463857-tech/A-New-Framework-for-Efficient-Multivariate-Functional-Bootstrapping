@@ -1,0 +1,19 @@
+{
+  "author_library_files_unchanged": 21,
+  "cargo_lock_unchanged": true,
+  "adapter_sha256": "817576dcd8fbbfa0a44405f676d96de4f56079f78b4cfc6e339f9d7109ad06d9",
+  "all_build_and_run_snapshots_match": true,
+  "all_input_snapshots_match_frozen_canonical": true,
+  "input_sha256": {
+    "distinct3_3": "9ef0c67675447b824055953b56b23b9f324fd3887772110178c7c6d811cc776c",
+    "iqr3_4": "35691dfe4adb391b7fa274992e6f01700a5703286ac995007583f2711000fb74",
+    "lower_median3_3": "915a3b7833e04c9d1ff0ca842d5255f6fa72e01bbada0ab22f7cc88fb6f7fd75",
+    "mad3_3": "6049c99bdad9a80a95c11922d578e221f2c5e19ca97356323235f7ffdb866ad8",
+    "max3_3": "eb7d46acc2ede7010fcf94587524f2b9c9028695f93b63b6bf837af0439dd01c",
+    "mode3_4": "1cf6c3efd729359ae7e08dc9911e3be18e7bb5175c8ff5bf968d468a9541cdcc",
+    "range3_3": "e7a8b6683283a8843d385927cd90f9a8888aeebe5e4820dd92f0804ebd76472a"
+  },
+  "encrypted_queries": 245,
+  "encrypted_queries_correct": 245,
+  "input_noise_note": "Online packing changes fresh-input variance; original single-fresh-input failure bound is not asserted."
+}

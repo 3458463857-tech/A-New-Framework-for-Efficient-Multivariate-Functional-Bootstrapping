@@ -1,0 +1,370 @@
+[
+  {
+    "n": 12,
+    "predicate": "threshold",
+    "inner_tables": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "outer_table": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "span_E": 12,
+    "support_K": 13,
+    "logical_records_unelided": 37,
+    "domain_checked": 4096,
+    "status": "PASS",
+    "physical_inner_PBS": 0,
+    "physical_outer_PBS": 1,
+    "all_domain_input_degree_bound": 36,
+    "all_domain_input_noise_level_bound": 12,
+    "capacity": 64,
+    "max_noise_level": 21,
+    "degree_noise_reason": "Fresh two-message-bit ciphertext metadata degree<=3 and noise<=1; n checked additions imply degree<=3n and tracked noise<=n. Actual encrypted plaintexts are bits, so semantic sum<=n.",
+    "probability_status": "This certificate proves plaintext correctness and finite budget bounds only; consult separate failure analysis for stochastic calibration assumptions."
+  },
+  {
+    "n": 12,
+    "predicate": "interval",
+    "inner_tables": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "outer_table": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "span_E": 12,
+    "support_K": 13,
+    "logical_records_unelided": 37,
+    "domain_checked": 4096,
+    "status": "PASS",
+    "physical_inner_PBS": 0,
+    "physical_outer_PBS": 1,
+    "all_domain_input_degree_bound": 36,
+    "all_domain_input_noise_level_bound": 12,
+    "capacity": 64,
+    "max_noise_level": 21,
+    "degree_noise_reason": "Fresh two-message-bit ciphertext metadata degree<=3 and noise<=1; n checked additions imply degree<=3n and tracked noise<=n. Actual encrypted plaintexts are bits, so semantic sum<=n.",
+    "probability_status": "This certificate proves plaintext correctness and finite budget bounds only; consult separate failure analysis for stochastic calibration assumptions."
+  },
+  {
+    "n": 16,
+    "predicate": "threshold",
+    "inner_tables": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "outer_table": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "span_E": 16,
+    "support_K": 17,
+    "logical_records_unelided": 49,
+    "domain_checked": 65536,
+    "status": "PASS",
+    "physical_inner_PBS": 0,
+    "physical_outer_PBS": 1,
+    "all_domain_input_degree_bound": 48,
+    "all_domain_input_noise_level_bound": 16,
+    "capacity": 64,
+    "max_noise_level": 21,
+    "degree_noise_reason": "Fresh two-message-bit ciphertext metadata degree<=3 and noise<=1; n checked additions imply degree<=3n and tracked noise<=n. Actual encrypted plaintexts are bits, so semantic sum<=n.",
+    "probability_status": "This certificate proves plaintext correctness and finite budget bounds only; consult separate failure analysis for stochastic calibration assumptions."
+  },
+  {
+    "n": 16,
+    "predicate": "interval",
+    "inner_tables": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "outer_table": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "span_E": 16,
+    "support_K": 17,
+    "logical_records_unelided": 49,
+    "domain_checked": 65536,
+    "status": "PASS",
+    "physical_inner_PBS": 0,
+    "physical_outer_PBS": 1,
+    "all_domain_input_degree_bound": 48,
+    "all_domain_input_noise_level_bound": 16,
+    "capacity": 64,
+    "max_noise_level": 21,
+    "degree_noise_reason": "Fresh two-message-bit ciphertext metadata degree<=3 and noise<=1; n checked additions imply degree<=3n and tracked noise<=n. Actual encrypted plaintexts are bits, so semantic sum<=n.",
+    "probability_status": "This certificate proves plaintext correctness and finite budget bounds only; consult separate failure analysis for stochastic calibration assumptions."
+  }
+]

@@ -1,0 +1,30 @@
+--- C:\Users\Wu\Documents\Codex\2026-10-10\xi\work\DCC_targeted_revision_v2\final_experiments\source\refined-tfhe-lhe\benches\bench_targeted_div4.rs
++++ C:\Users\Wu\Documents\Codex\2026-10-10\xi\work\DCC_final_polish_v6\new_experiments\source\refined-tfhe-lhe\benches\bench_targeted_div8.rs
+@@ -24,23 +24,23 @@
+     assert_eq!(manifest_lines.next(),Some("phase,index,t,m,d,kind"));
+     let trials=manifest_lines.map(|line| {
+         let f=line.split(',').collect::<Vec<_>>();
+-        assert_eq!(f.len(),6); assert_eq!(f[2],"16");
++        assert_eq!(f.len(),6); assert_eq!(f[2],"8");
+         (f[0].to_owned(),f[1].parse::<usize>().unwrap(),f[3].parse::<usize>().unwrap(),f[4].parse::<usize>().unwrap())
+     }).collect::<Vec<_>>();
+     assert_eq!(trials.len(),35);
+     assert_eq!(trials.iter().filter(|r|r.0=="warmup").count(),5);
+     assert_eq!(trials.iter().filter(|r|r.0=="measured").count(),30);
+-    assert!(trials.iter().all(|r|r.2<16 && (1..16).contains(&r.3)));
++    assert!(trials.iter().all(|r|r.2<8 && (1..8).contains(&r.3)));
+     let lut = (0..256).map(|i| {
+         let m=mask2(i & 15); let d=mask2(i >> 4);
+         if d == 0 { 0u64 } else { (m/d) as u64 }
+     }).collect::<Vec<_>>();
+     for m in 0..16 { for d in 1..16 { assert_eq!(lut[mask2(m)+16*mask2(d)], (m/d) as u64); } }
+     println!("META,adapter=author_CBS_then_CMUX_DIV4,upstream_commit=9b0426e8e197020a4bf40776cc03641e6cf9b90e,param=INT_LHE_BASE_16,extract_size=2,warmups=5,samples=30,features=default_monothread");
+-    println!("META,input=two_4bit_no_padding_LWE,input_delta=2^60,output=4bit_padded_LWE,output_delta=2^59,public_LUT_entries=256,d_zero_entry=0_not_tested");
++    println!("META,input=two_4bit_no_padding_LWE,input_delta=2^60,output=4bit_padded_LWE,output_delta=2^59,logical_t=8,implementation_input_bits=4,public_LUT_entries=256,d_zero_entry=0_not_tested");
+     println!("META,n=769,N=2048,k=1,pbs_base_log=15,pbs_level=2,ks_base_log=4,ks_level=3,auto_base_log=7,auto_level=7,ss_base_log=17,ss_level=2,cbs_base_log=4,cbs_level=4,log_lut_count=2");
+     println!("META,wall_timing=all_online_LWE_to_LWE_including_allocations_and_accumulator_reset,excluded=keygen_public_LUT_setup_encryption_decryption,cryptographic_randomness=fresh_OS_seed_unrecorded");
+-    println!("META,protocol=round2_B4,input_manifest={input_path},seed=20261026,measured_sampling=10_boundary_plus_20_SplitMix64_rejection_samples");
++    println!("META,protocol=round2_B4,input_manifest={input_path},seed=20261018,measured_sampling=10_boundary_plus_20_SplitMix64_rejection_samples");
+     let setup = Instant::now();
+     let mut boxed_seeder = new_seeder();
+     let seeder = boxed_seeder.as_mut();

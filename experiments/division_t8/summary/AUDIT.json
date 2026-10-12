@@ -1,0 +1,11 @@
+{
+  "rows": 140,
+  "matched_input_rows": 140,
+  "correct_outputs": 140,
+  "means_use_measured_only": true,
+  "standard_deviation_definitions": {
+    "population": "divide by 30",
+    "sample": "divide by 29"
+  },
+  "input_sha256": "c634744163c3a8a10cbfacb25593ec0700ca0ea177d9a61798537096582ffe05"
+}

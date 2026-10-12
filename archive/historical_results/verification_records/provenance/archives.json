@@ -1,0 +1,13 @@
+[
+  {
+    "name": "DCC_code_and_records_v5.zip",
+    "sha256": "421187e7a5589738db985a84f3d2fa49700f967fa8c179c8a5092db577cf19b6",
+    "bytes": 11102061
+  },
+  {
+    "name": "DCC_code_and_records_v3.zip",
+    "sha256": "bf5105c4e3b377413e135a10f261c9108c384649253d02d683376d986eab4319",
+    "bytes": 7218838,
+    "status": "expanded; archive container omitted"
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "case": "mode_t3_n6",
+  "historical_reported_records": 127,
+  "historical_status": "preserved as originally reported search result; no original p_i certificate for127 recovered here",
+  "source": "03_LaTeX_Source\\EN\\part_04.tex",
+  "source_sha256": "c1d331361e2b89c6c784032085f81386fcfe1765501f0f1eea40a7ae30e6be03",
+  "new_records": 61,
+  "new_method": "reuse of existing histogram statistic; no new search",
+  "earlier_source_unchanged": true
+}

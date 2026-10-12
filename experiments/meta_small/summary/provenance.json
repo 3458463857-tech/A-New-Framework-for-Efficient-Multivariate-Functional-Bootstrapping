@@ -1,0 +1,284 @@
+[
+  {
+    "task_id": "lower_median3_3",
+    "compiled_parameters": "AUTHOR_COMPILED_PARAMS {lweDimension:1170 glweDimension:2048 glweRank:1 polyDegree:2048 logPolyDegree:11 lookUpTableSize:2048 polyExtendFactor:1 lweStdDev:5.50160611398332e-09 glweStdDev:7.6322028613628e-16 blockSize:1 blockCount:1170 messageModulus:256 scale:72057594037927936 logQ:64 floatQ:1.8446744073709552e+19 blindRotateParameters:{base:32768 logBase:15 level:2 sizeT:64} keySwitchParameters:{base:512 logBase:9 level:2 sizeT:64} bootstrapOrder:0 worstCaseLogFailureProb:-66 fullTorus:true metaFBS:true TruncRepeatParameters:{itersCount:1 repeatBase:[9] truncationBound:[74] extendedCoeffsCount:[78] truncatedRepetitionParameters:[{base:8388608 logBase:23 level:1 sizeT:64}] redundancy:[16] amplify:[16] mvGap:[16 144]} countLUTs:1 fullDomain:false countCancelSignLUTs:1 targetRedundancyInExtraction:0 inputNoiseIsGaussian:true isDummyPublicFunctionalKeySwitch:false RandomizedBlindRotate:true}",
+    "configuration": {
+      "author_commit": "5df59404858a0dfe5d4a361ff4934a9ffc8c3023",
+      "author_parameter": "BenchmarkMetaFBS / ParamsMetaTemplate",
+      "capacity_bits": 3.92018,
+      "capacity_bits_meta": 1.41,
+      "complete_failure_bound_established": false,
+      "excluded": "keygen, public table construction, encryption, decryption",
+      "full_domain": false,
+      "full_torus": true,
+      "input_encoding": "separate big-LWE symbols with the author full-torus scale",
+      "input_scale": "2^56",
+      "input_sha256": "915a3b7833e04c9d1ff0ca842d5255f6fa72e01bbada0ab22f7cc88fb6f7fd75",
+      "online_path": "server linear packing/sum + BootstrapLUTAssign (KS, MetaFBS, sample extraction)",
+      "output_encoding": "one big-LWE ciphertext with the same scale",
+      "positive_half_size": 128,
+      "positive_half_table_sha256": "4f9a5d9de2866f59c343df42d7751eb5ec2c8826ae6f22ad7863fac5a21f3ed4",
+      "precision": 8,
+      "setup_ms": 100.035055,
+      "task_id": "lower_median3_3",
+      "weights": [
+        1,
+        3,
+        9
+      ]
+    },
+    "input_noise_model": {
+      "allowed_pre_Meta_sigma_plaintext": 0.020223569472911943,
+      "combined_fresh_sigma_normalized": 7.280657502620556e-15,
+      "estimated_KS_sigma_plaintext": 0.01053478572577895,
+      "fresh_sigma_normalized": 7.6322028613628e-16,
+      "fresh_sigma_plaintext": 1.8638483206708624e-12,
+      "post_KS_sigma_triangle_bound_plaintext": 0.010534785727642798,
+      "strict_fullpath_tail_bound": false,
+      "variance_factor": 91,
+      "within_author_capacity": true
+    }
+  },
+  {
+    "task_id": "mode3_4",
+    "compiled_parameters": "AUTHOR_COMPILED_PARAMS {lweDimension:1170 glweDimension:2048 glweRank:1 polyDegree:2048 logPolyDegree:11 lookUpTableSize:2048 polyExtendFactor:1 lweStdDev:5.50160611398332e-09 glweStdDev:7.6322028613628e-16 blockSize:1 blockCount:1170 messageModulus:256 scale:72057594037927936 logQ:64 floatQ:1.8446744073709552e+19 blindRotateParameters:{base:32768 logBase:15 level:2 sizeT:64} keySwitchParameters:{base:512 logBase:9 level:2 sizeT:64} bootstrapOrder:0 worstCaseLogFailureProb:-66 fullTorus:true metaFBS:true TruncRepeatParameters:{itersCount:1 repeatBase:[9] truncationBound:[74] extendedCoeffsCount:[78] truncatedRepetitionParameters:[{base:8388608 logBase:23 level:1 sizeT:64}] redundancy:[16] amplify:[16] mvGap:[16 144]} countLUTs:1 fullDomain:false countCancelSignLUTs:1 targetRedundancyInExtraction:0 inputNoiseIsGaussian:true isDummyPublicFunctionalKeySwitch:false RandomizedBlindRotate:true}",
+    "configuration": {
+      "author_commit": "5df59404858a0dfe5d4a361ff4934a9ffc8c3023",
+      "author_parameter": "BenchmarkMetaFBS / ParamsMetaTemplate",
+      "capacity_bits": 3.92018,
+      "capacity_bits_meta": 1.41,
+      "complete_failure_bound_established": false,
+      "excluded": "keygen, public table construction, encryption, decryption",
+      "full_domain": false,
+      "full_torus": true,
+      "input_encoding": "separate big-LWE symbols with the author full-torus scale",
+      "input_scale": "2^56",
+      "input_sha256": "1cf6c3efd729359ae7e08dc9911e3be18e7bb5175c8ff5bf968d468a9541cdcc",
+      "online_path": "server linear packing/sum + BootstrapLUTAssign (KS, MetaFBS, sample extraction)",
+      "output_encoding": "one big-LWE ciphertext with the same scale",
+      "positive_half_size": 128,
+      "positive_half_table_sha256": "8e1827f7270b9e1885abb7cd5c6f55f18a3c6031c1a1ae3ee1cd8037f50a8f01",
+      "precision": 8,
+      "setup_ms": 95.43669,
+      "task_id": "mode3_4",
+      "weights": [
+        1,
+        3,
+        9,
+        27
+      ]
+    },
+    "input_noise_model": {
+      "allowed_pre_Meta_sigma_plaintext": 0.020223569472911943,
+      "combined_fresh_sigma_normalized": 2.1855302977523672e-14,
+      "estimated_KS_sigma_plaintext": 0.01053478572577895,
+      "fresh_sigma_normalized": 7.6322028613628e-16,
+      "fresh_sigma_plaintext": 5.59495756224606e-12,
+      "post_KS_sigma_triangle_bound_plaintext": 0.010534785731373907,
+      "strict_fullpath_tail_bound": false,
+      "variance_factor": 820,
+      "within_author_capacity": true
+    }
+  },
+  {
+    "task_id": "max3_3",
+    "compiled_parameters": "AUTHOR_COMPILED_PARAMS {lweDimension:1170 glweDimension:2048 glweRank:1 polyDegree:2048 logPolyDegree:11 lookUpTableSize:2048 polyExtendFactor:1 lweStdDev:5.50160611398332e-09 glweStdDev:7.6322028613628e-16 blockSize:1 blockCount:1170 messageModulus:256 scale:72057594037927936 logQ:64 floatQ:1.8446744073709552e+19 blindRotateParameters:{base:32768 logBase:15 level:2 sizeT:64} keySwitchParameters:{base:512 logBase:9 level:2 sizeT:64} bootstrapOrder:0 worstCaseLogFailureProb:-66 fullTorus:true metaFBS:true TruncRepeatParameters:{itersCount:1 repeatBase:[9] truncationBound:[74] extendedCoeffsCount:[78] truncatedRepetitionParameters:[{base:8388608 logBase:23 level:1 sizeT:64}] redundancy:[16] amplify:[16] mvGap:[16 144]} countLUTs:1 fullDomain:false countCancelSignLUTs:1 targetRedundancyInExtraction:0 inputNoiseIsGaussian:true isDummyPublicFunctionalKeySwitch:false RandomizedBlindRotate:true}",
+    "configuration": {
+      "author_commit": "5df59404858a0dfe5d4a361ff4934a9ffc8c3023",
+      "author_parameter": "BenchmarkMetaFBS / ParamsMetaTemplate",
+      "capacity_bits": 3.92018,
+      "capacity_bits_meta": 1.41,
+      "complete_failure_bound_established": false,
+      "excluded": "keygen, public table construction, encryption, decryption",
+      "full_domain": false,
+      "full_torus": true,
+      "input_encoding": "separate big-LWE symbols with the author full-torus scale",
+      "input_scale": "2^56",
+      "input_sha256": "eb7d46acc2ede7010fcf94587524f2b9c9028695f93b63b6bf837af0439dd01c",
+      "online_path": "server linear packing/sum + BootstrapLUTAssign (KS, MetaFBS, sample extraction)",
+      "output_encoding": "one big-LWE ciphertext with the same scale",
+      "positive_half_size": 128,
+      "positive_half_table_sha256": "7d7041266079c9c0a8dad682eb80478e32c43c2d10cad0fb87580d65892cc8f9",
+      "precision": 8,
+      "setup_ms": 95.906327,
+      "task_id": "max3_3",
+      "weights": [
+        1,
+        3,
+        9
+      ]
+    },
+    "input_noise_model": {
+      "allowed_pre_Meta_sigma_plaintext": 0.020223569472911943,
+      "combined_fresh_sigma_normalized": 7.280657502620556e-15,
+      "estimated_KS_sigma_plaintext": 0.01053478572577895,
+      "fresh_sigma_normalized": 7.6322028613628e-16,
+      "fresh_sigma_plaintext": 1.8638483206708624e-12,
+      "post_KS_sigma_triangle_bound_plaintext": 0.010534785727642798,
+      "strict_fullpath_tail_bound": false,
+      "variance_factor": 91,
+      "within_author_capacity": true
+    }
+  },
+  {
+    "task_id": "range3_3",
+    "compiled_parameters": "AUTHOR_COMPILED_PARAMS {lweDimension:1170 glweDimension:2048 glweRank:1 polyDegree:2048 logPolyDegree:11 lookUpTableSize:2048 polyExtendFactor:1 lweStdDev:5.50160611398332e-09 glweStdDev:7.6322028613628e-16 blockSize:1 blockCount:1170 messageModulus:256 scale:72057594037927936 logQ:64 floatQ:1.8446744073709552e+19 blindRotateParameters:{base:32768 logBase:15 level:2 sizeT:64} keySwitchParameters:{base:512 logBase:9 level:2 sizeT:64} bootstrapOrder:0 worstCaseLogFailureProb:-66 fullTorus:true metaFBS:true TruncRepeatParameters:{itersCount:1 repeatBase:[9] truncationBound:[74] extendedCoeffsCount:[78] truncatedRepetitionParameters:[{base:8388608 logBase:23 level:1 sizeT:64}] redundancy:[16] amplify:[16] mvGap:[16 144]} countLUTs:1 fullDomain:false countCancelSignLUTs:1 targetRedundancyInExtraction:0 inputNoiseIsGaussian:true isDummyPublicFunctionalKeySwitch:false RandomizedBlindRotate:true}",
+    "configuration": {
+      "author_commit": "5df59404858a0dfe5d4a361ff4934a9ffc8c3023",
+      "author_parameter": "BenchmarkMetaFBS / ParamsMetaTemplate",
+      "capacity_bits": 3.92018,
+      "capacity_bits_meta": 1.41,
+      "complete_failure_bound_established": false,
+      "excluded": "keygen, public table construction, encryption, decryption",
+      "full_domain": false,
+      "full_torus": true,
+      "input_encoding": "separate big-LWE symbols with the author full-torus scale",
+      "input_scale": "2^56",
+      "input_sha256": "e7a8b6683283a8843d385927cd90f9a8888aeebe5e4820dd92f0804ebd76472a",
+      "online_path": "server linear packing/sum + BootstrapLUTAssign (KS, MetaFBS, sample extraction)",
+      "output_encoding": "one big-LWE ciphertext with the same scale",
+      "positive_half_size": 128,
+      "positive_half_table_sha256": "414e509fb264a50408b76cd06f4f7cec5d7315abf899b920e33e4f91167d7393",
+      "precision": 8,
+      "setup_ms": 96.171266,
+      "task_id": "range3_3",
+      "weights": [
+        1,
+        3,
+        9
+      ]
+    },
+    "input_noise_model": {
+      "allowed_pre_Meta_sigma_plaintext": 0.020223569472911943,
+      "combined_fresh_sigma_normalized": 7.280657502620556e-15,
+      "estimated_KS_sigma_plaintext": 0.01053478572577895,
+      "fresh_sigma_normalized": 7.6322028613628e-16,
+      "fresh_sigma_plaintext": 1.8638483206708624e-12,
+      "post_KS_sigma_triangle_bound_plaintext": 0.010534785727642798,
+      "strict_fullpath_tail_bound": false,
+      "variance_factor": 91,
+      "within_author_capacity": true
+    }
+  },
+  {
+    "task_id": "iqr3_4",
+    "compiled_parameters": "AUTHOR_COMPILED_PARAMS {lweDimension:1170 glweDimension:2048 glweRank:1 polyDegree:2048 logPolyDegree:11 lookUpTableSize:2048 polyExtendFactor:1 lweStdDev:5.50160611398332e-09 glweStdDev:7.6322028613628e-16 blockSize:1 blockCount:1170 messageModulus:256 scale:72057594037927936 logQ:64 floatQ:1.8446744073709552e+19 blindRotateParameters:{base:32768 logBase:15 level:2 sizeT:64} keySwitchParameters:{base:512 logBase:9 level:2 sizeT:64} bootstrapOrder:0 worstCaseLogFailureProb:-66 fullTorus:true metaFBS:true TruncRepeatParameters:{itersCount:1 repeatBase:[9] truncationBound:[74] extendedCoeffsCount:[78] truncatedRepetitionParameters:[{base:8388608 logBase:23 level:1 sizeT:64}] redundancy:[16] amplify:[16] mvGap:[16 144]} countLUTs:1 fullDomain:false countCancelSignLUTs:1 targetRedundancyInExtraction:0 inputNoiseIsGaussian:true isDummyPublicFunctionalKeySwitch:false RandomizedBlindRotate:true}",
+    "configuration": {
+      "author_commit": "5df59404858a0dfe5d4a361ff4934a9ffc8c3023",
+      "author_parameter": "BenchmarkMetaFBS / ParamsMetaTemplate",
+      "capacity_bits": 3.92018,
+      "capacity_bits_meta": 1.41,
+      "complete_failure_bound_established": false,
+      "excluded": "keygen, public table construction, encryption, decryption",
+      "full_domain": false,
+      "full_torus": true,
+      "input_encoding": "separate big-LWE symbols with the author full-torus scale",
+      "input_scale": "2^56",
+      "input_sha256": "35691dfe4adb391b7fa274992e6f01700a5703286ac995007583f2711000fb74",
+      "online_path": "server linear packing/sum + BootstrapLUTAssign (KS, MetaFBS, sample extraction)",
+      "output_encoding": "one big-LWE ciphertext with the same scale",
+      "positive_half_size": 128,
+      "positive_half_table_sha256": "901c6acdaea814ee685f6b191293f528d1cf78bf766737a663d515a0563d902b",
+      "precision": 8,
+      "setup_ms": 101.057491,
+      "task_id": "iqr3_4",
+      "weights": [
+        1,
+        3,
+        9,
+        27
+      ]
+    },
+    "input_noise_model": {
+      "allowed_pre_Meta_sigma_plaintext": 0.020223569472911943,
+      "combined_fresh_sigma_normalized": 2.1855302977523672e-14,
+      "estimated_KS_sigma_plaintext": 0.01053478572577895,
+      "fresh_sigma_normalized": 7.6322028613628e-16,
+      "fresh_sigma_plaintext": 5.59495756224606e-12,
+      "post_KS_sigma_triangle_bound_plaintext": 0.010534785731373907,
+      "strict_fullpath_tail_bound": false,
+      "variance_factor": 820,
+      "within_author_capacity": true
+    }
+  },
+  {
+    "task_id": "mad3_3",
+    "compiled_parameters": "AUTHOR_COMPILED_PARAMS {lweDimension:1170 glweDimension:2048 glweRank:1 polyDegree:2048 logPolyDegree:11 lookUpTableSize:2048 polyExtendFactor:1 lweStdDev:5.50160611398332e-09 glweStdDev:7.6322028613628e-16 blockSize:1 blockCount:1170 messageModulus:256 scale:72057594037927936 logQ:64 floatQ:1.8446744073709552e+19 blindRotateParameters:{base:32768 logBase:15 level:2 sizeT:64} keySwitchParameters:{base:512 logBase:9 level:2 sizeT:64} bootstrapOrder:0 worstCaseLogFailureProb:-66 fullTorus:true metaFBS:true TruncRepeatParameters:{itersCount:1 repeatBase:[9] truncationBound:[74] extendedCoeffsCount:[78] truncatedRepetitionParameters:[{base:8388608 logBase:23 level:1 sizeT:64}] redundancy:[16] amplify:[16] mvGap:[16 144]} countLUTs:1 fullDomain:false countCancelSignLUTs:1 targetRedundancyInExtraction:0 inputNoiseIsGaussian:true isDummyPublicFunctionalKeySwitch:false RandomizedBlindRotate:true}",
+    "configuration": {
+      "author_commit": "5df59404858a0dfe5d4a361ff4934a9ffc8c3023",
+      "author_parameter": "BenchmarkMetaFBS / ParamsMetaTemplate",
+      "capacity_bits": 3.92018,
+      "capacity_bits_meta": 1.41,
+      "complete_failure_bound_established": false,
+      "excluded": "keygen, public table construction, encryption, decryption",
+      "full_domain": false,
+      "full_torus": true,
+      "input_encoding": "separate big-LWE symbols with the author full-torus scale",
+      "input_scale": "2^56",
+      "input_sha256": "6049c99bdad9a80a95c11922d578e221f2c5e19ca97356323235f7ffdb866ad8",
+      "online_path": "server linear packing/sum + BootstrapLUTAssign (KS, MetaFBS, sample extraction)",
+      "output_encoding": "one big-LWE ciphertext with the same scale",
+      "positive_half_size": 128,
+      "positive_half_table_sha256": "a209336271c260bc78d26428b5724fba8ad9a37d0159990f016c3e9ca4f0fa08",
+      "precision": 8,
+      "setup_ms": 93.880749,
+      "task_id": "mad3_3",
+      "weights": [
+        1,
+        3,
+        9
+      ]
+    },
+    "input_noise_model": {
+      "allowed_pre_Meta_sigma_plaintext": 0.020223569472911943,
+      "combined_fresh_sigma_normalized": 7.280657502620556e-15,
+      "estimated_KS_sigma_plaintext": 0.01053478572577895,
+      "fresh_sigma_normalized": 7.6322028613628e-16,
+      "fresh_sigma_plaintext": 1.8638483206708624e-12,
+      "post_KS_sigma_triangle_bound_plaintext": 0.010534785727642798,
+      "strict_fullpath_tail_bound": false,
+      "variance_factor": 91,
+      "within_author_capacity": true
+    }
+  },
+  {
+    "task_id": "distinct3_3",
+    "compiled_parameters": "AUTHOR_COMPILED_PARAMS {lweDimension:1170 glweDimension:2048 glweRank:1 polyDegree:2048 logPolyDegree:11 lookUpTableSize:2048 polyExtendFactor:1 lweStdDev:5.50160611398332e-09 glweStdDev:7.6322028613628e-16 blockSize:1 blockCount:1170 messageModulus:256 scale:72057594037927936 logQ:64 floatQ:1.8446744073709552e+19 blindRotateParameters:{base:32768 logBase:15 level:2 sizeT:64} keySwitchParameters:{base:512 logBase:9 level:2 sizeT:64} bootstrapOrder:0 worstCaseLogFailureProb:-66 fullTorus:true metaFBS:true TruncRepeatParameters:{itersCount:1 repeatBase:[9] truncationBound:[74] extendedCoeffsCount:[78] truncatedRepetitionParameters:[{base:8388608 logBase:23 level:1 sizeT:64}] redundancy:[16] amplify:[16] mvGap:[16 144]} countLUTs:1 fullDomain:false countCancelSignLUTs:1 targetRedundancyInExtraction:0 inputNoiseIsGaussian:true isDummyPublicFunctionalKeySwitch:false RandomizedBlindRotate:true}",
+    "configuration": {
+      "author_commit": "5df59404858a0dfe5d4a361ff4934a9ffc8c3023",
+      "author_parameter": "BenchmarkMetaFBS / ParamsMetaTemplate",
+      "capacity_bits": 3.92018,
+      "capacity_bits_meta": 1.41,
+      "complete_failure_bound_established": false,
+      "excluded": "keygen, public table construction, encryption, decryption",
+      "full_domain": false,
+      "full_torus": true,
+      "input_encoding": "separate big-LWE symbols with the author full-torus scale",
+      "input_scale": "2^56",
+      "input_sha256": "9ef0c67675447b824055953b56b23b9f324fd3887772110178c7c6d811cc776c",
+      "online_path": "server linear packing/sum + BootstrapLUTAssign (KS, MetaFBS, sample extraction)",
+      "output_encoding": "one big-LWE ciphertext with the same scale",
+      "positive_half_size": 128,
+      "positive_half_table_sha256": "ed33aeb388abfd1e179eb084ac95c1eec97cc0661bcf33049b97acc2591a5544",
+      "precision": 8,
+      "setup_ms": 98.559316,
+      "task_id": "distinct3_3",
+      "weights": [
+        1,
+        3,
+        9
+      ]
+    },
+    "input_noise_model": {
+      "allowed_pre_Meta_sigma_plaintext": 0.020223569472911943,
+      "combined_fresh_sigma_normalized": 7.280657502620556e-15,
+      "estimated_KS_sigma_plaintext": 0.01053478572577895,
+      "fresh_sigma_normalized": 7.6322028613628e-16,
+      "fresh_sigma_plaintext": 1.8638483206708624e-12,
+      "post_KS_sigma_triangle_bound_plaintext": 0.010534785727642798,
+      "strict_fullpath_tail_bound": false,
+      "variance_factor": 91,
+      "within_author_capacity": true
+    }
+  }
+]

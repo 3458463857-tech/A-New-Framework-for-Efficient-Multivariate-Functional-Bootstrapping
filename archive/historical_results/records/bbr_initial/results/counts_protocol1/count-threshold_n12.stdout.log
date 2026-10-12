@@ -1,0 +1,37 @@
+StringRecord(["17", "5", "4", "1", "1", "4096", "849", "16", "33554432", "1.6512448356449926e-06", "2.168404344971009e-19", "0", "2.938735877055719e-39"])
+PARAMETERS {"lwe_dimension":849,"glwe_dimension":1,"polynomial_size":4096,"lwe_modular_std_dev":1.6512448356449926e-6,"glwe_modular_std_dev":2.168404344971009e-19,"pbs_base_log":25,"pbs_level":1,"ks_base_log":4,"ks_level":4,"encryption_key_choice":"Big"}
+{"actual":0,"correct":true,"elapsed_ms":43.398204,"expected":0,"index":0,"input":{"bitmask":0,"n":12,"weight":0},"phase":"warmup","task":"count-threshold"}
+{"actual":0,"correct":true,"elapsed_ms":42.755995,"expected":0,"index":1,"input":{"bitmask":1,"n":12,"weight":1},"phase":"warmup","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":44.091098,"expected":1,"index":2,"input":{"bitmask":4094,"n":12,"weight":11},"phase":"warmup","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":40.187923,"expected":1,"index":3,"input":{"bitmask":4095,"n":12,"weight":12},"phase":"warmup","task":"count-threshold"}
+{"actual":0,"correct":true,"elapsed_ms":39.964632,"expected":0,"index":4,"input":{"bitmask":31,"n":12,"weight":5},"phase":"warmup","task":"count-threshold"}
+{"actual":0,"correct":true,"elapsed_ms":39.242948,"expected":0,"index":0,"input":{"bitmask":0,"n":12,"weight":0},"phase":"measured","task":"count-threshold"}
+{"actual":0,"correct":true,"elapsed_ms":41.529648,"expected":0,"index":1,"input":{"bitmask":1,"n":12,"weight":1},"phase":"measured","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":42.203544,"expected":1,"index":2,"input":{"bitmask":4094,"n":12,"weight":11},"phase":"measured","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":41.107976,"expected":1,"index":3,"input":{"bitmask":4095,"n":12,"weight":12},"phase":"measured","task":"count-threshold"}
+{"actual":0,"correct":true,"elapsed_ms":39.823752,"expected":0,"index":4,"input":{"bitmask":31,"n":12,"weight":5},"phase":"measured","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":39.969802,"expected":1,"index":5,"input":{"bitmask":63,"n":12,"weight":6},"phase":"measured","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":38.795246,"expected":1,"index":6,"input":{"bitmask":127,"n":12,"weight":7},"phase":"measured","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":38.630801999999996,"expected":1,"index":7,"input":{"bitmask":1365,"n":12,"weight":6},"phase":"measured","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":39.70913,"expected":1,"index":8,"input":{"bitmask":2730,"n":12,"weight":6},"phase":"measured","task":"count-threshold"}
+{"actual":0,"correct":true,"elapsed_ms":39.87228,"expected":0,"index":9,"input":{"bitmask":2048,"n":12,"weight":1},"phase":"measured","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":39.78139,"expected":1,"index":10,"input":{"bitmask":2684,"n":12,"weight":7},"phase":"measured","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":38.890401999999995,"expected":1,"index":11,"input":{"bitmask":95,"n":12,"weight":6},"phase":"measured","task":"count-threshold"}
+{"actual":0,"correct":true,"elapsed_ms":39.321189,"expected":0,"index":12,"input":{"bitmask":29,"n":12,"weight":4},"phase":"measured","task":"count-threshold"}
+{"actual":0,"correct":true,"elapsed_ms":38.297829,"expected":0,"index":13,"input":{"bitmask":523,"n":12,"weight":4},"phase":"measured","task":"count-threshold"}
+{"actual":0,"correct":true,"elapsed_ms":37.773461000000005,"expected":0,"index":14,"input":{"bitmask":1796,"n":12,"weight":4},"phase":"measured","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":40.412028,"expected":1,"index":15,"input":{"bitmask":3411,"n":12,"weight":7},"phase":"measured","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":39.800075,"expected":1,"index":16,"input":{"bitmask":3987,"n":12,"weight":8},"phase":"measured","task":"count-threshold"}
+{"actual":0,"correct":true,"elapsed_ms":40.801511,"expected":0,"index":17,"input":{"bitmask":1046,"n":12,"weight":4},"phase":"measured","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":42.592064,"expected":1,"index":18,"input":{"bitmask":748,"n":12,"weight":6},"phase":"measured","task":"count-threshold"}
+{"actual":0,"correct":true,"elapsed_ms":42.989131,"expected":0,"index":19,"input":{"bitmask":6,"n":12,"weight":2},"phase":"measured","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":41.377736,"expected":1,"index":20,"input":{"bitmask":3420,"n":12,"weight":7},"phase":"measured","task":"count-threshold"}
+{"actual":0,"correct":true,"elapsed_ms":40.119293,"expected":0,"index":21,"input":{"bitmask":1291,"n":12,"weight":5},"phase":"measured","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":39.360988,"expected":1,"index":22,"input":{"bitmask":1407,"n":12,"weight":9},"phase":"measured","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":38.612331,"expected":1,"index":23,"input":{"bitmask":2771,"n":12,"weight":7},"phase":"measured","task":"count-threshold"}
+{"actual":0,"correct":true,"elapsed_ms":39.130572,"expected":0,"index":24,"input":{"bitmask":2161,"n":12,"weight":5},"phase":"measured","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":38.932488,"expected":1,"index":25,"input":{"bitmask":1821,"n":12,"weight":7},"phase":"measured","task":"count-threshold"}
+{"actual":0,"correct":true,"elapsed_ms":38.042474999999996,"expected":0,"index":26,"input":{"bitmask":1620,"n":12,"weight":5},"phase":"measured","task":"count-threshold"}
+{"actual":1,"correct":true,"elapsed_ms":40.021583,"expected":1,"index":27,"input":{"bitmask":1706,"n":12,"weight":6},"phase":"measured","task":"count-threshold"}
+{"actual":0,"correct":true,"elapsed_ms":39.049895,"expected":0,"index":28,"input":{"bitmask":2160,"n":12,"weight":4},"phase":"measured","task":"count-threshold"}
+{"actual":0,"correct":true,"elapsed_ms":39.355618,"expected":0,"index":29,"input":{"bitmask":1216,"n":12,"weight":3},"phase":"measured","task":"count-threshold"}

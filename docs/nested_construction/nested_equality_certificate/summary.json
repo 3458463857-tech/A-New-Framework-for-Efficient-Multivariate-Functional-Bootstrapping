@@ -1,0 +1,78 @@
+{
+  "scope": "finite exhaustive integer validation n=1..8; general proof is in manuscript",
+  "source_sha256": "28024c723f919d1b1fd2df87c9d8664445996c9858f31dc1a85b58ae3ea69ef3",
+  "results": [
+    {
+      "n": 1,
+      "input_pairs_checked": 4,
+      "flat_min_span": 2,
+      "flat_min_dense_records": 7,
+      "nested_dense_records": 9,
+      "nested_pure_lut_entries": 5,
+      "status": "PASS"
+    },
+    {
+      "n": 2,
+      "input_pairs_checked": 16,
+      "flat_min_span": 6,
+      "flat_min_dense_records": 15,
+      "nested_dense_records": 17,
+      "nested_pure_lut_entries": 9,
+      "status": "PASS"
+    },
+    {
+      "n": 3,
+      "input_pairs_checked": 64,
+      "flat_min_span": 14,
+      "flat_min_dense_records": 27,
+      "nested_dense_records": 25,
+      "nested_pure_lut_entries": 13,
+      "status": "PASS"
+    },
+    {
+      "n": 4,
+      "input_pairs_checked": 256,
+      "flat_min_span": 30,
+      "flat_min_dense_records": 47,
+      "nested_dense_records": 33,
+      "nested_pure_lut_entries": 17,
+      "status": "PASS"
+    },
+    {
+      "n": 5,
+      "input_pairs_checked": 1024,
+      "flat_min_span": 62,
+      "flat_min_dense_records": 83,
+      "nested_dense_records": 41,
+      "nested_pure_lut_entries": 21,
+      "status": "PASS"
+    },
+    {
+      "n": 6,
+      "input_pairs_checked": 4096,
+      "flat_min_span": 126,
+      "flat_min_dense_records": 151,
+      "nested_dense_records": 49,
+      "nested_pure_lut_entries": 25,
+      "status": "PASS"
+    },
+    {
+      "n": 7,
+      "input_pairs_checked": 16384,
+      "flat_min_span": 254,
+      "flat_min_dense_records": 283,
+      "nested_dense_records": 57,
+      "nested_pure_lut_entries": 29,
+      "status": "PASS"
+    },
+    {
+      "n": 8,
+      "input_pairs_checked": 65536,
+      "flat_min_span": 510,
+      "flat_min_dense_records": 543,
+      "nested_dense_records": 65,
+      "nested_pure_lut_entries": 33,
+      "status": "PASS"
+    }
+  ]
+}

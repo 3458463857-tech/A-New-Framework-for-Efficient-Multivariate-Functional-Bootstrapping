@@ -1,0 +1,1 @@
+PASS: 87380 EQ pairs; 8 sparse/shared inputs; all DAGs acyclic, fan-in/depth/record formulas checked; no FHE run.

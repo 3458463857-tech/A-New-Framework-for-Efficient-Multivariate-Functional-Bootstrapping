@@ -1,0 +1,6 @@
+
+thread 'main' (1121) panicked at src/bin/matched_division.rs:40:9:
+assertion `left == right` failed: Completed records retained on failure
+  left: 4
+ right: 0
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

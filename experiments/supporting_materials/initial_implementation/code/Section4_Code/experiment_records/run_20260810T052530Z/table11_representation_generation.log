@@ -1,0 +1,4 @@
+PASS hamming_weight_interval: span=10, distinct_sums=11, points=1024
+PASS symbol_set_interval: span=6, distinct_sums=7, points=4096
+PASS symbol_set_threshold: span=6, distinct_sums=7, points=4096
+PASS lower_median: span=42, distinct_sums=28, points=729, seed=20260810, iterations_executed=1, restarts_executed=1

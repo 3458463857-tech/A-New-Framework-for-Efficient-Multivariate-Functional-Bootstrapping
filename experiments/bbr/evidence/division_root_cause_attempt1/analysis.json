@@ -1,0 +1,52 @@
+{
+  "first_wrong_stage": {
+    "actual": 13,
+    "author_measure_noise_scaled": 659061104227909632,
+    "correct": false,
+    "expected": 12,
+    "stage": "atom.5.weighted_input"
+  },
+  "alpha": [
+    0,
+    5,
+    13,
+    1,
+    15,
+    7,
+    14
+  ],
+  "prior_field_errors": [
+    0.0,
+    0.0,
+    0.01832595167547879,
+    -0.01194392940283251,
+    0.01654613180880915,
+    -0.0002437059913233952,
+    0.03510662488417893
+  ],
+  "weighted_error_field_units": 0.9642722259497702,
+  "observed_error_field_units": 0.9642722259497702,
+  "difference": 0.0,
+  "predicted_decoding_position": 12.96427222594977,
+  "rounding_threshold": 0.5,
+  "pbs_fresh_controls": 17,
+  "pbs_zero_mask_controls": 17,
+  "parameter_changes": {
+    "pbs_base_log": [
+      29,
+      15
+    ],
+    "pbs_level": [
+      1,
+      2
+    ]
+  },
+  "revised_all_stage_checks_pass": true,
+  "both_match_original_evaluator_bitwise": true,
+  "method": "Author measure_noise reports nearest-grid residual multiplied by 2^64 in field units. We combine that residual with the separately decoded and expected values; we do not mistake a nearest-grid residual for an error relative to the expected value. Coordinates are reconstructed from floating-point diagnostics, not exact integer phase dumps.",
+  "hashes": {
+    "results\\division_diagnostic_attempt1\\stages.jsonl": "0d37e81109e06484ccea1c4866c7522562735fe64aacc3579e0d829dca01035f",
+    "results\\division_diagnostic_pbs15x2_attempt1\\stages.jsonl": "47f46a8051ec5e199fb7ffd5a42cd5dafd196953ea86a81d8b64441fe64ef112",
+    "results\\division_search_fixed_attempt1\\search\\decomposition\\new_phis_17_2": "6ddd5d3752252403f184144c323adb9a6c8b7b0cbcf9ee8c546bf9190df0ba76"
+  }
+}

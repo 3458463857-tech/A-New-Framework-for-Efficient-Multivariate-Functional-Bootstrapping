@@ -1,0 +1,121 @@
+TFHE-rs 0.8.7: src/integer/server_key/radix_parallel/scalar_comparison.rs
+Whole-source SHA256: 8114415bfc4c19910239bfae375bbdddae17c990333650f35ae0c9685449683b
+
+
+--- Lines 200-315 ---
+200:     /// This takes a Vec of shortint blocks, where each block is
+201:     /// either 0 or 1.
+202:     ///
+203:     /// It returns a shortint block encrypting 1 if at least input blocks is 1
+204:     /// otherwise the block encrypts 0 (all blocks encrypts 0)
+205:     ///
+206:     /// if the vec is empty, a trivial 1 is returned
+207:     pub(crate) fn is_at_least_one_comparisons_block_true(
+208:         &self,
+209:         mut block_comparisons: Vec<Ciphertext>,
+210:     ) -> Ciphertext {
+211:         if block_comparisons.is_empty() {
+212:             return self.key.create_trivial(1);
+213:         }
+214: 
+215:         let is_not_zero = self.key.generate_lookup_table(|x| u64::from(x != 0));
+216:         let mut block_comparisons_2 = Vec::with_capacity(block_comparisons.len() / 2);
+217:         let max_sum_size = self.max_sum_size(Degree::new(1));
+218: 
+219:         while block_comparisons.len() > 1 {
+220:             block_comparisons
+221:                 .par_chunks(max_sum_size)
+222:                 .map(|blocks| {
+223:                     let mut sum = blocks[0].clone();
+224:                     for other_block in &blocks[1..] {
+225:                         self.key.unchecked_add_assign(&mut sum, other_block);
+226:                     }
+227:                     self.key.apply_lookup_table(&sum, &is_not_zero)
+228:                 })
+229:                 .collect_into_vec(&mut block_comparisons_2);
+230:             std::mem::swap(&mut block_comparisons_2, &mut block_comparisons);
+231:         }
+232: 
+233:         block_comparisons
+234:             .into_iter()
+235:             .next()
+236:             .expect("one block was expected")
+237:     }
+238: 
+239:     /// This takes an input slice of blocks.
+240:     ///
+241:     /// Each block can encrypt any value as long as its < message_modulus.
+242:     ///
+243:     /// It will compare blocks with 0, for either equality or difference.
+244:     ///
+245:     /// This returns a Vec of block, where each block encrypts 1 or 0
+246:     /// depending on if all blocks matched with the comparison type with 0.
+247:     ///
+248:     /// E.g. For ZeroComparisonType::Equality, if all input blocks are zero
+249:     /// than all returned block will encrypt 1
+250:     ///
+251:     /// The returned Vec will have less block than the number of input blocks.
+252:     /// The returned blocks potentially needs to be 'reduced' to one block
+253:     /// with e.g. are_all_comparisons_block_true.
+254:     ///
+255:     /// This function exists because sometimes it is faster to concatenate
+256:     /// multiple vec of 'boolean' shortint block before reducing them with
+257:     /// are_all_comparisons_block_true
+258:     pub(crate) fn compare_blocks_with_zero(
+259:         &self,
+260:         lhs: &[Ciphertext],
+261:         comparison_type: ZeroComparisonType,
+262:     ) -> Vec<Ciphertext> {
+263:         if lhs.is_empty() {
+264:             return vec![];
+265:         }
+266: 
+267:         let possible_copy;
+268:         let num_trivial_0 = lhs.iter().filter(|block| block.degree.get() == 0).count();
+269:         let lhs = if num_trivial_0 == lhs.len() {
+270:             return match comparison_type {
+271:                 ZeroComparisonType::Equality => {
+272:                     vec![self.key.create_trivial(1)]
+273:                 }
+274:                 ZeroComparisonType::Difference => {
+275:                     vec![self.key.create_trivial(0)]
+276:                 }
+277:             };
+278:         } else if num_trivial_0 != 0 {
+279:             possible_copy = lhs
+280:                 .iter()
+281:                 .filter(|block| block.degree.get() != 0)
+282:                 .cloned()
+283:                 .collect::<Vec<_>>();
+284:             possible_copy.as_slice()
+285:         } else {
+286:             lhs
+287:         };
+288: 
+289:         debug_assert!(lhs.iter().all(Ciphertext::carry_is_empty));
+290: 
+291:         let message_modulus = self.key.message_modulus.0;
+292:         let carry_modulus = self.key.carry_modulus.0;
+293:         let total_modulus = message_modulus * carry_modulus;
+294:         let message_max = message_modulus - 1;
+295: 
+296:         // The idea is that we will sum chunks of blocks until carries are full
+297:         // then we compare the sum with 0.
+298:         //
+299:         // If all blocks were 0, the sum will be zero
+300:         // If at least one bock was not zero, the sum won't be zero
+301:         let num_elements_to_fill_carry = (total_modulus - 1) / message_max;
+302:         let is_equal_to_zero = self.key.generate_lookup_table(|x| {
+303:             if matches!(comparison_type, ZeroComparisonType::Equality) {
+304:                 u64::from((x % total_modulus as u64) == 0)
+305:             } else {
+306:                 u64::from((x % total_modulus as u64) != 0)
+307:             }
+308:         });
+309: 
+310:         lhs.par_chunks(num_elements_to_fill_carry)
+311:             .map(|chunk| {
+312:                 let mut sum = chunk[0].clone();
+313:                 for other_block in &chunk[1..] {
+314:                     self.key.unchecked_add_assign(&mut sum, other_block);
+315:                 }

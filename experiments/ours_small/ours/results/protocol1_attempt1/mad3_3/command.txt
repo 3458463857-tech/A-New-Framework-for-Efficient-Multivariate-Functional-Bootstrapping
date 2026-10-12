@@ -1,0 +1,1 @@
+/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_ours_capacity/ours/build/target/release/functions_checked --run --task mad3_3 --parameter m2c2 --manifest /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_ours_capacity/inputs/mad3_3.csv 

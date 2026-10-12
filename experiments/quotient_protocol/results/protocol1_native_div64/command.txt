@@ -1,0 +1,2 @@
+taskset -c 0-7 /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_targeted_revision_v2/final_experiments/build/target/release/baseline_div_final 64 /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_targeted_revision_v2/final_experiments/inputs/division_t64.csv 
+DCC_INPUT_MANIFEST=unused

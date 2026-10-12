@@ -1,0 +1,162 @@
+{
+  "checks": [
+    {
+      "command": [
+        "C:\\Users\\Wu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\scripts\\run_plaintext.py",
+        "--help"
+      ],
+      "exit": 0,
+      "expected": 0,
+      "output": "usage: run_plaintext.py [-h] [--output-dir OUTPUT_DIR]\n\noptions:\n  -h, --help            show this help message and exit\n  --output-dir OUTPUT_DIR\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\Wu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\scripts\\run_plaintext.py",
+        "--output-dir",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10"
+      ],
+      "exit": 2,
+      "expected": 2,
+      "output": "usage: run_plaintext.py [-h] [--output-dir OUTPUT_DIR]\nrun_plaintext.py: error: refusing to overwrite nonempty output path: C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\Wu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\scripts\\verify_exact.py",
+        "--help"
+      ],
+      "exit": 0,
+      "expected": 0,
+      "output": "usage: verify_exact.py [-h] [--output-dir OUTPUT_DIR]\n\noptions:\n  -h, --help            show this help message and exit\n  --output-dir OUTPUT_DIR\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\Wu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\scripts\\verify_exact.py",
+        "--output-dir",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10"
+      ],
+      "exit": 2,
+      "expected": 2,
+      "output": "usage: verify_exact.py [-h] [--output-dir OUTPUT_DIR]\nverify_exact.py: error: refusing to overwrite nonempty output path: C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\Wu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\scripts\\search_comparison.py",
+        "--help"
+      ],
+      "exit": 0,
+      "expected": 0,
+      "output": "usage: search_comparison.py [-h] --output-dir OUTPUT_DIR [--budget BUDGET]\n                            [--seeds SEEDS]\n\noptions:\n  -h, --help            show this help message and exit\n  --output-dir OUTPUT_DIR\n  --budget BUDGET\n  --seeds SEEDS\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\Wu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\scripts\\search_comparison.py",
+        "--output-dir",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10"
+      ],
+      "exit": 2,
+      "expected": 2,
+      "output": "usage: search_comparison.py [-h] --output-dir OUTPUT_DIR [--budget BUDGET]\n                            [--seeds SEEDS]\nsearch_comparison.py: error: refusing to overwrite nonempty output path: C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\Wu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\scripts\\summarize_revision.py",
+        "--help"
+      ],
+      "exit": 0,
+      "expected": 0,
+      "output": "usage: summarize_revision.py [-h] [--run-dir RUN_DIR]\n                             [--output-dir OUTPUT_DIR]\n\noptions:\n  -h, --help            show this help message and exit\n  --run-dir RUN_DIR     read existing records; never modify them\n  --output-dir OUTPUT_DIR\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\Wu\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\scripts\\summarize_revision.py",
+        "--output-dir",
+        "C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10"
+      ],
+      "exit": 2,
+      "expected": 2,
+      "output": "usage: summarize_revision.py [-h] [--run-dir RUN_DIR]\n                             [--output-dir OUTPUT_DIR]\nsummarize_revision.py: error: refusing to overwrite nonempty output path: C:\\Users\\Wu\\Documents\\Codex\\2026-10-10\\xi\\work\\DCC_revision_2026-10-10_v1\\05_Reproducibility\\results\\revision_2026-10-10\n"
+    },
+    {
+      "command": [
+        "wsl",
+        "-d",
+        "Ubuntu",
+        "--",
+        "bash",
+        "/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_2026-10-10_v1/05_Reproducibility/scripts/run_encrypted.sh",
+        "/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_2026-10-10_v1/05_Reproducibility/results/revision_2026-10-10"
+      ],
+      "exit": 2,
+      "expected": 2,
+      "output": "w\u0000s\u0000l\u0000:\u0000 \u0000\ufffdhKm0R \u0000l\u0000o\u0000c\u0000a\u0000l\u0000h\u0000o\u0000s\u0000t\u0000 \u0000\ufffdN\u0006tM\ufffdn\u007f\f\ufffdFO*g\\\ufffd\ufffdP0R \u0000W\u0000S\u0000L\u0000\u00020N\u0000A\u0000T\u0000 \u0000!j\u000f_\u000bN\ufffdv \u0000W\u0000S\u0000L\u0000 \u0000\nN/e\u0001c \u0000l\u0000o\u0000c\u0000a\u0000l\u0000h\u0000o\u0000s\u0000t\u0000 \u0000\ufffdN\u0006t\u00020\n\u0000\n\u0000Refusing to overwrite nonempty output path: /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_2026-10-10_v1/05_Reproducibility/results/revision_2026-10-10\n"
+    },
+    {
+      "command": [
+        "wsl",
+        "-d",
+        "Ubuntu",
+        "--",
+        "bash",
+        "/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_2026-10-10_v1/05_Reproducibility/scripts/run_checked.sh",
+        "/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_2026-10-10_v1/05_Reproducibility/results/revision_2026-10-10"
+      ],
+      "exit": 2,
+      "expected": 2,
+      "output": "w\u0000s\u0000l\u0000:\u0000 \u0000\ufffdhKm0R \u0000l\u0000o\u0000c\u0000a\u0000l\u0000h\u0000o\u0000s\u0000t\u0000 \u0000\ufffdN\u0006tM\ufffdn\u007f\f\ufffdFO*g\\\ufffd\ufffdP0R \u0000W\u0000S\u0000L\u0000\u00020N\u0000A\u0000T\u0000 \u0000!j\u000f_\u000bN\ufffdv \u0000W\u0000S\u0000L\u0000 \u0000\nN/e\u0001c \u0000l\u0000o\u0000c\u0000a\u0000l\u0000h\u0000o\u0000s\u0000t\u0000 \u0000\ufffdN\u0006t\u00020\n\u0000\n\u0000Refusing to overwrite nonempty output path: /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_2026-10-10_v1/05_Reproducibility/results/revision_2026-10-10\n"
+    },
+    {
+      "command": [
+        "wsl",
+        "-d",
+        "Ubuntu",
+        "--",
+        "bash",
+        "/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_2026-10-10_v1/05_Reproducibility/scripts/run_final_encrypted.sh",
+        "/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_2026-10-10_v1/05_Reproducibility/results/revision_2026-10-10"
+      ],
+      "exit": 2,
+      "expected": 2,
+      "output": "w\u0000s\u0000l\u0000:\u0000 \u0000\ufffdhKm0R \u0000l\u0000o\u0000c\u0000a\u0000l\u0000h\u0000o\u0000s\u0000t\u0000 \u0000\ufffdN\u0006tM\ufffdn\u007f\f\ufffdFO*g\\\ufffd\ufffdP0R \u0000W\u0000S\u0000L\u0000\u00020N\u0000A\u0000T\u0000 \u0000!j\u000f_\u000bN\ufffdv \u0000W\u0000S\u0000L\u0000 \u0000\nN/e\u0001c \u0000l\u0000o\u0000c\u0000a\u0000l\u0000h\u0000o\u0000s\u0000t\u0000 \u0000\ufffdN\u0006t\u00020\n\u0000\n\u0000Refusing to overwrite nonempty output path: /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_2026-10-10_v1/05_Reproducibility/results/revision_2026-10-10\n"
+    },
+    {
+      "command": [
+        "wsl",
+        "-d",
+        "Ubuntu",
+        "--",
+        "bash",
+        "/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_2026-10-10_v1/05_Reproducibility/scripts/attempt_refined.sh",
+        "/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_2026-10-10_v1/05_Reproducibility/results/revision_2026-10-10"
+      ],
+      "exit": 2,
+      "expected": 2,
+      "output": "w\u0000s\u0000l\u0000:\u0000 \u0000\ufffdhKm0R \u0000l\u0000o\u0000c\u0000a\u0000l\u0000h\u0000o\u0000s\u0000t\u0000 \u0000\ufffdN\u0006tM\ufffdn\u007f\f\ufffdFO*g\\\ufffd\ufffdP0R \u0000W\u0000S\u0000L\u0000\u00020N\u0000A\u0000T\u0000 \u0000!j\u000f_\u000bN\ufffdv \u0000W\u0000S\u0000L\u0000 \u0000\nN/e\u0001c \u0000l\u0000o\u0000c\u0000a\u0000l\u0000h\u0000o\u0000s\u0000t\u0000 \u0000\ufffdN\u0006t\u00020\n\u0000\n\u0000Refusing to overwrite nonempty output path: /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_2026-10-10_v1/05_Reproducibility/results/revision_2026-10-10\n"
+    },
+    {
+      "command": [
+        "wsl",
+        "-d",
+        "Ubuntu",
+        "--",
+        "bash",
+        "/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_2026-10-10_v1/05_Reproducibility/scripts/attempt_baselines.sh",
+        "unused_source",
+        "/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_2026-10-10_v1/05_Reproducibility/results/revision_2026-10-10"
+      ],
+      "exit": 2,
+      "expected": 2,
+      "output": "w\u0000s\u0000l\u0000:\u0000 \u0000\ufffdhKm0R \u0000l\u0000o\u0000c\u0000a\u0000l\u0000h\u0000o\u0000s\u0000t\u0000 \u0000\ufffdN\u0006tM\ufffdn\u007f\f\ufffdFO*g\\\ufffd\ufffdP0R \u0000W\u0000S\u0000L\u0000\u00020N\u0000A\u0000T\u0000 \u0000!j\u000f_\u000bN\ufffdv \u0000W\u0000S\u0000L\u0000 \u0000\nN/e\u0001c \u0000l\u0000o\u0000c\u0000a\u0000l\u0000h\u0000o\u0000s\u0000t\u0000 \u0000\ufffdN\u0006t\u00020\n\u0000\n\u0000Refusing to overwrite nonempty output path: /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_2026-10-10_v1/05_Reproducibility/results/revision_2026-10-10\n"
+    }
+  ],
+  "all_pass": true,
+  "protected_files": 66,
+  "before_after_identical": true
+}

@@ -1,0 +1,7 @@
+__pycache__/
+target/
+.venv/
+.build/
+*.aux
+*.log.tmp
+*.synctex.gz

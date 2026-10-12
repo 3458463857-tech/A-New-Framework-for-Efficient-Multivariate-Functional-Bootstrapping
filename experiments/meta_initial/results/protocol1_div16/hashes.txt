@@ -1,0 +1,5 @@
+0b734be4b12837f4a9ed47a6f674e78955436462fbdc526de7d37e12d34b7175  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_v3/experiments_meta/results/protocol1_div16/adapter_snapshot.go
+c0302339dc5fb13282ea48268018c4579df3c2e3b6a01de340fb0cef43cc2749  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_v3/experiments_meta/results/protocol1_div16/go.mod
+5c167f0e3c3011ee5d64e4f16c9a085c32c923a3a6620788f93c5bc83b09a625  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_v3/experiments_meta/results/protocol1_div16/go.sum
+2615db095fc02455aa7fcb8e151ae321c2e69cb42d99282c292468015b015b05  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_v3/experiments_meta/results/protocol1_div16/input_manifest.csv
+5d8f63c2157f032a495d4c95d0d86dda2cc8017d70047d66465b69291433e304  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_revision_v3/experiments_meta/build/dccmeta

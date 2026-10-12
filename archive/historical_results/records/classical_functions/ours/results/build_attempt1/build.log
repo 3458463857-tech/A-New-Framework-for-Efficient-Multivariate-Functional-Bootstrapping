@@ -1,0 +1,16 @@
+   Compiling section3-algorithm1-reproduction v0.1.0 (/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_submission_polish_v4/experiments_functions/ours)
+error[E0308]: mismatched types
+  --> src/bin/functions_checked.rs:90:39
+   |
+90 | ...t!(ct.no...get() <= budget.max_noi.....
+   |       -----...-----    ^^^^^^^^^^^^^^...ected `usize`, found `u64`
+   |       |
+   |       expected because this is `usize`
+   |
+help: you can convert a `u64` to a `usize` and panic if the converted value doesn't fit
+   |
+90 |     assert!(ct.noise_level().get() <= budget.max_noise.try_into().unwrap(), "{stage}: noise level out of range");
+   |                                                       ++++++++++++++++++++
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `section3-algorithm1-reproduction` (bin "functions_checked") due to 1 previous error

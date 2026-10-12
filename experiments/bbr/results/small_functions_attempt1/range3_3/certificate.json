@@ -1,0 +1,224 @@
+{
+  "task_id": "range3_3",
+  "alphabet": 3,
+  "n": 3,
+  "p": 17,
+  "author_nu": 15,
+  "lambda_": 1,
+  "a": 0,
+  "atoms": [
+    {
+      "alpha": [
+        1,
+        6,
+        10
+      ],
+      "lut": [
+        0,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "note": "direct fixed-target atom"
+    }
+  ],
+  "output_beta": [
+    0,
+    0,
+    0,
+    1
+  ],
+  "exhaustive_checked": 27,
+  "construction": [
+    {
+      "method": "single atom, all normalized nonzero F17 coefficients",
+      "attempts": 256,
+      "valid_count": 6,
+      "selected_alpha": [
+        1,
+        6,
+        10
+      ]
+    },
+    {
+      "selection": "fewest atoms in the explicitly listed finite candidates; squared coefficients break ties",
+      "candidates": [
+        {
+          "method": "histogram candidate",
+          "atoms": 3
+        },
+        {
+          "method": "single atom, all normalized nonzero F17 coefficients",
+          "attempts": 256,
+          "valid_count": 6,
+          "selected_alpha": [
+            1,
+            6,
+            10
+          ]
+        },
+        {
+          "method": "pair row-start table plus three-entry-word lookup",
+          "word_orders": 720,
+          "shortest_in_enumerated_layout": 10,
+          "words": [
+            {
+              "pair": [
+                0,
+                0
+              ],
+              "word": [
+                0,
+                1,
+                2
+              ]
+            },
+            {
+              "pair": [
+                0,
+                1
+              ],
+              "word": [
+                1,
+                1,
+                2
+              ]
+            },
+            {
+              "pair": [
+                0,
+                2
+              ],
+              "word": [
+                2,
+                2,
+                2
+              ]
+            },
+            {
+              "pair": [
+                1,
+                1
+              ],
+              "word": [
+                1,
+                0,
+                1
+              ]
+            },
+            {
+              "pair": [
+                1,
+                2
+              ],
+              "word": [
+                2,
+                1,
+                1
+              ]
+            },
+            {
+              "pair": [
+                2,
+                2
+              ],
+              "word": [
+                2,
+                1,
+                0
+              ]
+            }
+          ],
+          "lookup_sequence": [
+            2,
+            1,
+            0,
+            1,
+            2,
+            1,
+            1,
+            2,
+            2,
+            2
+          ],
+          "pair_starts": [
+            {
+              "pair": [
+                0,
+                0
+              ],
+              "start": 2
+            },
+            {
+              "pair": [
+                0,
+                1
+              ],
+              "start": 5
+            },
+            {
+              "pair": [
+                0,
+                2
+              ],
+              "start": 7
+            },
+            {
+              "pair": [
+                1,
+                1
+              ],
+              "start": 1
+            },
+            {
+              "pair": [
+                1,
+                2
+              ],
+              "start": 4
+            },
+            {
+              "pair": [
+                2,
+                2
+              ],
+              "start": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "provenance": "explicit structured certificate; not output of author random search",
+  "noise_scope": "Fresh raw-input weighted sums use independence; sums of preceding PBS outputs use absolute coefficient sums; final linear sum is not claimed to have one-PBS error probability.",
+  "definitions_sha256": "d13b175af8672a8d0ee026e4787a250378cdd20f2a2e760a33cafe5fdb898cf8",
+  "noise_factor_requirement": 11.704699910719626,
+  "selected_author_parameter_row": {
+    "p": "17",
+    "nu": "15",
+    "l_ks": "4",
+    "l_bs": "1",
+    "k": "1",
+    "N": "4096",
+    "n": "849",
+    "b_ks": "16",
+    "b_bs": "2147483648",
+    "sigma_lwe": "1.6512448356449926e-06",
+    "sigma_glwe": "2.168404344971009e-19",
+    "timing": "0",
+    "p_error": "2.938735877055719e-39"
+  }
+}

@@ -1,0 +1,38 @@
+StringRecord(["17", "90", "4", "1", "1", "4096", "849", "16", "1073741824", "1.6512448356449926e-06", "2.168404344971009e-19", "0", "2.938735877055719e-39"])
+PARAMETERS {"lwe_dimension":849,"glwe_dimension":1,"polynomial_size":4096,"lwe_modular_std_dev":1.6512448356449926e-6,"glwe_modular_std_dev":2.168404344971009e-19,"pbs_base_log":15,"pbs_level":2,"ks_base_log":4,"ks_level":4,"encryption_key_choice":"Big"}
+TIMING all author online sums, accumulator encoding, KS/PBS, products and outputs; sequential evaluator, CPU affinity 0-7
+{"actual":0,"correct":true,"d":31,"elapsed_ms":7079.072418,"expected":0,"index":0,"input_blocks":[0,0,15,1],"kind":"boundary","m":0,"output_blocks":[0,0],"phase":"warmup","t":32}
+{"actual":1,"correct":true,"d":1,"elapsed_ms":6999.1920549999995,"expected":1,"index":1,"input_blocks":[1,0,1,0],"kind":"boundary","m":1,"output_blocks":[1,0],"phase":"warmup","t":32}
+{"actual":31,"correct":true,"d":1,"elapsed_ms":7033.386939,"expected":31,"index":2,"input_blocks":[15,1,1,0],"kind":"boundary","m":31,"output_blocks":[15,1],"phase":"warmup","t":32}
+{"actual":1,"correct":true,"d":31,"elapsed_ms":7021.112347,"expected":1,"index":3,"input_blocks":[15,1,15,1],"kind":"boundary","m":31,"output_blocks":[1,0],"phase":"warmup","t":32}
+{"actual":0,"correct":true,"d":29,"elapsed_ms":7000.6745710000005,"expected":0,"index":4,"input_blocks":[14,0,13,1],"kind":"boundary","m":14,"output_blocks":[0,0],"phase":"warmup","t":32}
+{"actual":0,"correct":true,"d":31,"elapsed_ms":7004.8014920000005,"expected":0,"index":0,"input_blocks":[0,0,15,1],"kind":"boundary","m":0,"output_blocks":[0,0],"phase":"measured","t":32}
+{"actual":1,"correct":true,"d":1,"elapsed_ms":6998.318934,"expected":1,"index":1,"input_blocks":[1,0,1,0],"kind":"boundary","m":1,"output_blocks":[1,0],"phase":"measured","t":32}
+{"actual":31,"correct":true,"d":1,"elapsed_ms":7019.290329,"expected":31,"index":2,"input_blocks":[15,1,1,0],"kind":"boundary","m":31,"output_blocks":[15,1],"phase":"measured","t":32}
+{"actual":1,"correct":true,"d":31,"elapsed_ms":7033.0646799999995,"expected":1,"index":3,"input_blocks":[15,1,15,1],"kind":"boundary","m":31,"output_blocks":[1,0],"phase":"measured","t":32}
+{"actual":0,"correct":true,"d":29,"elapsed_ms":7014.648576,"expected":0,"index":4,"input_blocks":[14,0,13,1],"kind":"boundary","m":14,"output_blocks":[0,0],"phase":"measured","t":32}
+{"actual":10,"correct":true,"d":3,"elapsed_ms":7151.192719,"expected":10,"index":5,"input_blocks":[14,1,3,0],"kind":"boundary","m":30,"output_blocks":[10,0],"phase":"measured","t":32}
+{"actual":7,"correct":true,"d":2,"elapsed_ms":7138.490723,"expected":7,"index":6,"input_blocks":[15,0,2,0],"kind":"boundary","m":15,"output_blocks":[7,0],"phase":"measured","t":32}
+{"actual":5,"correct":true,"d":3,"elapsed_ms":7116.8354819999995,"expected":5,"index":7,"input_blocks":[0,1,3,0],"kind":"boundary","m":16,"output_blocks":[5,0],"phase":"measured","t":32}
+{"actual":7,"correct":true,"d":4,"elapsed_ms":7069.061861,"expected":7,"index":8,"input_blocks":[13,1,4,0],"kind":"boundary","m":29,"output_blocks":[7,0],"phase":"measured","t":32}
+{"actual":1,"correct":true,"d":16,"elapsed_ms":7143.766684,"expected":1,"index":9,"input_blocks":[1,1,0,1],"kind":"boundary","m":17,"output_blocks":[1,0],"phase":"measured","t":32}
+{"actual":1,"correct":true,"d":10,"elapsed_ms":7167.011721,"expected":1,"index":10,"input_blocks":[0,1,10,0],"kind":"seeded_random","m":16,"output_blocks":[1,0],"phase":"measured","t":32}
+{"actual":3,"correct":true,"d":7,"elapsed_ms":7081.423418,"expected":3,"index":11,"input_blocks":[5,1,7,0],"kind":"seeded_random","m":21,"output_blocks":[3,0],"phase":"measured","t":32}
+{"actual":0,"correct":true,"d":16,"elapsed_ms":7089.952909,"expected":0,"index":12,"input_blocks":[0,0,0,1],"kind":"seeded_random","m":0,"output_blocks":[0,0],"phase":"measured","t":32}
+{"actual":7,"correct":true,"d":1,"elapsed_ms":7106.461502,"expected":7,"index":13,"input_blocks":[7,0,1,0],"kind":"seeded_random","m":7,"output_blocks":[7,0],"phase":"measured","t":32}
+{"actual":0,"correct":true,"d":28,"elapsed_ms":7095.932254,"expected":0,"index":14,"input_blocks":[6,1,12,1],"kind":"seeded_random","m":22,"output_blocks":[0,0],"phase":"measured","t":32}
+{"actual":0,"correct":true,"d":19,"elapsed_ms":7067.567821,"expected":0,"index":15,"input_blocks":[14,0,3,1],"kind":"seeded_random","m":14,"output_blocks":[0,0],"phase":"measured","t":32}
+{"actual":0,"correct":true,"d":27,"elapsed_ms":7076.916480999999,"expected":0,"index":16,"input_blocks":[14,0,11,1],"kind":"seeded_random","m":14,"output_blocks":[0,0],"phase":"measured","t":32}
+{"actual":1,"correct":true,"d":14,"elapsed_ms":7083.09746,"expected":1,"index":17,"input_blocks":[10,1,14,0],"kind":"seeded_random","m":26,"output_blocks":[1,0],"phase":"measured","t":32}
+{"actual":1,"correct":true,"d":20,"elapsed_ms":7132.198646,"expected":1,"index":18,"input_blocks":[14,1,4,1],"kind":"seeded_random","m":30,"output_blocks":[1,0],"phase":"measured","t":32}
+{"actual":0,"correct":true,"d":30,"elapsed_ms":7048.685011,"expected":0,"index":19,"input_blocks":[14,0,14,1],"kind":"seeded_random","m":14,"output_blocks":[0,0],"phase":"measured","t":32}
+{"actual":1,"correct":true,"d":11,"elapsed_ms":7080.102478,"expected":1,"index":20,"input_blocks":[11,0,11,0],"kind":"seeded_random","m":11,"output_blocks":[1,0],"phase":"measured","t":32}
+{"actual":0,"correct":true,"d":15,"elapsed_ms":7098.024796,"expected":0,"index":21,"input_blocks":[0,0,15,0],"kind":"seeded_random","m":0,"output_blocks":[0,0],"phase":"measured","t":32}
+{"actual":0,"correct":true,"d":11,"elapsed_ms":7082.6265570000005,"expected":0,"index":22,"input_blocks":[0,0,11,0],"kind":"seeded_random","m":0,"output_blocks":[0,0],"phase":"measured","t":32}
+{"actual":2,"correct":true,"d":12,"elapsed_ms":7092.769324,"expected":2,"index":23,"input_blocks":[15,1,12,0],"kind":"seeded_random","m":31,"output_blocks":[2,0],"phase":"measured","t":32}
+{"actual":0,"correct":true,"d":31,"elapsed_ms":7385.4939699999995,"expected":0,"index":24,"input_blocks":[5,1,15,1],"kind":"seeded_random","m":21,"output_blocks":[0,0],"phase":"measured","t":32}
+{"actual":14,"correct":true,"d":2,"elapsed_ms":7390.235072,"expected":14,"index":25,"input_blocks":[12,1,2,0],"kind":"seeded_random","m":28,"output_blocks":[14,0],"phase":"measured","t":32}
+{"actual":2,"correct":true,"d":12,"elapsed_ms":7115.018555,"expected":2,"index":26,"input_blocks":[9,1,12,0],"kind":"seeded_random","m":25,"output_blocks":[2,0],"phase":"measured","t":32}
+{"actual":7,"correct":true,"d":3,"elapsed_ms":7138.092764999999,"expected":7,"index":27,"input_blocks":[5,1,3,0],"kind":"seeded_random","m":21,"output_blocks":[7,0],"phase":"measured","t":32}
+{"actual":0,"correct":true,"d":19,"elapsed_ms":7120.023064999999,"expected":0,"index":28,"input_blocks":[0,1,3,1],"kind":"seeded_random","m":16,"output_blocks":[0,0],"phase":"measured","t":32}
+{"actual":5,"correct":true,"d":3,"elapsed_ms":7543.5125769999995,"expected":5,"index":29,"input_blocks":[1,1,3,0],"kind":"seeded_random","m":17,"output_blocks":[5,0],"phase":"measured","t":32}

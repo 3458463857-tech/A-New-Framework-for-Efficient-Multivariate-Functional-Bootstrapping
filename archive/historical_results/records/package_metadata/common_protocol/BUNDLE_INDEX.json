@@ -1,0 +1,19 @@
+{
+  "history_imports": [
+    {
+      "file": "reproducible_code_and_all_records_2026-10-10_v2.zip",
+      "sha256": "856cb779b55549cf3728082fac65a5b439a2953d8255dc7fd97dfb075f4d7589",
+      "archive_prefix": "history/v1"
+    },
+    {
+      "file": "refined_lhe_targeted_comparison_source_and_records_2026-10-10_v2.zip",
+      "sha256": "b5df328ad9724e18288fe8881c28a179c5f9eb0a1533f1b79a8d39a57988a2d8",
+      "archive_prefix": "history/refined_pilot"
+    }
+  ],
+  "final_data": "final_experiments/summary/all_results.json",
+  "final_run_index": "final_experiments/EXPERIMENT_INDEX.csv",
+  "final_source_audit": "final_experiments/provenance/source_binding_audit.json",
+  "source_and_data_hashes": "MANIFEST_SHA256.txt",
+  "no_build_caches": true
+}

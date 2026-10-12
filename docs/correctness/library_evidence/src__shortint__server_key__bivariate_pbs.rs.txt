@@ -1,0 +1,153 @@
+TFHE-rs 0.8.7: src/shortint/server_key/bivariate_pbs.rs
+Whole-source SHA256: c55f090117abca8e3ae872048a4099ffaa9e9d3a54ecccb74310c69b3639121c
+
+
+--- Lines 1-60 ---
+1: use super::{CheckError, CiphertextNoiseDegree, LookupTable, ServerKey};
+2: use crate::core_crypto::prelude::container::Container;
+3: use crate::shortint::ciphertext::{Degree, MaxDegree, NoiseLevel};
+4: use crate::shortint::server_key::add::unchecked_add_assign;
+5: use crate::shortint::{Ciphertext, MessageModulus};
+6: use std::cmp::Ordering;
+7: 
+8: #[must_use]
+9: pub struct BivariateLookupTable<C: Container<Element = u64>> {
+10:     // A bivariate lookup table is an univariate loolookup table
+11:     // where the message space is shared to encode
+12:     // 2 values
+13:     pub acc: LookupTable<C>,
+14:     // By how much we shift the lhs in the LUT
+15:     pub ct_right_modulus: MessageModulus,
+16: }
+17: 
+18: pub type BivariateLookupTableOwned = BivariateLookupTable<Vec<u64>>;
+19: pub type BivariateLookupTableMutView<'a> = BivariateLookupTable<&'a mut [u64]>;
+20: pub type BivariateLookupTableView<'a> = BivariateLookupTable<&'a [u64]>;
+21: 
+22: /// Returns whether it is possible to pack lhs and rhs into a unique
+23: /// ciphertext without exceeding the max storable value using the formula:
+24: /// `unique_ciphertext = (lhs * factor) + rhs`
+25: fn ciphertexts_can_be_packed_without_exceeding_space_or_noise(
+26:     server_key: &ServerKey,
+27:     lhs: CiphertextNoiseDegree,
+28:     rhs: CiphertextNoiseDegree,
+29:     factor: usize,
+30: ) -> Result<(), CheckError> {
+31:     let final_degree = (lhs.degree * factor) + rhs.degree;
+32: 
+33:     // Do not use server key max degree as it may be smaller (to keep carry propagation margin)
+34:     let max_degree =
+35:         MaxDegree::from_msg_carry_modulus(server_key.message_modulus, server_key.carry_modulus);
+36: 
+37:     max_degree.validate(final_degree)?;
+38: 
+39:     let final_noise_level = (lhs.noise_level * factor) + rhs.noise_level;
+40: 
+41:     server_key.max_noise_level.validate(final_noise_level)?;
+42: 
+43:     if rhs.degree.get() >= factor {
+44:         return Err(CheckError::UnscaledScaledOverlap {
+45:             unscaled_degree: rhs.degree,
+46:             scale: factor as u8,
+47:         });
+48:     }
+49: 
+50:     Ok(())
+51: }
+52: 
+53: impl ServerKey {
+54:     /// Generates a bivariate accumulator
+55:     pub fn generate_lookup_table_bivariate_with_factor<F>(
+56:         &self,
+57:         f: F,
+58:         left_message_scaling: MessageModulus,
+59:     ) -> BivariateLookupTableOwned
+60:     where
+
+--- Lines 130-180 ---
+130:     /// let modulus = cks.parameters.message_modulus().0 as u64;
+131:     ///
+132:     /// // Generate the lookup table for the function f: x, y -> (x * y * x) mod 4
+133:     /// let acc = sks.generate_lookup_table_bivariate(|x, y| x * y * x % modulus);
+134:     /// let ct_res = sks.unchecked_apply_lookup_table_bivariate(&ct1, &ct2, &acc);
+135:     ///
+136:     /// let dec = cks.decrypt(&ct_res);
+137:     /// assert_eq!(dec, (msg * msg2 * msg) % modulus);
+138:     /// ```
+139:     pub fn unchecked_apply_lookup_table_bivariate(
+140:         &self,
+141:         ct_left: &Ciphertext,
+142:         ct_right: &Ciphertext,
+143:         acc: &BivariateLookupTableOwned,
+144:     ) -> Ciphertext {
+145:         let mut ct_res = ct_left.clone();
+146:         self.unchecked_apply_lookup_table_bivariate_assign(&mut ct_res, ct_right, acc);
+147:         ct_res
+148:     }
+149: 
+150:     pub fn unchecked_apply_lookup_table_bivariate_assign(
+151:         &self,
+152:         ct_left: &mut Ciphertext,
+153:         ct_right: &Ciphertext,
+154:         acc: &BivariateLookupTableOwned,
+155:     ) {
+156:         let modulus = (ct_right.degree.get() + 1) as u64;
+157:         assert!(modulus <= acc.ct_right_modulus.0 as u64);
+158: 
+159:         self.unchecked_scalar_mul_assign(ct_left, acc.ct_right_modulus.0 as u8);
+160: 
+161:         unchecked_add_assign(ct_left, ct_right);
+162: 
+163:         // Compute the PBS
+164:         self.apply_lookup_table_assign(ct_left, &acc.acc);
+165:     }
+166: 
+167:     /// Compute a keyswitch and programmable bootstrap.
+168:     ///
+169:     /// # Example
+170:     ///
+171:     /// ```rust
+172:     /// use tfhe::shortint::gen_keys;
+173:     /// use tfhe::shortint::parameters::PARAM_MESSAGE_2_CARRY_2_KS_PBS;
+174:     ///
+175:     /// // Generate the client key and the server key:
+176:     /// let (cks, sks) = gen_keys(PARAM_MESSAGE_2_CARRY_2_KS_PBS);
+177:     ///
+178:     /// let msg: u64 = 3;
+179:     /// let msg2: u64 = 2;
+180:     /// let ct1 = cks.encrypt(msg);
+
+--- Lines 288-320 ---
+288:         self.unchecked_apply_lookup_table_bivariate_assign(ct_left, ct_right, &lookup_table);
+289:     }
+290: 
+291:     /// Verify if a functional bivariate pbs can be applied on ct_left and ct_right.
+292:     /// If the bivariate lookup table is already built, it must be passed to do the check with the
+293:     /// correct scale.
+294:     /// If the bivariate lookup table is going to be built (if this function returns true) assuming
+295:     /// ct1 is going to be scaled by ct2.degree+1, None must be passed.
+296:     pub fn is_functional_bivariate_pbs_possible(
+297:         &self,
+298:         ct1: CiphertextNoiseDegree,
+299:         ct2: CiphertextNoiseDegree,
+300:         lut: Option<&BivariateLookupTableOwned>,
+301:     ) -> Result<(), CheckError> {
+302:         let scale = lut.map_or_else(|| ct2.degree.get() + 1, |lut| lut.ct_right_modulus.0);
+303: 
+304:         ciphertexts_can_be_packed_without_exceeding_space_or_noise(self, ct1, ct2, scale)?;
+305: 
+306:         Ok(())
+307:     }
+308: 
+309:     pub fn smart_evaluate_bivariate_function_assign<F>(
+310:         &self,
+311:         ct_left: &mut Ciphertext,
+312:         ct_right: &mut Ciphertext,
+313:         f: F,
+314:     ) where
+315:         F: Fn(u64, u64) -> u64,
+316:     {
+317:         *ct_left = self.smart_evaluate_bivariate_function(ct_left, ct_right, f);
+318:     }
+319: 
+320:     pub fn smart_evaluate_bivariate_function<F>(

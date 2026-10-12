@@ -1,0 +1,302 @@
+TFHE-rs 0.8.7: src/integer/server_key/radix_parallel/sub.rs
+Whole-source SHA256: d1559ee798e9158154131626f114b3dd5fae5ceb34d6895f24f52230682c8ff1
+
+
+--- Lines 135-215 ---
+135:     /// let ct_res = sks.sub_parallelized(&ctxt_1, &ctxt_2);
+136:     ///
+137:     /// // Decrypt:
+138:     /// let res: u64 = cks.decrypt(&ct_res);
+139:     /// assert_eq!(msg_1.wrapping_sub(msg_2) as u64, res);
+140:     /// ```
+141:     pub fn sub_parallelized<T>(&self, ctxt_left: &T, ctxt_right: &T) -> T
+142:     where
+143:         T: IntegerRadixCiphertext,
+144:     {
+145:         let mut ct_res = ctxt_left.clone();
+146:         self.sub_assign_parallelized(&mut ct_res, ctxt_right);
+147:         ct_res
+148:     }
+149: 
+150:     /// Computes homomorphically the subtraction between ct_left and ct_right.
+151:     ///
+152:     /// This function, like all "default" operations (i.e. not smart, checked or unchecked), will
+153:     /// check that the input ciphertexts block carries are empty and clears them if it's not the
+154:     /// case and the operation requires it. It outputs a ciphertext whose block carries are always
+155:     /// empty.
+156:     ///
+157:     /// This means that when using only "default" operations, a given operation (like add for
+158:     /// example) has always the same performance characteristics from one call to another and
+159:     /// guarantees correctness by pre-emptively clearing carries of output ciphertexts.
+160:     ///
+161:     /// # Example
+162:     ///
+163:     /// ```rust
+164:     /// use tfhe::integer::gen_keys_radix;
+165:     /// use tfhe::shortint::parameters::PARAM_MESSAGE_2_CARRY_2_KS_PBS;
+166:     ///
+167:     /// // We have 4 * 2 = 8 bits of message
+168:     /// let size = 4;
+169:     /// let (cks, sks) = gen_keys_radix(PARAM_MESSAGE_2_CARRY_2_KS_PBS, size);
+170:     ///
+171:     /// let msg_1 = 120u8;
+172:     /// let msg_2 = 181u8;
+173:     ///
+174:     /// // Encrypt two messages:
+175:     /// let mut ctxt_1 = cks.encrypt(msg_1 as u64);
+176:     /// let ctxt_2 = cks.encrypt(msg_2 as u64);
+177:     ///
+178:     /// // Compute homomorphically a subtraction
+179:     /// sks.sub_assign_parallelized(&mut ctxt_1, &ctxt_2);
+180:     ///
+181:     /// // Decrypt:
+182:     /// let res: u64 = cks.decrypt(&ctxt_1);
+183:     /// assert_eq!(msg_1.wrapping_sub(msg_2) as u64, res);
+184:     /// ```
+185:     pub fn sub_assign_parallelized<T>(&self, ctxt_left: &mut T, ctxt_right: &T)
+186:     where
+187:         T: IntegerRadixCiphertext,
+188:     {
+189:         let mut tmp_rhs;
+190: 
+191:         let (lhs, rhs) = match (
+192:             ctxt_left.block_carries_are_empty(),
+193:             ctxt_right.block_carries_are_empty(),
+194:         ) {
+195:             (true, true) => (ctxt_left, ctxt_right),
+196:             (true, false) => {
+197:                 tmp_rhs = ctxt_right.clone();
+198:                 self.full_propagate_parallelized(&mut tmp_rhs);
+199:                 (ctxt_left, &tmp_rhs)
+200:             }
+201:             (false, true) => {
+202:                 self.full_propagate_parallelized(ctxt_left);
+203:                 (ctxt_left, ctxt_right)
+204:             }
+205:             (false, false) => {
+206:                 tmp_rhs = ctxt_right.clone();
+207:                 rayon::join(
+208:                     || self.full_propagate_parallelized(ctxt_left),
+209:                     || self.full_propagate_parallelized(&mut tmp_rhs),
+210:                 );
+211:                 (ctxt_left, &tmp_rhs)
+212:             }
+213:         };
+214: 
+215:         let neg = self.unchecked_neg(rhs);
+
+--- Lines 280-345 ---
+280:                 rayon::join(
+281:                     || self.full_propagate_parallelized(&mut tmp_lhs),
+282:                     || self.full_propagate_parallelized(&mut tmp_rhs),
+283:                 );
+284:                 (&tmp_lhs, &tmp_rhs)
+285:             }
+286:         };
+287: 
+288:         self.unchecked_unsigned_overflowing_sub_parallelized(lhs, rhs)
+289:     }
+290: 
+291:     pub fn unchecked_unsigned_overflowing_sub_parallelized(
+292:         &self,
+293:         lhs: &RadixCiphertext,
+294:         rhs: &RadixCiphertext,
+295:     ) -> (RadixCiphertext, BooleanBlock) {
+296:         assert_eq!(
+297:             lhs.blocks.len(),
+298:             rhs.blocks.len(),
+299:             "Left hand side must must have a number of blocks equal \
+300:             to the number of blocks of the right hand side: lhs {} blocks, rhs {} blocks",
+301:             lhs.blocks.len(),
+302:             rhs.blocks.len()
+303:         );
+304: 
+305:         const INPUT_BORROW: Option<&BooleanBlock> = None;
+306:         const COMPUTE_OVERFLOW: bool = true;
+307: 
+308:         let mut result = lhs.clone();
+309:         let overflowed =
+310:             if self.is_eligible_for_parallel_single_carry_propagation(lhs.blocks.len()) {
+311:                 self.advanced_sub_assign_with_borrow_parallelized_at_least_4_bits(
+312:                     &mut result,
+313:                     rhs,
+314:                     INPUT_BORROW,
+315:                     COMPUTE_OVERFLOW,
+316:                 )
+317:             } else {
+318:                 self.advanced_sub_assign_with_borrow_sequential(
+319:                     &mut result,
+320:                     rhs,
+321:                     INPUT_BORROW,
+322:                     COMPUTE_OVERFLOW,
+323:                 )
+324:             }
+325:             .expect("overflow computation was requested");
+326: 
+327:         (result, overflowed)
+328:     }
+329: 
+330:     /// Does lhs -= (rhs + carry)
+331:     ///
+332:     /// - Parameters must have at least 2 bits of message, 2 bits of carry
+333:     /// - blocks of lhs and rhs must be clean (no carries)
+334:     /// - lhs and rhs must have the same length
+335:     pub(crate) fn advanced_sub_assign_with_borrow_parallelized_at_least_4_bits(
+336:         &self,
+337:         lhs: &mut RadixCiphertext,
+338:         rhs: &RadixCiphertext,
+339:         input_borrow: Option<&BooleanBlock>,
+340:         compute_overflow: bool,
+341:     ) -> Option<BooleanBlock> {
+342:         // Note: we could, as is done is advanced_add_assign_with_carry
+343:         // compute either the overflow flag or the borrow flag as the user request
+344:         // but as the overflow flag is not needed in the code base, we simply only
+345:         // compute the borrow flag if requested.
+
+--- Lines 590-735 ---
+590:         let mut shifted_blocks = Vec::with_capacity(num_blocks);
+591:         let mut block_states = Vec::with_capacity(num_blocks);
+592:         for mut blocks in tmp {
+593:             assert_eq!(blocks.len(), 2);
+594:             shifted_blocks.push(blocks.pop().unwrap());
+595:             block_states.push(blocks.pop().unwrap());
+596:         }
+597: 
+598:         (shifted_blocks, block_states)
+599:     }
+600: 
+601:     pub(crate) fn advanced_sub_assign_with_borrow_sequential(
+602:         &self,
+603:         lhs: &mut RadixCiphertext,
+604:         rhs: &RadixCiphertext,
+605:         input_borrow: Option<&BooleanBlock>,
+606:         compute_overflow: bool,
+607:     ) -> Option<BooleanBlock> {
+608:         assert_eq!(
+609:             lhs.blocks.len(),
+610:             rhs.blocks.len(),
+611:             "Left hand side must must have a number of blocks equal \
+612:             to the number of blocks of the right hand side: lhs {} blocks, rhs {} blocks",
+613:             lhs.blocks.len(),
+614:             rhs.blocks.len()
+615:         );
+616: 
+617:         let modulus = self.key.message_modulus.0 as u64;
+618: 
+619:         // If the block does not have a carry after the subtraction, it means it needs to
+620:         // borrow from the next block
+621:         let compute_borrow_lut = self
+622:             .key
+623:             .generate_lookup_table(|x| if x < modulus { 1 } else { 0 });
+624: 
+625:         let mut borrow = input_borrow.map_or_else(|| self.key.create_trivial(0), |b| b.0.clone());
+626:         for (lhs_block, rhs_block) in lhs.blocks.iter_mut().zip(rhs.blocks.iter()) {
+627:             self.key.unchecked_sub_assign(lhs_block, rhs_block);
+628:             // Here unchecked_sub_assign does not give correct result, we don't want
+629:             // the correcting term to be used
+630:             // -> This is ok as the value returned by unchecked_sub is in range
+631:             // 1..(message_mod * 2)
+632:             crate::core_crypto::algorithms::lwe_ciphertext_sub_assign(
+633:                 &mut lhs_block.ct,
+634:                 &borrow.ct,
+635:             );
+636:             lhs_block.set_noise_level(lhs_block.noise_level() + borrow.noise_level());
+637:             let (msg, new_borrow) = rayon::join(
+638:                 || self.key.message_extract(lhs_block),
+639:                 || self.key.apply_lookup_table(lhs_block, &compute_borrow_lut),
+640:             );
+641:             *lhs_block = msg;
+642:             borrow = new_borrow;
+643:         }
+644: 
+645:         // borrow of last block indicates overflow
+646:         if compute_overflow {
+647:             Some(BooleanBlock::new_unchecked(borrow))
+648:         } else {
+649:             None
+650:         }
+651:     }
+652: 
+653:     pub fn unchecked_signed_overflowing_sub_parallelized(
+654:         &self,
+655:         lhs: &SignedRadixCiphertext,
+656:         rhs: &SignedRadixCiphertext,
+657:     ) -> (SignedRadixCiphertext, BooleanBlock) {
+658:         assert_eq!(
+659:             lhs.blocks.len(),
+660:             rhs.blocks.len(),
+661:             "Left hand side must must have a number of blocks equal \
+662:             to the number of blocks of the right hand side: lhs {} blocks, rhs {} blocks",
+663:             lhs.blocks.len(),
+664:             rhs.blocks.len()
+665:         );
+666: 
+667:         // We are using two's complement for signed numbers,
+668:         // we do the subtraction by adding the negation of rhs.
+669:         // But to be able to get the correct overflow flag, we need to
+670:         // compute (result, overflow) = (lhs + bitnot(rhs) + 1) instead of
+671:         // (result, overflow) = (lhs + (-rhs). We need the bitnot(rhs) and +1
+672:         // 'separated'
+673:         //
+674:         // Remainder: in two's complement -rhs = bitnot(rhs) + 1
+675:         let flipped_rhs = self.bitnot(rhs);
+676:         let input_carry = self.create_trivial_boolean_block(true);
+677:         let mut result = lhs.clone();
+678:         let overflowed =
+679:             self.overflowing_add_assign_with_carry(&mut result, &flipped_rhs, Some(&input_carry));
+680:         (result, overflowed)
+681:     }
+682: 
+683:     /// Computes the subtraction of two signed numbers and returns an indicator of overflow
+684:     ///
+685:     /// # Example
+686:     ///
+687:     /// ```rust
+688:     /// use tfhe::integer::gen_keys_radix;
+689:     /// use tfhe::shortint::parameters::PARAM_MESSAGE_2_CARRY_2_KS_PBS;
+690:     ///
+691:     /// // We have 4 * 2 = 8 bits of message
+692:     /// let num_blocks = 4;
+693:     /// let (cks, sks) = gen_keys_radix(PARAM_MESSAGE_2_CARRY_2_KS_PBS, num_blocks);
+694:     ///
+695:     /// let msg_1 = i8::MIN;
+696:     /// let msg_2 = 1;
+697:     ///
+698:     /// // Encrypt two messages:
+699:     /// let ctxt_1 = cks.encrypt_signed(msg_1);
+700:     /// let ctxt_2 = cks.encrypt_signed(msg_2);
+701:     ///
+702:     /// // Compute homomorphically a subtraction
+703:     /// let (result, overflowed) = sks.signed_overflowing_sub_parallelized(&ctxt_1, &ctxt_2);
+704:     ///
+705:     /// // Decrypt:
+706:     /// let decrypted_result: i8 = cks.decrypt_signed(&result);
+707:     /// let decrypted_overflow = cks.decrypt_bool(&overflowed);
+708:     ///
+709:     /// let (expected_result, expected_overflow) = msg_1.overflowing_sub(msg_2);
+710:     /// assert_eq!(expected_result, decrypted_result);
+711:     /// assert_eq!(expected_overflow, decrypted_overflow);
+712:     /// ```
+713:     pub fn signed_overflowing_sub_parallelized(
+714:         &self,
+715:         ctxt_left: &SignedRadixCiphertext,
+716:         ctxt_right: &SignedRadixCiphertext,
+717:     ) -> (SignedRadixCiphertext, BooleanBlock) {
+718:         let mut tmp_lhs;
+719:         let mut tmp_rhs;
+720: 
+721:         let (lhs, rhs) = match (
+722:             ctxt_left.block_carries_are_empty(),
+723:             ctxt_right.block_carries_are_empty(),
+724:         ) {
+725:             (true, true) => (ctxt_left, ctxt_right),
+726:             (true, false) => {
+727:                 tmp_rhs = ctxt_right.clone();
+728:                 self.full_propagate_parallelized(&mut tmp_rhs);
+729:                 (ctxt_left, &tmp_rhs)
+730:             }
+731:             (false, true) => {
+732:                 tmp_lhs = ctxt_left.clone();
+733:                 self.full_propagate_parallelized(&mut tmp_lhs);
+734:                 (&tmp_lhs, ctxt_right)
+735:             }

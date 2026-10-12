@@ -1,0 +1,1 @@
+taskset -c 0-7 /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/.build/release/diagnose_division division_t16_lambda25_a11_division_fhe_attempt1 /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_bbr/results/division_diagnostic_pbs15x2_attempt1/stages.jsonl 0 15 pbs15x2 

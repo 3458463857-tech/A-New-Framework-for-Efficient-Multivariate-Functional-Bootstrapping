@@ -1,0 +1,1 @@
+cargo +1.96.0 build --release --locked --offline --bin diagnose_division

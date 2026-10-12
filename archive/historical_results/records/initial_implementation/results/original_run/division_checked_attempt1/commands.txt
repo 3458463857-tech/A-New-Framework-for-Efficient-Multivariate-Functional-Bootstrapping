@@ -1,0 +1,2 @@
+cargo build --release --locked --offline --bin algorithm1_noise_checked
+RAYON_NUM_THREADS=8 algorithm1_noise_checked --t 64 --samples 30

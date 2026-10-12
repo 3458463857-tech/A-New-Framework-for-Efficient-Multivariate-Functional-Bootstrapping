@@ -1,0 +1,5 @@
+817576dcd8fbbfa0a44405f676d96de4f56079f78b4cfc6e339f9d7109ad06d9  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_refined_small_functions/results/protocol1_range3_3/source_snapshot.rs
+3e08554d3b4f9d829c96ba76c3c7e935b053692c418973d16304cb2f7e7f2873  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_refined_small_functions/results/protocol1_range3_3/Cargo.toml
+b48ae989a518d6076d9a5c896338b93b4e66a632771f27233ca2c58fa99abd13  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_refined_small_functions/results/protocol1_range3_3/Cargo.lock
+e7a8b6683283a8843d385927cd90f9a8888aeebe5e4820dd92f0804ebd76472a  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_refined_small_functions/results/protocol1_range3_3/input_manifest.csv
+eb89424f92a761cebd584c6f63d4c91288b34868db83640df58c22127b5e0862  /mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_refined_small_functions/build/target/release/deps/bench_functions-6c92e13934398dc8

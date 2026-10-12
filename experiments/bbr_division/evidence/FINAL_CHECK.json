@@ -1,0 +1,10 @@
+{
+  "original_source_files_unchanged": 692,
+  "new_configurations": 2,
+  "correct_outputs": 70,
+  "per_run_hashes_verified": 86,
+  "common_input_hashes_pass": true,
+  "source_snapshots_match": true,
+  "python_syntax": "PASS",
+  "scope": "Static distribution verification; no FHE/build/search executed by this checker."
+}

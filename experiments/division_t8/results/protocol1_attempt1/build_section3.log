@@ -1,0 +1,52 @@
+   Compiling section3-algorithm1-reproduction v0.1.0 (/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_final_polish_v6/new_experiments/source/section3)
+warning: fields `0` and `1` are never read
+  --> src/bin/algorithm1_t8_audited.rs:65:9
+   |
+65 |     One(u64, u64),
+   |     --- ^^^  ^^^
+   |     |
+   |     fields in this variant
+   |
+   = note: `Selection` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+help: consider changing the fields to be of unit type to suppress this warning while preserving the field numbering, or remove the fields
+   |
+65 -     One(u64, u64),
+65 +     One((), ()),
+   |
+
+warning: field `0` is never read
+  --> src/bin/algorithm1_t8_audited.rs:66:11
+   |
+66 |     Count(usize),
+   |     ----- ^^^^^
+   |     |
+   |     field in this variant
+   |
+   = note: `Selection` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+help: consider changing the field to be of unit type to suppress this warning while preserving the field numbering, or remove the field
+   |
+66 -     Count(usize),
+66 +     Count(()),
+   |
+
+warning: function `deterministic_cases` is never used
+   --> src/bin/algorithm1_t8_audited.rs:299:4
+    |
+299 | fn deter...cases() ...
+    |    ^^^^^...^^^^^
+
+warning: methods `budget_many` and `budget_extract` are never used
+   --> src/bin/algorithm1_t8_audited.rs:454:8
+    |
+452 | trait BudgetChecked {
+    |       ------------- methods in this trait
+453 |     fn budget_lut(&self,...
+454 |     fn budget_many(&self...
+    |        ^^^^^^^^^^^
+455 |     fn budget_bivariate(...
+456 |     fn budge...tract(&s...
+    |        ^^^^^...^^^^^
+
+warning: `section3-algorithm1-reproduction` (bin "algorithm1_t8_audited") generated 4 warnings
+    Finished `release` profile [optimized] target(s) in 4.05s

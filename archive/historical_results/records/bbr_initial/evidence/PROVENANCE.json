@@ -1,0 +1,60 @@
+{
+  "author_url": "https://github.com/CryptoExperts/artifact-HLUT-TCHES",
+  "commit": "088029cb4cd3a6b33ac10e0c78ea193b1835216d",
+  "changes": [
+    {
+      "path": "bench/HLUT-rs/src/files.rs",
+      "original_sha256": "c979203c456ec211786662e2247c9065466c842f53c1e6aa10979eb42a2f5299",
+      "patched_sha256": "5f15ea46c84fd8456512d16b36d89535f2f26d99eb54a4a76c701ff1578e4a96"
+    },
+    {
+      "path": "bench/HLUT-rs/src/decomposition.rs",
+      "original_sha256": "c01c352e3fffe9666871d5ff80661d040ae43ece9a2da86c7a128d7bc458c102",
+      "patched_sha256": "de71160684f5bf5546e15efe327baa2b3a798719486ed113d4163cb22c23f41d"
+    }
+  ],
+  "new_files": [
+    "bench/HLUT-rs/src/bin/matched_tasks.rs"
+  ],
+  "count_parameter_row": {
+    "p": "17",
+    "nu": "5",
+    "l_ks": "4",
+    "l_bs": "1",
+    "k": "1",
+    "N": "4096",
+    "n": "849",
+    "b_ks": "16",
+    "b_bs": "33554432",
+    "sigma_lwe": "1.6512448356449926e-06",
+    "sigma_glwe": "2.168404344971009e-19",
+    "timing": "0",
+    "p_error": "2.938735877055719e-39"
+  },
+  "parameter_table_sha256": "4ebc94a7025ef2500e72a17c01f1432de14e9b7989622d9a0f7a3e2cfbe55ae9",
+  "compiler": "rustc 1.96.0 release, author Cargo.lock --locked",
+  "count_interface_audit": "../theory/BBR_COUNT_INTERFACE_REVIEW.md",
+  "failures": [
+    {
+      "attempt": "historical offline Cargo",
+      "outcome": "missing csv/clap cache; not an algorithmic failure"
+    },
+    {
+      "attempt": "initial v3 author build",
+      "outcome": "successful 38.01 s; temporary /tmp executable disappeared on WSL restart; stdout/stderr retained"
+    },
+    {
+      "attempt": "python3 -m venv /tmp/dcc_v3_bbr_venv",
+      "outcome": "failed: ensurepip unavailable"
+    },
+    {
+      "attempt": "temporary get-pip",
+      "outcome": "failed: /tmp virtual environment no longer existed; pip_bootstrap.log retained"
+    },
+    {
+      "attempt": "persistent --without-pip venv and get-pip",
+      "outcome": "succeeded; log retained"
+    }
+  ],
+  "timing_coordination": "Meta finished all timed measurements before BBR began. Python pip installer PID2070 was SIGSTOP-paused during the four BBR count groups, then resumed by shell EXIT trap."
+}

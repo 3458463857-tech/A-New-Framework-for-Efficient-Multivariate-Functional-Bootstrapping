@@ -1,0 +1,2 @@
+{"kind": "base", "attempt": 1, "rank": 15, "columns": 15, "seconds": 3.8150168120000005}
+{"kind": "solve", "output": 0, "attempt": 1, "rows": 64, "columns": 75, "rank": 64, "structural_upper_bound": 69, "accepted": true, "seconds": 3.870578459}

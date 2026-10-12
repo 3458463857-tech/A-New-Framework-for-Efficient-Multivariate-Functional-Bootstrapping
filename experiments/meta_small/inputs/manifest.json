@@ -1,0 +1,90 @@
+{
+  "protocol": "seven_small_ternary_instances",
+  "definitions_sha256": "d13b175af8672a8d0ee026e4787a250378cdd20f2a2e760a33cafe5fdb898cf8",
+  "files": [
+    {
+      "task_id": "lower_median3_3",
+      "t": 3,
+      "n": 3,
+      "file": "lower_median3_3.csv",
+      "seed": 20264013,
+      "sha256": "915a3b7833e04c9d1ff0ca842d5255f6fa72e01bbada0ab22f7cc88fb6f7fd75",
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    },
+    {
+      "task_id": "mode3_4",
+      "t": 3,
+      "n": 4,
+      "file": "mode3_4.csv",
+      "seed": 20264014,
+      "sha256": "1cf6c3efd729359ae7e08dc9911e3be18e7bb5175c8ff5bf968d468a9541cdcc",
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    },
+    {
+      "task_id": "max3_3",
+      "t": 3,
+      "n": 3,
+      "file": "max3_3.csv",
+      "seed": 20264013,
+      "sha256": "eb7d46acc2ede7010fcf94587524f2b9c9028695f93b63b6bf837af0439dd01c",
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    },
+    {
+      "task_id": "range3_3",
+      "t": 3,
+      "n": 3,
+      "file": "range3_3.csv",
+      "seed": 20264013,
+      "sha256": "e7a8b6683283a8843d385927cd90f9a8888aeebe5e4820dd92f0804ebd76472a",
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    },
+    {
+      "task_id": "iqr3_4",
+      "t": 3,
+      "n": 4,
+      "file": "iqr3_4.csv",
+      "seed": 20264014,
+      "sha256": "35691dfe4adb391b7fa274992e6f01700a5703286ac995007583f2711000fb74",
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    },
+    {
+      "task_id": "mad3_3",
+      "t": 3,
+      "n": 3,
+      "file": "mad3_3.csv",
+      "seed": 20264013,
+      "sha256": "6049c99bdad9a80a95c11922d578e221f2c5e19ca97356323235f7ffdb866ad8",
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    },
+    {
+      "task_id": "distinct3_3",
+      "t": 3,
+      "n": 3,
+      "file": "distinct3_3.csv",
+      "seed": 20264013,
+      "sha256": "9ef0c67675447b824055953b56b23b9f324fd3887772110178c7c6d811cc776c",
+      "warmups": 5,
+      "boundary_samples": 10,
+      "random_samples": 20,
+      "measured": 30
+    }
+  ]
+}

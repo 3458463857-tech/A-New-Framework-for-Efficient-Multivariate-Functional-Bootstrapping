@@ -1,0 +1,10 @@
+{
+  "parent": "/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_meta_extended/source/META-FBS/cmd/dccextended/main.go",
+  "parent_sha256": "60ed30de4a4ab583a09a72573ac31f3be454746e9abdacff7d4a7edd4b2fa9a4",
+  "changes": [
+    "same author 8-bit benchmark parameters for every frozen small task",
+    "arity-specific base-three packing",
+    "seven frozen target definitions"
+  ],
+  "original_files_unchanged": 156
+}

@@ -1,0 +1,31 @@
+{
+  "study_date": "2026-10-10",
+  "runtime": {"rust": "1.96.0", "tfhe_rs": "0.8.7", "build": "release locked", "rayon_workers": 8},
+  "timing": {"repetitions_per_case": 30, "general_warmups": 5, "division_warmups": 0, "statistic": "arithmetic mean and population standard deviation", "excluded": ["key generation", "public LUT generation", "input encryption", "output decryption"], "final_runs_are_serial": true},
+  "general": {
+    "parameter": "PARAM_MESSAGE_2_CARRY_4_KS_PBS",
+    "message_modulus": 4, "carry_modulus": 16, "combined_capacity": 64,
+    "max_noise_level": 21, "lwe_dimension": 977, "glwe_dimension": 1,
+    "polynomial_size": 8192, "pbs_base_log": 15, "pbs_level": 2,
+    "ks_base_log": 3, "ks_level": 6, "log2_p_fail_calibration": -64.078,
+    "cases": [
+      {"id": "hamming_weight_interval", "ell": 10, "t": 2, "interval": [4,6], "pbs_calls": 1, "max_linear_noise_level": 10},
+      {"id": "symbol_set_interval", "ell": 6, "t": 4, "symbols": [1,3], "interval": [2,4], "pbs_calls": 3, "max_linear_noise_level": 21},
+      {"id": "symbol_set_threshold", "ell": 6, "t": 4, "symbols": [0,2], "threshold": 3, "pbs_calls": 3, "max_linear_noise_level": 21},
+      {"id": "lower_median", "ell": 6, "t": 3, "shared_row": [7,0,5], "pbs_calls": 3, "max_linear_noise_level": 13}
+    ],
+    "correctness_status": "linear-operation degree/noise checks passed; aggregate probability is conditional on the TFHE library model and its validity for every stage"
+  },
+  "division": {
+    "parameter": "PARAM_MULTI_BIT_MESSAGE_2_CARRY_2_GROUP_3_KS_PBS",
+    "message_modulus": 4, "carry_modulus": 4, "max_noise_level": 5,
+    "log2_p_fail_calibration": -64.442,
+    "t": [16,32,64], "M": [22,44,89], "pbs_calls_proposed": [41,101,190],
+    "pbs_calls_native_control": [61,113,113],
+    "native_radix_blocks": [2,3,3], "semantics": "one nonnegative quotient; nonzero encrypted divisor; remainder not evaluated",
+    "correctness_status": "deterministic representation exhaustively checked; observed encrypted outputs pass; full circuit probabilistic noise audit unresolved",
+    "input_sampling": "ten specified edge pairs then prefix of domain enumeration; same 30 pairs in proposed and native control"
+  },
+  "additional_checked_division": {"t":64,"binary":"algorithm1_noise_checked","pbs_calls":205,"input_pbs":86,"subtraction_pbs":17,"outer_pbs":102,"warmups":0,"samples":30,"same_corpus_as_original_rerun":true,"mean_ms":1145.1076426,"population_stddev_ms":66.0650644431209,"median_ms":1134.6693375,"strict_end_to_end_tail_proof":false,"role":"additional variant; historical main table unchanged"},
+  "search_controls": {"seeds": [20261010,20261011,20261012,20261013,20261014,20261015,20261016,20261017,20261018,20261019], "evaluations_per_run": 2000, "initialization_included": true, "restarts": 1, "max_score": 12, "initial_temperature": 100, "cooling": 0.9995, "reheat_interval": 2000, "reheat_temperature_floor": 50, "neighborhood": [-2,-1,1,2]}
+}

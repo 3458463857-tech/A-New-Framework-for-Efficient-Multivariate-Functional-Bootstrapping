@@ -1,0 +1,119 @@
+warning: hiding a lifetime that's elided elsewhere is confusing
+   --> src/fourier_glwe_ciphertext.rs:109:39
+    |
+109 | ...st(&self) -> Fouri...tView {
+    |       ^^^^^     ^^^^^...^^^^^ the same lifetime is hidden here
+    |       |
+    |       the lifetime is elided here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+    = note: `#[warn(mismatched_lifetime_syntaxes)]` on by default
+help: use `'_` for type paths
+    |
+109 |     pub fn as_fourier_polynomial_list(&self) -> FourierPolynomialListView<'_> {
+    |                                                                          ++++
+
+warning: hiding a lifetime that's elided elsewhere is confusing
+   --> src/fourier_glwe_ciphertext.rs:119:43
+    |
+119 | ...st(&mut self) -> Fouri...tView {
+    |       ^^^^^^^^^     ^^^^^...^^^^^ the same lifetime is hidden here
+    |       |
+    |       the lifetime is elided here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+help: use `'_` for type paths
+    |
+119 |     pub fn as_mut_fourier_polynomial_list(&mut self) -> FourierPolynomialListMutView<'_> {
+    |                                                                                     ++++
+
+warning: hiding a lifetime that's elided elsewhere is confusing
+  --> src/fourier_glev_ciphertext.rs:83:44
+   |
+83 | ...st(&self) -> Fouri...tView {
+   |       ^^^^^     ^^^^^...^^^^^ the same lifetime is hidden here
+   |       |
+   |       the lifetime is elided here
+   |
+   = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+help: use `'_` for type paths
+   |
+83 |     pub fn as_fourier_glwe_ciphertext_list(&self) -> FourierGlweCiphertextListView<'_> {
+   |                                                                                   ++++
+
+warning: hiding a lifetime that's elided elsewhere is confusing
+  --> src/fourier_glev_ciphertext.rs:93:48
+   |
+93 | ...st(&mut self) -> Fouri...tView {
+   |       ^^^^^^^^^     ^^^^^...^^^^^ the same lifetime is hidden here
+   |       |
+   |       the lifetime is elided here
+   |
+   = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+help: use `'_` for type paths
+   |
+93 |     pub fn as_mut_fourier_glwe_ciphertext_list(&mut self) -> FourierGlweCiphertextListMutView<'_> {
+   |                                                                                              ++++
+
+warning: hiding a lifetime that's elided elsewhere is confusing
+   --> src/fourier_glwe_keyswitch.rs:102:44
+    |
+102 | ...st(&self) -> Fouri...tView {
+    |       ^^^^^     ^^^^^...^^^^^ the same lifetime is hidden here
+    |       |
+    |       the lifetime is elided here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+help: use `'_` for type paths
+    |
+102 |     pub fn as_fourier_glev_ciphertext_list(&self) -> FourierGlevCiphertextListView<'_> {
+    |                                                                                   ++++
+
+warning: hiding a lifetime that's elided elsewhere is confusing
+   --> src/fourier_glwe_keyswitch.rs:114:48
+    |
+114 | ...st(&mut self) -> Fouri...tView {
+    |       ^^^^^^^^^     ^^^^^...^^^^^ the same lifetime is hidden here
+    |       |
+    |       the lifetime is elided here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+help: use `'_` for type paths
+    |
+114 |     pub fn as_mut_fourier_glev_ciphertext_list(&mut self) -> FourierGlevCiphertextListMutView<'_> {
+    |                                                                                              ++++
+
+warning: hiding a lifetime that's elided elsewhere is confusing
+   --> src/aes_he.rs:323:15
+    |
+323 |     he_state: &LweC...Cont>,
+    |               ^^^^^...^^^^^ the lifetime is elided here
+...
+326 | ) -> LweCi...alar>
+    |      ^^^^^...^^^^^ the same lifetime is hidden here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+help: use `'_` for type paths
+    |
+326 | ) -> LweCiphertextListView<'_, Scalar>
+    |                            +++
+
+warning: hiding a lifetime that's elided elsewhere is confusing
+   --> src/aes_he.rs:336:15
+    |
+336 |     he_state: &mut ...Cont>,
+    |               ^^^^^...^^^^^ the lifetime is elided here
+...
+339 | ) -> LweCi...alar>
+    |      ^^^^^...^^^^^ the same lifetime is hidden here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+help: use `'_` for type paths
+    |
+339 | ) -> LweCiphertextListMutView<'_, Scalar>
+    |                               +++
+
+warning: `refined-tfhe-lhe` (lib) generated 8 warnings (run `cargo fix --lib -p refined-tfhe-lhe` to apply 8 suggestions)
+   Compiling refined-tfhe-lhe v0.1.0 (/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_refined_small_functions/source/refined-tfhe-lhe)
+    Finished `bench` profile [optimized] target(s) in 4.52s
+  Executable benches/bench_functions.rs (/mnt/c/Users/Wu/Documents/Codex/2026-10-10/xi/work/DCC_fair_comparison_v5/experiments_refined_small_functions/build/target/release/deps/bench_functions-6c92e13934398dc8)

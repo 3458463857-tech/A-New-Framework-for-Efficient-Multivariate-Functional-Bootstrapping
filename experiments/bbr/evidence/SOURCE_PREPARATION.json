@@ -1,0 +1,15 @@
+{
+  "author_commit": "088029cb4cd3a6b33ac10e0c78ea193b1835216d",
+  "changes": [
+    "existing explicit p/nu selection fix",
+    "new certificate constructor",
+    "new matched-functions harness"
+  ],
+  "unmodified": "Author homomorphic evaluator and odd-modulus TFHE library",
+  "sha256": {
+    "source\\HLUT-rs\\src\\files.rs": "5f15ea46c84fd8456512d16b36d89535f2f26d99eb54a4a76c701ff1578e4a96",
+    "source\\HLUT-rs\\src\\decomposition.rs": "0a148414e3da37382c13f13e6e0e3c50727eb884653b5d96ec1305bdf52563ee",
+    "source\\HLUT-rs\\src\\bin\\matched_functions.rs": "bb88fe72759f314d7726c712f3735cf2d8fa5e2e15191597137a8444d16daa0e",
+    "parameters\\optimizer_cjp_odd-128.csv": "4ebc94a7025ef2500e72a17c01f1432de14e9b7989622d9a0f7a3e2cfbe55ae9"
+  }
+}

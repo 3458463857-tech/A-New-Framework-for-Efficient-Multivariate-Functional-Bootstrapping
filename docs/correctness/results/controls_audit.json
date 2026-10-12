@@ -1,0 +1,245 @@
+{
+  "scope": "Exact input and local budget checks; native library implementation reviewed separately; no probability-tail proof.",
+  "native_domains": {
+    "16": {
+      "legal_pairs": 240,
+      "restoring_division_invariant": "PASS"
+    },
+    "32": {
+      "legal_pairs": 992,
+      "restoring_division_invariant": "PASS"
+    },
+    "64": {
+      "legal_pairs": 4032,
+      "restoring_division_invariant": "PASS"
+    }
+  },
+  "native_local_rule_cases": 32,
+  "count_domains": {
+    "12": {
+      "inputs_checked": 4096,
+      "max_degree": 36,
+      "max_noise_level": 12,
+      "PBS_input_capacity": 63,
+      "PBS_noise_capacity": 21,
+      "PBS_events": 1,
+      "threshold_positive_inputs": 2510,
+      "interval_positive_inputs": 3498
+    },
+    "16": {
+      "inputs_checked": 65536,
+      "max_degree": 48,
+      "max_noise_level": 16,
+      "PBS_input_capacity": 63,
+      "PBS_noise_capacity": 21,
+      "PBS_events": 1,
+      "threshold_positive_inputs": 39203,
+      "interval_positive_inputs": 56134
+    }
+  },
+  "refined_division_selector_pairs": 240,
+  "refined_count_selector_order": "MSB first, as author vertical_packing",
+  "bound_final_runs": [
+    {
+      "run": "protocol1_dcc_div16",
+      "method": "dcc",
+      "size": "16",
+      "predicate": "none",
+      "source_sha256": "b7d8bddd57de2fcca94db3226594cde314a62f15c2ea222ce9ef18841a95b41d",
+      "raw_log_sha256": "5bbcb4c559018f769b41ee5cc995d2fe46169fccda792e8497357fe552cff40c",
+      "input_manifest_sha256": "2615db095fc02455aa7fcb8e151ae321c2e69cb42d99282c292468015b015b05",
+      "source": "source/section3/src/bin/algorithm1_t16_audited.rs",
+      "observed_PBS_counters": [
+        42
+      ],
+      "correct_observations": 35
+    },
+    {
+      "run": "protocol1_dcc_div32",
+      "method": "dcc",
+      "size": "32",
+      "predicate": "none",
+      "source_sha256": "62b41adf185cbf7724057f869fe588fa613f0be2f0e76ce556eda1fa8ac51c5b",
+      "raw_log_sha256": "8b8e65855e47988f8ca8ec1cde44e0e93d3fa2be2aad59b6f1f7ed1f6fd3266e",
+      "input_manifest_sha256": "740989ffac6e3a0446eb4cd3f8a965888d543b724e802845c971f4e5819b1b6a",
+      "source": "source/section3/src/bin/algorithm1_audited.rs",
+      "observed_PBS_counters": [
+        114
+      ],
+      "correct_observations": 35
+    },
+    {
+      "run": "protocol1_dcc_div64",
+      "method": "dcc",
+      "size": "64",
+      "predicate": "none",
+      "source_sha256": "62b41adf185cbf7724057f869fe588fa613f0be2f0e76ce556eda1fa8ac51c5b",
+      "raw_log_sha256": "d1e2100132834b84af0a9ad698060ae212b6cbb3326521d8fcdd0263d268a274",
+      "input_manifest_sha256": "3a130c948102017adf9f489dd169d98c2e5bad19e7342f1f1e6934f888034c0e",
+      "source": "source/section3/src/bin/algorithm1_audited.rs",
+      "observed_PBS_counters": [
+        205
+      ],
+      "correct_observations": 35
+    },
+    {
+      "run": "protocol1_dcc_n12_interval",
+      "method": "count",
+      "size": "12",
+      "predicate": "interval",
+      "source_sha256": "04c8de11ee6e7b15d8d491a670faf86d1773d2ecb9cfe30597ab03aec7e887ba",
+      "raw_log_sha256": "afd879a8aecb0175353b80333039af8b24c4980d99164d3f2b2c852a02ef291c",
+      "input_manifest_sha256": "072082495c4adb261e22b894fea3aa3e75b687e982259a5ace361ca1c1b0a71e",
+      "source": "source/section3/src/bin/count_checked_final.rs",
+      "observed_PBS_counters": [
+        1
+      ],
+      "correct_observations": 35
+    },
+    {
+      "run": "protocol1_dcc_n12_threshold",
+      "method": "count",
+      "size": "12",
+      "predicate": "threshold",
+      "source_sha256": "04c8de11ee6e7b15d8d491a670faf86d1773d2ecb9cfe30597ab03aec7e887ba",
+      "raw_log_sha256": "fcea6b8d503355f2a98d8a36455b8e02eac43d4180b3d9f2efaaa7c9af2a1ef2",
+      "input_manifest_sha256": "072082495c4adb261e22b894fea3aa3e75b687e982259a5ace361ca1c1b0a71e",
+      "source": "source/section3/src/bin/count_checked_final.rs",
+      "observed_PBS_counters": [
+        1
+      ],
+      "correct_observations": 35
+    },
+    {
+      "run": "protocol1_dcc_n16_interval",
+      "method": "count",
+      "size": "16",
+      "predicate": "interval",
+      "source_sha256": "04c8de11ee6e7b15d8d491a670faf86d1773d2ecb9cfe30597ab03aec7e887ba",
+      "raw_log_sha256": "7cf16c98c21a9add9b50a251d16434ea590a351fe225edaaf2da14850e757370",
+      "input_manifest_sha256": "93194cd08c50fdc2edf68ac7f57f6adef8987698c68d81bd6d3c89540d437db0",
+      "source": "source/section3/src/bin/count_checked_final.rs",
+      "observed_PBS_counters": [
+        1
+      ],
+      "correct_observations": 35
+    },
+    {
+      "run": "protocol1_dcc_n16_threshold",
+      "method": "count",
+      "size": "16",
+      "predicate": "threshold",
+      "source_sha256": "04c8de11ee6e7b15d8d491a670faf86d1773d2ecb9cfe30597ab03aec7e887ba",
+      "raw_log_sha256": "093e7c3bd03f7d594248b380dc3801118924c4fcd5676b2eb77ce8aac0e94b21",
+      "input_manifest_sha256": "93194cd08c50fdc2edf68ac7f57f6adef8987698c68d81bd6d3c89540d437db0",
+      "source": "source/section3/src/bin/count_checked_final.rs",
+      "observed_PBS_counters": [
+        1
+      ],
+      "correct_observations": 35
+    },
+    {
+      "run": "protocol1_native_div16",
+      "method": "native",
+      "size": "16",
+      "predicate": "none",
+      "source_sha256": "0b818fe285b77eafd606e057221d433d14c6e35152210cf287472a89bad57a9e",
+      "raw_log_sha256": "8a6897829b7120fda5e37baa301a2db84be80295b8d88515b779a5cbc4124d09",
+      "input_manifest_sha256": "2615db095fc02455aa7fcb8e151ae321c2e69cb42d99282c292468015b015b05",
+      "source": "source/section3/src/bin/baseline_div_final.rs",
+      "observed_PBS_counters": [
+        66
+      ],
+      "correct_observations": 35
+    },
+    {
+      "run": "protocol1_native_div32",
+      "method": "native",
+      "size": "32",
+      "predicate": "none",
+      "source_sha256": "0b818fe285b77eafd606e057221d433d14c6e35152210cf287472a89bad57a9e",
+      "raw_log_sha256": "a0e7f980031898adbc1b54329c35a180b976ad56f18384d9c4250242c863f8e0",
+      "input_manifest_sha256": "740989ffac6e3a0446eb4cd3f8a965888d543b724e802845c971f4e5819b1b6a",
+      "source": "source/section3/src/bin/baseline_div_final.rs",
+      "observed_PBS_counters": [
+        117
+      ],
+      "correct_observations": 35
+    },
+    {
+      "run": "protocol1_native_div64",
+      "method": "native",
+      "size": "64",
+      "predicate": "none",
+      "source_sha256": "0b818fe285b77eafd606e057221d433d14c6e35152210cf287472a89bad57a9e",
+      "raw_log_sha256": "78ae47a7fed6e97e1a0a6633acc9b4fd5c4f572e3b7eda7027b9422381a1169a",
+      "input_manifest_sha256": "3a130c948102017adf9f489dd169d98c2e5bad19e7342f1f1e6934f888034c0e",
+      "source": "source/section3/src/bin/baseline_div_final.rs",
+      "observed_PBS_counters": [
+        117
+      ],
+      "correct_observations": 35
+    },
+    {
+      "run": "protocol1_refined_div16",
+      "method": "refined_div",
+      "size": "16",
+      "predicate": "none",
+      "source_sha256": "ef85967600bcec6617af520a3898dcb90f07225e643ce2114d772cb47cf8d01d",
+      "raw_log_sha256": "26899a4e046d8f3d51e402bcd506ac92b2cffd2da9633ff56bc3a05a46858aa3",
+      "input_manifest_sha256": "2615db095fc02455aa7fcb8e151ae321c2e69cb42d99282c292468015b015b05",
+      "source": "source/refined-tfhe-lhe/benches/bench_targeted_div4.rs",
+      "observed_PBS_counters": [],
+      "correct_observations": 35
+    },
+    {
+      "run": "protocol1_refined_n12_interval",
+      "method": "refined_count",
+      "size": "12",
+      "predicate": "interval",
+      "source_sha256": "a5cdd563a57dc921bee1d413b718b9deb7715be47a69fc757e1d13aaf58c5bc7",
+      "raw_log_sha256": "0d403785a92e4b262c93717774c82f0082b1d6b36eb121c9c615553767418858",
+      "input_manifest_sha256": "072082495c4adb261e22b894fea3aa3e75b687e982259a5ace361ca1c1b0a71e",
+      "source": "source/refined-tfhe-lhe/benches/bench_count_boolean.rs",
+      "observed_PBS_counters": [],
+      "correct_observations": 35
+    },
+    {
+      "run": "protocol1_refined_n12_threshold",
+      "method": "refined_count",
+      "size": "12",
+      "predicate": "threshold",
+      "source_sha256": "a5cdd563a57dc921bee1d413b718b9deb7715be47a69fc757e1d13aaf58c5bc7",
+      "raw_log_sha256": "d53205c033393082fad01760f40152287f2f5fa64f1653903749e23018325cd4",
+      "input_manifest_sha256": "072082495c4adb261e22b894fea3aa3e75b687e982259a5ace361ca1c1b0a71e",
+      "source": "source/refined-tfhe-lhe/benches/bench_count_boolean.rs",
+      "observed_PBS_counters": [],
+      "correct_observations": 35
+    },
+    {
+      "run": "protocol1_refined_n16_interval",
+      "method": "refined_count",
+      "size": "16",
+      "predicate": "interval",
+      "source_sha256": "a5cdd563a57dc921bee1d413b718b9deb7715be47a69fc757e1d13aaf58c5bc7",
+      "raw_log_sha256": "00541263dc530c9b4061e27ccbba7912f22065e436015c6fbde824c512452738",
+      "input_manifest_sha256": "93194cd08c50fdc2edf68ac7f57f6adef8987698c68d81bd6d3c89540d437db0",
+      "source": "source/refined-tfhe-lhe/benches/bench_count_boolean.rs",
+      "observed_PBS_counters": [],
+      "correct_observations": 35
+    },
+    {
+      "run": "protocol1_refined_n16_threshold",
+      "method": "refined_count",
+      "size": "16",
+      "predicate": "threshold",
+      "source_sha256": "a5cdd563a57dc921bee1d413b718b9deb7715be47a69fc757e1d13aaf58c5bc7",
+      "raw_log_sha256": "17a1881dadaaf2bd5b8c205db642a376bc7a6aa2335918b176c483b9cacc9229",
+      "input_manifest_sha256": "93194cd08c50fdc2edf68ac7f57f6adef8987698c68d81bd6d3c89540d437db0",
+      "source": "source/refined-tfhe-lhe/benches/bench_count_boolean.rs",
+      "observed_PBS_counters": [],
+      "correct_observations": 35
+    }
+  ],
+  "total_observed_correct": 525
+}

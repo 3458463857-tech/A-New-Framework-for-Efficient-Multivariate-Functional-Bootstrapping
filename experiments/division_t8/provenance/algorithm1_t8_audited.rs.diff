@@ -1,0 +1,12 @@
+--- C:\Users\Wu\Documents\Codex\2026-10-10\xi\work\DCC_targeted_revision_v2\final_experiments\source\section3\src\bin\algorithm1_t16_audited.rs
++++ C:\Users\Wu\Documents\Codex\2026-10-10\xi\work\DCC_final_polish_v6\new_experiments\source\section3\src\bin\algorithm1_t8_audited.rs
+@@ -396,7 +396,8 @@
+         final_refresh: shortint_sks.generate_lookup_table(|value| value),
+     };
+ 
+-    let selected=read_protocol_manifest(T)?;
++    println!("DOMAIN,logical_t=8,implementation_t=16,reused_t16_circuit=true");
++    let selected=read_protocol_manifest(8)?;
+     let measured_count=selected.iter().filter(|x|x.0=="measured").count();
+ 
+     let mut total_ms = 0.0;

@@ -1,0 +1,426 @@
+{
+  "task_id": "max3_6",
+  "alphabet": 3,
+  "n": 6,
+  "p": 17,
+  "author_nu": 5,
+  "lambda_": 5,
+  "a": 0,
+  "atoms": [
+    {
+      "alpha": [
+        1,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "lut": [
+        0,
+        1,
+        2,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "note": "two-symbol maximum"
+    },
+    {
+      "alpha": [
+        0,
+        0,
+        1,
+        3,
+        0,
+        0,
+        0
+      ],
+      "lut": [
+        0,
+        1,
+        2,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "note": "two-symbol maximum"
+    },
+    {
+      "alpha": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        3,
+        0,
+        0
+      ],
+      "lut": [
+        0,
+        1,
+        2,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "note": "two-symbol maximum"
+    },
+    {
+      "alpha": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3,
+        0
+      ],
+      "lut": [
+        0,
+        1,
+        2,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "note": "merge maxima"
+    },
+    {
+      "alpha": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        1
+      ],
+      "lut": [
+        0,
+        1,
+        2,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "note": "merge maxima"
+    }
+  ],
+  "output_beta": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "exhaustive_checked": 729,
+  "construction": [
+    {
+      "method": "maximum reduction",
+      "triple_atom_attempts": 256,
+      "triple_atom_found": false
+    },
+    {
+      "maximum_reduction_atoms": 5,
+      "histogram_atoms": 8,
+      "rule": "fewer atoms; reduction wins a tie",
+      "histogram_trials": [
+        {
+          "method": "finite histogram-projection linear solve",
+          "selected_directions": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "trials": [
+            {
+              "directions": [
+                [
+                  1,
+                  0
+                ]
+              ],
+              "rank": 7,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "rank": 7,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  1
+                ]
+              ],
+              "rank": 7,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  2
+                ]
+              ],
+              "rank": 13,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  3
+                ]
+              ],
+              "rank": 17,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  4
+                ]
+              ],
+              "rank": 17,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  5
+                ]
+              ],
+              "rank": 17,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  6
+                ]
+              ],
+              "rank": 17,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  7
+                ]
+              ],
+              "rank": 17,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  8
+                ]
+              ],
+              "rank": 17,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  9
+                ]
+              ],
+              "rank": 13,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  10
+                ]
+              ],
+              "rank": 17,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  11
+                ]
+              ],
+              "rank": 17,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  12
+                ]
+              ],
+              "rank": 17,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  13
+                ]
+              ],
+              "rank": 17,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  14
+                ]
+              ],
+              "rank": 17,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  15
+                ]
+              ],
+              "rank": 17,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  16
+                ]
+              ],
+              "rank": 13,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              "rank": 13,
+              "consistent": false
+            },
+            {
+              "directions": [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "rank": 13,
+              "consistent": true
+            }
+          ],
+          "final_linear_terms": 2
+        }
+      ]
+    }
+  ],
+  "provenance": "explicit structured certificate; not output of author random search",
+  "noise_scope": "Fresh raw-input weighted sums use independence; sums of preceding PBS outputs use absolute coefficient sums; final linear sum is not claimed to have one-PBS error probability.",
+  "definitions_sha256": "54347777d1ef1ec0c737694f918632dc362e90eaa19c9ba6ab54493b76737a98"
+}

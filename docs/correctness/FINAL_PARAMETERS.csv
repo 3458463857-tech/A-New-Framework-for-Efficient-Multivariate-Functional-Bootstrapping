@@ -1,0 +1,5 @@
+auto_base_log,auto_fft,auto_level,carry_modulus,cbs_base_log,cbs_level,deterministic_execution,extract_size,glwe_dimension,glwe_sigma,grouping_factor,ks_base_log,ks_level,log2_p_fail_library_field,log_lut_count,lwe_dimension,lwe_sigma,max_noise_level,message_modulus,message_size,name,pbs_base_log,pbs_level,polynomial_size,ss_base_log,ss_level,tfhe
+,,,4,,,False,,1,2.845267479601915e-15,3,4,4,-64.442,,891,1.3292631075564801e-06,5,4,,PARAM_MULTI_BIT_MESSAGE_2_CARRY_2_GROUP_3_KS_PBS,21,1,2048,,,0.8.7
+,,,16,,,,,1,2.168404344971009e-19,,3,6,-64.078,,977,3.0144389706858286e-07,21,4,,PARAM_MESSAGE_2_CARRY_4_KS_PBS,15,2,8192,,,0.8.7
+7,Split(35),7,,4,4,,2,1,9.25119974676756e-16,,4,3,,2,769,8.763872947670246e-06,,,4,INT_LHE_BASE_16,15,2,2048,17,2,0.5.4
+7,Split(35),6,,4,4,,1,1,9.25119974676756e-16,,2,5,,2,636,9.25119974676756e-05,,,1,BITWISE_CBS_CMUX3,15,2,2048,17,2,0.5.4

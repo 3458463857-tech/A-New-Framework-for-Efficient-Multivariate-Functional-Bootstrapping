@@ -1,0 +1,72 @@
+[
+  {
+    "task_id": "lower_median3_6",
+    "lambda_": 8,
+    "exhaustive_checked": 729,
+    "author_nu": 5,
+    "certificate_sha256": "9c83a8ff930e28582b6cd723e08c88450a50f20c46438e1234dd702ddf062e0a"
+  },
+  {
+    "task_id": "mode3_6",
+    "lambda_": 8,
+    "exhaustive_checked": 729,
+    "author_nu": 5,
+    "certificate_sha256": "6283225c1d1c8f2166017c6313a1ca1d9017c91577f0b5f4cdde1a47a847d1d6"
+  },
+  {
+    "task_id": "set_interval4_6",
+    "lambda_": 4,
+    "exhaustive_checked": 4096,
+    "author_nu": 5,
+    "certificate_sha256": "121122d8188272daadcabe9b7145e4f3d28d0914294a8f7ec3105cf640845940"
+  },
+  {
+    "task_id": "set_threshold4_6",
+    "lambda_": 4,
+    "exhaustive_checked": 4096,
+    "author_nu": 5,
+    "certificate_sha256": "aaab7a83d68974599283289bbf0270aa8ee0f30f0511d0e628ceceb79540a63f"
+  },
+  {
+    "task_id": "hamming_interval10",
+    "lambda_": 1,
+    "exhaustive_checked": 1024,
+    "author_nu": 5,
+    "certificate_sha256": "27f3ca1e7c4f6fc58631c636f6eb53e41c683a3da3148ecf78c8d98cbfae8f79"
+  },
+  {
+    "task_id": "max3_6",
+    "lambda_": 5,
+    "exhaustive_checked": 729,
+    "author_nu": 5,
+    "certificate_sha256": "9d2f8ab63fb816a9585429170dd0420576b7f1eb730c15a31867d161412fa099"
+  },
+  {
+    "task_id": "range3_6",
+    "lambda_": 8,
+    "exhaustive_checked": 729,
+    "author_nu": 5,
+    "certificate_sha256": "f5981924ac3483a394e4da93fc1e6d400937cfce5289da6cb7744fb66e1d482b"
+  },
+  {
+    "task_id": "iqr3_6",
+    "lambda_": 8,
+    "exhaustive_checked": 729,
+    "author_nu": 5,
+    "certificate_sha256": "baaa5beca004b00aee6d12f3e615cae4c456d54123717def184aebb0cfed4838"
+  },
+  {
+    "task_id": "mad3_6",
+    "lambda_": 4,
+    "exhaustive_checked": 729,
+    "author_nu": 5,
+    "certificate_sha256": "771508a123392204d9892f247630debf0a93adfbfb3130a92bbca9d5d39ccfcb"
+  },
+  {
+    "task_id": "distinct3_6",
+    "lambda_": 8,
+    "exhaustive_checked": 729,
+    "author_nu": 5,
+    "certificate_sha256": "21e352bbe221beb64c515da006859e3f0c13810270c7c2d07a15264d5e504c91"
+  }
+]

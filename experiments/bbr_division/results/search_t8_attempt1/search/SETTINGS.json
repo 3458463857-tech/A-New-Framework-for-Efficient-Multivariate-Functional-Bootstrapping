@@ -1,0 +1,24 @@
+{
+  "t": 8,
+  "p": 17,
+  "n": 2,
+  "lambda_": 13,
+  "products": [
+    4
+  ],
+  "seed": 20261011,
+  "maximum_candidates_per_output": 3,
+  "timeout_seconds": 120,
+  "output_radix": 8,
+  "input_order": [
+    "m",
+    "d"
+  ],
+  "domain_cardinalities": [
+    8,
+    8
+  ],
+  "output_order": [
+    "q"
+  ]
+}

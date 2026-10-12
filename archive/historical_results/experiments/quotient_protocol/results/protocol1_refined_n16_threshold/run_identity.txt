@@ -1,0 +1,3 @@
+method=refined_count
+size=16
+predicate=threshold

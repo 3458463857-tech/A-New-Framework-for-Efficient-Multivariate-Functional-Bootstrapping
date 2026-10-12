@@ -1,0 +1,246 @@
+{
+  "crate": "tfhe",
+  "version": "0.8.7",
+  "purpose": "Exact source excerpts for the audited paths; these are implementation evidence, not a noise-tail theorem.",
+  "files": [
+    {
+      "source": "src/shortint/ciphertext/common.rs",
+      "whole_source_sha256": "991052832294b5ea3671a2ef48a2d64a3bdb557db5762d424aa51ab3622509c6",
+      "ranges": [
+        [
+          35,
+          145
+        ]
+      ],
+      "excerpt": "src__shortint__ciphertext__common.rs.txt"
+    },
+    {
+      "source": "src/shortint/parameters/multi_bit/mod.rs",
+      "whole_source_sha256": "492999d635999fb09f2b5f25dade51cfd4c0e950f5f26887d049f878a67e5d9c",
+      "ranges": [
+        [
+          110,
+          142
+        ]
+      ],
+      "excerpt": "src__shortint__parameters__multi_bit__mod.rs.txt"
+    },
+    {
+      "source": "src/shortint/parameters/multi_bit/p_fail_2_minus_64/ks_pbs.rs",
+      "whole_source_sha256": "de1e9378f88e783349dda4291772ee09472aa059452ac533c267e1fc9839ebca",
+      "ranges": [
+        [
+          952,
+          992
+        ]
+      ],
+      "excerpt": "src__shortint__parameters__multi_bit__p_fail_2_minus_64__ks_pbs.rs.txt"
+    },
+    {
+      "source": "src/shortint/parameters/mod.rs",
+      "whole_source_sha256": "f518a0cba16bf261d96422d6a3e4497d78ce86f7e8d326430009cb5275898713",
+      "ranges": [
+        [
+          775,
+          810
+        ]
+      ],
+      "excerpt": "src__shortint__parameters__mod.rs.txt"
+    },
+    {
+      "source": "src/shortint/parameters/classic/gaussian/p_fail_2_minus_64/ks_pbs.rs",
+      "whole_source_sha256": "ad50b339d803a585e9b37b3984f6829188abb6925000dc3727ffae3fd925647f",
+      "ranges": [
+        [
+          270,
+          312
+        ]
+      ],
+      "excerpt": "src__shortint__parameters__classic__gaussian__p_fail_2_minus_64__ks_pbs.rs.txt"
+    },
+    {
+      "source": "src/shortint/engine/mod.rs",
+      "whole_source_sha256": "591806329f8641def0dabbe256b6f32b7715d36dfa0a5160c341e436c763a01b",
+      "ranges": [
+        [
+          160,
+          255
+        ]
+      ],
+      "excerpt": "src__shortint__engine__mod.rs.txt"
+    },
+    {
+      "source": "src/shortint/server_key/mod.rs",
+      "whole_source_sha256": "3855aeec6b579e6036b6da18d500001f296d0151bb2f7a5543fb88062435abb4",
+      "ranges": [
+        [
+          870,
+          915
+        ],
+        [
+          1040,
+          1075
+        ],
+        [
+          1345,
+          1500
+        ],
+        [
+          1615,
+          1650
+        ]
+      ],
+      "excerpt": "src__shortint__server_key__mod.rs.txt"
+    },
+    {
+      "source": "src/shortint/server_key/bivariate_pbs.rs",
+      "whole_source_sha256": "c55f090117abca8e3ae872048a4099ffaa9e9d3a54ecccb74310c69b3639121c",
+      "ranges": [
+        [
+          1,
+          60
+        ],
+        [
+          130,
+          180
+        ],
+        [
+          288,
+          320
+        ]
+      ],
+      "excerpt": "src__shortint__server_key__bivariate_pbs.rs.txt"
+    },
+    {
+      "source": "src/integer/server_key/radix/neg.rs",
+      "whole_source_sha256": "850283012a3aaaffa35a88475dd92116bf3787104a7f87ccaadc40f8e230a466",
+      "ranges": [
+        [
+          90,
+          155
+        ]
+      ],
+      "excerpt": "src__integer__server_key__radix__neg.rs.txt"
+    },
+    {
+      "source": "src/integer/server_key/radix_parallel/add.rs",
+      "whole_source_sha256": "831f3ecd5fa3dc44bf7f57e8eff9ffb7e649ffa9e69f9146ab738db1d120ada7",
+      "ranges": [
+        [
+          1,
+          112
+        ],
+        [
+          395,
+          420
+        ],
+        [
+          480,
+          700
+        ],
+        [
+          795,
+          870
+        ],
+        [
+          985,
+          1135
+        ],
+        [
+          1290,
+          1450
+        ]
+      ],
+      "excerpt": "src__integer__server_key__radix_parallel__add.rs.txt"
+    },
+    {
+      "source": "src/integer/server_key/radix_parallel/sub.rs",
+      "whole_source_sha256": "d1559ee798e9158154131626f114b3dd5fae5ceb34d6895f24f52230682c8ff1",
+      "ranges": [
+        [
+          135,
+          215
+        ],
+        [
+          280,
+          345
+        ],
+        [
+          590,
+          735
+        ]
+      ],
+      "excerpt": "src__integer__server_key__radix_parallel__sub.rs.txt"
+    },
+    {
+      "source": "src/integer/server_key/radix_parallel/div_mod.rs",
+      "whole_source_sha256": "8e2444f1728c1b6ad175defdd1a1428d6f12fdfc8ae78b9d3c991144469ae3a7",
+      "ranges": [
+        [
+          80,
+          490
+        ],
+        [
+          750,
+          850
+        ]
+      ],
+      "excerpt": "src__integer__server_key__radix_parallel__div_mod.rs.txt"
+    },
+    {
+      "source": "src/integer/server_key/radix_parallel/scalar_shift.rs",
+      "whole_source_sha256": "9a105f03f9509270b12471a17ba359ba9e26c068f9e21fef4ec66bd64d61a4a9",
+      "ranges": [
+        [
+          525,
+          655
+        ]
+      ],
+      "excerpt": "src__integer__server_key__radix_parallel__scalar_shift.rs.txt"
+    },
+    {
+      "source": "src/integer/server_key/radix_parallel/scalar_comparison.rs",
+      "whole_source_sha256": "8114415bfc4c19910239bfae375bbdddae17c990333650f35ae0c9685449683b",
+      "ranges": [
+        [
+          200,
+          315
+        ]
+      ],
+      "excerpt": "src__integer__server_key__radix_parallel__scalar_comparison.rs.txt"
+    },
+    {
+      "source": "src/shortint/server_key/shift.rs",
+      "whole_source_sha256": "2fc832f3bee9c8433bece298713e170f8a4d071e2d83f52322698bf5e8c76de0",
+      "ranges": [
+        [
+          395,
+          430
+        ]
+      ],
+      "excerpt": "src__shortint__server_key__shift.rs.txt"
+    },
+    {
+      "source": "src/shortint/server_key/sub.rs",
+      "whole_source_sha256": "2ba5898ebc35ca2d3ab0347d3877e32426ed2a01364be8290535337918cd49b8",
+      "ranges": [
+        [
+          390,
+          408
+        ]
+      ],
+      "excerpt": "src__shortint__server_key__sub.rs.txt"
+    },
+    {
+      "source": "src/shortint/server_key/neg.rs",
+      "whole_source_sha256": "11692df7f594bf059904e0ae7dce3fefe00d9ff20782dd060bd33367c81625f3",
+      "ranges": [
+        [
+          220,
+          245
+        ]
+      ],
+      "excerpt": "src__shortint__server_key__neg.rs.txt"
+    }
+  ]
+}

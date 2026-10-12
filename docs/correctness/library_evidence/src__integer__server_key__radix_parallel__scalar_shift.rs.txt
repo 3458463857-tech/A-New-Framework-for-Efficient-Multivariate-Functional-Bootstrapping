@@ -1,0 +1,136 @@
+TFHE-rs 0.8.7: src/integer/server_key/radix_parallel/scalar_shift.rs
+Whole-source SHA256: 9a105f03f9509270b12471a17ba359ba9e26c068f9e21fef4ec66bd64d61a4a9
+
+
+--- Lines 525-655 ---
+525:     /// let size = 4;
+526:     /// let (cks, sks) = gen_keys_radix(PARAM_MESSAGE_2_CARRY_2_KS_PBS, size);
+527:     ///
+528:     /// let msg = 13;
+529:     /// let shift = 2;
+530:     ///
+531:     /// let mut ct = cks.encrypt(msg);
+532:     ///
+533:     /// // Compute homomorphically a left shift:
+534:     /// sks.unchecked_scalar_left_shift_assign_parallelized(&mut ct, shift);
+535:     ///
+536:     /// // Decrypt:
+537:     /// let dec: u64 = cks.decrypt(&ct);
+538:     /// assert_eq!(msg << shift, dec);
+539:     /// ```
+540:     pub fn unchecked_scalar_left_shift_assign_parallelized<T, Scalar>(
+541:         &self,
+542:         ct: &mut T,
+543:         shift: Scalar,
+544:     ) where
+545:         T: IntegerRadixCiphertext,
+546:         u64: CastFrom<Scalar>,
+547:     {
+548:         // The general idea, is that we know by how much we want to shift
+549:         // since `shift` is a clear value.
+550:         //
+551:         // So we can use that to implement shifting in two step
+552:         // 1) shift blocks (implemented by using rotate + replace with trivial ciphertext block
+553:         //    which 'wrapped around`
+554:         // 2) shift within each block in propagate block to the next one
+555: 
+556:         debug_assert!(ct.block_carries_are_empty());
+557:         debug_assert!(self.key.carry_modulus.0 >= self.key.message_modulus.0 / 2);
+558: 
+559:         let num_bits_in_block = self.key.message_modulus.0.ilog2() as u64;
+560:         let total_num_bits = num_bits_in_block * ct.blocks().len() as u64;
+561: 
+562:         let shift = u64::cast_from(shift) % total_num_bits;
+563:         if shift == 0 {
+564:             return;
+565:         }
+566: 
+567:         let rotations = ((shift / num_bits_in_block) as usize).min(ct.blocks().len());
+568:         let shift_within_block = shift % num_bits_in_block;
+569: 
+570:         // rotate right as the blocks are from LSB to MSB
+571:         ct.blocks_mut().rotate_right(rotations);
+572:         // Every block below 'rotations' should be discarded
+573:         for block in &mut ct.blocks_mut()[..rotations] {
+574:             self.key.create_trivial_assign(block, 0);
+575:         }
+576: 
+577:         if shift_within_block == 0 || rotations == ct.blocks().len() {
+578:             return;
+579:         }
+580: 
+581:         // Since we require that carries are empty,
+582:         // we can use the bivariate bps to shift and propagate in parallel at the same time
+583:         // instead of first shifting then propagating
+584:         //
+585:         // The first block is done separately as it does not
+586:         // need to recuperate the shifted bits from its previous block,
+587:         // and also that way is does not need a special case for when rotations == 0
+588:         let create_blocks_using_bivariate_pbs = || {
+589:             let lut = self
+590:                 .key
+591:                 .generate_lookup_table_bivariate(|previous_block, current_block| {
+592:                     let current_block = current_block << shift_within_block;
+593:                     let previous_block = previous_block << shift_within_block;
+594: 
+595:                     let message_of_current_block =
+596:                         current_block % self.key.message_modulus.0 as u64;
+597:                     let carry_of_previous_block =
+598:                         previous_block / self.key.message_modulus.0 as u64;
+599:                     message_of_current_block + carry_of_previous_block
+600:                 });
+601:             let partial_blocks = ct.blocks()[rotations..]
+602:                 .par_windows(2)
+603:                 .map(|blocks| {
+604:                     let (previous_block, current_block) = (&blocks[0], &blocks[1]);
+605:                     self.key.unchecked_apply_lookup_table_bivariate(
+606:                         previous_block,
+607:                         current_block,
+608:                         &lut,
+609:                     )
+610:                 })
+611:                 .collect::<Vec<_>>();
+612:             partial_blocks
+613:         };
+614: 
+615:         let shift_last_block = || {
+616:             let mut block = ct.blocks()[rotations].clone();
+617:             self.key
+618:                 .scalar_left_shift_assign(&mut block, shift_within_block as u8);
+619:             block
+620:         };
+621: 
+622:         let (partial_blocks, block) =
+623:             rayon::join(create_blocks_using_bivariate_pbs, shift_last_block);
+624: 
+625:         // We started with num_blocks, discarded 'rotations' blocks
+626:         // and did the last one separately
+627:         ct.blocks_mut()[rotations] = block;
+628:         let blocks_to_replace = &mut ct.blocks_mut()[rotations + 1..];
+629:         assert_eq!(partial_blocks.len(), blocks_to_replace.len());
+630:         for (block, shifted_block) in izip!(blocks_to_replace, partial_blocks) {
+631:             *block = shifted_block;
+632:         }
+633:         debug_assert!(ct.block_carries_are_empty());
+634:     }
+635: 
+636:     /// Computes homomorphically a left shift by a scalar.
+637:     ///
+638:     /// The result is returned as a new ciphertext.
+639:     ///
+640:     /// This function, like all "default" operations (i.e. not smart, checked or unchecked), will
+641:     /// check that the input ciphertexts block carries are empty and clears them if it's not the
+642:     /// case and the operation requires it. It outputs a ciphertext whose block carries are always
+643:     /// empty.
+644:     ///
+645:     /// This means that when using only "default" operations, a given operation (like add for
+646:     /// example) has always the same performance characteristics from one call to another and
+647:     /// guarantees correctness by pre-emptively clearing carries of output ciphertexts.
+648:     ///
+649:     /// # Example
+650:     ///
+651:     /// ```rust
+652:     /// use tfhe::integer::gen_keys_radix;
+653:     /// use tfhe::shortint::parameters::PARAM_MESSAGE_2_CARRY_2_KS_PBS;
+654:     ///
+655:     /// // We have 4 * 2 = 8 bits of message

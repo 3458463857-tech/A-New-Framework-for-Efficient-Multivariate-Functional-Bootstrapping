@@ -1,0 +1,287 @@
+[
+  {
+    "case_id": "bbr_hamming_interval_n10",
+    "description": "Hamming-weight interval [4,6]; one atomic function, no products",
+    "domain": "[2]^10",
+    "n": 10,
+    "t": 2,
+    "p": 11,
+    "input_embedding": [
+      0,
+      1
+    ],
+    "lambda_value": 1,
+    "product_terms_a": 0,
+    "atomic_chain": [
+      {
+        "alpha": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "psi": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "meaning": "interval predicate of Hamming weight"
+      }
+    ],
+    "D": [],
+    "beta_final": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "equation": "f(x)=sum_j beta_final[j]*v[j] mod p; v=(x,atomic_chain(x)); a=0",
+    "H_rows": 1024,
+    "H_columns": 11,
+    "H_rank": 11,
+    "augmented_rank": 11,
+    "full_row_rank": false,
+    "target_in_column_space": true,
+    "checked_inputs": 1024,
+    "failures": 0,
+    "logical_PBS_count": 1,
+    "logical_LUT_records": 11,
+    "runtime_measured": false,
+    "random_search_performed": false,
+    "optimality_claim": false,
+    "plaintext_no_wrap_reason": "count ranges from0 to10, strictly below p=11",
+    "parameter_warning": "This is a valid algebraic BBR representation; homomorphic parameters and noise/conversion costs for this p are not benchmarked."
+  },
+  {
+    "case_id": "bbr_symbol_threshold_t4_n6",
+    "description": "symbol-set threshold A={0,1,2}, tau=3; seven atoms, no products",
+    "domain": "[4]^6",
+    "n": 6,
+    "t": 4,
+    "p": 7,
+    "input_embedding": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "lambda_value": 7,
+    "product_terms_a": 0,
+    "atomic_chain": [
+      {
+        "alpha": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "psi": [
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "meaning": "indicator(x_0 in A)"
+      },
+      {
+        "alpha": [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "psi": [
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "meaning": "indicator(x_1 in A)"
+      },
+      {
+        "alpha": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "psi": [
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "meaning": "indicator(x_2 in A)"
+      },
+      {
+        "alpha": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "psi": [
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "meaning": "indicator(x_3 in A)"
+      },
+      {
+        "alpha": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "psi": [
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "meaning": "indicator(x_4 in A)"
+      },
+      {
+        "alpha": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "psi": [
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "meaning": "indicator(x_5 in A)"
+      },
+      {
+        "alpha": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "psi": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1
+        ],
+        "meaning": "count threshold >=3"
+      }
+    ],
+    "D": [],
+    "beta_final": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "equation": "f(x)=sum_j beta_final[j]*v[j] mod p; v=(x,atomic_chain(x)); a=0",
+    "H_rows": 4096,
+    "H_columns": 13,
+    "H_rank": 13,
+    "augmented_rank": 13,
+    "full_row_rank": false,
+    "target_in_column_space": true,
+    "checked_inputs": 4096,
+    "failures": 0,
+    "logical_PBS_count": 7,
+    "logical_LUT_records": 49,
+    "runtime_measured": false,
+    "random_search_performed": false,
+    "optimality_claim": false,
+    "plaintext_no_wrap_reason": "count ranges from0 to6, strictly below p=7",
+    "parameter_warning": "This is a valid algebraic BBR representation; homomorphic parameters and noise/conversion costs for this p are not benchmarked."
+  }
+]
