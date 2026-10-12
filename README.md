@@ -1,6 +1,8 @@
-# A New Framework for Efficient Multivariate Functional Bootstrapping
+This repository contains the implementation and reproducibility materials for the paper:
 
-This repository contains the currently released implementation and reproducibility materials for the Section 4 decomposition framework, together with an auxiliary catalogue of applicable functions. The implementation for Section 3 is not included in this release and is planned for a later update.
+"A New Framework for Efficient Multivariate Functional Bootstrapping"
+
+The repository includes the implementations for the proposed decomposition framework, including the quotient construction described in Section 3 and the low-span representation framework described in Section 4, together with parameter configurations, experimental scripts, and auxiliary function catalogues.
 
 All documents, source files, comments, filenames, and reproduction instructions in this release are in English.
 
