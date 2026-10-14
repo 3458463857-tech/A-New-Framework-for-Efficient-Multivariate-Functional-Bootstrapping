@@ -5,6 +5,12 @@
 \usepackage{amsmath,amssymb,booktabs,longtable,array,tabularx}
 \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
 \usepackage{xurl,fancyhdr}
+\usepackage{xcolor}
+\usepackage[normalem]{ulem}
+\newif\ifappmarked
+\ifdefined\appmark\appmarkedtrue\else\appmarkedfalse\fi
+\newcommand{\appadd}[1]{\ifappmarked{\color{blue}#1}\else#1\fi}
+\newcommand{\appdel}[1]{\ifappmarked{\color{red}\sout{#1}}\fi}
 \pagestyle{fancy}\fancyhf{}
 \fancyhead[L]{Function Catalogue and Verification Records}
 \fancyfoot[C]{\thepage}
@@ -34,7 +40,7 @@ F01--F08 & Applications of the existing count construction. These are function f
 \end{tabular}
 \end{center}
 
-The machine-readable \path{catalog.csv} contains each entry's definition, original function name, domain, numerical values, evidence type, source and limitations. Search its \texttt{catalog\_id} column using the IDs printed here. Source paths in the CSV are relative to this directory; a suffix after \texttt{\#} identifies a task or row in the cited file.
+The machine-readable \path{catalog.csv} contains each entry's definition, original function name, domain, numerical values, evidence type, source and limitations. \appadd{It also records the function category, applicability label, expected benefit and practical limit. These added descriptions keep representation suitability separate from measured runtime.} Search its \texttt{catalog\_id} column using the IDs printed here. Source paths in the CSV are relative to this directory; a suffix after \texttt{\#} identifies a task or row in the cited file.
 
 \subsection{What a record count means}
 Write $[t]=\{0,\ldots,t-1\}$. A single-layer representation has the form
@@ -52,6 +58,53 @@ The structural study's \texttt{Alt.} column denotes a specified algebraic, sorti
 Each measured configuration has five warm-ups, thirty timed evaluations and decrypted-output checks. Timing starts with separately encrypted inputs and ends when the result ciphertext is returned. It includes server-side packing, conversion, evaluation and recovery, but excludes key generation, input encryption and offline table construction. BBR26 uses the authors' evaluator with an explicit decomposition for the function; Refined-LHE and Meta-PBS use the authors' programs and the saved input adapters.
 
 Measured comparisons concern the recorded implementations and configurations. Encodings, parameters and overall failure probabilities have not been fully aligned. Lower latency in a row does not establish a ranking at a common security and reliability target. An empty cell means unmeasured; it is not zero time or an advantage.
+
+\newpage
+\section*{\appadd{How to assess a new function}}
+\appadd{The following groups are practical guidance based on the existing constructions and recorded examples. They are not a complete classification theorem. A function's input domain, representation and implementation must be considered together.}
+
+\appadd{\textbf{A. A direct low-span candidate.} Start here when the function depends on a count with a short range, such as a threshold, interval, exact-count test or public-template Hamming distance. The indicator maps immediately provide a candidate representation. The proved integer-quotient construction is another explicit starting point for its stated domain. This label means that a construction is available; it does not promise compression at every small parameter or lower runtime.}
+
+\appadd{\textbf{B. A domain-specific construction or search is needed.} Order statistics, frequency statistics and elementary composite functions may have useful intermediate values, but the complete representation must still be constructed and checked. A small alphabet or a histogram is a useful clue, not a guarantee. In particular, several counts may need to be combined, and that step can be costly. The O-series includes multistep comparison and histogram constructions as well as additive representations; their costs must not be merged under a single-layer formula.}
+
+\appadd{\textbf{C. No useful compression has been demonstrated in the attempted representation.} If the representation has nearly as many records as the direct table, there is little or no useful entry reduction. This is a reason to stop or try another representation, not a proof that the function is inherently difficult. The historical synthetic example in Supplementary Notes, Section S1, gives 4104 records versus 4096 direct records at twelve binary inputs. That example is not added to the 74 entries. No T-series row is assigned to this group merely because its encrypted implementation is slower.}
+
+\appadd{For a new function, use the following four checks before investing in an encrypted implementation.}
+\begin{enumerate}
+\item \appadd{Fix the exact function, legal input domain and output convention, including ties, rounding and public parameters. Look for a count, a frequency summary or another intermediate value that determines the required output.}
+\item \appadd{Construct candidate inner maps and check that any two legal inputs with the same sum have the same function value. Use a proof where available or a complete finite-domain check where feasible. A small output range alone is insufficient.}
+\item \appadd{Count all required inner and outer records using the appropriate convention. Compare with the direct table; include every step in a composed representation. Reject a candidate that provides no useful reduction for the intended domain, unless another stated benefit justifies it.}
+\item \appadd{Check the evaluator's supported message ranges, encodings, output format and noise requirements. Only then measure the complete online route, including conversions. Fewer logical records can coexist with more costly PBS parameters and longer runtime.}
+\end{enumerate}
+
+\newpage
+\section*{\appadd{What the existing records show}}
+\appadd{The table below reorganizes the same 74 entries by function category. Counts describe the catalogue's coverage, not the probability that a new function will work. The entries were selected in earlier studies and are not a random sample of functions. No new search or encrypted benchmark was run for this summary.}
+
+\appadd{%
+\begin{center}
+\begin{tabular}{@{}p{65mm}rrrr@{}}
+\toprule
+Category & Structural & Measured & Families & Total\\\midrule
+Count-based functions & 0 & 3 & 8 & 11\\
+Exact integer quotient & 1 & 4 & 0 & 5\\
+Elementary composite functions & 18 & 0 & 0 & 18\\
+Order and small-range statistics & 15 & 10 & 0 & 25\\
+Histogram and frequency statistics & 11 & 4 & 0 & 15\\\midrule
+Total & 45 & 21 & 8 & 74\\
+\bottomrule
+\end{tabular}
+\end{center}}
+
+\appadd{\textbf{Representation size.} Define the record-compression ratio as the direct-table count divided by the representation count, retaining each row's original accounting convention. A ratio above one means fewer logical records. For the 18 elementary-composite records O02--O19, this ratio ranges from 2.12 to 4.36. For O20--O34 and O35--O45, the stored multistep constructions retain, respectively, about 0.03--0.17\% and 0.06--0.10\% of the direct-table records. Those percentages measure structural counts, not memory or elapsed time, and do not compare all possible implementations. The per-entry ratios are saved in \texttt{applicability\_records.csv}; missing or symbolic counts remain blank.}
+
+\appadd{\textbf{Runtime.} The three measured count functions have lower times than every measured baseline in their respective rows. Among the seven other small-domain statistical configurations, five have a lower time than at least one measured baseline; mode and interquartile range do not. None of the seven six-ternary-input statistical configurations has a lower time than a measured baseline. These contrasting outcomes show why an applicability label must be separate from a timing result. The comparisons remain limited to the saved parameters and implementations.}
+
+\appadd{\textbf{An explicit boundary case.} The quotient measurements preserve the same distinction. The $t=8$ measurement reuses a 205-record $T=16$ circuit although its legal input domain has only 56 pairs; it is not a compressed representation of that restricted domain. For $t=16,32,64$, the saved record counts are lower than their direct-table counts, but the fastest measured route is still a different implementation. A direct construction therefore provides a candidate to assess, not an assurance of faster evaluation.}
+
+\appadd{\textbf{What cannot be inferred.} These records do not give a success rate for arbitrary functions, a success guarantee for simulated annealing, or a common-security and common-reliability performance ranking. The existing search comparison in Supplementary Notes concerns only its two stated functions, search space and budget. It should not be extrapolated to the whole catalogue.}
+
+\appadd{The added CSV columns record the category, applicability, evidence type, expected benefit and practical limit. All previous columns and O/T/F identifiers remain unchanged. Run \texttt{python summarize\_catalogue.py --check} from this directory to verify that the saved summary files match the catalogue; this performs arithmetic on saved entries and does not run experiments.}
 
 \newpage
 \section{Count-based construction families}

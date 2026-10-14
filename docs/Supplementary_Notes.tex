@@ -1,6 +1,15 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,amsmath,amssymb,booktabs,array,tabularx,makecell}
+\usepackage{xcolor}
+\usepackage[normalem]{ulem}
+\ifdefined\appmark
+  \newcommand{\appadd}[1]{{\color{blue}#1}}
+  \newcommand{\appdel}[1]{{\color{red}\sout{#1}}}
+\else
+  \newcommand{\appadd}[1]{#1}
+  \newcommand{\appdel}[1]{}
+\fi
 \newcommand{\Z}{\mathbb{Z}}
 \usepackage[margin=25mm]{geometry}
 \usepackage{xurl,hyperref,fancyhdr,placeins,float,needspace}
@@ -48,6 +57,15 @@ The comparisons use the same machine, plaintext task and input list. They retain
 Logical lookup-table entries, actual PBS calls, memory use and elapsed time are different quantities. Compact representations reduce the number of logical entries; online cost also depends on packing, conversions, ciphertext capacity, parameters and implementation. The retained six-input and quotient results include cases in which our program takes longer. Structural compression alone does not imply an online speed advantage.
 
 The correctness evidence also has distinct meanings. Exact integer identities and exhaustively checked finite-domain representations concern the plaintext computation. Decrypted-output checks establish the observed outcomes of the recorded ciphertext runs. Library noise checks and conditional failure estimates depend on their stated models. None of these should be substituted for another.
+
+\appadd{\section*{Choosing a function and interpreting the evidence}
+Start by asking whether the output is determined by a count or another integer statistic with a small range. For a proposed sum, check that inputs with the same sum always have the same function value. Then count all required inner and outer table entries using the stated convention. A small output range alone does not establish either of these properties.
+
+The catalogue distinguishes direct constructions, such as count functions, from constructions that must be found and checked for a particular domain. It also explains how to recognize an available representation that gives little or no entry reduction. These are practical descriptions of the available evidence, not an exhaustive classification of functions. In particular, a search that finds no compact representation does not rule out a better one.
+
+The existing evidence already illustrates both useful cases and limitations. The catalogue's T01--T10 records contain smaller-domain measurements, whereas T11--T17 retain the same statistical tasks with six ternary inputs. Our implementation is slower than all three measured baselines in T11--T17 despite its compact representation. A change in the function's domain can require different ciphertext capacity and PBS parameters; fewer logical entries do not determine the measured running time. Section~\ref{app:stress} supplies a different limitation: the listed historical synthetic-function representation at $\ell=12$ uses $4104$ entries for a direct table of $4096$ entries. This is a result for that representation, not a lower bound on possible compression.
+
+The 45 structural records O01--O45, 21 measured configurations T01--T21 and eight construction families F01--F08 have different evidential roles. They are selected examples, include repeated function types at different domains, and cannot be used to estimate a success rate on arbitrary new functions. The two equal-budget search examples in Section~\ref{app:search-parameters} likewise concern only their stated domains and search range. A valid representation can already be obtained by positional encoding; a useful search outcome must additionally reduce the chosen record count. For a new function, first perform this plaintext check and only then assess the encoding, parameter requirements and encrypted running time.}
 
 \section{Historical search results for a synthetic function}\label{app:stress}
 The following synthetic function combines integer multiplication, shifts, and XOR. The table retains the entry counts found in earlier searches; these results do not establish that the counts are minimal.

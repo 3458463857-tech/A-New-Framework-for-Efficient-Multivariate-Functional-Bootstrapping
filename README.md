@@ -13,7 +13,8 @@ or implementation.
 2. Use [TABLE_INDEX.csv](TABLE_INDEX.csv) to find the source, inputs, raw records,
    and summary for a particular reported result.
 3. Read the [Function Catalogue](functions/Function_Catalogue_and_Verification_Records.pdf)
-   for function definitions, representation sizes, evidence, and measured cases.
+   for function definitions, representation sizes, evidence, measured cases, and
+   practical guidance on when a representation is worth trying.
 4. Follow the [Reproduction Guide](docs/Reproduction_Guide.md) to prepare a
    workspace and run a selected experiment.
 
@@ -51,11 +52,19 @@ files include offline decompositions, correctness checks, build records, and
 failure diagnostics. Superseded measurements and the earlier public repository
 are separated under `archive/historical_results/`; see its README before using
 them. Old labels such as “final” in a frozen log do not override the current index.
+Earlier top-level copies, if present in an existing checkout (`Application_function.pdf`,
+`Section3_Code/`, `Section4_Code/`, and `Reproduction_Materials_for_Application_function/`),
+are historical copies, not the current reproduction entry points. Use the paths
+listed above and the table index for final reported results.
 
 The catalogue contains 45 structural examples, 21 measured task configurations,
 and eight construction families. These are different kinds of evidence, not
 74 independent timing successes. Instances without a speed advantage remain
-included.
+included. The [catalogue guide](functions/README.md) distinguishes the O/T/F
+record groups and describes the applicability labels. These labels are empirical
+guidance, not a complete function classification or a general search success rate.
+The [documentation update](docs/Applicability_Update.md) describes the added
+explanations; no code, parameters, inputs, or measurements were changed.
 
 ## Verify and prepare
 
@@ -63,6 +72,7 @@ From the repository root, with Python 3.11 or newer:
 
 ```bash
 python3 scripts/verify_artifact.py
+python3 functions/summarize_catalogue.py --check
 python3 scripts/rebuild_statistics.py --output ../statistics_check --run-frozen-parsers
 python3 scripts/prepare_workspace.py --output ../reproduction
 ```

@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-14",
+  "scope": "Documentation and derived summaries of existing catalogue records only; no new experiment.",
+  "source_main_commit": "ddbd5caaeacf4b04f256be28384d4b77af3a8237",
+  "preserved_experiment_archive_and_packaging_script_bytes": true,
+  "preserved_table_indexes": true,
+  "preserved_original_catalogue_columns": true,
+  "changes": [
+    {
+      "path": "docs/Applicability_Update.md",
+      "previous_sha256": null,
+      "sha256": "213111561341e5ff88d02bd6103f5aebe9cc0ff9b008e8ec14e77789268935a7",
+      "bytes": 1876
+    },
+    {
+      "path": "docs/README.md",
+      "previous_sha256": "b4c2a3816a16d4de0eba634aeec4466bf995ffddf91f1e18d421011dfd153faf",
+      "sha256": "3d12e7e5ba62ede04470275c4cf6966ef3ef02207f6ce7f5556afa191ae1a897",
+      "bytes": 1120
+    },
+    {
+      "path": "docs/Supplementary_Notes.pdf",
+      "previous_sha256": "96b85b55294379b9f01557686833f87131f4babd6422aff329d8e0465b9f5061",
+      "sha256": "3ae79410a01994556f7f76c71f734387a50d5352d7d99d0aba0eaa27834ef0bb",
+      "bytes": 314436
+    },
+    {
+      "path": "docs/Supplementary_Notes.tex",
+      "previous_sha256": "31133efe2bf269ce1713b352c40ed4e5e7d01c7826fa4cae2a2287ac92c05776",
+      "sha256": "2f023a3d50b51f3f51c7c78cdf70561367d343dab6af5324feda3c7fcf61f791",
+      "bytes": 29859
+    },
+    {
+      "path": "functions/applicability_records.csv",
+      "previous_sha256": null,
+      "sha256": "6082730043b5e99bb8bf3e6452c2f6842f491108f4582b1bb960b66a61fe43e9",
+      "bytes": 19879
+    },
+    {
+      "path": "functions/applicability_summary.json",
+      "previous_sha256": null,
+      "sha256": "a368df94ede35f97a914eda0f7376f30644fba70bc076995a713ecbbbe726ff4",
+      "bytes": 3084
+    },
+    {
+      "path": "functions/catalog.csv",
+      "previous_sha256": "73f1d902ee5efbf9f242bbb0047aae2ff78cb2bc8f485d9a5c2cbcd0370e722a",
+      "sha256": "1a25d79d63ab1a85fba439f65366dd25aade22fa42fc2f110c61796942d6d6d7",
+      "bytes": 98498
+    },
+    {
+      "path": "functions/Function_Catalogue_and_Verification_Records.pdf",
+      "previous_sha256": "2393cacc5ffa2d0c02be7c133c0880a4e1cc06c5664b2129fe8dd0d4eecee2de",
+      "sha256": "be3b28846758e660e9e61c44f5ad9cd48493e51e50fc2fda07ffe72932c1f11c",
+      "bytes": 287859
+    },
+    {
+      "path": "functions/Function_Catalogue_and_Verification_Records.tex",
+      "previous_sha256": "2be6ae6fc3436664c97bbf994759f5e93ce940636d4817947bdf23ebd1b70d7d",
+      "sha256": "5a9329a98da751e0a75a2e87346e75e915afd5245e08fcdcac5f5083cc5a71f4",
+      "bytes": 33070
+    },
+    {
+      "path": "functions/README.md",
+      "previous_sha256": "90cf909558ba3febbd3ef6e2de6c3bb6f78140799163ac9cc019df87cfe57338",
+      "sha256": "b7ad604d79321935fc862304809ac77c66050336291bf020b9f7b52cceb547cf",
+      "bytes": 10584
+    },
+    {
+      "path": "functions/summarize_catalogue.py",
+      "previous_sha256": null,
+      "sha256": "1661bbe002573074a11b7bc3d4fcfdb0d81abdce5c06462afdde1e903c10da20",
+      "bytes": 6286
+    },
+    {
+      "path": "README.md",
+      "previous_sha256": "48f956e0e181b06178362a73346f47dbcd2af99c0c3e4f530da37c9b33162a00",
+      "sha256": "6b53fbf68231767353f066618d1a50bd0d00634445523b724e449365517fc87c",
+      "bytes": 6049
+    }
+  ]
+}

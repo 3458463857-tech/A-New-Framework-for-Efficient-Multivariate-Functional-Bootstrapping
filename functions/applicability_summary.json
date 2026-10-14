@@ -1,0 +1,86 @@
+{
+  "scope": "Reclassification and arithmetic on saved catalogue entries; no new experiment.",
+  "catalog_sha256": "1a25d79d63ab1a85fba439f65366dd25aade22fa42fc2f110c61796942d6d6d7",
+  "entries": 74,
+  "evidence_group_counts": {
+    "F": 8,
+    "O": 45,
+    "T": 21
+  },
+  "applicability_label_counts": {
+    "A: direct low-span candidate": 16,
+    "B: domain-specific construction or search": 58
+  },
+  "categories": [
+    {
+      "function_category": "Count-based functions",
+      "entries": 11,
+      "structural_instances": 0,
+      "measured_configurations": 3,
+      "construction_families": 8,
+      "measured_with_lower_time_than_at_least_one_baseline": 3,
+      "measured_without_lower_time_than_any_baseline": 0
+    },
+    {
+      "function_category": "Elementary composite functions",
+      "entries": 18,
+      "structural_instances": 18,
+      "measured_configurations": 0,
+      "construction_families": 0,
+      "measured_with_lower_time_than_at_least_one_baseline": 0,
+      "measured_without_lower_time_than_any_baseline": 0
+    },
+    {
+      "function_category": "Exact integer quotient",
+      "entries": 5,
+      "structural_instances": 1,
+      "measured_configurations": 4,
+      "construction_families": 0,
+      "measured_with_lower_time_than_at_least_one_baseline": 3,
+      "measured_without_lower_time_than_any_baseline": 1
+    },
+    {
+      "function_category": "Histogram and frequency statistics",
+      "entries": 15,
+      "structural_instances": 11,
+      "measured_configurations": 4,
+      "construction_families": 0,
+      "measured_with_lower_time_than_at_least_one_baseline": 1,
+      "measured_without_lower_time_than_any_baseline": 3
+    },
+    {
+      "function_category": "Order and small-range statistics",
+      "entries": 25,
+      "structural_instances": 15,
+      "measured_configurations": 10,
+      "construction_families": 0,
+      "measured_with_lower_time_than_at_least_one_baseline": 4,
+      "measured_without_lower_time_than_any_baseline": 6
+    }
+  ],
+  "structural_record_ratios": {
+    "elementary_composite_structural_O02_O19": {
+      "entries": 18,
+      "minimum": 2.12264150943,
+      "maximum": 4.35675082327
+    },
+    "order_statistics_structural_O20_O34": {
+      "entries": 15,
+      "minimum": 582.542222222,
+      "maximum": 3495.25333333
+    },
+    "histogram_statistics_structural_O35_O45": {
+      "entries": 11,
+      "minimum": 1025.26246719,
+      "maximum": 1594.3877551
+    }
+  },
+  "limits": [
+    "The catalogue contains selected entries; it is not a random sample of functions.",
+    "No success probability for a previously unseen function can be estimated from these counts.",
+    "The record ratio is direct_records / logical_records, under each row's saved accounting convention.",
+    "Missing or symbolic record counts remain blank; no estimate is substituted.",
+    "Lower recorded mean does not establish statistical significance or a common-security/reliability ranking.",
+    "Comparison-network and histogram counts concern multistep constructions, not one additive representation."
+  ]
+}

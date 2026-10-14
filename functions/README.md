@@ -22,6 +22,9 @@ The 74 entries include 66 concrete parameter instances and eight families. Funct
 | `Function_Catalogue_and_Verification_Records.pdf` | Reader-facing English catalogue, with definitions, examples, tables and limitations |
 | `Function_Catalogue_and_Verification_Records.tex` | Editable English source; compiled with standard pdfLaTeX |
 | `catalog.csv` | Complete English index, retaining the stored numerical precision and original entry IDs |
+| `applicability_records.csv` | Derived per-entry record ratios and measured-runtime status; no new experimental data |
+| `applicability_summary.json` | Category and evidence counts recomputed from the existing 74 entries |
+| `summarize_catalogue.py` | Standard-library Python script that rebuilds or checks the two derived files |
 | `evidence_index.csv` | Evidence snapshots, their current repository paths and SHA-256 hashes |
 | `evidence/current_summaries/` | Copies of timing summaries, function definitions and plaintext verification outputs |
 | `evidence/original_study/` | Original structural-study scripts, saved CSV/JSON results and stored repeat checks |
@@ -39,10 +42,22 @@ The original PDF's directory names and statement about unreleased Section 3 code
 - `faster_than_tested_methods` lists only methods with a higher recorded mean for that row. Slower configurations are retained.
 - `alternative_records` and `alternative_route` preserve the structural study's specified comparison routes. These are not BBR26 times, optimal costs or lower bounds on all implementations.
 - `source` identifies the evidence file; paths are relative to `functions/`. A suffix after `#` identifies a task or row. `source_detail` adds the original table or task name.
+- `function_category` groups entries into count-based functions, exact integer quotient, elementary composites, order/small-range statistics, and histogram/frequency statistics. Categories organize the records; they are not a theorem about all functions.
+- `applicability_label` distinguishes an available direct low-span candidate (A) from a domain-specific construction or search (B). It is a representation label, not a speed label. Group C in the PDF describes an attempted representation without useful compression; no row is assigned to C merely because its measured time is higher.
+- `evidence_type` summarizes the evidence group without replacing the more detailed original `evidence_level` field.
+- `expected_benefit_explanation` says why the construction is worth considering. `practical_limit` states what still needs checking, including known slower settings.
 
 The original scripts' `elapsed_ms` fields describe plaintext Python checks. They have not been copied into the encrypted timing columns.
 
 ## Definitions and applicability
+
+For a new function, first fix its exact domain and output convention. Look for a count or another intermediate value that determines the required output, then check the candidate representation over all legal inputs or by an applicable proof. Count every required table before choosing an encrypted evaluator. Finally, check message ranges, encodings and noise requirements, and measure the complete online route, including conversions.
+
+Counts and public-template Hamming distances have explicit indicator maps. Frequency statistics, order statistics and elementary composites need the particular construction and domain to be checked. A small output range does not by itself imply a small representation. The six-input statistical records remain representable even though their measured implementation is slower than all measured baselines.
+
+The catalogue now separates these structural judgments from runtime in `applicability_records.csv`. Its ratio is `direct_records / logical_records`; a value greater than one means fewer logical records under the row's saved convention. A blank means a count is missing or symbolic. The comparison-network and histogram rows concern multistep constructions, and their ratios must not be interpreted as single-layer compression or measured speedups.
+
+The 74 entries are selected records, not a random sample from a population of functions. They cannot establish a general search success probability. The new summary is a reorganization of existing evidence, not a new experiment.
 
 The measured statistics use the stored program definitions: lower median, smallest-value mode tie, non-interpolated interquartile range and lower-median absolute deviation. The PDF gives their formulas and examples. Timings on ternary inputs do not apply to the structural catalogue's eight-valued or five-valued domains.
 
@@ -60,6 +75,14 @@ python evidence/original_study/verify_records.py
 
 This compares saved results and stored repeat checks; it does not rerun the original function enumeration or encrypted benchmarks. To rerun the finite-domain study, use `run_experiments.py` and `compare_intermediate_routes.py` in `evidence/original_study/`. Those programs write results, so run them in a separate working copy to preserve the supplied records. Follow the root reproduction guide for encrypted experiments.
 
+To check the category summary and per-entry ratios without writing files:
+
+```bash
+python summarize_catalogue.py --check
+```
+
+Omit `--check` to regenerate only `applicability_summary.json` and `applicability_records.csv`. The script does not enumerate functions, search for representations or run FHE programs. It preserves missing values and includes slower measured configurations. It needs Python 3.8 or later and no additional packages.
+
 To rebuild the catalogue PDF with TeX Live or an equivalent installation:
 
 ```bash
@@ -68,6 +91,8 @@ pdflatex -interaction=nonstopmode -halt-on-error Function_Catalogue_and_Verifica
 ```
 
 No Chinese LaTeX support is required.
+
+To view the additions in blue, compile a separate review copy with `\def\appmark{1}` before loading the same source. The default build is clean. The review copy is an editing aid, not a different set of experimental records.
 
 ## Limits of the evidence
 
